@@ -69,7 +69,7 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        tocIcon.textContent = tocElement.classList.contains('show') ? '✖' : '☰';
+        tocIcon.textContent = tocElement.classList.contains('show') ? 'X' : '☰'; //原 ✖ 符号没法自定义颜色！改为英文符号大写 X 才可以！
     }
 }
 
@@ -188,10 +188,6 @@ document.addEventListener("DOMContentLoaded", function() {
            .toc {
                width: 200px;
            }
-            .toc-icon.active {
-                color: blue; /* 激活按钮颜色改为白色 */
-                border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
-        }
        }
     `;
     loadResource('style', {css: css});
