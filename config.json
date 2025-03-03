@@ -1,11 +1,11 @@
 {
     "title":"Klein.Blue",
     "subTitle":"give you some color to see see",
-    "avatarUrl":"https://klein.blue/favicon.svg",
+    "avatarUrl":"https://planenalp.github.io/favicon.svg",
     "GMEEK_VERSION":"last",
     "displayTitle":"Klein.Blue",
     "homeUrl":"https://planenalp.github.io",
-    "faviconUrl":"https://klein.blue/favicon.svg",
+    "faviconUrl":"https://planenalp.github.io/favicon.svg",
     "filingNum":"<a href='https://icp.gov.moe/?keyword=20259061' target='_blank'>萌ICP备20259061号</a>",
     "singlePage":["link","about"],
     "i18n":"EN",
@@ -13,7 +13,7 @@
     "dayTheme":"dark",
     "nightTheme":"dark-blue",
     "urlMode":"issue",
-    "script":"<script src='https://klein.blue/assets/KleinBlueArticleTOC.js'></script><script src='https://klein.blue/assets/lightbox.js'></script>",
-    "allHead":"<script src='https://klein.blue/assets/KleinBlueTheme.js'></script>",
+    "script":"<script src='https://planenalp.github.io/assets/KleinBlueArticleTOC.js'></script><script src='https://planenalp.github.io/assets/lightbox.js'></script>",
+    "allHead":"<script src='https://planenalp.github.io/assets/KleinBlueTheme.js'></script>",
     "showPostSource":0
 }
