@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
                width: 200px;
            }
             .toc-icon.active {
-                color: var(--toc-icon-active-color); /* 激活按钮颜色改为白色 */
+                color: blue; /* 激活按钮颜色改为白色 */
                 border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
         }
        }
