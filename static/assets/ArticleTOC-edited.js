@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
             cursor: pointer;
             font-size: 24px;
             background-color: var(--toc-icon-bg);
-            color: var(--toc-icon-color);
+            color: var(--toc-icon-color) !important; /* 强制使用变量颜色 */
             border: 2px solid var(--toc-icon-color);
             border-radius: 50%;
             width: 40px;
@@ -152,6 +152,17 @@ document.addEventListener("DOMContentLoaded", function() {
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
+        /* 添加移动端适配 */
+        @media (max-width: 768px) {
+            .toc-icon {
+                background-color: var(--toc-icon-active-bg) !important;
+                color: white !important; /* 移动端强制白色 */
+                border-color: white !important;
+            }
+            .toc-icon.active {
+                color: var(--toc-icon-active-color) !important;
+            }
+        }
         .toc-icon:hover {
             transform: scale(0.9);
         }
@@ -160,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
-            color: var(--toc-icon-active-color);
+            color: var(--toc-icon-active-color) !important; /* 强制激活状态颜色 */
             border-color: var(--toc-icon-active-bg);
             transform: rotate(90deg);
         }
