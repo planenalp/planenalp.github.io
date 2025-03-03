@@ -11,7 +11,7 @@
     "i18n":"EN",
     "themeMode":"manual",
     "dayTheme":"light",
-    "nightTheme":"dark-blue",
+    "nightTheme":"dark_colorblind",
     "urlMode":"issue",
     "script":"<script src='https://planenalp.github.io/assets/KleinBlueArticleTOC.js'></script><script src='https://planenalp.github.io/assets/lightbox.js'></script>",
     "allHead":"<script src='https://planenalp.github.io/assets/KleinBlueTheme.js'></script>",
