@@ -3,23 +3,24 @@
   const style = document.createElement('style');
   style.textContent = `
     .back-to-top {
-      position: fixed;
-      bottom: 80px;
-      right: 15px;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #333;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 50px;
-      height: 50px;
-      font-size: 30px;
-      z-index: 10000;
-      transition: transform 0.2s ease, opacity 0.3s ease;
-      display: none;
-      align-items: center;
-      justify-content: center;
+           position: fixed;
+           bottom: 20px;
+           right: 15px;
+           cursor: pointer;
+           background-color: var(--toc-icon-bg);
+           color: var(--toc-icon-color);
+           border-radius: 50%;
+           width: 50px;
+           height: 50px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+           z-index: 1001;
+           transition: all 0.3s ease;
+           user-select: none;
+           -webkit-tap-highlight-color: transparent;
+           outline: none;
     }
     .back-to-top:hover {
       transform: scale(1.1);
