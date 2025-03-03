@@ -50,27 +50,28 @@ document.addEventListener("DOMContentLoaded", function() {
    createTOC();
 const css = `
     :root {
-        --toc-bg: rgba(255, 255, 255, 0.8);      /* 背景白色 */
+        /* 浅色模式：白底黑字 */
+        --toc-bg: rgba(255, 255, 255, 0.8);
         --toc-border: #e1e4e8;
-        --toc-text: #000;                        /* 文字黑色 */
+        --toc-text: #000;
         --toc-hover: rgba(0, 0, 0, 0.05);
         --toc-icon-bg: rgba(255, 255, 255, 0.8);
-        --toc-icon-color: #000;                   /* 图标颜色黑色 */
+        --toc-icon-color: #000;
         --toc-icon-active-bg: #fff;
         --toc-icon-active-color: #000;
     }
 
-    /* 强制深色模式也使用白底黑字 */
     @media (prefers-color-scheme: dark) {
         :root {
-            --toc-bg: rgba(255, 255, 255, 0.8);
-            --toc-border: #e1e4e8;
-            --toc-text: #000;
-            --toc-hover: rgba(0, 0, 0, 0.05);
-            --toc-icon-bg: rgba(255, 255, 255, 0.8);
-            --toc-icon-color: #000;
-            --toc-icon-active-bg: #fff;
-            --toc-icon-active-color: #000;
+            /* 深色模式：黑底白字 */
+            --toc-bg: rgba(0, 0, 0, 0.8);
+            --toc-border: #444;
+            --toc-text: #fff;
+            --toc-hover: rgba(255, 255, 255, 0.1);
+            --toc-icon-bg: rgba(0, 0, 0, 0.8);
+            --toc-icon-color: #fff;
+            --toc-icon-active-bg: #222;
+            --toc-icon-active-color: #fff;
         }
     }
 
