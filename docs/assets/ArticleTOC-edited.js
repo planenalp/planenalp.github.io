@@ -130,6 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 8px;
         }
         .toc-icon {
+            font-family: 'Arial', sans-serif;
+            line-height: 40px;
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -187,12 +189,6 @@ document.addEventListener("DOMContentLoaded", function() {
        @media (max-width: 1249px) {
            .toc {
                width: 200px;
-           }
-           .toc-icon {
-               position: fixed;
-               display: flex;
-               align-items: center;
-               justify-content: center;
            }
        }
     `;
