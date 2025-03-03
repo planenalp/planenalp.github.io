@@ -3,27 +3,30 @@
   const style = document.createElement('style');
   style.textContent = `
     .back-to-top {
-           position: fixed;
-           bottom: 20px;
-           right: 15px;
-           cursor: pointer;
-           background-color: var(--toc-icon-bg);
-           color: var(--toc-icon-color);
-           border-radius: 50%;
-           width: 50px;
-           height: 50px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-           z-index: 1001;
-           transition: all 0.3s ease;
-           user-select: none;
-           -webkit-tap-highlight-color: transparent;
-           outline: none;
+      position: fixed;
+      bottom: 80px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+      z-index: 10000;
+      transition: transform 0.2s ease, opacity 0.3s ease;
+      display: none;
+      align-items: center;
+      justify-content: center;
     }
     .back-to-top:hover {
       transform: scale(1.1);
+    }
+    /* 显式设置 SVG 内的 path 颜色 */
+    .back-to-top svg path {
+      stroke: currentColor;
     }
     .back-to-top svg {
       width: 24px;
@@ -36,8 +39,8 @@
         font-size: 20px;
       }
       .back-to-top svg {
-      width: 20px;
-      height: 20px;
+        width: 20px;
+        height: 20px;
       }
     }
   `;
@@ -46,7 +49,7 @@
   // 创建按钮
   const btn = document.createElement('button');
   btn.className = 'back-to-top';
-  btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   document.body.appendChild(btn);
 
   // 点击事件处理
