@@ -212,7 +212,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // 移除默认的 active 类
     //tocIcon.classList.add('active');  // 删除这一行
     //tocIcon.textContent = '✖'; //这行改为下面的
-    tocIcon.textContent = '☰';  // 设置默认图标为汉堡菜单
+    //tocIcon.textContent = '☰';  // 设置默认图标为汉堡菜单，这是符号版的，改为下面的 SVG 图标版保证绝对居中
+    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始状态使用 SVG
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
