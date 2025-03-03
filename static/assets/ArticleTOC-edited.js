@@ -30,8 +30,8 @@ function createTOC() {
         tocElement.appendChild(link);
     });
 
-    
-    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">返回顶部</a>');
+    //返回顶部改为向上箭头
+    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">⮝</a>');
     contentContainer.prepend(tocElement);
 }
 
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         .active-toc {
-            font-weight: bold;
+            /* font-weight: bold;  移除加粗 */
             border-radius: 8px;
             background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
@@ -204,12 +204,13 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.body.appendChild(tocIcon);
 
+    //自定义按钮颜色 white 改为 #81D8D0CC
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style="visibility: visible;background-color: white;"
+            backToTopButton.style="visibility: visible;background-color: #81D8D0CC;"
         } else {
-            backToTopButton.style="visibility: hidden;background-color: white;"
+            backToTopButton.style="visibility: hidden;background-color: #81D8D0CC;"
         }
     };
 
