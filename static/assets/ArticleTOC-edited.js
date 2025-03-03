@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
             color: var(--toc-icon-active-color);
-            border-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
             transform: rotate(90deg);
         }
 
@@ -188,6 +188,10 @@ document.addEventListener("DOMContentLoaded", function() {
            .toc {
                width: 200px;
            }
+            .toc-icon.active {
+                color: var(--toc-icon-active-color);
+                border-color: var(--toc-icon-active-bg);
+        }
        }
     `;
     loadResource('style', {css: css});
