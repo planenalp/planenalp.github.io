@@ -69,7 +69,7 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色！改为另一个符号 ✕ 才可以！
+        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '≡'; //原 ✖ 符号没法自定义颜色！改为另一个符号 ✕ 才可以！
     }
 }
 
