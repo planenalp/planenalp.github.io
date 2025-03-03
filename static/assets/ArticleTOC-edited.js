@@ -130,8 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 8px;
         }
         .toc-icon {
-            font-family: 'Arial', sans-serif;
-            line-height: 40px;
             position: fixed;
             bottom: 20px;
             right: 20px;
