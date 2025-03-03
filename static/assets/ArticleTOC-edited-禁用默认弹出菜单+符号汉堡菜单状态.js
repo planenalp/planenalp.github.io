@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
             --toc-icon-bg: #FFFFFFCC;
             --toc-icon-color: #81D8D0;
             --toc-icon-active-bg: #81D8D0CC;
-            --toc-icon-active-color: #FFFFFF
+            --toc-icon-active-color: #FFFFFFCC;
         }
 
         .toc {
