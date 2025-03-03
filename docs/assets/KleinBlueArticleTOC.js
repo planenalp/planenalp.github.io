@@ -79,17 +79,7 @@ function toggleTOC() {
 document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const css = `
-       :root {
-            --toc-bg: rgba(255, 255, 255, 0.8);
-            --toc-border: #e1e4e8;
-            --toc-text: #000000;
-            --toc-hover: #81D8D0CC;
-            --toc-icon-bg: #FFFFFFCC;
-            --toc-icon-color: #81D8D0;
-            --toc-icon-active-bg: #81D8D0CC;
-            --toc-icon-active-color: #FFFFFFCC;
-        }
-
+    
        @media (prefers-color-scheme: dark) {
            :root {
                --toc-bg: #21262dcc;
@@ -205,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
            width: 24px;
            height: 24px;
            fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: var(--toc-text); /* 原为 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色），后改 var(--toc-text) */
+           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
            stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
            stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
            stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
