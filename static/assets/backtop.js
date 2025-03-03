@@ -34,6 +34,10 @@
         height: 40px;
         font-size: 20px;
       }
+      .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      }
     }
   `;
   document.head.appendChild(style);
