@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
                width: 200px;
            }
            .toc-icon {
+               position: fixed;
                display: flex;
                align-items: center;
                justify-content: center;
