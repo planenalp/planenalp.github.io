@@ -90,19 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
             --toc-icon-active-color: #FFFFFFCC;
         }
 
-       @media (prefers-color-scheme: dark) {
-           :root {
-               --toc-bg: #21262dcc;
-               --toc-border: rgba(240, 246, 252, 0.1);
-               --toc-text: #c9d1d9;
-               --toc-hover: #002fa7cc;
-               --toc-icon-bg: #21262dcc;
-               --toc-icon-color: rgba(240, 246, 252, 0.1);
-               --toc-icon-active-bg: #21262dcc;
-               --toc-icon-active-color: #8b949ecc;
-           }
-       }        
-
         .toc {
             position: fixed;
             bottom: 60px;
@@ -186,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
             text-align: center;
             cursor: pointer;
             visibility: hidden;
-            background-color: var(--toc-hover);      /* 自定义按钮颜色 */
+            background-color: #81D8D0CC;      /* 自定义按钮颜色 */
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
@@ -205,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
            width: 24px;
            height: 24px;
            fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: var(--toc-text); /* 原为 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色），后改 var(--toc-text) */
+           stroke: currentColor; /* 将描边颜色设置为当前文字颜色（继承父元素的颜色） */
            stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
            stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
            stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
@@ -233,13 +220,13 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.body.appendChild(tocIcon);
 
-    //自定义按钮颜色
+    //自定义按钮颜色 white 改为 #81D8D0CC
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
+            backToTopButton.style="visibility: visible;background-color: #81D8D0CC;"
         } else {
-            backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
+            backToTopButton.style="visibility: hidden;background-color: #81D8D0CC;"
         }
     };
 
