@@ -9,7 +9,8 @@ function loadResource(type, attributes) {
 function createTOC() {
     const tocElement = document.createElement('div');
     tocElement.className = 'toc';
-    tocElement.classList.add('show');
+    // 移除 .show 的默认添加
+    // tocElement.classList.add('show');  // 删除这一行
         
     const contentContainer = document.querySelector('.markdown-body');
     contentContainer.appendChild(tocElement);
@@ -186,7 +187,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    tocIcon.textContent = '☰'; /* 改成默认不激活 */
+    // 移除默认的 active 类
+    // tocIcon.classList.add('active');  // 删除这一行
+    tocIcon.textContent = '☰';  // 设置默认图标为汉堡菜单
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
