@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
             text-align: center;
             cursor: pointer;
             visibility: hidden;
-            background-color: #002fa7cc;      /* 自定义按钮颜色 */
+            background-color: var(--toc-hover);      /* 自定义按钮颜色 */
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
@@ -233,13 +233,13 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.body.appendChild(tocIcon);
 
-    //自定义按钮颜色 white 改为 #81D8D0CC
+    //自定义按钮颜色
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style="visibility: visible;background-color: #002fa7cc;"
+            backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
         } else {
-            backToTopButton.style="visibility: hidden;background-color: #002fa7cc;"
+            backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
         }
     };
 
