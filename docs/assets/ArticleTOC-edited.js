@@ -69,7 +69,7 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '⋯'; //原 ✖ 符号没法自定义颜色！改为另一个符号 ✕ 才可以！
+        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色iPhone一直显示黑色！改为另一个符号 ✕ 才可以！但是☰也没法居中，还是用SVG算了
     }
 }
 
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
             transform: scale(1.1);
         }
         .toc-icon:active {
-            transform: scale(1.1);
+            transform: scale(0.9);
         }
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
@@ -175,7 +175,8 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
         }
-        
+
+        /* 弹出菜单文字参数 */
         .active-toc {
             /* font-weight: bold;  移除加粗 */
             border-radius: 8px;
