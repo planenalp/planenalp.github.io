@@ -1,6 +1,19 @@
 {
-    "title":"Blog Title",
-    "subTitle":"Blog description",
-    "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "title":"GodPan",
+    "subTitle":"You're in a knowledge void.",
+    "avatarUrl":"https://godpan.com/favicon.svg",
+    "GMEEK_VERSION":"last",
+    "displayTitle":"GodPan",
+    "homeUrl":"https://godpan.com",
+    "faviconUrl":"https://godpan.com/favicon.svg",
+    "filingNum":"<a href='https://icp.gov.moe/?keyword=20256969' target='_blank'>萌ICP备20256969号</a>",
+    "singlePage":["link","about"],
+    "i18n":"EN",
+    "themeMode":"fix",
+    "dayTheme":"light",
+    "nightTheme":"github-light",
+    "urlMode":"issue",
+    "script":"<script src='https://godpan.com/assets/GmeekTOC.js'></script><script src='https://godpan.com/assets/lightbox.js'></script>",
+    "allHead":"<script src='https://godpan.com/assets/GodPanTheme.js'></script>",
+    "showPostSource":0
 }
