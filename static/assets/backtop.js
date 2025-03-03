@@ -34,16 +34,22 @@
         height: 40px;
         font-size: 20px;
       }
+      /* 新增移动端SVG尺寸调整 */
+      .back-to-top svg {
+        width: 20px;
+        height: 20px;
+      }
     }
   `;
   document.head.appendChild(style);
 
-  // 创建按钮
+  // 创建按钮（保持原样）
   const btn = document.createElement('button');
   btn.className = 'back-to-top';
   btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   document.body.appendChild(btn);
 
+  // 以下保持原样...
   // 点击事件处理
   btn.addEventListener('click', () => {
     window.scrollTo({
@@ -63,7 +69,5 @@
 
   window.addEventListener('scroll', toggleButtonVisibility);
   window.addEventListener('resize', toggleButtonVisibility);
-
-  // 初始检查
   toggleButtonVisibility();
 })();
