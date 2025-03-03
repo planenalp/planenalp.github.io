@@ -186,10 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    
-    tocIcon.classList.add('active');
-    
-    tocIcon.textContent = '✖';
+    tocIcon.textContent = '☰'; /* 改成默认不激活 */
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
