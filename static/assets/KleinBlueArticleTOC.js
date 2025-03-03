@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
                --toc-hover: #002fa7cc;
                --toc-icon-bg: #21262dcc;
                --toc-icon-color: rgba(240, 246, 252, 0.1);
-               --toc-icon-active-bg: #21262dcc;
+               --toc-icon-active-bg: #30363dcc;
                --toc-icon-active-color: #8b949ecc;
            }
        }        
@@ -164,6 +164,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon:active {
             transform: scale(0.9);
+            color: var(--toc-text);
+            background-color: var(--toc-icon-active-bg);
         }
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
