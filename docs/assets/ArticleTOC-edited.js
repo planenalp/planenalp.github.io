@@ -183,14 +183,14 @@ document.addEventListener("DOMContentLoaded", function() {
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
         }
 
-       /* 移动端缩窄一丢丢 */
+       /* 移动端缩窄一丢丢+自定义激活状态按钮颜色 */
        @media (max-width: 1249px) {
            .toc {
                width: 200px;
            }
             .toc-icon.active {
-                color: var(--toc-icon-active-color);
-                border-color: var(--toc-icon-active-bg);
+                color: var(--toc-icon-active-color); /* 激活按钮颜色改为白色 */
+                border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
         }
        }
     `;
