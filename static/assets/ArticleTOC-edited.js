@@ -87,6 +87,19 @@ document.addEventListener("DOMContentLoaded", function() {
             --toc-icon-active-color: #fff;
         }
 
+       /* 添加深色模式 */
+       @media (prefers-color-scheme: dark) {
+           :root {
+               --toc-bg: rgba(45, 51, 59, 0.8);
+               --toc-border: #444c56;
+               --toc-text: #adbac7;
+               --toc-hover: rgba(255, 255, 255, 0.05);
+               --toc-icon-bg: rgba(45, 51, 59, 0.8);
+               --toc-icon-color: #adbac7;
+               --toc-icon-active-bg: #2d333b;
+               --toc-icon-active-color: #adbac7;
+           }
+
         .toc {
             position: fixed;
             bottom: 60px;
@@ -152,10 +165,10 @@ document.addEventListener("DOMContentLoaded", function() {
             outline: none;
         }
         .toc-icon:hover {
-            transform: scale(0.9);
+            transform: scale(1.1);
         }
         .toc-icon:active {
-            transform: scale(0.9);
+            transform: scale(1.1);
         }
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
@@ -164,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
             transform: rotate(90deg);
         }
 
+        /* 结尾向上按钮参数 */
         .toc-end {
             font-weight: bold;
             text-align: center;
