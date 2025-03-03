@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const css = `
        :root {
-            --toc-bg: rgba(237, 239, 233, 0.84);
+            --toc-bg: rgba(255, 255, 255, 0.8);
             --toc-border: #e1e4e8;
-            --toc-text: #24292e;
-            --toc-hover: #8ae9c4;
-            --toc-icon-bg: #fff;
-            --toc-icon-color: #ad6598;
-            --toc-icon-active-bg: #813c85;
-            --toc-icon-active-color: #fff;
+            --toc-text: #000000;
+            --toc-hover: #81D8D0CC;
+            --toc-icon-bg: #FFFFFFCC;
+            --toc-icon-color: #81D8D0;
+            --toc-icon-active-bg: #81D8D0CC;
+            --toc-icon-active-color: #FFFFFF
         }
 
         .toc {
@@ -166,11 +166,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         /* 结尾向上按钮参数 */
         .toc-end {
-            font-weight: bold;
+            /* font-weight: bold;  移除加粗 */
             text-align: center;
             cursor: pointer;
             visibility: hidden;
-            background-color: white;
+            background-color: #81D8D0CC;      /* 自定义按钮颜色 */
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
@@ -182,6 +182,13 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
         }
+
+       /* 移动端缩窄一丢丢 */
+       @media (max-width: 1249px) {
+           .toc {
+               width: 200px;
+           }
+       }
     `;
     loadResource('style', {css: css});
 
