@@ -69,7 +69,10 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色iPhone一直显示黑色！改为另一个符号 ✕ 才可以！但是☰也没法居中，还是用SVG算了
+        //tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色iPhone一直显示黑色！改为另一个符号 ✕ 才可以！但是☰也没法居中，还是用SVG算了
+        tocIcon.innerHTML = tocElement.classList.contains('show') 
+            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
     }
 }
 
@@ -183,6 +186,17 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
         }
+
+       /* 按钮 SVG 图标自定义 */
+       .toc-icon svg {
+           width: 24px;
+           height: 24px;
+           fill: none; /* 设置 svg 内部不填充颜色（透明） */
+           stroke: currentColor; /* 将描边颜色设置为当前文字颜色（继承父元素的颜色） */
+           stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
+           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
+       }
 
        /* 移动端缩窄一丢丢 */
        @media (max-width: 1249px) {
