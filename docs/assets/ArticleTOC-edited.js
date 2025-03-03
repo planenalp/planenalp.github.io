@@ -69,7 +69,7 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        tocIcon.textContent = tocElement.classList.contains('show') ? 'X' : '☰'; //原 ✖ 符号没法自定义颜色！改为英文符号大写 X 才可以！
+        tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色！改为另一个符号 ✕ 才可以！
     }
 }
 
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
         }
 
-       /* 移动端缩窄一丢丢+自定义激活状态按钮颜色 */
+       /* 移动端缩窄一丢丢 */
        @media (max-width: 1249px) {
            .toc {
                width: 200px;
