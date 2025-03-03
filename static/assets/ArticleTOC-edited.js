@@ -188,6 +188,11 @@ document.addEventListener("DOMContentLoaded", function() {
            .toc {
                width: 200px;
            }
+           .toc-icon {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+           }
        }
     `;
     loadResource('style', {css: css});
