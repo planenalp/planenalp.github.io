@@ -123,6 +123,15 @@
             height: 40px;
             font-size: 20px;
           }
+          /* 新增关闭按钮专属适配 */
+          .lb-lightbox-close {
+              top: 10px;
+              right: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+          }
         }
       `;
       document.head.appendChild(style);
