@@ -163,11 +163,10 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--toc-icon-active-bg);
         }
         .toc-icon:active {
-            transform: scale(0.9);
+            transform: scale(0.9); /* 按住时缩小 */
         }
         .toc-icon.active {
             background-color: var(--toc-icon-active-bg);
-            color: var(--toc-icon-active-color);
             border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
             transform: rotate(90deg);
         }
