@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
             transform: scale(1.1);
             color: var(--toc-text);
             background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color);
         }
         .toc-icon:active {
             transform: scale(0.9); /* 按住时缩小 */
