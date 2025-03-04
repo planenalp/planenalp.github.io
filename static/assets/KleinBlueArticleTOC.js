@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon:hover {
             transform: scale(1.1);
-            color: var(--toc-text);
+            color: var(--toc-icon-active-color);
             background-color: var(--toc-icon-active-bg);
             border-color: var(--toc-icon-active-color);
         }
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
             transform: scale(0.9); /* 按住时缩小 */
         }
         .toc-icon.active {
-            color: var(--toc-text);
+            color: var(--toc-icon-active-color);
             background-color: var(--toc-icon-active-bg);
             border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
             transform: rotate(90deg);
