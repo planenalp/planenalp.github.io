@@ -82,14 +82,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
        @media (prefers-color-scheme: dark) {
            :root {
-               --toc-bg: #21262dcc;
+               --toc-bg: #21262db3;
                --toc-border: rgba(240, 246, 252, 0.1);
                --toc-text: #c9d1d9;
                --toc-hover: #002fa7cc;
-               --toc-icon-bg: #21262dcc;
+               --toc-icon-bg: #21262db3;
                --toc-icon-color: rgba(240, 246, 252, 0.1);
-               --toc-icon-active-bg: #30363dcc;
-               --toc-icon-active-color: #8b949ecc;
+               --toc-icon-active-bg: #002fa7b3;
+               --toc-icon-active-color: #8b949eb3;
            }
        }        
 
