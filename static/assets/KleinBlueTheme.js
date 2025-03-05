@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* header布局 */
         #header {
-            height: 120px;
+            height: 110px;
             position: relative; /* 父元素 #header 设置定位 */
-            background-color: #002fa780; /* 50%透明度 */
+            background-color: #002FA7B3; /* 70%透明度 */
         }
 
         #header h1 {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .avatar {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 自定义按钮 */
         .title-right {
             margin: unset; /* 重置原参数 */
-            margin-top: 70px; /* 用百分比会崩 */
+            margin-top: 60px; /* 用百分比会崩 */
             margin-left: 50%;
             transform: translateX(-50%);
             position: absolute;
@@ -58,9 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px;
             }
-            .avatar {
-                display:none;
-            }
             .blogTitle{
                 display:unset;
                 }
@@ -72,9 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .LabelName{
                 display:none;
-            }
-            #header h1 {
-                margin-top: 22px; /* Avatar64px-blogTitle52px=12px+原本margin-top:10px=22px 回到原本高度，直接调.blogTitle无效 */
             }
         }
 
@@ -95,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7;
+            background-color: #002FA7B3;
         }
 
         /* 顶栏字体缩进10px */
@@ -122,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7;
+            background-color: #002FA7B3;
         }
 
         /* 顶栏字体缩进10px */
