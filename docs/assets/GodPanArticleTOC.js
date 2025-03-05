@@ -82,17 +82,17 @@ document.addEventListener("DOMContentLoaded", function() {
        :root {
             --toc-bg: rgba(255, 255, 255, 0.8);
             --toc-border: #e1e4e8;
-            --toc-text: #000000;
+            --toc-text: #1F2328;
             --toc-hover: #81D8D0CC;
-            --toc-icon-bg: #FFFFFFCC;
-            --toc-icon-color: #81D8D0;
-            --toc-icon-active-bg: #81D8D0CC;
-            --toc-icon-active-color: #FFFFFFCC;
+            --toc-icon-bg: #FFFFFFB3;
+            --toc-icon-color: #656d76b3;
+            --toc-icon-active-bg: #81D8D0B3;
+            --toc-icon-active-color: #FFFFFFB3;
         }
 
         .toc {
             position: fixed;
-            bottom: 60px;
+            bottom: 100px;
             right: 20px;
             width: 250px;
             max-height: 70vh;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon {
             position: fixed;
-            bottom: 20px;
+            bottom: 60px;
             right: 20px;
             cursor: pointer;
             font-size: 24px;
@@ -156,13 +156,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon:hover {
             transform: scale(1.1);
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
         }
         .toc-icon:active {
             transform: scale(0.9);
         }
         .toc-icon.active {
-            background-color: var(--toc-icon-active-bg);
             color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
             border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
             transform: rotate(90deg);
         }
@@ -173,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
             text-align: center;
             cursor: pointer;
             visibility: hidden;
-            background-color: #81D8D0CC;      /* 自定义按钮颜色 */
+            background-color: var(--toc-hover);      /* 自定义按钮颜色 */
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
@@ -192,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
            width: 24px;
            height: 24px;
            fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: currentColor; /* 将描边颜色设置为当前文字颜色（继承父元素的颜色） */
+           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
            stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
            stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
            stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
@@ -220,13 +223,13 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.body.appendChild(tocIcon);
 
-    //自定义按钮颜色 white 改为 #81D8D0CC
+    //自定义按钮颜色
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style="visibility: visible;background-color: #81D8D0CC;"
+            backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
         } else {
-            backToTopButton.style="visibility: hidden;background-color: #81D8D0CC;"
+            backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
         }
     };
 
