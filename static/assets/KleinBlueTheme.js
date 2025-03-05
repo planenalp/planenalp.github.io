@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             body {
                 padding: 8px;
             }
