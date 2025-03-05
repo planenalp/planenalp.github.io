@@ -49,27 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(-50%);
             position: absolute;
         }
-
-        /* 清除原自定 max-width: 600px 参数 */
-        @media (max-width: unset){
-        }
         
         /* 重新定义 max-width: 768px 参数下的值 */
         @media (max-width: 768px) {
             body {
-                padding: 8px;
+                padding: 8px !important;
             }
             .blogTitle{
-                display:unset;
+                display:unset !important;
                 }
             #buttonRSS{
-                display:unset;
+                display:unset !important;
             }
             .LabelTime{
-                display:unset;
+                display:unset !important;
             }
             .LabelName{
-                display:none;
+                display:none !important;
             }
         }
 
@@ -103,6 +99,13 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 10px;
         }
 
+        /* 重新定义 max-width: 768px 参数下的值，原为 600px */
+        @media (max-width: 768px) {
+            body {
+                padding: 8px !important;
+            }
+        }
+
         `;
         document.head.appendChild(style);
     } 
@@ -132,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 230px; 
         }
 
-        /* 重新定义 max-width: 768px 参数下的值 */
+        /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
             .tagTitle {
             display: none !important;
