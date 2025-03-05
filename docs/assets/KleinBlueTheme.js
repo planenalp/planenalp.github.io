@@ -9,13 +9,43 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
 
+        /* header布局 */
+        #header {
+            height: 120px;
+            position: relative; /* 父元素 #header 设置定位 */
+            background-color: #002fa780; /* 50%透明度 */
+        }
 
+        #header h1 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #header h1 a {
+            font-family:
+                "PingFang SC",     /* 苹方（macOS/iOS） */
+                "Microsoft YaHei", /* 微软雅黑（Windows） */
+                "Noto Sans SC",    /* 思源黑体（Linux/Android） */
+                sans-serif;        /* 最终回退到无衬线字体 */
+        }
 
         .blogTitle {
             display: unset; /* 重置属性取消默认屏幕过窄自动隐藏标题 */
         }
 
-
+        /* 自定义按钮 */
+        .title-right {
+            margin: unset; /* 重置原参数 */
+            margin-top: 70px; /* 用百分比会崩 */
+            margin-left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+        }
 
         `;
         document.head.appendChild(style);
