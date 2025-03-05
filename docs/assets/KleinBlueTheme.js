@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 重新定义 max-width: 768px 参数下的值 */
         @media (max-width: 768px) {
             .tagTitle {
-            display: unset !important;
+            display: none !important;
             }
         }
         
