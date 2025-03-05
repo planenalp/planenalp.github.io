@@ -9,6 +9,35 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
 
+        #header {
+            /* display: flex; */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            /* border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted)); */
+            background-color: #002fa7;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-right {
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*
+        @media (max-width: 600px) {
+            body {padding: 8px;}
+            .avatar {width:40px;height:40px;}
+            .blogTitle{display:none;}
+            #buttonRSS{display:none;}
+            .LabelTime{display:none;}
+        }
+        */
+
 
 
         `;
