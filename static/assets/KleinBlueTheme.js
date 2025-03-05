@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             height: 110px;
             position: relative; /* 父元素 #header 设置定位 */
             background-color: #002FA7B3; /* 70%透明度 */
+            border-bottom: unset;
         }
 
         #header h1 {
@@ -88,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏改色 */
         #header {
             background-color: #002FA7B3;
-            padding-bottom: 2px;
+            padding-bottom: unset;
+            border-bottom: unset;
         }
 
         /* 顶栏字体缩进10px */
