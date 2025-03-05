@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏改色 */
         #header {
             background-color: #002FA7B3;
+            padding-bottom: 2px;
         }
 
         /* 顶栏字体缩进10px */
