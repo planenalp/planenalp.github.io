@@ -3,6 +3,9 @@
 > ![Image](https://github.com/user-attachments/assets/beb48c72-c26e-4cf2-b11b-3afa671067d0)
 J.A.R.V.I.S
 
+> ![Image](https://github.com/user-attachments/assets/540eee3b-896a-4ffc-9b87-267938792bf5)
+数字生命卡
+
 ## 视频教程
 [Bilibili](https://www.bilibili.com/video/BV1Pv4y1E7yZ)
 [YouTube](https://www.youtube.com/watch?v=FTrhBlOOH3E)
