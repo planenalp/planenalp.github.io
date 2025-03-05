@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 padding: 8px !important;
             }
             .postTitle{
-                font-size:24px;
+                font-size:24px !important;
             }
         }
 
