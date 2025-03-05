@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
         
-        /* 重新定义 max-width: 768px 参数下的值 */
+        /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
             body {
                 padding: 8px !important;
