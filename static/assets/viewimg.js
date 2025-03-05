@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 加载viewImage.js库
     let viewImage = document.createElement('script');
-    viewImage.src = 'https://planenalp.github.io/assets/view-image.js';
+    viewImage.src = 'https://planenalp.github.io/assets/view-image.min.js';
     document.body.appendChild(viewImage);
 
     viewImage.onload = function() {
