@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7B3;
+            background-color: #002FA7B3; /* 70%透明度 */
             padding-bottom: unset;
             border-bottom: unset;
         }
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7B3;
+            background-color: #002FA7B3; /* 70%透明度 */
             padding-bottom: unset;
             border-bottom: unset;
         }
@@ -130,6 +130,13 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 搜索布局 */
         .subnav-search {
             width: 230px; 
+        }
+
+        /* 重新定义 max-width: 768px 参数下的值 */
+        @media (max-width: 768px) {
+            .tagTitle {
+            display: unset !important;
+            }
         }
         
         `;
