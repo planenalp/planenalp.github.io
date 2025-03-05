@@ -153,6 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
             .LabelName{
                 display:none !important;
             }
+            /* 隐藏原文本 */
+            .tagTitle {
+                font-size: 0 !important;
+                position: relative !important;
+            }
+            .tagTitle::before {
+                content: "#" !important;
+                恢复合适的字体大小 */
+                font-size: 14px !important;
+                position: absolute !important;
+            }
         }
         
         `;
