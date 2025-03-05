@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7B3;
+            background-color: #002FA7B3; /* 70%透明度 */
             padding-bottom: unset;
             border-bottom: unset;
         }
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            background-color: #002FA7B3;
+            background-color: #002FA7B3; /* 70%透明度 */
             padding-bottom: unset;
             border-bottom: unset;
         }
