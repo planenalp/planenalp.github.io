@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 padding: 8px !important;
             }
             .tagTitle {
-                display: none !important;
+                display: unset !important;
+                font-size: 14px !important;
             }
             .LabelTime{
                 display:unset !important;
