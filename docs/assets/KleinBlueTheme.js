@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .avatar {
