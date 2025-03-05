@@ -104,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
+            .postTitle{
+                font-size:24px !important;
+            }
         }
 
         `;
@@ -142,6 +145,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .tagTitle {
                 display: none !important;
+            }
+            .LabelTime{
+                display:unset !important;
+            }
+            .LabelName{
+                display:none !important;
             }
         }
         
