@@ -71,15 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .LabelName{
                 display:none;
             }
-            #header {
-                height: 100px;
-            }
-            #header h1 {
-                margin-top: 10px;
-            }
-            .title-right {
-                margin-top: 50px;
-            }
         }
 
         `;
