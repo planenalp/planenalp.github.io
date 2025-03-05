@@ -44,15 +44,17 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
+        /* 清除原自定 max-width: 600px 参数 */
         @media (max-width: unset){
         }
+        
+        /* 重新定义 max-width: 768px 参数下的值 */
         @media (max-width: 768px) {
             body {
                 padding: 8px;
             }
             .avatar {
-                width:40px;
-                height:40px;
+                display:none;
             }
             .blogTitle{
                 display:unset;
