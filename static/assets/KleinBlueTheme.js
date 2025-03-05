@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-top: 10px;
         }
 
+        .avatar {
+            display: none;
+        }
+
         #header h1 a {
             font-family:
                 "PingFang SC",     /* 苹方（macOS/iOS） */
