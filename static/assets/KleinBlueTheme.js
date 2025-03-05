@@ -77,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
             #header h1 {
                 margin-top: 10px;
             }
+            #header h1 a {
+                font-size: 30px;
+            }
             .title-right {
                 margin-top: 50px;
             }
