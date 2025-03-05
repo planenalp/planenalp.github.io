@@ -131,6 +131,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .subnav-search {
             width: 230px; 
         }
+
+        /* 重新定义 max-width: 768px 参数下的值 */
+        @media (max-width: 768px) {
+            .tagTitle {
+            display: unset !important;
+            }
+        }
         
         `;
         document.head.appendChild(style);
