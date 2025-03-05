@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         #header h1 a {
+            margin-left: unset; /* 无Avatar状态去除左侧间隔保证标题居中 */
             font-family:
                 "PingFang SC",     /* 苹方（macOS/iOS） */
                 "Microsoft YaHei", /* 微软雅黑（Windows） */
