@@ -20,9 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             margin-top: 10px;
         }
 
