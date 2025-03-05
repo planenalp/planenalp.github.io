@@ -143,10 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
-            .tagTitle {
-                display: unset !important;
-                font-size: 14px !important;
-            }
             .LabelTime{
                 display:unset !important;
             }
@@ -155,10 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             /* 隐藏原文本 */
             .tagTitle {
-                font-size: 0 !important;
+                display: none !important;
                 position: relative !important;
             }
             .tagTitle::before {
+                display: unset !important;
                 content: "#" !important;
                 恢复合适的字体大小 */
                 font-size: 14px !important;
