@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const css = `
        :root {
-            --toc-bg: rgba(255, 255, 255, 0.7);
+            --toc-bg: rgba(255, 255, 255, 0.8);
             --toc-border: #e1e4e8;
             --toc-text: #1F2328;
             --toc-hover: #81D8D0CC;
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         .toc {
             position: fixed;
-            bottom: 60px;
+            bottom: 100px;
             right: 20px;
             width: 250px;
             max-height: 70vh;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon {
             position: fixed;
-            bottom: 20px;
+            bottom: 60px;
             right: 20px;
             cursor: pointer;
             font-size: 24px;
