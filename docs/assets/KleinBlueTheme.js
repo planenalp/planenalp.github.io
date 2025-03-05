@@ -9,37 +9,51 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
 
+        /* header布局 */
         #header {
-            height: 130px;
-            display: unset;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-bottom: unset;
-            background-color: #002fa7;
+            height: 250px;
+            position: relative; /* 父元素 #header 设置定位 */
+            background-color: #002FA7;
         }
 
-        h1 {
+        #header h1 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
+        /* avatar尺寸 */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            margin-top: 20px; /* 用百分比会崩 */
+        }
+
+        #header h1 a {
+            margin-left: unset; /* 重置原参数8px为0 */
+            margin-top: 10px; /* 用百分比会崩 */
+            font-family:
+                "PingFang SC",     /* 苹方（macOS/iOS） */
+                "Microsoft YaHei", /* 微软雅黑（Windows） */
+                "Noto Sans SC",    /* 思源黑体（Linux/Android） */
+                sans-serif;        /* 最终回退到无衬线字体 */
+        }
+
+        .blogTitle {
+            display: unset; /* 重置属性取消默认屏幕过窄自动隐藏标题 */
+        }
+
+        /* 自定义按钮 */
         .title-right {
-            justify-content: center;
-            align-items: center;
+            margin: unset; /* 重置原参数 */
+            margin-top: 200px; /* 用百分比会崩 */
+            margin-left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
         }
-
-        /*
-        @media (max-width: unset) {
-            body {padding: unset;}
-            .avatar {width:unset;height:unset;}
-            .blogTitle{display:unset;}
-            #buttonRSS{display:unset;}
-            .LabelTime{display:unset;}
-        }
-        */
-
-
 
         `;
         document.head.appendChild(style);
