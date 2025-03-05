@@ -53,13 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 height:40px;
             }
             .blogTitle{
-                display:none;
+                display:unset;
                 }
             #buttonRSS{
-                display:none;
+                display:unset;
             }
             .LabelTime{
                 display:unset;
+            }
+            .LabelName{
+                display:none;
             }
         }
 
