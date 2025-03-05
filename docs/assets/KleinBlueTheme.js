@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .LabelName{
                 display:none;
             }
-            .blogTitle {
-                margin-top: 22px; /* Avatar64px-blogTitle52px=12px+原本margin-top:10px=22px 回到原本高度 */
+            #header h1 {
+                margin-top: 22px; /* Avatar64px-blogTitle52px=12px+原本margin-top:10px=22px 回到原本高度，直接调.blogTitle无效 */
             }
         }
 
