@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏改色 */
         #header {
             background-color: #002FA7B3;
+            padding-bottom: unset;
+            border-bottom: unset;
         }
 
         /* 顶栏字体缩进10px */
