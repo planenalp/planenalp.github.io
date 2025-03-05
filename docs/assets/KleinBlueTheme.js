@@ -44,6 +44,27 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
+        @media (max-width: 600px) {
+            body {
+                padding: 8px;
+            }
+            .avatar {
+                width:40px;
+                height:40px;
+            }
+            .blogTitle{
+                display:none;
+                }
+            #buttonRSS{
+                display:none;
+            }
+            .LabelTime{
+                display:unset;
+            }
+        }
+
+
+
         `;
         document.head.appendChild(style);
     }
