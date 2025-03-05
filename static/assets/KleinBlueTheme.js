@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         #header {
             height: 130px;
-            /* display: flex; */
+            display: unset;
             padding-top: 10px;
             padding-bottom: 10px;
-            /* border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted)); */
+            border-bottom: unset;
             background-color: #002fa7;
         }
 
@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /*
         @media (max-width: 600px) {
-            body {padding: 8px;}
-            .avatar {width:40px;height:40px;}
-            .blogTitle{display:none;}
-            #buttonRSS{display:none;}
-            .LabelTime{display:none;}
+            body {padding: unset;}
+            .avatar {width:unset;height:unset;}
+            .blogTitle{display:unset;}
+            #buttonRSS{display:unset;}
+            .LabelTime{display:unset;}
         }
         */
 
