@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /*
-        @media (max-width: 600px) {
+        @media (max-width: unset) {
             body {padding: unset;}
             .avatar {width:unset;height:unset;}
             .blogTitle{display:unset;}
