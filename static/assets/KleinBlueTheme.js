@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         style.innerHTML = `
 
         #header {
+            height: 130px;
             /* display: flex; */
             padding-top: 10px;
             padding-bottom: 10px;
