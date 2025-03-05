@@ -13,7 +13,7 @@
     "dayTheme":"dark",
     "nightTheme":"dark-blue",
     "urlMode":"issue",
-    "script":"<script src='https://planenalp.github.io/assets/KleinBlueArticleTOC.js'></script><script src='https://planenalp.github.io/assets/viewimage.js'></script>",
+    "script":"<script src='https://planenalp.github.io/assets/KleinBlueArticleTOC.js'></script><script src='https://blog.liyifan.xyz/assets/viewimg.js'></script>",
     "allHead":"<script src='https://planenalp.github.io/assets/KleinBlueTheme.js'></script>",
     "showPostSource":0
 }
