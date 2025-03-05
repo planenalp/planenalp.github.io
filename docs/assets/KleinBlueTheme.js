@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* header布局 */
         #header {
-            height: 110px;
+            height: 120px;
             position: relative; /* 父元素 #header 设置定位 */
             background-color: #002FA7B3; /* 70%透明度 */
             border-bottom: unset;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .avatar {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 自定义按钮 */
         .title-right {
             margin: unset; /* 重置原参数 */
-            margin-top: 60px; /* 用百分比会崩 */
+            margin-top: 70px; /* 用百分比会崩 */
             margin-left: 50%;
             transform: translateX(-50%);
             position: absolute;
@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏改色 */
         #header {
             background-color: #002FA7B3;
+            padding-bottom: unset;
+            border-bottom: unset;
         }
 
         /* 顶栏字体缩进10px */
