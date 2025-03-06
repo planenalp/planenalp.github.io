@@ -67,16 +67,4 @@ window.onscroll = function() {
   scrollFunction();
 };
 
-// 初始检查窗口宽度
-if (window.innerWidth >= 1000) {
-  scrollFunction();
-}
 
-// 当窗口大小改变时检查窗口宽度
-window.onresize = function() {
-  if (window.innerWidth < 1000) {
-    btn.style.display = "none";
-  } else {
-    scrollFunction();
-  }
-};
