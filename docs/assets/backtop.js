@@ -54,31 +54,12 @@ function clickHandler(e) {
 // 将按钮添加到body
 document.body.appendChild(btn);
 
-function scrollFunction() {
-  if (window.innerWidth < 1000) {
-    btn.style.display = "none";
-  } else if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-}
+
 
 // 滚动时检查是否显示按钮
 window.onscroll = function() {
   scrollFunction();
 };
 
-// 初始检查窗口宽度
-if (window.innerWidth >= 1000) {
-  scrollFunction();
-}
 
-// 当窗口大小改变时检查窗口宽度
-window.onresize = function() {
-  if (window.innerWidth < 1000) {
-    btn.style.display = "none";
-  } else {
-    scrollFunction();
-  }
-};
+
