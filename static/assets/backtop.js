@@ -8,9 +8,9 @@
       right: 20px;
       cursor: pointer;
       font-size: 24px;
-      background-color: var(--toc-icon-bg);
-      color: var(--toc-icon-color);
-      border: 2px solid var(--toc-icon-color);
+      background-color: #21262db3;
+      color: rgba(240, 246, 252, 0.1);
+      border: 2px solid rgba(240, 246, 252, 0.1);
       border-radius: 50%;
       width: 40px;
       height: 40px;
