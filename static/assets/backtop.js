@@ -28,13 +28,7 @@
       width: 24px;
       height: 24px;
     }
-    @media (max-width: 768px) {
-      .back-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-      }
-    }
+
   `;
   document.head.appendChild(style);
 
