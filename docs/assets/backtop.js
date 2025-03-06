@@ -4,22 +4,22 @@
   style.textContent = `
     .back-to-top {
       position: fixed;
-      bottom: 80px;
-      right: 15px;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #333;
-      border: none;
-      border-radius: 50%;
+      bottom: 120px;
+      right: 20px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 50px;
-      height: 50px;
-      font-size: 30px;
-      z-index: 10000;
-      transition: transform 0.2s ease, opacity 0.3s ease;
+      font-size: 24px;
+      background-color: #21262db3;
+      color: rgba(240, 246, 252, 0.1);
+      border: 2px solid rgba(240, 246, 252, 0.1);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
       display: none;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      z-index: 10000;
+      transition: transform 0.2s ease, opacity 0.3s ease;
     }
     .back-to-top:hover {
       transform: scale(1.1);
@@ -62,6 +62,7 @@
   }
 
   window.addEventListener('scroll', toggleButtonVisibility);
+  window.addEventListener('resize', toggleButtonVisibility);
 
   // 初始检查
   toggleButtonVisibility();
