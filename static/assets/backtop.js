@@ -1,4 +1,3 @@
-//来自https://blog.liyifan.xyz/post/wang-ye-tian-jia-%E3%80%90-hui-dao-ding-bu-%E3%80%91-an-niu.html
 // 创建按钮
 var btn = document.createElement("button");
 btn.id = "backToTopBtn";
@@ -56,9 +55,7 @@ function clickHandler(e) {
 document.body.appendChild(btn);
 
 function scrollFunction() {
-  if (window.innerWidth < 1000) {
-    btn.style.display = "none";
-  } else if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     btn.style.display = "block";
   } else {
     btn.style.display = "none";
