@@ -9,7 +9,7 @@
     "filingNum":"<a href='https://icp.gov.moe/?keyword=20259061' target='_blank'>萌ICP备20259061号</a>",
     "singlePage":["link","about"],
     "i18n":"EN",
-    "themeMode":"fix",
+    "themeMode":"manual",
     "dayTheme":"dark",
     "nightTheme":"dark-blue",
     "urlMode":"issue",
