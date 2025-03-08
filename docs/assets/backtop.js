@@ -14,13 +14,14 @@
       border-radius: 50%;
       width: 40px;
       height: 40px;
-      box-sizing: border-box; /* 新增盒模型修正 */
       display: none;
       align-items: center;
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
       transition: transform 0.2s ease, opacity 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
     }
     .back-to-top:hover {
       transform: scale(1.1);
