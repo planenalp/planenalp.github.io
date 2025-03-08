@@ -80,6 +80,19 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const css = `
     
+       @media (prefers-color-scheme: light) {
+           :root {
+               --toc-bg: rgba(255, 255, 255, 0.8);
+               --toc-border: #e1e4e8;
+               --toc-text: #1F2328;
+               --toc-hover: #81D8D0CC;
+               --toc-icon-bg: #FFFFFFB3;
+               --toc-icon-color: #656d76b3;
+               --toc-icon-active-bg: #81D8D0B3;
+               --toc-icon-active-color: #FFFFFFB3;
+           }
+       }  
+       
        @media (prefers-color-scheme: dark) {
            :root {
                --toc-bg: #21262dcc;
