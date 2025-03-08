@@ -19,19 +19,21 @@
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
-      transition: all 0.3s ease;
+      transition: all 0.1s ease;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
-      padding: 0;
-      margin: 0;
+      padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+      margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
     }
+    /*
     .back-to-top:hover {
       transform: scale(1.1);
       color: #8b949eb3;
       background-color: #002fa7b3;
       border-color: #8b949eb3;
     }
+    */
     .back-to-top svg {
       width: 24px;
       height: 24px;
