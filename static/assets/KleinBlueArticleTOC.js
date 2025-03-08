@@ -188,6 +188,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         /* 结尾向上按钮参数 */
         .toc-end {
+            display: none;
+            /*
             /* font-weight: bold;  移除加粗 */
             text-align: center;
             cursor: pointer;
@@ -196,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
+            */
         }
 
         /* 弹出菜单文字参数 */
