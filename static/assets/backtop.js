@@ -24,9 +24,6 @@
       appearance: none;
       padding: 0;
       margin: 0;
-      border: none;
-      background: transparent;
-      box-sizing: border-box;
     }
     .back-to-top:hover {
       transform: scale(1.1);
