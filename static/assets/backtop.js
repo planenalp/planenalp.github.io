@@ -12,15 +12,21 @@
       color: rgba(240, 246, 252, 0.1);
       border: 2px solid rgba(240, 246, 252, 0.1);
       border-radius: 50%;
-      box-sizing: border-box !important;
-      width: 40px !important;
-      height: 40px !important;
+      width: 40px;
+      height: 40px;
       display: none;
       align-items: center;
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
       transition: transform 0.2s ease, opacity 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: transparent;
+      box-sizing: border-box;
     }
     .back-to-top:hover {
       transform: scale(1.1);
