@@ -19,9 +19,10 @@
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
-      transition: transform 0.2s ease, opacity 0.3s ease;
-      -webkit-appearance: none;
-      appearance: none;
+      transition: all 0.3s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
       padding: 0;
       margin: 0;
     }
