@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(tocIcon);
 
     //自定义按钮颜色
-/*
+
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
             backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
         }
     };
-*/
+
 
     document.addEventListener('scroll', highlightTOC);
     
