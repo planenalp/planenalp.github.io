@@ -31,7 +31,7 @@ function createTOC() {
     });
 
     //返回顶部改为向上箭头
-    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">ᐱ</a>');
+    /*tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">ᐱ</a>');*/
     contentContainer.prepend(tocElement);
 }
 
