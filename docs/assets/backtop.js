@@ -25,6 +25,7 @@
       outline: none;
       padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
       margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+      touch-action: manipulation; /* 确保移动端首次点击即可激活 */
     }
     .back-to-top:hover {
       transform: scale(1.1);
