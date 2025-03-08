@@ -23,8 +23,8 @@
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
-      padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
-      margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+      /*padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+      /*margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
     }
     .back-to-top:hover {
       transform: scale(1.1);
