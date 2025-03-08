@@ -26,14 +26,12 @@
       padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
       margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
     }
-    /*
     .back-to-top:hover {
       transform: scale(1.1);
       color: #8b949eb3;
       background-color: #002fa7b3;
       border-color: #8b949eb3;
     }
-    */
     .back-to-top svg {
       width: 24px;
       height: 24px;
