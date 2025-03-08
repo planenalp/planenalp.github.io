@@ -14,6 +14,7 @@
       border-radius: 50%;
       width: 40px;
       height: 40px;
+      box-sizing: border-box; /* 新增盒模型修正 */
       display: none;
       align-items: center;
       justify-content: center;
