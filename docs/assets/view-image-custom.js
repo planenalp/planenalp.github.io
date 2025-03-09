@@ -79,6 +79,12 @@
                             border: 2px solid rgba(240, 246, 252, 0.1);
                             transition: transform 0.1s ease, opacity 0.1s ease;
                         }
+                        .view-image-btn:hover {
+                            transform: scale(1.1);
+                            color: #8b949eb3;
+                            background-color: #002fa7b3;
+                            border-color: #8b949eb3;
+                        }
                         .view-image-btn:active {
                             transform: scale(0.9); /* 按住时缩小 */
                         }
@@ -90,12 +96,6 @@
                             stroke-width: 4; /* 设置描边（线条）的宽度为 4 像素 */
                             stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
                             stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
-                        }
-                        .view-image-btn:hover {
-                            transform: scale(1.1);
-                            color: #8b949eb3;
-                            background-color: #002fa7b3;
-                            border-color: #8b949eb3;
                         }
                         .view-image-close__full {
                             position: absolute;
