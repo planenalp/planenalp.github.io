@@ -114,8 +114,14 @@
           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
         }
-        .lb-lightbox-nav:hover {
+        .lb-lightbox-nav:hover, .lb-lightbox-close:hover {
           transform: scale(1.1);
+          color: #8b949eb3;
+          background-color: #002fa7b3;
+          border-color: #8b949eb3;
+        }
+        .lb-lightbox-nav:active, .lb-lightbox-close:active {
+          transform: scale(0.9); /* 按住时缩小 */
         }
         .lb-lightbox-prev {
           left: 20px;
