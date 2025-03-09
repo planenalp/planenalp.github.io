@@ -9,7 +9,7 @@ function loadResource(type, attributes) {
 function createTOC() {
     const tocElement = document.createElement('div');
     tocElement.className = 'toc';
-    //tocElement.classList.add('show'); //禁用默认显示文章导航菜单
+    tocElement.classList.add('show');
         
     const contentContainer = document.querySelector('.markdown-body');
     contentContainer.appendChild(tocElement);
@@ -30,8 +30,8 @@ function createTOC() {
         tocElement.appendChild(link);
     });
 
-    //返回顶部改为向上箭头
-    /*tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">ᐱ</a>');*/
+    
+    tocElement.insertAdjacentHTML('beforeend', '<a class="toc-end" onclick="window.scrollTo({top:0,behavior: \'smooth\'});">返回顶部</a>');
     contentContainer.prepend(tocElement);
 }
 
@@ -69,47 +69,28 @@ function toggleTOC() {
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
-        //tocIcon.textContent = tocElement.classList.contains('show') ? '✕' : '☰'; //原 ✖ 符号没法自定义颜色iPhone一直显示黑色！改为另一个符号 ✕ 才可以！但是☰也没法居中，还是用SVG算了
-        tocIcon.innerHTML = tocElement.classList.contains('show') 
-            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+        tocIcon.textContent = tocElement.classList.contains('show') ? '✖' : '☰';
     }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const css = `
-    
-       @media (prefers-color-scheme: light) {
-           :root {
-               --toc-bg: rgba(255, 255, 255, 0.8);
-               --toc-border: #e1e4e8;
-               --toc-text: #1F2328;
-               --toc-hover: #81D8D0CC;
-               --toc-icon-bg: #FFFFFFB3;
-               --toc-icon-color: #656d76b3;
-               --toc-icon-active-bg: #81D8D0B3;
-               --toc-icon-active-color: #FFFFFFB3;
-           }
-       }  
-       
-       @media (prefers-color-scheme: dark) {
-           :root {
-               --toc-bg: #21262dcc;
-               --toc-border: rgba(240, 246, 252, 0.1);
-               --toc-text: #c9d1d9;
-               --toc-hover: #002fa7cc;
-               --toc-icon-bg: #21262db3;
-               --toc-icon-color: rgba(240, 246, 252, 0.1);
-               --toc-icon-active-bg: #002fa7b3;
-               --toc-icon-active-color: #8b949eb3;
-           }
-       }        
+       :root {
+            --toc-bg: rgba(237, 239, 233, 0.84);
+            --toc-border: #e1e4e8;
+            --toc-text: #24292e;
+            --toc-hover: #8ae9c4;
+            --toc-icon-bg: #fff;
+            --toc-icon-color: #ad6598;
+            --toc-icon-active-bg: #813c85;
+            --toc-icon-active-color: #fff;
+        }
 
         .toc {
             position: fixed;
-            bottom: 80px;
-            right: 60px;
+            bottom: 60px;
+            right: 20px;
             width: 250px;
             max-height: 70vh;
             background-color: var(--toc-bg);
@@ -150,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         .toc-icon {
             position: fixed;
-            bottom: 60px;
+            bottom: 20px;
             right: 20px;
             cursor: pointer;
             font-size: 24px;
@@ -171,87 +152,58 @@ document.addEventListener("DOMContentLoaded", function() {
             outline: none;
         }
         .toc-icon:hover {
-            transform: scale(1.1);
-            color: var(--toc-icon-active-color);
-            background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color);
+            transform: scale(0.9);
         }
         .toc-icon:active {
-            transform: scale(0.9); /* 按住时缩小 */
+            transform: scale(0.9);
         }
         .toc-icon.active {
-            color: var(--toc-icon-active-color);
             background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
+            color: var(--toc-icon-active-color);
+            border-color: var(--toc-icon-active-bg);
             transform: rotate(90deg);
         }
 
-        /* 结尾向上按钮参数 */
-        
         .toc-end {
-            /* font-weight: bold;  移除加粗 */
+            font-weight: bold;
             text-align: center;
             cursor: pointer;
             visibility: hidden;
-            background-color: var(--toc-hover);      /* 自定义按钮颜色 */
+            background-color: white;
             padding: 10px;                            /* 可选：增加一些内边距，使按钮更易点击 */
             border-radius: 8px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
         }
         
-
-        /* 弹出菜单文字参数 */
         .active-toc {
-            /* font-weight: bold;  移除加粗 */
+            font-weight: bold;
             border-radius: 8px;
             background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
             padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
         }
-
-       /* 按钮 SVG 图标自定义 */
-       .toc-icon svg {
-           width: 24px;
-           height: 24px;
-           fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
-           stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
-           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
-           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
-       }
-
-       /* 移动端缩窄一丢丢 */
-       @media (max-width: 1249px) {
-           .toc {
-               width: 200px;
-           }
-       }
     `;
     loadResource('style', {css: css});
 
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    // 移除默认的 active 类
-    //tocIcon.classList.add('active');  // 删除这一行
-    //tocIcon.textContent = '✖'; //这行改为下面的
-    //tocIcon.textContent = '☰';  // 设置默认图标为汉堡菜单，这是符号版的，改为下面的 SVG 图标版保证绝对居中
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始状态使用 SVG
+    
+    tocIcon.classList.add('active');
+    
+    tocIcon.textContent = '✖';
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
     };
     document.body.appendChild(tocIcon);
 
-    //自定义按钮颜色
-
     window.onscroll = function() {
         const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
+            backToTopButton.style="visibility: visible;background-color: white;"
         } else {
-            backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
+            backToTopButton.style="visibility: hidden;background-color: white;"
         }
     };
-
 
     document.addEventListener('scroll', highlightTOC);
     
