@@ -89,7 +89,7 @@
           opacity: 0;
         }
         .lb-lightbox-nav {
-          position: absolute;
+          position: fixed;
           background-color: rgba(255, 255, 255, 0.8);
           color: #333;
           border: none;
@@ -101,6 +101,15 @@
           font-size: 30px;
           z-index: 2;
           transition: transform 0.2s ease;
+        }
+        .lb-lightbox-nav svg {
+          width: 24px;
+          height: 24px;
+          fill: none; /* 设置 svg 内部不填充颜色（透明） */
+          stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
+          stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
+          stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+          stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
         }
         .lb-lightbox-nav:hover {
           transform: scale(1.1);
