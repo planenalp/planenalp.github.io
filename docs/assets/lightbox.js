@@ -90,17 +90,26 @@
         }
         .lb-lightbox-nav, .lb-lightbox-close {
           position: absolute;
-          background-color: rgba(255, 255, 255, 0.8);
-          color: #333;
-          border: none;
+          background-color: #21262db3;
+          color: rgba(240, 246, 252, 0.1);
+          border: 2px solid rgba(240, 246, 252, 0.1);
           border-radius: 50%;
           cursor: pointer;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          width: 50px;
-          height: 50px;
-          font-size: 30px;
+          width: 40px;
+          height: 40px;
+          font-size: 24px;
           z-index: 2;
-          transition: transform 0.2s ease;
+          transition: transform 0.1s ease, opacity 0.1s ease;
+        }
+        .lb-lightbox-nav, .lb-lightbox-close svg{
+          width: 20px;
+          height: 20px;
+          fill: none; /* 设置 svg 内部不填充颜色（透明） */
+          stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
+          stroke-width: 4; /* 设置描边（线条）的宽度为 4 像素 */
+          stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+          stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
         }
         .lb-lightbox-nav:hover {
           transform: scale(1.1);
