@@ -77,6 +77,7 @@
                             color: rgba(240, 246, 252, 0.1);
                             background-color: #21262db3;
                             border: 2px solid rgba(240, 246, 252, 0.1);
+                            transition: transform 0.1s ease, opacity 0.1s ease;
                         }
                         .view-image-btn:active {
                             transform: scale(0.9); /* 按住时缩小 */
