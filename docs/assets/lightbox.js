@@ -114,7 +114,9 @@
           top: calc(50% - 25px);
         }
         .lb-lightbox-close {
-          position: absolute;
+          position: fixed;
+          top: 20px;
+          right: 20px;
           background-color: rgba(255, 255, 255, 0.8);
           color: #333;
           border: none;
@@ -126,8 +128,6 @@
           font-size: 30px;
           z-index: 2;
           transition: transform 0.2s ease
-          top: 20px;
-          right: 20px;
         }
         .lb-lightbox-close svg {
           width: 24px;
