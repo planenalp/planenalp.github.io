@@ -220,7 +220,7 @@
                             </div>
                         </div>
                         <div class="view-image-btn view-image-close">
-                            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                            <svg viewBox="0 0 48 48"><path d="M8 8L40 40M40 8L8 40"/></svg>
                         </div>
                     </div>
                 </div>
