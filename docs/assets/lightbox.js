@@ -83,7 +83,7 @@
           max-height: 100%;
           height: auto;
           object-fit: contain;
-          border-radius: 16px;
+          border-radius: 5px;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
           transition: transform ${this.options.animationDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1), opacity ${this.options.animationDuration}ms ease;
           opacity: 0;
