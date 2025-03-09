@@ -101,6 +101,9 @@
           font-size: 24px;
           z-index: 2;
           transition: transform 0.2s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         .lb-lightbox-nav svg {
           width: 24px;
