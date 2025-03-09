@@ -88,7 +88,7 @@
           transition: transform ${this.options.animationDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1), opacity ${this.options.animationDuration}ms ease;
           opacity: 0;
         }
-        .lb-lightbox-nav {
+        .lb-lightbox-nav, .lb-lightbox-close {
           position: fixed;
           background-color: rgba(255, 255, 255, 0.8);
           color: #333;
@@ -96,9 +96,9 @@
           border-radius: 50%;
           cursor: pointer;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          width: 50px;
-          height: 50px;
-          font-size: 30px;
+          width: 40px;
+          height: 40px;
+          font-size: 24px;
           z-index: 2;
           transition: transform 0.2s ease;
         }
@@ -116,27 +116,15 @@
         }
         .lb-lightbox-prev {
           left: 20px;
-          top: calc(50% - 25px);
+          top: calc(50% - 20px);
         }
         .lb-lightbox-next {
           right: 20px;
-          top: calc(50% - 25px);
+          top: calc(50% - 20px);
         }
         .lb-lightbox-close {
-          position: fixed;
           top: 20px;
           right: 20px;
-          background-color: rgba(255, 255, 255, 0.8);
-          color: #333;
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          width: 50px;
-          height: 50px;
-          font-size: 30px;
-          z-index: 2;
-          transition: transform 0.2s ease
         }
         .lb-lightbox-close svg {
           width: 24px;
