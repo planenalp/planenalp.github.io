@@ -90,20 +90,23 @@
         }
         .lb-lightbox-nav, .lb-lightbox-close {
           position: fixed;
-          background-color: rgba(255, 255, 255, 0.8);
-          color: #333;
-          border: none;
-          border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          font-size: 24px;
+          background-color: #21262db3;
+          color: rgba(240, 246, 252, 0.1);
+          border: 2px solid rgba(240, 246, 252, 0.1);
+          border-radius: 50%;
           width: 40px;
           height: 40px;
-          font-size: 24px;
-          z-index: 2;
-          transition: transform 0.2s ease;
           display: flex;
           justify-content: center;
           align-items: center;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+          z-index: 2;
+          transition: transform 0.1s ease;
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
+          outline: none;
         }
         .lb-lightbox-nav svg, .lb-lightbox-close svg {
           width: 24px;
