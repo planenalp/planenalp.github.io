@@ -329,8 +329,8 @@
         this.image.style.opacity = '1';
 
         this.preloadImages(); 
-        this.prevButton.style.display = this.currentIndex === 0 ? 'none' : 'block';
-        this.nextButton.style.display = this.currentIndex === this.images.length - 1 ? 'none' : 'block';
+        this.prevButton.style.display = this.currentIndex === 0 ? 'none' : 'flex';
+        this.nextButton.style.display = this.currentIndex === this.images.length - 1 ? 'none' : 'flex';
       };
 
       newImage.onerror = () => {
