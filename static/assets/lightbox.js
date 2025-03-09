@@ -150,6 +150,7 @@
             font-size: 20px;
           }
         }
+        /* 暂时禁用主题颜色
         @media (prefers-color-scheme: dark) {
           .lb-lightbox-overlay {
             background-color: rgba(0, 0, 0, 0.9);
@@ -167,6 +168,7 @@
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
           }
         }
+        */
       `;
       document.head.appendChild(style);
     }
