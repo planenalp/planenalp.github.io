@@ -107,17 +107,17 @@
           user-select: none;
           -webkit-tap-highlight-color: transparent;
           outline: none;
-          padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
-          margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+          padding: 0;
+          margin: 0;
         }
         .lb-lightbox-nav svg, .lb-lightbox-close svg {
           width: 24px;
           height: 24px;
-          fill: none; /* 设置 svg 内部不填充颜色（透明） */
-          stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
-          stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
-          stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
-          stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
         }
         .lb-lightbox-nav:hover, .lb-lightbox-close:hover {
           transform: scale(1.1);
@@ -126,7 +126,7 @@
           border-color: #8b949eb3;
         }
         .lb-lightbox-nav:active, .lb-lightbox-close:active {
-          transform: scale(0.9); /* 按住时缩小 */
+          transform: scale(0.9);
         }
         .lb-lightbox-prev {
           left: 20px;
@@ -140,7 +140,6 @@
           top: 20px;
           right: 20px;
         }
-        
         /*
         @media (max-width: 768px) {
           .lb-lightbox-nav, .lb-lightbox-close {
@@ -150,7 +149,6 @@
           }
         }
         */
-        
       `;
       document.head.appendChild(style);
     }
@@ -192,21 +190,31 @@
 
       this.overlay.appendChild(this.contentWrapper);
       document.body.appendChild(this.overlay);
-
-      this.closeButton.addEventListener('click', this.close.bind(this));
     }
 
     bindEvents() {
-      document.addEventListener('click', this.handleImageClick.bind(this), true);
-      this.overlay.addEventListener('click', this.handleOverlayClick.bind(this));
-      this.prevButton.addEventListener('click', this.showPreviousImage.bind(this));
-      this.nextButton.addEventListener('click', this.showNextImage.bind(this));
-      this.closeButton.addEventListener('click', this.close.bind(this));
-      document.addEventListener('keydown', this.handleKeyDown.bind(this));
-      this.overlay.addEventListener('wheel', this.handleWheel.bind(this));
-      this.overlay.addEventListener('touchstart', this.handleTouchStart.bind(this));
-      this.overlay.addEventListener('touchmove', this.handleTouchMove.bind(this));
-      this.overlay.addEventListener('touchend', this.handleTouchEnd.bind(this));
+      // 预绑定所有事件处理函数，并保存引用
+      this.boundHandleImageClick = this.handleImageClick.bind(this);
+      this.boundHandleOverlayClick = this.handleOverlayClick.bind(this);
+      this.boundShowPreviousImage = this.showPreviousImage.bind(this);
+      this.boundShowNextImage = this.showNextImage.bind(this);
+      this.boundClose = this.close.bind(this);
+      this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+      this.boundHandleWheel = this.handleWheel.bind(this);
+      this.boundHandleTouchStart = this.handleTouchStart.bind(this);
+      this.boundHandleTouchMove = this.handleTouchMove.bind(this);
+      this.boundHandleTouchEnd = this.handleTouchEnd.bind(this);
+
+      document.addEventListener('click', this.boundHandleImageClick, true);
+      this.overlay.addEventListener('click', this.boundHandleOverlayClick);
+      this.prevButton.addEventListener('click', this.boundShowPreviousImage);
+      this.nextButton.addEventListener('click', this.boundShowNextImage);
+      this.closeButton.addEventListener('click', this.boundClose);
+      document.addEventListener('keydown', this.boundHandleKeyDown);
+      this.overlay.addEventListener('wheel', this.boundHandleWheel);
+      this.overlay.addEventListener('touchstart', this.boundHandleTouchStart);
+      this.overlay.addEventListener('touchmove', this.boundHandleTouchMove);
+      this.overlay.addEventListener('touchend', this.boundHandleTouchEnd);
     }
 
     handleImageClick(event) {
@@ -301,7 +309,6 @@
       if (this.currentIndex > 0) {
         this.currentIndex--;
         this.showImage(this.images[this.currentIndex].src);
-        //this.resetButtonScale(this.prevButton);
       }
     }
 
@@ -309,18 +316,8 @@
       if (this.currentIndex < this.images.length - 1) {
         this.currentIndex++;
         this.showImage(this.images[this.currentIndex].src);
-        //this.resetButtonScale(this.nextButton);
       }
     }
-
-    /*
-    resetButtonScale(button) {
-      button.style.transform = 'scale(1.1)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-      }, 200);
-    }
-    */
 
     showImage(imgSrc) {
       const newImage = new Image();
@@ -365,16 +362,16 @@
     }
 
     unbindEvents() {
-      document.removeEventListener('click', this.handleImageClick.bind(this), true);
-      this.overlay.removeEventListener('click', this.handleOverlayClick.bind(this));
-      this.prevButton.removeEventListener('click', this.showPreviousImage.bind(this));
-      this.nextButton.removeEventListener('click', this.showNextImage.bind(this));
-      this.closeButton.removeEventListener('click', this.close.bind(this));
-      document.removeEventListener('keydown', this.handleKeyDown.bind(this));
-      this.overlay.removeEventListener('wheel', this.handleWheel.bind(this));
-      this.overlay.removeEventListener('touchstart', this.handleTouchStart.bind(this));
-      this.overlay.removeEventListener('touchmove', this.handleTouchMove.bind(this));
-      this.overlay.removeEventListener('touchend', this.handleTouchEnd.bind(this));
+      document.removeEventListener('click', this.boundHandleImageClick, true);
+      this.overlay.removeEventListener('click', this.boundHandleOverlayClick);
+      this.prevButton.removeEventListener('click', this.boundShowPreviousImage);
+      this.nextButton.removeEventListener('click', this.boundShowNextImage);
+      this.closeButton.removeEventListener('click', this.boundClose);
+      document.removeEventListener('keydown', this.boundHandleKeyDown);
+      this.overlay.removeEventListener('wheel', this.boundHandleWheel);
+      this.overlay.removeEventListener('touchstart', this.boundHandleTouchStart);
+      this.overlay.removeEventListener('touchmove', this.boundHandleTouchMove);
+      this.overlay.removeEventListener('touchend', this.boundHandleTouchEnd);
     }
   }
 
