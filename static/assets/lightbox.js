@@ -117,6 +117,8 @@
           top: 20px;
           right: 20px;
         }
+        
+        /*
         @media (max-width: 768px) {
           .lb-lightbox-nav, .lb-lightbox-close {
             width: 40px;
@@ -124,6 +126,8 @@
             font-size: 20px;
           }
         }
+        */
+        
       `;
       document.head.appendChild(style);
     }
@@ -146,15 +150,15 @@
 
       this.prevButton = document.createElement('button');
       this.prevButton.className = 'lb-lightbox-nav lb-lightbox-prev';
-      this.prevButton.innerHTML = '&#10094;';
+      this.prevButton.innerHTML = '<svg viewBox="0 0 48 48"><path d="M31 36L19 24L31 12"/></svg>';
 
       this.nextButton = document.createElement('button');
       this.nextButton.className = 'lb-lightbox-nav lb-lightbox-next';
-      this.nextButton.innerHTML = '&#10095;';
+      this.nextButton.innerHTML = '<svg viewBox="0 0 48 48"><path d="M19 12L31 24L19 36"/></svg>';
 
       this.closeButton = document.createElement('button');
       this.closeButton.className = 'lb-lightbox-close';
-      this.closeButton.innerHTML = '&times;';
+      this.closeButton.innerHTML = '<svg viewBox="0 0 48 48"><path d="M8 8L40 40M40 8L8 40"/></svg>';
 
       this.imageWrapper.appendChild(this.image);
       this.container.appendChild(this.imageWrapper);
