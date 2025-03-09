@@ -107,6 +107,8 @@
           user-select: none;
           -webkit-tap-highlight-color: transparent;
           outline: none;
+          padding: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
+          margin: 0; /* 加了这两行才能修复移动端变形+不显示图标问题 */
         }
         .lb-lightbox-nav svg, .lb-lightbox-close svg {
           width: 24px;
