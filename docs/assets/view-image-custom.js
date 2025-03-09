@@ -73,11 +73,25 @@
                             justify-content: center;
                             align-items: center;
                             cursor: pointer;
-                            border-radius: 3px;
-                            background-color: rgba(255, 255, 255, 0.2);
+                            border-radius: 50%;
+                            color: rgba(240, 246, 252, 0.1);
+                            background-color: #21262db3;
+                            border: 2px solid rgba(240, 246, 252, 0.1);
+                        }
+                        .view-image-btn svg{
+                            width: 20px;
+                            height: 20px;
+                            fill: none; /* 设置 svg 内部不填充颜色（透明） */
+                            stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
+                            stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
+                            stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+                            stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
                         }
                         .view-image-btn:hover {
-                            background-color: rgba(255, 255, 255, 0.5);
+                            transform: scale(1.1);
+                            color: #8b949eb3;
+                            background-color: #002fa7b3;
+                            border-color: #8b949eb3;
                         }
                         .view-image-close__full {
                             position: absolute;
@@ -199,24 +213,14 @@
                         </div>
                         <div class="view-image-tools__flip">
                             <div class="view-image-btn view-image-tools__flip-prev">
-                                <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
-                                    <path d="M31 36L19 24L31 12" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                <svg viewBox="0 0 48 48"><path d="M31 36L19 24L31 12"/></svg>
                             </div>
                             <div class="view-image-btn view-image-tools__flip-next">
-                                <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
-                                    <path d="M19 12L31 24L19 36" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                <svg viewBox="0 0 48 48"><path d="M19 12L31 24L19 36"/></svg>
                             </div>
                         </div>
                         <div class="view-image-btn view-image-close">
-                            <svg width="16" height="16" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
-                                <path d="M8 8L40 40" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8 40L40 8" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <svg viewBox="0 0 48 48"><path d="M8 8L40 40M40 8L8 40"/></svg>
                         </div>
                     </div>
                 </div>
