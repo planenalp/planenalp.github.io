@@ -88,7 +88,7 @@
           transition: transform ${this.options.animationDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1), opacity ${this.options.animationDuration}ms ease;
           opacity: 0;
         }
-        .lb-lightbox-nav, .lb-lightbox-close {
+        .lb-lightbox-nav {
           position: absolute;
           background-color: rgba(255, 255, 255, 0.8);
           color: #333;
@@ -114,8 +114,29 @@
           top: calc(50% - 25px);
         }
         .lb-lightbox-close {
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.8);
+          color: #333;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          width: 50px;
+          height: 50px;
+          font-size: 30px;
+          z-index: 2;
+          transition: transform 0.2s ease
           top: 20px;
           right: 20px;
+        }
+        .lb-lightbox-close svg {
+          width: 24px;
+          height: 24px;
+          fill: none; /* 设置 svg 内部不填充颜色（透明） */
+          stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
+          stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
+          stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+          stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
         }
         
         /*
