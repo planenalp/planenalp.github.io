@@ -181,11 +181,13 @@
                             bottom: 10px;
                             left: 1rem;
                             right: 1rem;
-                            backdrop-filter: blur(5px);
+                            /* backdrop-filter: blur(5px); */
                             margin: 0 auto;
                             padding: 5px;
                             border-radius: 5px;
-                            background: rgba(0, 0, 0, 0.1);
+                            /* background: rgba(0, 0, 0, 0.1); */
+                            background-color: #21262dcc;
+                            border: 1px solid rgba(240, 246, 252, 0.1);
                             margin-bottom: constant(safe-area-inset-bottom);
                             margin-bottom: env(safe-area-inset-bottom);
                             z-index: 1;
