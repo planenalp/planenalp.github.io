@@ -52,43 +52,43 @@
   `;
   document.head.appendChild(style);
 
-  // 创建向上按钮
+  // 创建按钮
   const btnTop = document.createElement('button');
   btnTop.className = 'back-to-top';
   btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   document.body.appendChild(btnTop);
 
-  // 创建向下按钮
   const btnBot = document.createElement('button');
   btnBot.className = 'back-to-bot';
   btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>';
   document.body.appendChild(btnBot);
 
-  // 点击事件处理
+  // 点击事件
   btnTop.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   btnBot.addEventListener('click', () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
   });
 
-  // 滚动事件处理
-  function toggleButtonsVisibility() {
-    const show = window.pageYOffset > 100;
-    btnTop.style.display = show ? 'flex' : 'none';
-    btnBot.style.display = show ? 'flex' : 'none';
+  // 滚动逻辑处理
+  function updateButtons() {
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // 处理向上按钮（默认隐藏，滚动超过100px显示）
+    btnTop.style.display = scrollTop > 100 ? 'flex' : 'none';
+    
+    // 处理向下按钮（默认显示，距离底部小于100px时隐藏）
+    const shouldHideBot = scrollTop + windowHeight >= documentHeight - 100;
+    btnBot.style.display = shouldHideBot ? 'none' : 'flex';
   }
 
-  window.addEventListener('scroll', toggleButtonsVisibility);
-  window.addEventListener('resize', toggleButtonsVisibility);
+  window.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
 
-  // 初始检查
-  toggleButtonsVisibility();
+  // 初始状态
+  updateButtons();
 })();
