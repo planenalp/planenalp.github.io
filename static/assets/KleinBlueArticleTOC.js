@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         /* 结尾向上按钮参数 */
+        /*
         .toc-end {
             /* font-weight: bold;  移除加粗 */
             text-align: center;
@@ -201,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 6px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
         }
+        */
 
         /* 弹出菜单文字参数 */
         .active-toc {
