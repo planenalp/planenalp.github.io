@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //禁用向上按钮的总共三段"toc-end"项目 3-3
 
     window.onscroll = function() {
-        const backToTopButton = document.querySelector('.toc-end');
+        //const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
         } else {
