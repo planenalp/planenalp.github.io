@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         /* 结尾向上按钮参数 */
-        /*
+        
         .toc-end {
             /* font-weight: bold;  移除加粗 */
             text-align: center;
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 6px;                       /* 可选：使按钮有圆角 */
             border: 1px solid var(--toc-border);      /* 可选：增加边框，使其更明显 */
         }
-        */
+        
 
         /* 弹出菜单文字参数 */
         .active-toc {
@@ -247,16 +247,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //自定义按钮颜色
     //禁用向上按钮的总共三段"toc-end"项目 3-3
-
+    /*
     window.onscroll = function() {
-        //const backToTopButton = document.querySelector('.toc-end');
+        const backToTopButton = document.querySelector('.toc-end');
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             backToTopButton.style="visibility: visible;background-color: var(--toc-hover);"
         } else {
             backToTopButton.style="visibility: hidden;background-color: var(--toc-hover);"
         }
     };
-
+    */
 
     document.addEventListener('scroll', highlightTOC);
     
