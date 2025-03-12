@@ -13,23 +13,32 @@
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
             z-index: 10000;
-            transition: transform 0.1s ease, opacity 0.1s ease;
+            transition: 
+                opacity 0.1s ease,
+                visibility 0.1s ease,
+                transform 0.1s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
             padding: 0;
             margin: 0;
+            opacity: 0;
+            visibility: hidden;
         }
         .back-to-top {
             bottom: 120px;
         }
         .back-to-bot {
             bottom: 20px;
+        }
+        .back-to-top.show, .back-to-bot.show {
+            opacity: 1;
+            visibility: visible;
         }
         .back-to-top:hover, .back-to-bot:hover {
             transform: scale(1.1);
@@ -78,12 +87,16 @@
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // 处理向上按钮（默认隐藏，滚动超过100px显示）
-        btnTop.style.display = scrollTop > 100 ? 'flex' : 'none';
+        // 处理向上按钮
+        scrollTop > 100 
+            ? btnTop.classList.add('show')
+            : btnTop.classList.remove('show');
         
-        // 处理向下按钮（默认显示，距离底部小于100px时隐藏）
+        // 处理向下按钮
         const shouldHideBot = scrollTop + windowHeight >= documentHeight - 100;
-        btnBot.style.display = shouldHideBot ? 'none' : 'flex';
+        shouldHideBot 
+            ? btnBot.classList.remove('show') 
+            : btnBot.classList.add('show');
     }
 
     window.addEventListener('scroll', updateButtons);
