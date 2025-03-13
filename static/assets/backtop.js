@@ -68,12 +68,12 @@
            :root {
                --toc-bg: #21262dcc;
                --toc-border: rgba(240, 246, 252, 0.1);
-               --toc-text: #c9d1d9;
                --toc-hover: #002fa7cc;
                --toc-icon-bg: #21262db3;
                --toc-icon-color: rgba(240, 246, 252, 0.1);
                --toc-icon-active-bg: #002fa7b3;
                --toc-icon-active-color: #8b949eb3;
+               --toc-text: #c9d1d9;
            }
        }        
 
@@ -81,15 +81,15 @@
             position: fixed;
             bottom: 140px;
             right: 60px;
+            z-index: 1000;
             width: 250px;
             max-height: 70vh;
-            background-color: var(--toc-bg);
+            padding: 10px;
+            overflow-y: auto;
             border: 1px solid var(--toc-border);
             border-radius: 6px;
-            padding: 10px;
+            background-color: var(--toc-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow-y: auto;
-            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px) scale(0.9);
@@ -102,13 +102,13 @@
         }
         .toc a {
             display: block;
+            padding: 5px 0;
             border-radius: 6px;
+            border-bottom: 1px solid var(--toc-border);
             font-size: 14px;
+            line-height: 1.5;
             color: var(--toc-text);
             text-decoration: none;
-            padding: 5px 0;
-            line-height: 1.5;
-            border-bottom: 1px solid var(--toc-border);
             transition: all 0.1s ease;
         }
         .toc a:last-child {
@@ -123,19 +123,19 @@
             position: fixed;
             bottom: 120px;
             right: 20px;
-            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             font-size: 24px;
+            cursor: pointer;
             color: var(--toc-icon-color);
             background-color: var(--toc-icon-bg);
             border: 2px solid var(--toc-icon-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            z-index: 1001;
             transition: all 0.1s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -157,9 +157,9 @@
             transform: rotate(90deg);
         }
         .active-toc {
-            background-color: var(--toc-hover);
-            border-radius: 6px;
             padding-left: 5px;
+            border-radius: 6px;
+            background-color: var(--toc-hover);
         }
         .toc-icon svg {
             width: 24px;
@@ -173,25 +173,25 @@
         .back-to-top, .back-to-bot {
             position: fixed;
             right: 20px;
-            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin: 0;
             font-size: 24px;
+            cursor: pointer;
             color: var(--toc-icon-color);
             background-color: var(--toc-icon-bg);
             border: 2px solid var(--toc-icon-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            z-index: 10000;
             transition: all 0.1s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
-            padding: 0;
-            margin: 0;
             opacity: 0;
             visibility: hidden;
         }
