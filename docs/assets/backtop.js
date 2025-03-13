@@ -103,10 +103,10 @@
         .toc a {
             display: block;
             border-radius: 6px;
+            font-size: 14px;
             color: var(--toc-text);
             text-decoration: none;
             padding: 5px 0;
-            font-size: 14px;
             line-height: 1.5;
             border-bottom: 1px solid var(--toc-border);
             transition: all 0.1s ease;
@@ -125,8 +125,8 @@
             right: 20px;
             cursor: pointer;
             font-size: 24px;
-            background-color: var(--toc-icon-bg);
             color: var(--toc-icon-color);
+            background-color: var(--toc-icon-bg);
             border: 2px solid var(--toc-icon-color);
             border-radius: 50%;
             width: 40px;
@@ -157,8 +157,8 @@
             transform: rotate(90deg);
         }
         .active-toc {
-            border-radius: 6px;
             background-color: var(--toc-hover);
+            border-radius: 6px;
             padding-left: 5px;
         }
         .toc-icon svg {
@@ -175,9 +175,9 @@
             right: 20px;
             cursor: pointer;
             font-size: 24px;
-            background-color: #21262db3;
-            color: rgba(240, 246, 252, 0.1);
-            border: 2px solid rgba(240, 246, 252, 0.1);
+            color: var(--toc-icon-color);
+            background-color: var(--toc-icon-bg);
+            border: 2px solid var(--toc-icon-color);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -207,9 +207,9 @@
         }
         .back-to-top:hover, .back-to-bot:hover {
             transform: scale(1.1);
-            color: #8b949eb3;
-            background-color: #002fa7b3;
-            border-color: #8b949eb3;
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color);
         }
         .back-to-top:active, .back-to-bot:active {
             transform: scale(0.9);
@@ -223,7 +223,7 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-       @media (max-width: 1249px) {
+       @media (max-width: 768px) {
            .toc {
                width: 200px;
            }
