@@ -166,7 +166,7 @@
         justify-content: space-between;
         align-items: center;
         color: #fff;
-        width: 300px;
+        width: min(100%, 300px); /* 宽度最多 300px，但不会超出屏幕 */
         padding: 5px;
         border-radius: 6px;
         background-color: #21262dcc;
