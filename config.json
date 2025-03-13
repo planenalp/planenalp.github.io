@@ -15,7 +15,7 @@
     "dayTheme":"dark",
     "nightTheme":"light",
     "urlMode":"issue",
-    "script":"<script src='https://planenalp.github.io/assets/AriticleTocTopBot-KleinBlue.js'></script><script src='https://planenalp.github.io/assets/view-image-KleinBlue'></script>",
+    "script":"<script src='https://planenalp.github.io/assets/AriticleTocTopBot-KleinBlue.js'></script><script src='https://planenalp.github.io/assets/view-image-KleinBlue.js'></script>",
     "allHead":"<script src='https://planenalp.github.io/assets/Theme-KleinBlue.js'></script>",
     "showPostSource":0
 }
