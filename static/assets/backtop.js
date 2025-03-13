@@ -1,71 +1,68 @@
-function loadResource(type, attributes) {
-    if (type === 'style') {
-        const style = document.createElement('style');
-        style.textContent = attributes.css;
-        document.head.appendChild(style);
-    }
-}
+(() => {
+  // 内联注入 CSS 样式
+  const injectStyles = css => {
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+  };
 
-function createTOC() {
-    const tocElement = document.createElement('div');
-    tocElement.className = 'toc';
-    
+  // 创建目录（TOC）
+  const createTOC = () => {
     const contentContainer = document.querySelector('.markdown-body');
-    contentContainer.appendChild(tocElement);
+    if (!contentContainer) return;
+    const toc = document.createElement('div');
+    toc.className = 'toc';
+    contentContainer.prepend(toc);
 
     const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
     headings.forEach(heading => {
-        if (!heading.id) {
-            heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
-        }
-        const link = document.createElement('a');
-        link.href = '#' + heading.id;
-        link.textContent = heading.textContent;
-        link.setAttribute('data-id', heading.id);
-        link.className = 'toc-link';
-        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
-        tocElement.appendChild(link);
+      if (!heading.id) {
+        heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+      }
+      const link = document.createElement('a');
+      link.href = '#' + heading.id;
+      link.textContent = heading.textContent;
+      link.dataset.id = heading.id;
+      link.className = 'toc-link';
+      link.style.paddingLeft = `${(parseInt(heading.tagName[1]) - 1) * 10}px`;
+      toc.appendChild(link);
     });
+  };
 
-    contentContainer.prepend(tocElement);
-}
-
-function highlightTOC() {
+  // 高亮当前滚动区域对应的目录项
+  const highlightTOC = () => {
     const tocLinks = document.querySelectorAll('.toc-link');
     const fromTop = window.scrollY + 10;
-
-    let currentHeading = null;
-
+    let current = null;
     tocLinks.forEach(link => {
-        const section = document.getElementById(link.getAttribute('data-id'));
-        if (section && section.offsetTop <= fromTop) {
-            currentHeading = link;
-        }
+      const section = document.getElementById(link.dataset.id);
+      if (section && section.offsetTop <= fromTop) {
+        current = link;
+      }
     });
-
     tocLinks.forEach(link => link.classList.remove('active-toc'));
-    currentHeading?.classList.add('active-toc');
-
-    currentHeading?.scrollIntoView({
-        block: 'center',
-        inline: 'nearest'
-    });
-}
-
-function toggleTOC() {
-    const tocElement = document.querySelector('.toc');
-    const tocIcon = document.querySelector('.toc-icon');
-    if (tocElement) {
-        tocElement.classList.toggle('show');
-        tocIcon.classList.toggle('active');
-        tocIcon.innerHTML = tocElement.classList.contains('show') 
-            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    if (current) {
+      current.classList.add('active-toc');
+      current.scrollIntoView({ block: 'center', inline: 'nearest' });
     }
-}
+  };
 
-document.addEventListener("DOMContentLoaded", function() {
+  // 切换目录显示
+  const toggleTOC = () => {
+    const toc = document.querySelector('.toc');
+    const tocIcon = document.querySelector('.toc-icon');
+    if (toc) {
+      toc.classList.toggle('show');
+      tocIcon.classList.toggle('active');
+      tocIcon.innerHTML = toc.classList.contains('show')
+        ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
     createTOC();
+
     const css = `
        @media (prefers-color-scheme: dark) {
            :root {
@@ -159,13 +156,11 @@ document.addEventListener("DOMContentLoaded", function() {
             border-color: var(--toc-icon-active-color);
             transform: rotate(90deg);
         }
-
         .active-toc {
             border-radius: 6px;
             background-color: var(--toc-hover);
             padding-left: 5px;
         }
-
         .toc-icon svg {
             width: 24px;
             height: 24px;
@@ -175,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-
         .back-to-top, .back-to-bot {
             position: fixed;
             right: 20px;
@@ -192,10 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
             z-index: 10000;
-            transition: 
-                opacity 0.1s ease,
-                visibility 0.1s ease,
-                transform 0.1s ease;
+            transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
@@ -232,62 +223,72 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-
        @media (max-width: 1249px) {
            .toc {
                width: 200px;
            }
        }
     `;
-    loadResource('style', {css: css});
+    injectStyles(css);
 
-    // 创建目录按钮
+    // 创建目录切换按钮
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-    tocIcon.onclick = (e) => {
-        e.stopPropagation();
-        toggleTOC();
-    };
+    tocIcon.innerHTML =
+      '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    tocIcon.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleTOC();
+    });
     document.body.appendChild(tocIcon);
 
-    // 创建滚动按钮
-    const btnTop = document.createElement('button');
-    btnTop.className = 'back-to-top';
-    btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
-    document.body.appendChild(btnTop);
+    // 创建滚动按钮的辅助函数
+    const createButton = (className, innerHTML, onClick) => {
+      const btn = document.createElement('button');
+      btn.className = className;
+      btn.innerHTML = innerHTML;
+      btn.addEventListener('click', onClick);
+      document.body.appendChild(btn);
+      return btn;
+    };
 
-    const btnBot = document.createElement('button');
-    btnBot.className = 'back-to-bot';
-    btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>';
-    document.body.appendChild(btnBot);
+    const btnTop = createButton(
+      'back-to-top',
+      '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+      () => window.scrollTo({ top: 0, behavior: 'smooth' })
+    );
+    const btnBot = createButton(
+      'back-to-bot',
+      '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
+      () =>
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+        })
+    );
 
-    // 按钮点击事件
-    btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    btnBot.addEventListener('click', () => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }));
-
-    // 滚动逻辑
+    // 更新滚动按钮显示状态
     const updateButtons = () => {
-        const scrollTop = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        btnTop.classList.toggle('show', scrollTop > 100);
-        btnBot.classList.toggle('show', !(scrollTop + windowHeight >= documentHeight - 100));
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      btnTop.classList.toggle('show', scrollTop > 100);
+      btnBot.classList.toggle('show', scrollTop + windowHeight < documentHeight - 100);
     };
 
     window.addEventListener('scroll', () => {
-        highlightTOC();
-        updateButtons();
+      highlightTOC();
+      updateButtons();
     });
     window.addEventListener('resize', updateButtons);
     updateButtons();
 
-    // 点击外部关闭目录
-    document.addEventListener('click', (e) => {
-        const tocElement = document.querySelector('.toc');
-        if (tocElement?.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
-            toggleTOC();
-        }
+    // 点击页面其他区域时关闭目录
+    document.addEventListener('click', e => {
+      const toc = document.querySelector('.toc');
+      if (toc?.classList.contains('show') && !toc.contains(e.target) && !e.target.classList.contains('toc-icon')) {
+        toggleTOC();
+      }
     });
-});
+  });
+})();
