@@ -93,7 +93,7 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px) scale(0.9);
-            transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
+            transition: all 0.1s ease;
         }
         .toc.show {
             opacity: 1;
@@ -109,7 +109,7 @@
             font-size: 14px;
             line-height: 1.5;
             border-bottom: 1px solid var(--toc-border);
-            transition: background-color 0.1s ease, padding-left 0.1s ease;
+            transition: all 0.1s ease;
         }
         .toc a:last-child {
             border-bottom: none;
@@ -186,7 +186,7 @@
             justify-content: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12);
             z-index: 10000;
-            transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
+            transition: all 0.1s ease;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
