@@ -1,17 +1,14 @@
 /**
- * ViewImage gzip compressed to just 2K, small and superb native Native JavaScript lightbox plugin
- *
+ * ViewImage gzip compressed to just 2K - Merged version with auto-init
+ * 
  * @name ViewImage.js
- * @version 2.0.2
+ * @version 2.0.2+
  * @author Tokinx
- * @license MIT License - http://www.opensource.org/licenses/mit-license.php
- *
- * For usage and examples, visit:
- * https://tokinx.github.io/ViewImage/
- *
- * Copyright (c) 2017, biji.io
+ * @license MIT
+ * @copyright (c) 2017 biji.io
  */
 (() => {
+    // 核心功能实现
     window.ViewImage = new function() {
         this.target = '[view-image] img';
 
@@ -57,15 +54,10 @@
                             backdrop-filter: blur(20px);
                             -webkit-backdrop-filter: blur(20px);
                         }
-                        .view-image__out {
-                            animation: view-image-out 300ms;
-                        }
-                        @keyframes view-image-in {
-                            0% { opacity: 0; }
-                        }
-                        @keyframes view-image-out {
-                            100% { opacity: 0; }
-                        }
+                        .view-image__out { animation: view-image-out 300ms; }
+                        @keyframes view-image-in { 0% { opacity: 0; } }
+                        @keyframes view-image-out { 100% { opacity: 0; } }
+                        
                         .view-image-btn {
                             width: 32px;
                             height: 32px;
@@ -85,26 +77,16 @@
                             background-color: #002fa7b3;
                             border-color: #8b949eb3;
                         }
-                        .view-image-btn:active {
-                            transform: scale(0.9); /* 按住时缩小 */
-                        }
-                        .view-image-btn svg{
-                            width: 20px;
-                            height: 20px;
-                            fill: none; /* 设置 svg 内部不填充颜色（透明） */
-                            stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
-                            stroke-width: 4; /* 设置描边（线条）的宽度为 4 像素 */
-                            stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
-                            stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
-                        }
+                        .view-image-btn:active { transform: scale(0.9); }
+                        
                         .view-image-close__full {
                             position: absolute;
                             inset: 0;
                             background-color: rgba(48, 55, 66, 0.3);
-                            z-index: unset;
                             cursor: zoom-out;
                             margin: 0;
                         }
+                        
                         .view-image-container {
                             height: 0;
                             flex: 1;
@@ -112,38 +94,18 @@
                             align-items: center;
                             justify-content: center;
                         }
-                        .view-image-lead {
-                            display: contents;
-                        }
+                        
                         .view-image-lead img {
-                            position: relative;
-                            z-index: 1;
                             max-width: 100%;
                             max-height: 100%;
                             object-fit: contain;
-                            border-radius: 3px;
+                            border-radius: 6px;
                         }
-                        .view-image-lead__in img {
-                            animation: view-image-lead-in 300ms;
-                        }
-                        .view-image-lead__out img {
-                            animation: view-image-lead-out 300ms forwards;
-                        }
-                        @keyframes view-image-lead-in {
-                            0% {
-                                opacity: 0;
-                                transform: translateY(-20px);
-                            }
-                        }
-                        @keyframes view-image-lead-out {
-                            100% {
-                                opacity: 0;
-                                transform: translateY(20px);
-                            }
-                        }
-                        [class*="__out"] ~ .view-image-loading {
-                            display: block;
-                        }
+                        .view-image-lead__in img { animation: view-image-lead-in 300ms; }
+                        .view-image-lead__out img { animation: view-image-lead-out 300ms forwards; }
+                        @keyframes view-image-lead-in { 0% { opacity: 0; transform: translateY(-20px); } }
+                        @keyframes view-image-lead-out { 100% { opacity: 0; transform: translateY(20px); } }
+                        
                         .view-image-loading {
                             position: absolute;
                             inset: 50%;
@@ -166,29 +128,21 @@
                             transform: translateX(-100%) translateY(-50%);
                             animation: view-image-loading 800ms -100ms ease-in-out infinite;
                         }
-                        @keyframes view-image-loading {
-                            0% { transform: translateX(-100%); }
-                            100% { transform: translateX(100%); }
-                        }
+                        @keyframes view-image-loading { 100% { transform: translateX(100%); } }
+                        
                         .view-image-tools {
-                            position: relative;
-                            display: flex;
-                            justify-content: space-between;
-                            align-content: center;
-                            color: #fff;
-                            max-width: 300px;
                             position: fixed;
-                            bottom: 10px;
+                            bottom: 20px;
                             left: 1rem;
                             right: 1rem;
-                            /* backdrop-filter: blur(5px); */
+                            max-width: 300px;
                             margin: 0 auto;
+                            display: flex;
+                            justify-content: space-between;
                             padding: 5px;
-                            border-radius: 5px;
-                            /* background: rgba(0, 0, 0, 0.1); */
+                            border-radius: 6px;
                             background-color: #21262dcc;
                             border: 1px solid rgba(240, 246, 252, 0.1);
-                            margin-bottom: constant(safe-area-inset-bottom);
                             margin-bottom: env(safe-area-inset-bottom);
                             z-index: 1;
                         }
@@ -197,25 +151,20 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            color: #8b949eb3;
                         }
-                        .view-image-tools__flip {
-                            display: flex;
-                            gap: 10px;
-                        }
-                        .view-image-tools [class*="-close"] {
-                            margin: 0 10px;
-                        }
+                        .view-image-tools__flip { display: flex; gap: 10px; }
                     </style>
+
                     <div class="view-image-container">
                         <div class="view-image-lead"></div>
                         <div class="view-image-loading"></div>
                         <div class="view-image-close view-image-close__full"></div>
                     </div>
+                    
                     <div class="view-image-tools">
                         <div class="view-image-tools__count">
-                            <span>
-                                <b class="view-image-index">${index + 1}</b>/${images.length}
-                            </span>
+                            <span><b class="view-image-index">${index + 1}</b>/${images.length}</span>
                         </div>
                         <div class="view-image-tools__flip">
                             <div class="view-image-btn view-image-tools__flip-prev">
@@ -238,9 +187,7 @@
                     ArrowLeft: 'tools__flip-prev',
                     ArrowRight: 'tools__flip-next'
                 };
-                if (keyMap[e.key]) {
-                    $el.querySelector(`.view-image-${keyMap[e.key]}`).click();
-                }
+                keyMap[e.key] && $el.querySelector(`.view-image-${keyMap[e.key]}`).click();
             };
 
             const loadImage = (src) => {
@@ -253,7 +200,7 @@
                     $lead.innerHTML = "";
                     img.onload = () => {
                         setTimeout(() => {
-                            $lead.innerHTML = `<img src="${img.src}" alt="ViewImage" no-view/>`;
+                            $lead.innerHTML = `<img src="${img.src}" alt="ViewImage" no-view>`;
                             $lead.className = "view-image-lead view-image-lead__in";
                         }, 100);
                     };
@@ -283,4 +230,9 @@
             };
         };
     };
+
+    // 自动初始化逻辑
+    document.addEventListener("DOMContentLoaded", () => {
+        window.ViewImage?.init('#content img');
+    });
 })();
