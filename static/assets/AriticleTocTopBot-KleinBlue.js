@@ -274,10 +274,11 @@
       btnBot.classList.toggle('show', scrollTop + windowHeight < documentHeight - 100);
     };
 
-    window.addEventListener('scroll', () => {
-      highlightTOC();
-      updateButtons();
-    });
+    // 监听滚动和触摸事件更新目录高亮（方法2）
+    window.addEventListener('scroll', highlightTOC);
+    window.addEventListener('touchmove', highlightTOC);
+    window.addEventListener('touchend', highlightTOC);
+    window.addEventListener('scroll', updateButtons);
     window.addEventListener('resize', updateButtons);
     updateButtons();
 
