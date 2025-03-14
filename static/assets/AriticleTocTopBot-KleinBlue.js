@@ -25,28 +25,28 @@
       link.dataset.id = heading.id;
       link.className = 'toc-link';
       link.style.paddingLeft = `${(parseInt(heading.tagName[1]) - 1) * 10}px`;
-      // 添加点击后移除焦点状态
-      link.addEventListener('click', () => {
-        link.blur();
-      });
       toc.appendChild(link);
     });
   };
 
-  // 高亮当前滚动区域对应的目录项
+  // 使用 getBoundingClientRect() 高亮当前视口内的目录项
   const highlightTOC = () => {
     const tocLinks = document.querySelectorAll('.toc-link');
-    const fromTop = window.scrollY + 10;
     let current = null;
     tocLinks.forEach(link => {
       const section = document.getElementById(link.dataset.id);
-      if (section && section.offsetTop <= fromTop) {
-        current = link;
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // 当标题上边界距离视口顶部小于等于50px时，认为该标题进入视口
+        if (rect.top <= 50) {
+          current = link;
+        }
       }
     });
     tocLinks.forEach(link => link.classList.remove('active-toc'));
     if (current) {
       current.classList.add('active-toc');
+      // 滚动当前目录项至中间显示（可选）
       current.scrollIntoView({ block: 'center', inline: 'nearest' });
     }
   };
