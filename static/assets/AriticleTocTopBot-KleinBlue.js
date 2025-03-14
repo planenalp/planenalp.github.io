@@ -50,7 +50,6 @@ function toggleTOC() {
 document.addEventListener("DOMContentLoaded", function() {
    createTOC();
    const css = `
-       /* 新增 active 状态样式 */
        .toc-link.active {
            background-color: var(--toc-hover) !important;
            padding-left: 5px !important;
@@ -99,11 +98,95 @@ document.addEventListener("DOMContentLoaded", function() {
            transform: translateY(20px) scale(0.9);
            transition: all 0.1s ease;
        }
-       /* 其余原有样式保持不变... */
+       .toc.show {
+           opacity: 1;
+           visibility: visible;
+           transform: translateY(0) scale(1);
+       }
+       .toc a {
+           display: block;
+           border-radius: 6px;
+           color: var(--toc-text);
+           text-decoration: none;
+           padding: 5px 0;
+           font-size: 14px;
+           line-height: 1.5;
+           border-bottom: 1px solid var(--toc-border);
+           transition: all 0.1s ease;
+       }
+       .toc a:last-child {
+           border-bottom: none;
+       }
+       .toc a:hover {
+           background-color: var(--toc-hover);
+           padding-left: 5px;
+           border-radius: 6px;
+       }
+       .toc-icon {
+           position: fixed;
+           bottom: 130px;
+           right: 20px;
+           cursor: pointer;
+           background-color: var(--toc-icon-bg);
+           color: var(--toc-icon-color);
+           border: 2px solid var(--toc-icon-color);
+           border-radius: 50%;
+           width: 40px;
+           height: 40px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+           z-index: 1001;
+           transition: all 0.1s ease;
+           user-select: none;
+           -webkit-tap-highlight-color: transparent;
+           outline: none;
+       }
+       .toc-icon:hover {
+            transform: scale(1.1);
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color);
+       }
+       .toc-icon:active {
+           transform: scale(0.9);
+       }
+       .toc-icon.active {
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color);
+            transform: rotate(90deg);
+       }
+       .toc-icon svg {
+           width: 24px;
+           height: 24px;
+           fill: none;
+           stroke: currentColor;
+           stroke-width: 2;
+           stroke-linecap: round;
+           stroke-linejoin: round;
+       }
+
+       @media (max-width: 768px) {
+           .toc {
+               width: 200px;
+           }
+       }
    `;
    loadResource('style', {css: css});
 
-   // 新增滚动高亮逻辑
+   // 创建按钮（之前遗漏的关键部分）
+   const tocIcon = document.createElement('div');
+   tocIcon.className = 'toc-icon';
+   tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+   tocIcon.onclick = (e) => {
+       e.stopPropagation();
+       toggleTOC();
+   };
+   document.body.appendChild(tocIcon); // 确保这行存在
+
+   // 滚动高亮逻辑
    let lastScroll = 0;
    function updateActiveLink() {
        const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
@@ -111,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
        headings.forEach(heading => {
            const rect = heading.getBoundingClientRect();
-           const distance = Math.abs(rect.top - 100); // 100px 触发阈值
+           const distance = Math.abs(rect.top - 100);
 
            if (distance < closest.distance && rect.top <= window.innerHeight/2) {
                closest = { distance, element: heading };
@@ -126,7 +209,6 @@ document.addEventListener("DOMContentLoaded", function() {
        });
    }
 
-   // 优化滚动监听性能
    let ticking = false;
    window.addEventListener('scroll', () => {
        if (!ticking) {
@@ -138,18 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
        }
    });
 
-   // 初始化高亮状态
    updateActiveLink();
-
-   // 原有图标和点击逻辑保持不变...
-   const tocIcon = document.createElement('div');
-   tocIcon.className = 'toc-icon';
-   tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-   tocIcon.onclick = (e) => {
-       e.stopPropagation();
-       toggleTOC();
-   };
-   document.body.appendChild(tocIcon);
 
    document.addEventListener('click', (e) => {
        const tocElement = document.querySelector('.toc');
