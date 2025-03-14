@@ -1,188 +1,252 @@
 function loadResource(type, attributes) {
-   if (type === 'style') {
-       const style = document.createElement('style');
-       style.textContent = attributes.css;
-       document.head.appendChild(style);
-   }
+    if (type === 'style') {
+        const style = document.createElement('style');
+        style.textContent = attributes.css;
+        document.head.appendChild(style);
+    }
 }
 
 function createTOC() {
-   const tocElement = document.createElement('div');
-   tocElement.className = 'toc';
-   
-   const contentContainer = document.querySelector('.markdown-body');
-   contentContainer.appendChild(tocElement);
+    const tocElement = document.createElement('div');
+    tocElement.className = 'toc';
+    
+    const contentContainer = document.querySelector('.markdown-body');
+    contentContainer.appendChild(tocElement);
 
-   const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-   headings.forEach(heading => {
-       if (!heading.id) {
-           heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
-       }
-       const link = document.createElement('a');
-       link.href = '#' + heading.id;
-       link.textContent = heading.textContent;
-      
-       link.className = 'toc-link';
-       link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
-       link.addEventListener('click', function(e) {
-           e.preventDefault();
-           const targetElement = document.getElementById(heading.id);
-           if (targetElement) {
-               targetElement.scrollIntoView({ behavior: 'smooth' });
-           }
-       });
-       tocElement.appendChild(link);
-   });
+    const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+        if (!heading.id) {
+            heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+        }
+        const link = document.createElement('a');
+        link.href = '#' + heading.id;
+        link.textContent = heading.textContent;
+       
+        link.className = 'toc-link';
+        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.getElementById(heading.id);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        tocElement.appendChild(link);
+    });
 }
 
 function toggleTOC() {
-   const tocElement = document.querySelector('.toc');
-   const tocIcon = document.querySelector('.toc-icon');
-   if (tocElement) {
-       tocElement.classList.toggle('show');
-       tocIcon.classList.toggle('active');
-       tocIcon.innerHTML = tocElement.classList.contains('show') 
-           ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-           : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-   }
+    const tocElement = document.querySelector('.toc');
+    const tocIcon = document.querySelector('.toc-icon');
+    if (tocElement) {
+        tocElement.classList.toggle('show');
+        tocIcon.classList.toggle('active');
+        tocIcon.innerHTML = tocElement.classList.contains('show') 
+            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    }
+}
+
+// 节流函数
+function throttle(fn, wait) {
+    let time = Date.now();
+    return function() {
+        if ((time + wait - Date.now()) < 0) {
+            fn();
+            time = Date.now();
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-   createTOC();
-   const css = `
-       :root {
-           --toc-bg: rgba(255, 255, 255, 0.8);
-           --toc-border: #e1e4e8;
-           --toc-text: #24292e;
-           --toc-hover: rgba(0, 0, 0, 0.05);
-           --toc-icon-bg: rgba(255, 255, 255, 0.8);
-           --toc-icon-color: #333;
-           --toc-icon-active-bg: #fff;
-           --toc-icon-active-color: #333;
-       }
+    createTOC();
+    
+    const css = `
+        :root {
+            --toc-bg: rgba(255, 255, 255, 0.8);
+            --toc-border: #e1e4e8;
+            --toc-text: #24292e;
+            --toc-hover: rgba(0, 0, 0, 0.05);
+            --toc-icon-bg: rgba(255, 255, 255, 0.8);
+            --toc-icon-color: #333;
+            --toc-icon-active-bg: #fff;
+            --toc-icon-active-color: #333;
+        }
 
-       @media (prefers-color-scheme: dark) {
-           :root {
-               --toc-bg: #21262dcc;
-               --toc-border: rgba(240, 246, 252, 0.1);
-               --toc-text: #c9d1d9;
-               --toc-hover: #002fa7cc;
-               --toc-icon-bg: #21262db3;
-               --toc-icon-color: rgba(240, 246, 252, 0.1);
-               --toc-icon-active-bg: #002fa7b3;
-               --toc-icon-active-color: #8b949eb3;
-           }
-       }  
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --toc-bg: #21262dcc;
+                --toc-border: rgba(240, 246, 252, 0.1);
+                --toc-text: #c9d1d9;
+                --toc-hover: #002fa7cc;
+                --toc-icon-bg: #21262db3;
+                --toc-icon-color: rgba(240, 246, 252, 0.1);
+                --toc-icon-active-bg: #002fa7b3;
+                --toc-icon-active-color: #8b949eb3;
+            }
+        }  
 
-       .toc {
-           position: fixed;
-           bottom: 150px;
-           right: 60px;
-           width: 250px;
-           max-height: 70vh;
-           background-color: var(--toc-bg);
-           border: 1px solid var(--toc-border);
-           border-radius: 6px;
-           padding: 10px;
-           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-           overflow-y: auto;
-           z-index: 1000;
-           opacity: 0;
-           visibility: hidden;
-           transform: translateY(20px) scale(0.9);
-           transition: all 0.1s ease;
-       }
-       .toc.show {
-           opacity: 1;
-           visibility: visible;
-           transform: translateY(0) scale(1);
-       }
-       .toc a {
-           display: block;
-           border-radius: 6px;
-           color: var(--toc-text);
-           text-decoration: none;
-           padding: 5px 0;
-           font-size: 14px;
-           line-height: 1.5;
-           border-bottom: 1px solid var(--toc-border);
-           transition: all 0.1s ease;
-       }
-       .toc a:last-child {
-           border-bottom: none;
-       }
-       .toc a:hover {
-           background-color: var(--toc-hover);
-           padding-left: 5px;
-           border-radius: 6px;
-       }
-       .toc-icon {
-           position: fixed;
-           bottom: 130px;
-           right: 20px;
-           cursor: pointer;
-           background-color: var(--toc-icon-bg);
-           color: var(--toc-icon-color);
-           border: 2px solid var(--toc-icon-color);
-           border-radius: 50%;
-           width: 40px;
-           height: 40px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-           z-index: 1001;
-           transition: all 0.1s ease;
-           user-select: none;
-           -webkit-tap-highlight-color: transparent;
-           outline: none;
-       }
-       .toc-icon:hover {
-            transform: scale(1.1);
-            color: var(--toc-icon-active-color);
-            background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color);
-       }
-       .toc-icon:active {
-           transform: scale(0.9);
-       }
-       .toc-icon.active {
-            color: var(--toc-icon-active-color);
-            background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
-            transform: rotate(90deg);
-       }
-       .toc-icon svg {
-           width: 24px;
-           height: 24px;
-           fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
-           stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
-           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
-           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
-       }
+        /* 新增高亮样式 */
+        .toc-link.active {
+            background-color: var(--toc-hover) !important;
+            padding-left: 15px !important;
+            font-weight: 600;
+            transition: all 0.1s ease;
+        }
 
-       @media (max-width: 768px) {
-           .toc {
-               width: 200px;
-           }
-       }
-   `;
-   loadResource('style', {css: css});
+        .toc {
+            position: fixed;
+            bottom: 150px;
+            right: 60px;
+            width: 250px;
+            max-height: 70vh;
+            background-color: var(--toc-bg);
+            border: 1px solid var(--toc-border);
+            border-radius: 6px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.1s ease;
+        }
+        .toc.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .toc a {
+            display: block;
+            border-radius: 6px;
+            color: var(--toc-text);
+            text-decoration: none;
+            padding: 5px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--toc-border);
+            transition: all 0.1s ease;
+        }
+        .toc a:last-child {
+            border-bottom: none;
+        }
+        .toc a:hover {
+            background-color: var(--toc-hover);
+            padding-left: 5px;
+            border-radius: 6px;
+        }
+        .toc-icon {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            cursor: pointer;
+            background-color: var(--toc-icon-bg);
+            color: var(--toc-icon-color);
+            border: 2px solid var(--toc-icon-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            z-index: 1001;
+            transition: all 0.1s ease;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+        .toc-icon:hover {
+             transform: scale(1.1);
+             color: var(--toc-icon-active-color);
+             background-color: var(--toc-icon-active-bg);
+             border-color: var(--toc-icon-active-color);
+        }
+        .toc-icon:active {
+            transform: scale(0.9);
+        }
+        .toc-icon.active {
+             color: var(--toc-icon-active-color);
+             background-color: var(--toc-icon-active-bg);
+             border-color: var(--toc-icon-active-color);
+             transform: rotate(90deg);
+        }
+        .toc-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
-   const tocIcon = document.createElement('div');
-   tocIcon.className = 'toc-icon';
-   tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-   tocIcon.onclick = (e) => {
-       e.stopPropagation();
-       toggleTOC();
-   };
-   document.body.appendChild(tocIcon);
+        @media (max-width: 768px) {
+            .toc {
+                width: 200px;
+            }
+        }
+    `;
+    loadResource('style', {css: css});
 
-   document.addEventListener('click', (e) => {
-       const tocElement = document.querySelector('.toc');
-       if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
-           toggleTOC();
-       }
-   });
+    // 创建TOC图标
+    const tocIcon = document.createElement('div');
+    tocIcon.className = 'toc-icon';
+    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    tocIcon.onclick = (e) => {
+        e.stopPropagation();
+        toggleTOC();
+    };
+    document.body.appendChild(tocIcon);
+
+    // 点击外部关闭TOC
+    document.addEventListener('click', (e) => {
+        const tocElement = document.querySelector('.toc');
+        if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
+            toggleTOC();
+        }
+    });
+
+    // 滚动高亮逻辑
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const id = entry.target.id;
+            const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.toc-link.active').forEach(el => el.classList.remove('active'));
+                if (tocLink) tocLink.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // 观察所有标题
+    document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
+        if (heading.id) observer.observe(heading);
+    });
+
+    // 备用滚动检测方案
+    function updateActiveLink() {
+        const links = document.querySelectorAll('.toc-link');
+        const headings = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+        let closest = headings.reduce((prev, curr) => {
+            const box = curr.getBoundingClientRect();
+            return (box.top <= 200 && box.top > prev.top) ? {top: box.top, elem: curr} : prev;
+        }, {top: -Infinity});
+
+        links.forEach(link => link.classList.remove('active'));
+        if (closest.elem) {
+            const activeLink = document.querySelector(`.toc-link[href="#${closest.elem.id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+    }
+
+    const throttledUpdate = throttle(updateActiveLink, 100);
+    window.addEventListener('scroll', throttledUpdate);
 });
