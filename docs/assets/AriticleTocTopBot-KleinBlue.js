@@ -152,13 +152,6 @@ document.addEventListener("DOMContentLoaded", function() {
             border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
             transform: rotate(90deg);
        }
-       /* 弹出菜单文字参数 */
-       .active-toc {
-           /* font-weight: bold;  移除加粗 */
-           border-radius: 6px;
-           background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
-           padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
-       }
        .toc-icon svg {
            width: 24px;
            height: 24px;
