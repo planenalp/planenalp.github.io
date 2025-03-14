@@ -43,7 +43,10 @@
     tocLinks.forEach(link => link.classList.remove('active-toc'));
     if (current) {
       current.classList.add('active-toc');
-      current.scrollIntoView({ block: 'center', inline: 'nearest' });
+      // 仅在宽度大于768px时调用 scrollIntoView，移动端则不调用
+      if (window.innerWidth > 768) {
+        current.scrollIntoView({ block: 'center', inline: 'nearest' });
+      }
     }
   };
 
@@ -274,11 +277,10 @@
       btnBot.classList.toggle('show', scrollTop + windowHeight < documentHeight - 100);
     };
 
-    // 监听滚动和触摸事件更新目录高亮（方法2）
-    window.addEventListener('scroll', highlightTOC);
-    window.addEventListener('touchmove', highlightTOC);
-    window.addEventListener('touchend', highlightTOC);
-    window.addEventListener('scroll', updateButtons);
+    window.addEventListener('scroll', () => {
+      highlightTOC();
+      updateButtons();
+    });
     window.addEventListener('resize', updateButtons);
     updateButtons();
 
