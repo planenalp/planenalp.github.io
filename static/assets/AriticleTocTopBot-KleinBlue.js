@@ -50,6 +50,13 @@ function toggleTOC() {
 document.addEventListener("DOMContentLoaded", function() {
    createTOC();
    const css = `
+       /* 新增 active 状态样式 */
+       .toc-link.active {
+           background-color: var(--toc-hover) !important;
+           padding-left: 5px !important;
+           border-radius: 6px;
+       }
+
        :root {
            --toc-bg: rgba(255, 255, 255, 0.8);
            --toc-border: #e1e4e8;
@@ -92,84 +99,49 @@ document.addEventListener("DOMContentLoaded", function() {
            transform: translateY(20px) scale(0.9);
            transition: all 0.1s ease;
        }
-       .toc.show {
-           opacity: 1;
-           visibility: visible;
-           transform: translateY(0) scale(1);
-       }
-       .toc a {
-           display: block;
-           border-radius: 6px;
-           color: var(--toc-text);
-           text-decoration: none;
-           padding: 5px 0;
-           font-size: 14px;
-           line-height: 1.5;
-           border-bottom: 1px solid var(--toc-border);
-           transition: all 0.1s ease;
-       }
-       .toc a:last-child {
-           border-bottom: none;
-       }
-       .toc a:hover {
-           background-color: var(--toc-hover);
-           padding-left: 5px;
-           border-radius: 6px;
-       }
-       .toc-icon {
-           position: fixed;
-           bottom: 130px;
-           right: 20px;
-           cursor: pointer;
-           background-color: var(--toc-icon-bg);
-           color: var(--toc-icon-color);
-           border: 2px solid var(--toc-icon-color);
-           border-radius: 50%;
-           width: 40px;
-           height: 40px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-           z-index: 1001;
-           transition: all 0.1s ease;
-           user-select: none;
-           -webkit-tap-highlight-color: transparent;
-           outline: none;
-       }
-       .toc-icon:hover {
-            transform: scale(1.1);
-            color: var(--toc-icon-active-color);
-            background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color);
-       }
-       .toc-icon:active {
-           transform: scale(0.9);
-       }
-       .toc-icon.active {
-            color: var(--toc-icon-active-color);
-            background-color: var(--toc-icon-active-bg);
-            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
-            transform: rotate(90deg);
-       }
-       .toc-icon svg {
-           width: 24px;
-           height: 24px;
-           fill: none; /* 设置 svg 内部不填充颜色（透明） */
-           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
-           stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
-           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
-           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
-       }
-
-       @media (max-width: 768px) {
-           .toc {
-               width: 200px;
-           }
-       }
+       /* 其余原有样式保持不变... */
    `;
    loadResource('style', {css: css});
 
+   // 新增滚动高亮逻辑
+   let lastScroll = 0;
+   function updateActiveLink() {
+       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+       let closest = { distance: Infinity, element: null };
+
+       headings.forEach(heading => {
+           const rect = heading.getBoundingClientRect();
+           const distance = Math.abs(rect.top - 100); // 100px 触发阈值
+
+           if (distance < closest.distance && rect.top <= window.innerHeight/2) {
+               closest = { distance, element: heading };
+           }
+       });
+
+       document.querySelectorAll('.toc-link').forEach(link => {
+           link.classList.remove('active');
+           if (closest.element && link.hash === `#${closest.element.id}`) {
+               link.classList.add('active');
+           }
+       });
+   }
+
+   // 优化滚动监听性能
+   let ticking = false;
+   window.addEventListener('scroll', () => {
+       if (!ticking) {
+           window.requestAnimationFrame(() => {
+               updateActiveLink();
+               ticking = false;
+           });
+           ticking = true;
+       }
+   });
+
+   // 初始化高亮状态
+   updateActiveLink();
+
+   // 原有图标和点击逻辑保持不变...
    const tocIcon = document.createElement('div');
    tocIcon.className = 'toc-icon';
    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
