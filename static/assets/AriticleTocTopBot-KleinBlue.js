@@ -29,24 +29,20 @@
     });
   };
 
-  // 使用 getBoundingClientRect() 高亮当前视口内的目录项
+  // 高亮当前滚动区域对应的目录项
   const highlightTOC = () => {
     const tocLinks = document.querySelectorAll('.toc-link');
+    const fromTop = window.scrollY + 10;
     let current = null;
     tocLinks.forEach(link => {
       const section = document.getElementById(link.dataset.id);
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        // 当标题上边界距离视口顶部小于等于50px时，认为该标题进入视口
-        if (rect.top <= 50) {
-          current = link;
-        }
+      if (section && section.offsetTop <= fromTop) {
+        current = link;
       }
     });
     tocLinks.forEach(link => link.classList.remove('active-toc'));
     if (current) {
       current.classList.add('active-toc');
-      // 滚动当前目录项至中间显示（可选）
       current.scrollIntoView({ block: 'center', inline: 'nearest' });
     }
   };
@@ -62,6 +58,16 @@
         ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
         : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
     }
+  };
+
+  // 辅助函数：创建按钮
+  const createButton = (className, innerHTML, onClick) => {
+    const btn = document.createElement('button');
+    btn.className = className;
+    btn.innerHTML = innerHTML;
+    btn.addEventListener('click', onClick);
+    document.body.appendChild(btn);
+    return btn;
   };
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -244,16 +250,7 @@
     });
     document.body.appendChild(tocIcon);
 
-    // 创建滚动按钮的辅助函数
-    const createButton = (className, innerHTML, onClick) => {
-      const btn = document.createElement('button');
-      btn.className = className;
-      btn.innerHTML = innerHTML;
-      btn.addEventListener('click', onClick);
-      document.body.appendChild(btn);
-      return btn;
-    };
-
+    // 创建滚动按钮
     const btnTop = createButton(
       'back-to-top',
       '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
@@ -284,6 +281,9 @@
     });
     window.addEventListener('resize', updateButtons);
     updateButtons();
+
+    // 方法1：监听 hashchange 事件，在 URL hash 变化时调用 highlightTOC
+    window.addEventListener('hashchange', highlightTOC);
 
     // 点击页面其他区域时关闭目录
     document.addEventListener('click', e => {
