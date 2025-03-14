@@ -30,7 +30,6 @@ function createTOC() {
            if (targetElement) {
                targetElement.scrollIntoView({ behavior: 'smooth' });
            }
-           toggleTOC(); // 点击后关闭目录
        });
        tocElement.appendChild(link);
    });
