@@ -26,9 +26,29 @@
       link.className = 'toc-link';
       link.style.paddingLeft = `${(parseInt(heading.tagName[1]) - 1) * 10}px`;
       
-      // 方法2：在点击链接时延时调用 highlightTOC
-      link.addEventListener('click', () => {
-        setTimeout(highlightTOC, 100);
+      // 新增点击事件处理
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active-toc'));
+        
+        const target = document.getElementById(this.dataset.id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          
+          // 滚动结束检测
+          let isScrolling;
+          const checkScrollEnd = () => {
+            clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+              highlightTOC();
+              window.removeEventListener('scroll', scrollHandler);
+            }, 100);
+          };
+          
+          const scrollHandler = () => checkScrollEnd();
+          window.addEventListener('scroll', scrollHandler);
+          checkScrollEnd();
+        }
       });
       
       toc.appendChild(link);
@@ -49,7 +69,7 @@
     tocLinks.forEach(link => link.classList.remove('active-toc'));
     if (current) {
       current.classList.add('active-toc');
-      current.scrollIntoView({ block: 'center', inline: 'nearest' });
+      current.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' });
     }
   };
 
@@ -64,16 +84,6 @@
         ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
         : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
     }
-  };
-
-  // 辅助函数：创建按钮
-  const createButton = (className, innerHTML, onClick) => {
-    const btn = document.createElement('button');
-    btn.className = className;
-    btn.innerHTML = innerHTML;
-    btn.addEventListener('click', onClick);
-    document.body.appendChild(btn);
-    return btn;
   };
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -240,6 +250,17 @@
        @media (max-width: 768px) {
            .toc {
                width: 200px;
+               right: 20px;
+               bottom: 100px;
+           }
+           .toc-icon {
+               bottom: 80px;
+           }
+           .back-to-top {
+               bottom: 140px;
+           }
+           .back-to-bot {
+               bottom: 20px;
            }
        }
     `;
@@ -256,7 +277,16 @@
     });
     document.body.appendChild(tocIcon);
 
-    // 创建滚动按钮
+    // 创建滚动按钮的辅助函数
+    const createButton = (className, innerHTML, onClick) => {
+      const btn = document.createElement('button');
+      btn.className = className;
+      btn.innerHTML = innerHTML;
+      btn.addEventListener('click', onClick);
+      document.body.appendChild(btn);
+      return btn;
+    };
+
     const btnTop = createButton(
       'back-to-top',
       '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
@@ -265,11 +295,10 @@
     const btnBot = createButton(
       'back-to-bot',
       '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
-      () =>
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth'
-        })
+      () => window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      })
     );
 
     // 更新滚动按钮显示状态
