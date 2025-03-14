@@ -25,6 +25,12 @@
       link.dataset.id = heading.id;
       link.className = 'toc-link';
       link.style.paddingLeft = `${(parseInt(heading.tagName[1]) - 1) * 10}px`;
+      
+      // 方法2：在点击链接时延时调用 highlightTOC
+      link.addEventListener('click', () => {
+        setTimeout(highlightTOC, 100);
+      });
+      
       toc.appendChild(link);
     });
   };
@@ -281,9 +287,6 @@
     });
     window.addEventListener('resize', updateButtons);
     updateButtons();
-
-    // 方法1：监听 hashchange 事件，在 URL hash 变化时调用 highlightTOC
-    window.addEventListener('hashchange', highlightTOC);
 
     // 点击页面其他区域时关闭目录
     document.addEventListener('click', e => {
