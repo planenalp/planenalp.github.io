@@ -9,6 +9,7 @@ function loadResource(type, attributes) {
 function createTOC() {
    const tocElement = document.createElement('div');
    tocElement.className = 'toc';
+   
    const contentContainer = document.querySelector('.markdown-body');
    contentContainer.appendChild(tocElement);
 
@@ -20,6 +21,7 @@ function createTOC() {
        const link = document.createElement('a');
        link.href = '#' + heading.id;
        link.textContent = heading.textContent;
+      
        link.className = 'toc-link';
        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
        link.addEventListener('click', function(e) {
@@ -62,21 +64,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
        @media (prefers-color-scheme: dark) {
            :root {
-               --toc-bg: rgba(45, 51, 59, 0.8);
-               --toc-border: #444c56;
-               --toc-text: #adbac7;
-               --toc-hover: rgba(255, 255, 255, 0.05);
-               --toc-icon-bg: rgba(45, 51, 59, 0.8);
-               --toc-icon-color: #adbac7;
-               --toc-icon-active-bg: #2d333b;
-               --toc-icon-active-color: #adbac7;
+               --toc-bg: #21262dcc;
+               --toc-border: rgba(240, 246, 252, 0.1);
+               --toc-text: #c9d1d9;
+               --toc-hover: #002fa7cc;
+               --toc-icon-bg: #21262db3;
+               --toc-icon-color: rgba(240, 246, 252, 0.1);
+               --toc-icon-active-bg: #002fa7b3;
+               --toc-icon-active-color: #8b949eb3;
            }
-       }
+       }  
 
        .toc {
            position: fixed;
-           bottom: 80px;
-           right: 20px;
+           bottom: 150px;
+           right: 60px;
            width: 250px;
            max-height: 70vh;
            background-color: var(--toc-bg);
@@ -88,24 +90,24 @@ document.addEventListener("DOMContentLoaded", function() {
            z-index: 1000;
            opacity: 0;
            visibility: hidden;
-           transform: translateY(20px);
-           transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-           backdrop-filter: blur(5px);
+           transform: translateY(20px) scale(0.9);
+           transition: all 0.1s ease;
        }
        .toc.show {
            opacity: 1;
            visibility: visible;
-           transform: translateY(0);
+           transform: translateY(0) scale(1);
        }
        .toc a {
            display: block;
+           border-radius: 6px;
            color: var(--toc-text);
            text-decoration: none;
            padding: 5px 0;
            font-size: 14px;
            line-height: 1.5;
            border-bottom: 1px solid var(--toc-border);
-           transition: background-color 0.2s ease, padding-left 0.2s ease;
+           transition: all 0.1s ease;
        }
        .toc a:last-child {
            border-bottom: none;
@@ -113,63 +115,63 @@ document.addEventListener("DOMContentLoaded", function() {
        .toc a:hover {
            background-color: var(--toc-hover);
            padding-left: 5px;
+           border-radius: 6px;
        }
        .toc-icon {
            position: fixed;
-           bottom: 20px;
-           right: 15px;
+           bottom: 130px;
+           right: 20px;
            cursor: pointer;
            background-color: var(--toc-icon-bg);
            color: var(--toc-icon-color);
            border-radius: 50%;
-           width: 50px;
-           height: 50px;
+           width: 40px;
+           height: 40px;
            display: flex;
            align-items: center;
            justify-content: center;
-           box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
            z-index: 1001;
-           transition: all 0.3s ease;
+           transition: all 0.1s ease;
            user-select: none;
            -webkit-tap-highlight-color: transparent;
            outline: none;
        }
        .toc-icon:hover {
-           transform: scale(1.1);
-           background-color: var(--toc-icon-active-bg);
+            transform: scale(1.1);
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color);
        }
        .toc-icon:active {
            transform: scale(0.9);
        }
        .toc-icon.active {
-           background-color: var(--toc-icon-active-bg);
-           color: var(--toc-icon-active-color);
+            color: var(--toc-icon-active-color);
+            background-color: var(--toc-icon-active-bg);
+            border-color: var(--toc-icon-active-color); /* 激活按钮边框颜色改为白色 */
+            transform: rotate(90deg);
+       }
+       /* 弹出菜单文字参数 */
+       .active-toc {
+           /* font-weight: bold;  移除加粗 */
+           border-radius: 6px;
+           background-color: var(--toc-hover);  /* 根据你的设计，可以定制高亮颜色 */
+           padding-left: 5px;  /* 可选：增加左边距以突出当前项目 */
        }
        .toc-icon svg {
            width: 24px;
            height: 24px;
-           fill: none;
-           stroke: currentColor;
-           stroke-width: 2;
-           stroke-linecap: round;
-           stroke-linejoin: round;
+           fill: none; /* 设置 svg 内部不填充颜色（透明） */
+           stroke: currentColor; /* 想要即时切换只能用 currentColor 将描边颜色设置为当前文字颜色（继承父元素的颜色）*/
+           stroke-width: 2; /* 设置描边（线条）的宽度为 2 像素 */
+           stroke-linecap: round; /* 设置描边端点为圆形，使线条末端圆润 */
+           stroke-linejoin: round;  /* 设置线条转角为圆形，使角部更平滑 */
        }
 
        @media (max-width: 768px) {
            .toc {
                width: 200px;
-               bottom: 70px;
-               right: 10px;
-           }
-           .toc-icon {
-               width: 40px;
-               height: 40px;
-               bottom: 15px;
-               right: 15px;
-           }
-           .toc-icon svg {
-               width: 20px;
-               height: 20px;
            }
        }
    `;
