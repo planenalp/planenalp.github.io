@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
            cursor: pointer;
            background-color: var(--toc-icon-bg);
            color: var(--toc-icon-color);
+           border: 2px solid var(--toc-icon-color);
            border-radius: 50%;
            width: 40px;
            height: 40px;
