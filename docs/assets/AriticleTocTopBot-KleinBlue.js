@@ -9,7 +9,7 @@ function loadResource(type, attributes) {
 function createTOC() {
   const contentContainer = document.querySelector('.markdown-body');
   if (!contentContainer) return;
-
+  
   const tocElement = document.createElement('div');
   tocElement.className = 'toc';
   contentContainer.appendChild(tocElement);
@@ -22,7 +22,8 @@ function createTOC() {
     const link = document.createElement('a');
     link.href = '#' + heading.id;
     link.textContent = heading.textContent;
-    link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
+    // 根据标题级别增加内边距
+    link.style.paddingLeft = ${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px;
     link.addEventListener('click', e => {
       e.preventDefault();
       document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
@@ -47,174 +48,176 @@ document.addEventListener("DOMContentLoaded", function() {
   // 初始化目录
   createTOC();
 
-  // 合并 TOC 和返回按钮的样式
-  const combinedCss = `
-:root {
-  --toc-bg: rgba(255, 255, 255, 0.8);
-  --toc-border: #e1e4e8;
-  --toc-hover: rgba(0, 0, 0, 0.05);
-  --toc-icon-active-bg: #fff;
-  --toc-icon-active-color: #333;
-  --toc-icon-bg: rgba(255, 255, 255, 0.8);
-  --toc-icon-color: #333;
-  --toc-text: #24292e;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --toc-bg: #21262dcc;
-    --toc-border: rgba(240, 246, 252, 0.1);
-    --toc-hover: #002fa7cc;
-    --toc-icon-active-bg: #002fa7b3;
-    --toc-icon-active-color: #8b949eb3;
-    --toc-icon-bg: #21262db3;
-    --toc-icon-color: rgba(240, 246, 252, 0.1);
-    --toc-text: #c9d1d9;
-  }
-}
-.toc {
-  background-color: var(--toc-bg);
-  border: 1px solid var(--toc-border);
-  border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  bottom: 150px;
-  max-height: 70vh;
-  opacity: 0;
-  overflow-y: auto;
-  padding: 10px;
-  position: fixed;
-  right: 60px;
-  transition: all 0.1s ease;
-  transform: translateY(20px) scale(0.9);
-  visibility: hidden;
-  width: 250px;
-  z-index: 1000;
-}
-.toc.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  visibility: visible;
-}
-.toc a {
-  border-bottom: 1px solid var(--toc-border);
-  border-radius: 6px;
-  color: var(--toc-text);
-  display: block;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 5px 0;
-  text-decoration: none;
-  transition: all 0.1s ease;
-}
-.toc a:last-child {
-  border-bottom: none;
-}
-.toc a:hover {
-  background-color: var(--toc-hover);
-  border-radius: 6px;
-  padding-left: 5px;
-}
-.toc-icon {
-  -webkit-tap-highlight-color: transparent;
-  align-items: center;
-  background-color: var(--toc-icon-bg);
-  border: 2px solid var(--toc-icon-color);
-  border-radius: 50%;
-  bottom: 130px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  color: var(--toc-icon-color);
-  cursor: pointer;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  outline: none;
-  position: fixed;
-  right: 20px;
-  transition: all 0.1s ease;
-  user-select: none;
-  width: 40px;
-}
-.toc-icon:hover {
-  background-color: var(--toc-icon-active-bg);
-  border-color: var(--toc-icon-active-color);
-  color: var(--toc-icon-active-color);
-  transform: scale(1.1);
-}
-.toc-icon:active {
-  transform: scale(0.9);
-}
-.toc-icon.active {
-  background-color: var(--toc-icon-active-bg);
-  border-color: var(--toc-icon-active-color);
-  color: var(--toc-icon-active-color);
-  transform: rotate(90deg);
-}
-.toc-icon svg {
-  fill: none;
-  height: 24px;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  width: 24px;
-}
-@media (max-width: 768px) {
-  .toc {
-    width: 200px;
-  }
-}
-/* 返回顶部和返回底部按钮样式 */
-.back-to-top, .back-to-bot {
-  -webkit-tap-highlight-color: transparent;
-  align-items: center;
-  background-color: var(--toc-icon-bg);
-  border: 2px solid var(--toc-icon-color);
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  color: var(--toc-icon-color);
-  cursor: pointer;
-  display: flex;
-  font-size: 24px;
-  height: 40px;
-  margin: 0;
-  opacity: 0;
-  outline: none;
-  padding: 0;
-  position: fixed;
-  right: 20px;
-  transition: all 0.1s ease;
-  user-select: none;
-  visibility: hidden;
-  width: 40px;
-  z-index: 10000;
-}
-.back-to-top { bottom: 190px; }
-.back-to-bot { bottom: 70px; }
-.back-to-top.show, .back-to-bot.show {
-  opacity: 1;
-  visibility: visible;
-}
-.back-to-top:hover, .back-to-bot:hover {
-  background-color: var(--toc-icon-active-bg);
-  border-color: var(--toc-icon-active-color);
-  color: var(--toc-icon-active-color);
-  transform: scale(1.1);
-}
-.back-to-top:active, .back-to-bot:active {
-  transform: scale(0.9);
-}
-.back-to-top svg, .back-to-bot svg {
-  fill: none;
-  height: 24px;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  width: 24px;
-}
-  `;
+  // 合并TOC和返回按钮的样式
+  const combinedCss = 
+    :root {
+      --toc-bg: rgba(255, 255, 255, 0.8);
+      --toc-border: #e1e4e8;
+      --toc-text: #24292e;
+      --toc-hover: rgba(0, 0, 0, 0.05);
+      --toc-icon-bg: rgba(255, 255, 255, 0.8);
+      --toc-icon-color: #333;
+      --toc-icon-active-bg: #fff;
+      --toc-icon-active-color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --toc-bg: #21262dcc;
+        --toc-border: rgba(240, 246, 252, 0.1);
+        --toc-text: #c9d1d9;
+        --toc-hover: #002fa7cc;
+        --toc-icon-bg: #21262db3;
+        --toc-icon-color: rgba(240, 246, 252, 0.1);
+        --toc-icon-active-bg: #002fa7b3;
+        --toc-icon-active-color: #8b949eb3;
+      }
+    }
+    .toc {
+      position: fixed;
+      bottom: 150px;
+      right: 60px;
+      width: 250px;
+      max-height: 70vh;
+      background-color: var(--toc-bg);
+      border: 1px solid var(--toc-border);
+      border-radius: 6px;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.9);
+      transition: all 0.1s ease;
+    }
+    .toc.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .toc a {
+      display: block;
+      border-radius: 6px;
+      color: var(--toc-text);
+      text-decoration: none;
+      padding: 5px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      border-bottom: 1px solid var(--toc-border);
+      transition: all 0.1s ease;
+    }
+    .toc a:last-child {
+      border-bottom: none;
+    }
+    .toc a:hover {
+      background-color: var(--toc-hover);
+      padding-left: 5px;
+      border-radius: 6px;
+    }
+    .toc-icon {
+      position: fixed;
+      bottom: 130px;
+      right: 20px;
+      cursor: pointer;
+      background-color: var(--toc-icon-bg);
+      color: var(--toc-icon-color);
+      border: 2px solid var(--toc-icon-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      z-index: 1001;
+      transition: all 0.1s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+    .toc-icon:hover {
+      transform: scale(1.1);
+      color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      border-color: var(--toc-icon-active-color);
+    }
+    .toc-icon:active {
+      transform: scale(0.9);
+    }
+    .toc-icon.active {
+      color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      border-color: var(--toc-icon-active-color);
+      transform: rotate(90deg);
+    }
+    .toc-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (max-width: 768px) {
+      .toc {
+        width: 200px;
+      }
+    }
+    /* 返回顶部和返回底部按钮样式 */
+    .back-to-top, .back-to-bot {
+      position: fixed;
+      right: 20px;
+      cursor: pointer;
+      font-size: 24px;
+      color: var(--toc-icon-color);
+      background-color: var(--toc-icon-bg);
+      border: 2px solid var(--toc-icon-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      z-index: 10000;
+      transition: all 0.1s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .back-to-top { bottom: 190px; }
+    .back-to-bot { bottom: 70px; }
+    .back-to-top.show, .back-to-bot.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover, .back-to-bot:hover {
+      transform: scale(1.1);
+      color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      border-color: var(--toc-icon-active-color);
+    }
+    .back-to-top:active, .back-to-bot:active {
+      transform: scale(0.9);
+    }
+    .back-to-top svg, .back-to-bot svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  ;
   loadResource('style', { css: combinedCss });
 
-  // 创建 TOC 切换图标
+  // 创建TOC切换图标
   const tocIcon = document.createElement('div');
   tocIcon.className = 'toc-icon';
   tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
