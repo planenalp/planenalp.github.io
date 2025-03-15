@@ -33,6 +33,16 @@
           const $el = new DOMParser().parseFromString(`
 <div class="view-image">
   <style>
+    :root {
+        --toc-bg: #21262dcc;
+        --toc-border: rgba(240, 246, 252, 0.1);
+        --toc-text: #c9d1d9;
+        --toc-hover: #002fa7cc;
+        --toc-icon-bg: #21262db3;
+        --toc-icon-color: rgba(240, 246, 252, 0.1);
+        --toc-icon-active-bg: #002fa7b3;
+        --toc-icon-active-color: #8b949eb3;
+    }
     .view-image {
         position: fixed;
         inset: 0;
@@ -61,16 +71,16 @@
         align-items: center;
         cursor: pointer;
         border-radius: 50%;
-        color: rgba(240, 246, 252, 0.1);
-        background-color: #21262db3;
-        border: 2px solid rgba(240, 246, 252, 0.1);
+        color: var(--toc-icon-color);
+        background-color: var(--toc-icon-bg);
+        border: 2px solid var(--toc-icon-color);
         transition: transform 0.1s ease, opacity 0.1s ease;
     }
     .view-image-btn:hover {
+        border-color: var(--toc-icon-active-color);
+        background-color: var(--toc-icon-active-bg);
+        color: var(--toc-icon-active-color);
         transform: scale(1.1);
-        color: #8b949eb3;
-        background-color: #002fa7b3;
-        border-color: #8b949eb3;
     }
     .view-image-btn:active {
         transform: scale(0.9);
@@ -169,8 +179,8 @@
         width: min(100%, 300px); /* 宽度最多 300px，但不会超出屏幕 */
         padding: 5px;
         border-radius: 6px;
-        background-color: #21262dcc;
-        border: 1px solid rgba(240, 246, 252, 0.1);
+        background-color: var(--toc-bg);
+        border: 1px solid var(--toc-border);
         margin-bottom: env(safe-area-inset-bottom);
         z-index: 1;
     }
