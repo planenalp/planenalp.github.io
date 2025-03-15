@@ -34,14 +34,22 @@
 <div class="view-image">
   <style>
     :root {
-        --toc-bg: #21262dcc;
-        --toc-border: rgba(240, 246, 252, 0.1);
-        --toc-text: #c9d1d9;
-        --toc-hover: #002fa7cc;
-        --toc-icon-bg: #21262db3;
-        --toc-icon-color: rgba(240, 246, 252, 0.1);
-        --toc-icon-active-bg: #002fa7b3;
-        --toc-icon-active-color: #8b949eb3;
+        --img-bg: rgba(255, 255, 255, 0.8);
+        --img-border: #e1e4e8;
+        --img-icon-bg: #FFFFFFB3;
+        --img-icon-color: #656d76b3;
+        --img-icon-active-bg: #81D8D0B3;
+        --img-icon-active-color: #FFFFFFB3;
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --img-bg: #21262dcc;
+            --img-border: rgba(240, 246, 252, 0.1);
+            --img-icon-bg: #21262db3;
+            --img-icon-color: rgba(240, 246, 252, 0.1);
+            --img-icon-active-bg: #002fa7b3;
+            --img-icon-active-color: #8b949eb3;
+        }
     }
     .view-image {
         position: fixed;
@@ -71,15 +79,15 @@
         align-items: center;
         cursor: pointer;
         border-radius: 50%;
-        color: var(--toc-icon-color);
-        background-color: var(--toc-icon-bg);
-        border: 2px solid var(--toc-icon-color);
+        color: var(--img-icon-color);
+        background-color: var(--img-icon-bg);
+        border: 2px solid var(--img-icon-color);
         transition: transform 0.1s ease, opacity 0.1s ease;
     }
     .view-image-btn:hover {
-        border-color: var(--toc-icon-active-color);
-        background-color: var(--toc-icon-active-bg);
-        color: var(--toc-icon-active-color);
+        border-color: var(--img-icon-active-color);
+        background-color: var(--img-icon-active-bg);
+        color: var(--img-icon-active-color);
         transform: scale(1.1);
     }
     .view-image-btn:active {
@@ -179,8 +187,8 @@
         width: min(100%, 300px); /* 宽度最多 300px，但不会超出屏幕 */
         padding: 5px;
         border-radius: 6px;
-        background-color: var(--toc-bg);
-        border: 1px solid var(--toc-border);
+        background-color: var(--img-bg);
+        border: 1px solid var(--img-border);
         margin-bottom: env(safe-area-inset-bottom);
         z-index: 1;
     }
@@ -189,7 +197,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--toc-icon-color);
+        color: var(--img-icon-color);
     }
     .view-image-tools__flip {
         display: flex;
