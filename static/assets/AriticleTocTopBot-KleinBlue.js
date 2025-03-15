@@ -23,7 +23,7 @@ function createTOC() {
     link.href = '#' + heading.id;
     link.textContent = heading.textContent;
     // 根据标题级别增加内边距
-    link.style.paddingLeft = ${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px;
+    link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
     link.addEventListener('click', e => {
       e.preventDefault();
       document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
   createTOC();
 
   // 合并TOC和返回按钮的样式
-  const combinedCss = 
+  const combinedCss = `
     :root {
       --toc-bg: rgba(255, 255, 255, 0.8);
       --toc-border: #e1e4e8;
@@ -170,9 +170,9 @@ document.addEventListener("DOMContentLoaded", function() {
       right: 20px;
       cursor: pointer;
       font-size: 24px;
-      color: var(--toc-icon-color);
-      background-color: var(--toc-icon-bg);
-      border: 2px solid var(--toc-icon-color);
+      background-color: #21262db3;
+      color: rgba(240, 246, 252, 0.1);
+      border: 2px solid rgba(240, 246, 252, 0.1);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
-      transition: all 0.1s ease;
+      transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
@@ -198,9 +198,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     .back-to-top:hover, .back-to-bot:hover {
       transform: scale(1.1);
-      color: var(--toc-icon-active-color);
-      background-color: var(--toc-icon-active-bg);
-      border-color: var(--toc-icon-active-color);
+      color: #8b949eb3;
+      background-color: #002fa7b3;
+      border-color: #8b949eb3;
     }
     .back-to-top:active, .back-to-bot:active {
       transform: scale(0.9);
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-  ;
+  `;
   loadResource('style', { css: combinedCss });
 
   // 创建TOC切换图标
