@@ -159,20 +159,15 @@ document.addEventListener("DOMContentLoaded", function() {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    @media (max-width: 768px) {
-      .toc {
-        width: 200px;
-      }
-    }
     /* 返回顶部和返回底部按钮样式 */
     .back-to-top, .back-to-bot {
       position: fixed;
       right: 20px;
       cursor: pointer;
       font-size: 24px;
-      background-color: #21262db3;
-      color: rgba(240, 246, 252, 0.1);
-      border: 2px solid rgba(240, 246, 252, 0.1);
+      color: var(--toc-icon-color);
+      background-color: var(--toc-icon-bg);
+      border: 2px solid var(--toc-icon-color);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -181,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       z-index: 10000;
-      transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
+      transition: all 0.1s ease;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
@@ -198,9 +193,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     .back-to-top:hover, .back-to-bot:hover {
       transform: scale(1.1);
-      color: #8b949eb3;
-      background-color: #002fa7b3;
-      border-color: #8b949eb3;
+      color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      border-color: var(--toc-icon-active-color);
     }
     .back-to-top:active, .back-to-bot:active {
       transform: scale(0.9);
@@ -213,6 +208,12 @@ document.addEventListener("DOMContentLoaded", function() {
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
+    }
+    /* 移动端弹出菜单缩窄 */
+    @media (max-width: 768px) {
+      .toc {
+        width: 200px;
+      }
     }
   `;
   loadResource('style', { css: combinedCss });
