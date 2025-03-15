@@ -186,7 +186,7 @@
         gap: 10px;
     }
     .view-image-tools [class*="-close"] {
-        margin: 0 10px;
+        margin: 0 14px;
     }
   </style>
   <div class="view-image-container">
