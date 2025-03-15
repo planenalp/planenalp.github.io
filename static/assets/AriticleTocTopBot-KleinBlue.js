@@ -76,78 +76,78 @@ document.addEventListener("DOMContentLoaded", function() {
       position: fixed;
       bottom: 150px;
       right: 60px;
+      z-index: 1000;
       width: 250px;
       max-height: 70vh;
-      background-color: var(--toc-bg);
+      padding: 10px;
+      overflow-y: auto;
       border: 1px solid var(--toc-border);
       border-radius: 6px;
-      padding: 10px;
+      background-color: var(--toc-bg);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow-y: auto;
-      z-index: 1000;
+      transform: translateY(20px) scale(0.9);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(20px) scale(0.9);
       transition: all 0.1s ease;
     }
     .toc.show {
+      transform: translateY(0) scale(1);
       opacity: 1;
       visibility: visible;
-      transform: translateY(0) scale(1);
     }
     .toc a {
       display: block;
-      border-radius: 6px;
-      color: var(--toc-text);
-      text-decoration: none;
       padding: 5px 0;
+      border-radius: 6px;
+      border-bottom: 1px solid var(--toc-border);
+      color: var(--toc-text);
+      transition: all 0.1s ease;
       font-size: 14px;
       line-height: 1.5;
-      border-bottom: 1px solid var(--toc-border);
-      transition: all 0.1s ease;
+      text-decoration: none;
     }
     .toc a:last-child {
       border-bottom: none;
     }
     .toc a:hover {
-      background-color: var(--toc-hover);
       padding-left: 5px;
       border-radius: 6px;
+      background-color: var(--toc-hover);
     }
     .toc-icon {
       position: fixed;
       bottom: 130px;
       right: 20px;
-      cursor: pointer;
-      background-color: var(--toc-icon-bg);
-      color: var(--toc-icon-color);
-      border: 2px solid var(--toc-icon-color);
-      border-radius: 50%;
+      z-index: 1001;
       width: 40px;
       height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 2px solid var(--toc-icon-color);
+      border-radius: 50%;
+      background-color: var(--toc-icon-bg);
+      color: var(--toc-icon-color);
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-      z-index: 1001;
       transition: all 0.1s ease;
+      cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
     }
     .toc-icon:hover {
-      transform: scale(1.1);
-      color: var(--toc-icon-active-color);
-      background-color: var(--toc-icon-active-bg);
       border-color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      color: var(--toc-icon-active-color);
+      transform: scale(1.1);
     }
     .toc-icon:active {
       transform: scale(0.9);
     }
     .toc-icon.active {
-      color: var(--toc-icon-active-color);
-      background-color: var(--toc-icon-active-bg);
       border-color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      color: var(--toc-icon-active-color);
       transform: rotate(90deg);
     }
     .toc-icon svg {
@@ -159,31 +159,30 @@ document.addEventListener("DOMContentLoaded", function() {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    /* 返回顶部和返回底部按钮样式 */
     .back-to-top, .back-to-bot {
       position: fixed;
       right: 20px;
-      cursor: pointer;
-      font-size: 24px;
-      color: var(--toc-icon-color);
-      background-color: var(--toc-icon-bg);
-      border: 2px solid var(--toc-icon-color);
-      border-radius: 50%;
+      z-index: 10000;
       width: 40px;
       height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0;
+      margin: 0;
+      border: 2px solid var(--toc-icon-color);
+      border-radius: 50%;
+      background-color: var(--toc-icon-bg);
+      color: var(--toc-icon-color);
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
       transition: all 0.1s ease;
+      font-size: 24px;
+      cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
-      padding: 0;
-      margin: 0;
-      opacity: 0;
-      visibility: hidden;
     }
     .back-to-top { bottom: 190px; }
     .back-to-bot { bottom: 70px; }
@@ -192,10 +191,10 @@ document.addEventListener("DOMContentLoaded", function() {
       visibility: visible;
     }
     .back-to-top:hover, .back-to-bot:hover {
-      transform: scale(1.1);
-      color: var(--toc-icon-active-color);
-      background-color: var(--toc-icon-active-bg);
       border-color: var(--toc-icon-active-color);
+      background-color: var(--toc-icon-active-bg);
+      color: var(--toc-icon-active-color);
+      transform: scale(1.1);
     }
     .back-to-top:active, .back-to-bot:active {
       transform: scale(0.9);
@@ -209,7 +208,6 @@ document.addEventListener("DOMContentLoaded", function() {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    /* 移动端弹出菜单缩窄 */
     @media (max-width: 768px) {
       .toc {
         width: 200px;
