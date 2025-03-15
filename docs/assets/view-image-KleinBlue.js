@@ -189,7 +189,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #8b949eb3;
+        color: var(--toc-icon-color);
     }
     .view-image-tools__flip {
         display: flex;
