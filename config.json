@@ -11,7 +11,7 @@
     "commentLabelColor":"#008080",
     "yearColorList":["#002FA7FF", "#002FA7BF", "#002FA780", "#002FA740"],
     "i18n":"EN",
-    "themeMode":"auto",
+    "themeMode":"manual",
     "dayTheme":"light",
     "nightTheme":"dark",
     "urlMode":"issue",
