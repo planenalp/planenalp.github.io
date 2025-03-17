@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://planenalp.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://planenalp.github.io</link></image><lastBuildDate>Mon, 17 Mar 2025 14:52:21 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Link</title><link>https://planenalp.github.io/post/Link.html</link><description>link。</description><guid isPermaLink="true">https://planenalp.github.io/post/Link.html</guid><pubDate>Mon, 17 Mar 2025 14:50:45 +0000</pubDate></item><item><title>About</title><link>https://planenalp.github.io/post/About.html</link><description>hi。</description><guid isPermaLink="true">https://planenalp.github.io/post/About.html</guid><pubDate>Mon, 17 Mar 2025 14:36:33 +0000</pubDate></item><item><title>Test</title><link>https://planenalp.github.io/post/Test.html</link><description>&lt;!-- ##{'timestamp':1680075000}## --&gt;
+<!-- ##{"timestamp":1680075000}## -->
 
 ## 观前提示：这只是一篇关于 klein.blue 域名由来的碎碎念
 
@@ -71,4 +70,4 @@ Hex002FA7 这个 ID 总是感觉意义回路太长了，不是非常满意，所
 GitHub Pages 完全按照教程折腾了几次都没成功把域名添加进去，弄烦了干脆直接用 Google Blogger，毕竟消耗大量精力去建站太舍本逐末，分享的内容才是重点，反正都是被墙的，两个都没差了，能进来的都能来，进不来的也不方便教，即使通过旁门左道 CDN、改图床什么乱七八糟的方式折腾到不用翻墙也能完整访问，根据多年经验可以肯定效果也只是暂时的，唯一根本解决办法就是像 godpan.com 那样买境外服务器来建站，所以就这样吧，反正这个 Blogger 平台只要 Google 没有哪天抽风像曾经的 Reader 全部砍掉的话，应该反而会是理论上可存活时间最长最安全的养老居所
 
 最后惯例提一嘴这个博客的原始地址是 002fa7.blogspot.com
-万一哪天不可抗力 klein.blue 没法续费，还可以通过原始地址进来观光，虽然应该也没几个人会来。</description><guid isPermaLink="true">https://planenalp.github.io/post/Test.html</guid><pubDate>Wed, 29 Mar 2023 07:30:00 +0000</pubDate></item></channel></rss>
+万一哪天不可抗力 klein.blue 没法续费，还可以通过原始地址进来观光，虽然应该也没几个人会来。。
