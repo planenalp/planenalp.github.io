@@ -127,6 +127,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
 
+        /* 默认亮主题配色 */
+        :root {
+            --header-bgColor: #002FA7;
+            --postTitle-color: #FFFFFF;
+        }
+        /* 暗主题配色 */
+        [data-color-mode=light][data-light-theme=dark],
+        [data-color-mode=light][data-light-theme=dark]::selection,
+        [data-color-mode=dark][data-dark-theme=dark],
+        [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --header-bgColor: #002FA7;
+            --postTitle-color: #FFFFFF;
+        }
+        
         /* 顶栏改色 */
         #header {
             background-color: var(--header-bgColor);
@@ -137,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏字体缩进5px */
         .postTitle {
             margin-left: 5px;
+            color: var(--postTitle-color);
         }
 
         /* 文章字体缩进5px */
@@ -166,6 +181,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
         
+        /* 默认亮主题配色 */
+        :root {
+            --header-bgColor: #002FA7;
+            --tagTitle-color: #FFFFFF;
+        }
+        /* 暗主题配色 */
+        [data-color-mode=light][data-light-theme=dark],
+        [data-color-mode=light][data-light-theme=dark]::selection,
+        [data-color-mode=dark][data-dark-theme=dark],
+        [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --header-bgColor: #002FA7;
+            --tagTitle-color: #FFFFFF;
+        }
+        
         /* 顶栏改色 */
         #header {
             background-color: var(--header-bgColor);
@@ -176,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏字体缩进5px */
         .tagTitle {
             margin-left: 5px;
+            color: var(--tagTitle-color);
         }
         
         /* 搜索布局 */
