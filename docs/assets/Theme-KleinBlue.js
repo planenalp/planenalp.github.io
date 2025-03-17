@@ -120,6 +120,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (postBodyElement) {
             let post_body = postBodyElement.innerHTML;
 
+            // 手动插入外链图片的匹配规则：<p> -> <code class="notranslate">Gmeek-imgbox="..."</code> -> 转换为延迟加载图片格式
+            if (post_body.indexOf('<code class="notranslate">Gmeek-imgbox') !== -1) {
+                post_body = post_body.replace(
+                    /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/gs,
+                    function(match, p1) {
+                        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
+                    }
+                );
+            }
+            
             // 默认情况插入图片的匹配规则：<p> -> <a> -> <img>
             if (post_body.indexOf('<p><a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
@@ -134,16 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (post_body.indexOf('<a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
                     /<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>/gs,
-                    function(match, p1) {
-                        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
-                    }
-                );
-            }
-
-            // 手动插入外链图片的匹配规则：<p> -> <code class="notranslate">Gmeek-imgbox="..."</code> -> 转换为延迟加载图片格式
-            if (post_body.indexOf('<code class="notranslate">Gmeek-imgbox') !== -1) {
-                post_body = post_body.replace(
-                    /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/gs,
                     function(match, p1) {
                         return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
                     }
