@@ -1,3 +1,5 @@
+//记得修改 const fancyboxLink 字段的 fancybox.css 对应的链接位置
+
 function loadResource(type, attributes) {
     if (type === 'style') {
         const style = document.createElement('style');
