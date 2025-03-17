@@ -1,5 +1,102 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://planenalp.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://planenalp.github.io</link></image><lastBuildDate>Mon, 17 Mar 2025 14:52:21 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Link</title><link>https://planenalp.github.io/post/Link.html</link><description>link。</description><guid isPermaLink="true">https://planenalp.github.io/post/Link.html</guid><pubDate>Mon, 17 Mar 2025 14:50:45 +0000</pubDate></item><item><title>About</title><link>https://planenalp.github.io/post/About.html</link><description>hi。</description><guid isPermaLink="true">https://planenalp.github.io/post/About.html</guid><pubDate>Mon, 17 Mar 2025 14:36:33 +0000</pubDate></item><item><title>Test</title><link>https://planenalp.github.io/post/Test.html</link><description>&lt;!-- ##{'timestamp':1680075000}## --&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://planenalp.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://planenalp.github.io</link></image><lastBuildDate>Mon, 17 Mar 2025 14:53:19 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>Link</title><link>https://planenalp.github.io/post/Link.html</link><description>link。</description><guid isPermaLink="true">https://planenalp.github.io/post/Link.html</guid><pubDate>Mon, 17 Mar 2025 14:50:45 +0000</pubDate></item><item><title>About</title><link>https://planenalp.github.io/post/About.html</link><description>hi。</description><guid isPermaLink="true">https://planenalp.github.io/post/About.html</guid><pubDate>Mon, 17 Mar 2025 14:36:33 +0000</pubDate></item><item><title>Test2</title><link>https://planenalp.github.io/post/Test2.html</link><description>&lt;!-- ##{'timestamp':1715460960}## --&gt;
+
+==================================================
+## //废话
+
+原视频教程出处
+Live Blogger - 《How To Customize BG Image In Blogger Contempo Theme | Theme Editor》
+[https://www.youtube.com/watch?v=zMB0XeMcRZg&amp;ab_channel=LiveBlogger](https://www.blogger.com/blog/post/edit/8151877248081093597/8992707372004594223#)
+
+因为 Blogger 默认顶栏只能设置添加图片，不能单独自定义颜色，klein.blue 的顶栏的风格只需要颜色不需要图像，之前就是曲线救国做了一张蓝色纯色图上传上去，正常来说没什么问题，但是国内直连所有图片都没法正确加载导致顶栏变成了当前主题默认的深灰色，所以就想研究怎么通过修改 CSS 代码之类将这个默认的深灰色像其余模块那样可以自定义为 #002FA7，问题很小众找了半天终于在 YouTube 搜到1个视频教程
+这样即使加载不了图片也还能显示出网站的背景颜色了
+
+==================================================
+## 移除图片
+
+虽然后续代码会禁用这个图片，但是为了减少不必要的资源浪费如备份模板不用带这个多余的图片打包在里面，这里还是提前删了好
+
+Blogger - Theme - CUSTOMIZE
+Background image - Remove Image
+
+==================================================
+## 查找对应 Background image 项目代码
+
+根据网页F12查到对应位置为
+&lt;div class='bg-photo-container'&gt;
+
+==================================================
+## 禁用 Background image 模块
+
+Blogger - Theme - CUSTOMIZE 旁的小三角 - Edit HTML
+Ctrl+F 搜索来到2973行
+class='bg-photo-container'
+的内容为
+```
+      &lt;div class='bg-photo-container'&gt;
+        &lt;div class='bg-photo'/&gt;
+      &lt;/div&gt;
+```
+在中间添加两行将其注释掉改为
+```
+      &lt;div class='bg-photo-container'&gt;
+        &lt;!--
+        &lt;div class='bg-photo'/&gt;
+        --&gt;
+      &lt;/div&gt;
+```
+
+//禁用后 Background image 添加任何图片都不会再显示
+
+==================================================
+## 添加 CSS 颜色代码（只推荐用第一种）
+
+Ctrl+F 搜索来到2655行
+```
+]]&gt;&lt;/b:skin&gt;`
+```
+
+将这行往后移动并在其前面添加
+```
+/* Custom BG */
+
+.bg-photo-container {
+    background: #002fa7;
+}
+```
+
+右上角保存
+--------------------------------------------------
+或是在设置内添加 CSS
+不推荐，Restore 后效果还在，但是 Add CSS 设置内代码丢失会被自动合并进 Edit HTML 的代码 ]]&gt;&lt;/b:skin&gt; 前面成为重复代码
+这里列出只是说明有这么一种方法
+也可以通过这个办法代替第一种方法作为首次添加，备份恢复后自动导入进代码，没必要
+顺便通过这个办法确认了第一种方法的代码格式和位置都正确
+
+Blogger - Theme - CUSTOMIZE - Advanced - Page Text 下拉最底下 - Add CSS
+
+然后复制下面代码进去
+```
+/* Custom BG */
+
+.bg-photo-container {
+    background: #002fa7;
+}
+```
+
+右下角按钮保存
+
+==================================================
+## 导出备份
+
+Blogger - Theme - CUSTOMIZE旁的小三角 - Backup - DOWNLOAD
+
+同样位置 Restore 按需恢复备份
+
+==================================================
+## 最终效果
+![Image](https://github.com/user-attachments/assets/3f8ac211-a663-40cf-9533-f69969d2e4be)
+。</description><guid isPermaLink="true">https://planenalp.github.io/post/Test2.html</guid><pubDate>Sat, 11 May 2024 20:56:00 +0000</pubDate></item><item><title>Test</title><link>https://planenalp.github.io/post/Test.html</link><description>&lt;!-- ##{'timestamp':1680075000}## --&gt;
 
 ## 观前提示：这只是一篇关于 klein.blue 域名由来的碎碎念
 
