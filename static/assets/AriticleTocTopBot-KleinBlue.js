@@ -1,54 +1,32 @@
-function loadResource(type, attributes) {
-    if (type === 'style') {
-        const style = document.createElement('style');
-        style.textContent = attributes.css;
-        document.head.appendChild(style);
-    }
-}
-
-function createTOC() {
-    const contentContainer = document.querySelector('.markdown-body');
-    if (!contentContainer) return;
-    
-    const tocElement = document.createElement('div');
-    tocElement.className = 'toc';
-    contentContainer.appendChild(tocElement);
-
-    const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    headings.forEach(heading => {
-        if (!heading.id) {
-            heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
-        }
-        const link = document.createElement('a');
-        link.href = '#' + heading.id;
-        link.textContent = heading.textContent;
-        // 根据标题级别增加内边距
-        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
-        });
-        tocElement.appendChild(link);
-    });
-}
-
-function toggleTOC() {
-    const tocElement = document.querySelector('.toc');
-    const tocIcon = document.querySelector('.toc-icon');
-    if (tocElement && tocIcon) {
-        tocElement.classList.toggle('show');
-        tocIcon.classList.toggle('active');
-        tocIcon.innerHTML = tocElement.classList.contains('show')
-            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
-    // 初始化目录
+    // 整合代码A：处理图片的匹配与替换
+    const contentContainer = document.querySelector('.markdown-body');
+    if (contentContainer) {
+        let post_body = contentContainer.innerHTML;
+        // 默认情况插入图片：<p> -> <a> -> <img>
+        if (post_body.includes('<p><a target="_blank" rel=')) {
+            post_body = post_body.replace(
+                /<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>\s*<\/p>/gs,
+                function(match, p1) {
+                    return `<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="${p1}">`;
+                }
+            );
+        }
+        // 通用插入图片：<a> -> <img>
+        if (post_body.includes('<a target="_blank" rel=')) {
+            post_body = post_body.replace(
+                /<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>/gs,
+                function(match, p1) {
+                    return `<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="${p1}">`;
+                }
+            );
+        }
+        contentContainer.innerHTML = post_body;
+    }
+
+    // 以下为代码B：生成目录、返回顶部/底部按钮及样式加载
     createTOC();
 
-    // 合并TOC和返回按钮的样式
     const combinedCss = `
         :root {
             --toc-bg: rgba(255, 255, 255, 0.8);
@@ -264,3 +242,52 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('resize', updateButtons);
     updateButtons();
 });
+
+// 辅助函数：加载资源（例如样式）
+function loadResource(type, attributes) {
+    if (type === 'style') {
+        const style = document.createElement('style');
+        style.textContent = attributes.css;
+        document.head.appendChild(style);
+    }
+}
+
+// 辅助函数：生成页面目录（TOC）
+function createTOC() {
+    const contentContainer = document.querySelector('.markdown-body');
+    if (!contentContainer) return;
+    
+    const tocElement = document.createElement('div');
+    tocElement.className = 'toc';
+    contentContainer.appendChild(tocElement);
+
+    const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+        if (!heading.id) {
+            heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+        }
+        const link = document.createElement('a');
+        link.href = '#' + heading.id;
+        link.textContent = heading.textContent;
+        // 根据标题级别增加内边距
+        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+        });
+        tocElement.appendChild(link);
+    });
+}
+
+// 辅助函数：切换目录显示状态
+function toggleTOC() {
+    const tocElement = document.querySelector('.toc');
+    const tocIcon = document.querySelector('.toc-icon');
+    if (tocElement && tocIcon) {
+        tocElement.classList.toggle('show');
+        tocIcon.classList.toggle('active');
+        tocIcon.innerHTML = tocElement.classList.contains('show')
+            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    }
+}
