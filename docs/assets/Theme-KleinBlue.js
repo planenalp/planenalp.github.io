@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ////////////////// 引入 fancybox 所需的 CSS 文件及绑定函数 start ////////////////
     document.head.appendChild(Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
-        href: 'https://testingcf.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+        href: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
     }));
     Fancybox.bind('[data-fancybox="gallery"]', {});
     ////////////////// 引入 fancybox 所需的 CSS 文件及绑定函数 end ////////////////
