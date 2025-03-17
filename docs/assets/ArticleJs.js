@@ -6,83 +6,6 @@ function loadResource(type, resource) {
     }
 }
 
-let tocTitle;
-
-function ToTop() {
-    window.scrollTo({ top: 0 });
-    tocTitle.scrollTop = 0;
-}
-
-function ToBottom() {
-    window.scrollTo({ top: document.body.scrollHeight });
-}
-
-function createTOC() {
-    const tocContainer = document.createElement("div");
-    tocContainer.className = "toc";
-
-    const tocBtn = document.createElement("div");
-    tocBtn.className = "toc-btn";
-    tocContainer.appendChild(tocBtn);
-
-    tocTitle = document.createElement("div");
-    tocTitle.className = "toc-title";
-    tocContainer.appendChild(tocTitle);
-
-    document.body.appendChild(tocContainer);
-
-    tocBtn.innerHTML =
-        '<div onclick="ToTop();">' +
-            '<a title="跳转顶部">' +
-                '<svg class="octicon" width="16" height="16">' +
-                    '<path id="ToTopBtn" fill-rule="evenodd" d="M3 2.25a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 3 2.25Zm5.53 2.97 3.75 3.75a.749.749 0 1 1-1.06 1.06L8.75 7.561v6.689a.75.75 0 0 1-1.5 0V7.561L4.78 10.03a.749.749 0 1 1-1.06-1.06l3.75-3.75a.749.749 0 0 1 1.06 0Z">' +
-                    '</path>' +
-                '</svg>' +
-            '</a>' +
-        '</div>' +
-        '<div onclick="ToBottom();">' +
-            '<a title="跳转底部">' +
-                '<svg class="octicon" width="16" height="16">' +
-                    '<path id="ToBottom" fill-rule="evenodd" d="M7.47 10.78a.749.749 0 0 0 1.06 0l3.75-3.75a.749.749 0 1 0-1.06-1.06L8.75 8.439V1.75a.75.75 0 0 0-1.5 0v6.689L4.78 5.97a.749.749 0 1 0-1.06 1.06l3.75 3.75ZM3.75 13a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z">' +
-                    '</path>' +
-                '</svg>' +
-            '</a>' +
-        '</div>';
-
-    document.querySelectorAll(
-        ".markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6"
-    ).forEach(t => {
-        if (!t.id) {
-            t.id = t.textContent.trim().replace(/\s+/g, "-").toLowerCase();
-        }
-        const link = document.createElement("a");
-        link.href = `#${t.id}`;
-        link.textContent = t.textContent;
-        link.className = `toc-link toc-${t.tagName.toLowerCase()}`;
-        if (t.tagName !== "H1") {
-            const level = parseInt(t.tagName.charAt(1));
-            link.style.marginLeft = `${10 * (level - 1)}px`;
-        }
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            document.getElementById(t.id).scrollIntoView();
-        });
-        tocTitle.appendChild(link);
-    });
-}
-
-function toggleTOC() {
-    const toc = document.querySelector(".toc");
-    const articleTOC = document.querySelector(".ArticleTOC");
-    if (toc && articleTOC) {
-        toc.classList.toggle("show");
-        articleTOC.classList.toggle("active");
-        articleTOC.style.boxShadow = articleTOC.classList.contains("active")
-            ? "6px 6px 14px 0 var(--header-btn-shadowColor) inset, -7px -7px 12px 0 var(--header-btn-shadowColor2) inset"
-            : "";
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -125,36 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
 
     Fancybox.bind('[data-fancybox="gallery"]', {});
-    createTOC();
 
-    const articleTOC = document.querySelector(".ArticleTOC");
-    if (articleTOC) {
-        articleTOC.onclick = (e) => {
-            e.stopPropagation();
-            toggleTOC();
-        };
-    }
-
-    loadResource("style", {
-        css: ":root{--toc-link-bgColor:#ffffffb8;--toc-h1-after-bgColor:#1b9dff}[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection,[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection{--toc-link-bgColor:#121d23ab;--toc-h1-after-bgColor:#43dbff}.toc{position:fixed;bottom:13%;right:0;transform:translateX(50%);display:flex;flex-direction:column;width:250px;max-height:50vh;background-color:var(--toc-link-bgColor);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.2);overflow:hidden;z-index:99;opacity:0;visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility .3s;backdrop-filter:blur(15px);scrollbar-width:thin;scrollbar-color:#9fc6e3 transparent}.toc::-webkit-scrollbar{width:4px}.toc::-webkit-scrollbar-thumb{background:#9fc6e3;border-radius:20px}.toc::-webkit-scrollbar-thumb:hover{background:#6baedf}.toc.show{opacity:1;visibility:visible;transform:translateY(0)}.toc .toc-title a{display:block;color:var(--fgColor-default);text-decoration:none;padding:6px;font-size:14px;line-height:1.5;border-radius:8px;transition:background-color .2s ease}.toc .toc-title a:hover{background-color:#6be5ff99;transform:translate(1px,1px)}.toc-h1{position:relative;padding-left:10px}.toc-h1::after{content:'';position:absolute;top:50%;left:0;width:3px;height:60%;background-color:var(--toc-h1-after-bgColor);transform:translateY(-50%)}.toc-btn{display:inherit;position:sticky;top:0;z-index:999999}.toc-btn div{display:flex;justify-content:center;width:100%;box-shadow:2px 4px 16px #7982a01f;cursor:pointer}.toc-btn div:active{box-shadow:inset -2px -2px 6px var(--header-btn-shadowColor),inset 2px 2px 6px var(--header-btn-shadowColor2)}.toc-btn a{color:var(--title-right-svgColor);padding:9px 11px}.toc-btn div:hover a{color:var(--title-right-svgHovercolor)}.toc-title{padding:10px 10px 0;max-height:calc(50vh - 59px);overflow-y:auto;overflow-y:scroll}.toc-title::-webkit-scrollbar{display:none}.toc-title{scrollbar-width:none}@media (max-width:768px){.toc{width:200px;max-height:40vh}.toc-title{padding:5px 8px 0}.back-to-top{bottom:2%;width:40px;height:40px;font-size:20px}}.toc-link.toc-active{background-color:#3db9d399;font-weight:700;box-shadow:inset -2px -2px 6px #ffffff42,inset 2px 2px 6px #59595980}"
-    });
-
-    document.addEventListener("scroll", () => {
-        const tocLinks = document.querySelectorAll(".toc-link");
-        const scrollPosition = window.scrollY + 10;
-        let activeLink = null;
-
-        tocLinks.forEach(link => {
-            const target = document.getElementById(link.getAttribute("href").substring(1));
-            if (target && target.offsetTop <= scrollPosition) {
-                activeLink = link;
-            }
-        });
-
-        tocLinks.forEach(link => link.classList.remove("toc-active"));
-        if (activeLink) {
-            activeLink.classList.add("toc-active");
-            activeLink.scrollIntoView({ block: "center", inline: "nearest" });
-        }
-    });
 });
