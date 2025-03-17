@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // TOC、返回顶部和返回底部按钮的样式及交互（代码略，可参考原有逻辑）
     const combinedCss = `
+    /* 默认亮主题配色 */
     :root {
         --toc-bg: rgba(255, 255, 255, 0.8);
         --toc-border: #e1e4e8;
@@ -148,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
         --toc-icon-active-bg: #81D8D0B3;
         --toc-icon-active-color: #FFFFFFB3;
     }
+    /* 暗主题配色 */
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
