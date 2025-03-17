@@ -139,9 +139,11 @@ document.addEventListener("DOMContentLoaded", function() {
       --toc-icon-color: #656d76b3;
       --toc-icon-active-bg: #81D8D0B3;
       --toc-icon-active-color: #FFFFFFB3;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
+		}
+		[data-color-mode=light][data-light-theme=dark],
+		[data-color-mode=light][data-light-theme=dark]::selection,
+		[data-color-mode=dark][data-dark-theme=dark],
+		[data-color-mode=dark][data-dark-theme=dark]::selection {
         --toc-bg: #21262dcc;
         --toc-border: rgba(240, 246, 252, 0.1);
         --toc-text: #c9d1d9;
@@ -150,8 +152,8 @@ document.addEventListener("DOMContentLoaded", function() {
         --toc-icon-color: rgba(240, 246, 252, 0.1);
         --toc-icon-active-bg: #002fa7b3;
         --toc-icon-active-color: #8b949eb3;
-      }
-    }
+		}
+    
     .toc {
       position: fixed;
       bottom: 150px;
