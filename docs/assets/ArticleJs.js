@@ -1,10 +1,3 @@
-function loadResource(type, resource) {
-    if ("style" === type) {
-        const styleElement = document.createElement("style");
-        styleElement.textContent = resource.css;
-        document.head.appendChild(styleElement);
-    }
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver(entries => {
