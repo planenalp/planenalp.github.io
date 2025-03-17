@@ -15,8 +15,8 @@
     "dayTheme":"dark",
     "nightTheme":"dark-blue",
     "urlMode":"issue",
-    "script":"<script src='https://testingcf.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>",
+    "script":"<script src='https://planenalp.github.io/assets/ArticleJs.js'></script><script src='https://testingcf.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'></script>",
     "allHead":"<script src='https://planenalp.github.io/assets/Theme-KleinBlue.js'></script>",
-    "indexScript":"<script src='https://klein.blue/planenalp.github.io/NumPagination-KleinBlue.js'></script>",
+    "indexScript":"<script src='https://planenalp.github.io/assets/NumPagination-KleinBlue.js'></script>",
     "showPostSource":0
 }
