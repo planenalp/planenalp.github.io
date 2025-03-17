@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 主页背景颜色 */
         html {    
-            background: var(--index-bgColor);
+            background-color: var(--index-bgColor) !important;
         }
         
         /* header布局 */
