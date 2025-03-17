@@ -82,28 +82,68 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
     ////////////////// 懒加载图片 end ////////////////
 
-    ////////////////// 解决 lazyload 与 fancybox 冲突 start ////////////////
-    // 在点击任一 fancybox 图片前，将所有未加载的图片提前加载（设置 src 属性）
+    ////////////////// 解决 lazyload 与 fancybox 冲突（仅预加载相邻图片） start ////////////////
+    // 当点击某个 fancybox 图片时，基于 DOM 顺序提前加载它左右相邻的图片
+    function preloadAdjacentImagesByDOM(target) {
+        const gallery = Array.from(document.querySelectorAll('[data-fancybox="gallery"]'));
+        const index = gallery.indexOf(target);
+        if (index > 0) {
+            const prevImg = gallery[index - 1];
+            if (!prevImg.getAttribute('src') || prevImg.getAttribute('src') === '') {
+                prevImg.src = prevImg.getAttribute('img-src');
+            }
+        }
+        if (index < gallery.length - 1) {
+            const nextImg = gallery[index + 1];
+            if (!nextImg.getAttribute('src') || nextImg.getAttribute('src') === '') {
+                nextImg.src = nextImg.getAttribute('img-src');
+            }
+        }
+    }
     document.addEventListener('click', function(event) {
         const target = event.target.closest('[data-fancybox="gallery"]');
         if (target) {
-            document.querySelectorAll('[data-fancybox="gallery"]').forEach(function(img) {
-                if (!img.getAttribute('src') || img.getAttribute('src') === '') {
-                    img.src = img.getAttribute('img-src');
-                }
-            });
+            preloadAdjacentImagesByDOM(target);
         }
-    }, true); // 使用捕获阶段，确保在 fancybox 处理前触发
+    }, true);
+
+    // 使用 Fancybox 的回调，在幻灯片切换时提前加载当前幻灯片左右相邻的图片
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        on: {
+            "Carousel.change": (fancybox, carousel, to, from) => {
+                const slides = carousel.slides;
+                // 预加载前一张
+                if (to > 0) {
+                    const prevSlide = slides[to - 1];
+                    if (prevSlide && prevSlide.$content) {
+                        const prevImg = prevSlide.$content.querySelector('img');
+                        if (prevImg && (!prevImg.getAttribute('src') || prevImg.getAttribute('src') === '')) {
+                            prevImg.src = prevImg.getAttribute('img-src');
+                        }
+                    }
+                }
+                // 预加载后一张
+                if (to < slides.length - 1) {
+                    const nextSlide = slides[to + 1];
+                    if (nextSlide && nextSlide.$content) {
+                        const nextImg = nextSlide.$content.querySelector('img');
+                        if (nextImg && (!nextImg.getAttribute('src') || nextImg.getAttribute('src') === '')) {
+                            nextImg.src = nextImg.getAttribute('img-src');
+                        }
+                    }
+                }
+            }
+        }
+    });
     ////////////////// 解决 lazyload 与 fancybox 冲突 end ////////////////
 
     ////////////////// 引入 Fancybox 的 CSS 及绑定 start ////////////////
+    //（fancybox.css 已经由 Fancybox.bind 时引用过，此处确保样式引入正确）
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
         href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
     });
     document.head.appendChild(fancyboxLink);
-    // 绑定 Fancybox（确保 Fancybox 脚本已引入）
-    Fancybox.bind('[data-fancybox="gallery"]', {});
     ////////////////// 引入 Fancybox 的 CSS 及绑定 end ////////////////
 
     // 初始化目录
