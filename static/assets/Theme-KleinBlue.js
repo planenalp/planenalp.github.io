@@ -139,6 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 );
             }
+
+            // 手动插入外链图片的匹配规则：<p> -> <code class="notranslate">Gmeek-imgbox="..."</code> -> 转换为延迟加载图片格式
+            if (post_body.indexOf('<code class="notranslate">Gmeek-imgbox') !== -1) {
+                post_body = post_body.replace(
+                    /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/gs,
+                    function(match, p1) {
+                        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
+                    }
+                );
+            }
+
             postBodyElement.innerHTML = post_body;
         }
     } 
