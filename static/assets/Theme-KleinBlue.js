@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    ////////////////// 懒加载图片及fancybox start //////////////////
+    ////////////////// 懒加载图片及fancybox 相关逻辑 start //////////////////
     const ob = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -32,17 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px 500px 0px',
     });
 
-    document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
+    // 定义一个函数，用于注册所有带有 img-src 属性的图片到懒加载观察器中
+    function registerLazyLoad() {
+        document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
+    }
 
-    // 引入fancybox所需的css文件及绑定函数
+    // 引入fancybox所需的CSS文件，并绑定相应的选择器
     document.head.appendChild(Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
         href: 'https://testingcf.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
     }));
     Fancybox.bind('[data-fancybox="gallery"]', {});
-    ////////////////// 懒加载图片及fancybox end //////////////////
+    ////////////////// 懒加载及fancybox 相关逻辑 end //////////////////
 
-    // 获取当前页面路径
+
+    // 根据当前页面路径应用不同的主题和处理逻辑
     let currentUrl = window.location.pathname;
 
     // 主页主题------------------------------------------------------------------------------
@@ -105,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: #002FA7B3;
             height: 75px;
         }
-        /* 重新定义 max-width: 768px 参数下的值，原为 600px */
+        /* 重新定义 max-width: 768px 参数下的值 */
         @media (max-width: 768px) {
             body {
                 padding: 8px !important;
@@ -157,11 +161,11 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 图片插入处理：转换符合特定格式的图片标签为延迟加载格式
+        // 图片插入处理：将符合特定格式的图片标签转换为延迟加载格式
         let postBodyElement = document.getElementById('postBody');
         if (postBodyElement) {
             let post_body = postBodyElement.innerHTML;
-            // 默认情况插入图片的匹配规则：<p> -> <a> -> <img>
+            // 匹配规则 1：<p> -> <a> -> <img>
             if (post_body.indexOf('<p><a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
                     /<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>\s*<\/p>/gs,
@@ -170,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 );
             }
-            // 通用插入图片的匹配规则：<a> -> <img>
+            // 匹配规则 2：<a> -> <img>
             if (post_body.indexOf('<a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
                     /<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>/gs,
@@ -180,6 +184,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 );
             }
             postBodyElement.innerHTML = post_body;
+
+            // 重新注册转换后新增的图片到懒加载观察器
+            registerLazyLoad();
         }
     }
     // 搜索页主题--------------------------------------------------------------------
@@ -220,4 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
     }
+
+    // 针对非文章页的其他情况，调用一次注册函数（如果图片在页面初始就存在）
+    registerLazyLoad();
 });
