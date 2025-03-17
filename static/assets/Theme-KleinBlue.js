@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 主页背景颜色 */
         html {    
-            background-color: url('https://godpan.com/bg.webp') no-repeat center center fixed;
+            background-color: var(--index-bgColor);
         }
         
         /* header布局 */
