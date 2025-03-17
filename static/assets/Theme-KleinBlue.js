@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 图片插入处理：转换符合特定格式的图片标签为延迟加载格式
+        // 图片插入处理：转换符合特定格式的图片标签为普通格式（移除懒加载）
         let postBodyElement = document.getElementById('postBody');
         if (postBodyElement) {
             let post_body = postBodyElement.innerHTML;
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 post_body = post_body.replace(
                     /<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>\s*<\/p>/gs,
                     function(match, p1) {
-                        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
+                        return '<img data-fancybox="gallery" src="' + p1 + '">';
                     }
                 );
             }
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 post_body = post_body.replace(
                     /<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>/gs,
                     function(match, p1) {
-                        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
+                        return '<img data-fancybox="gallery" src="' + p1 + '">';
                     }
                 );
             }
