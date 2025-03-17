@@ -1,3 +1,5 @@
+//记得修改 const fancyboxLink 字段的 fancybox.css 对应的链接位置
+
 function loadResource(type, attributes) {
     if (type === 'style') {
         const style = document.createElement('style');
@@ -88,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ////////////////// 引入fancybox的CSS及绑定（代码A） start ////////////////
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
-        href: 'https://planenalp.github.io/assets/fancybox.umd.js'
+        href: 'https://planenalp.github.io/assets/fancybox.css'
     });
     document.head.appendChild(fancyboxLink);
     // 绑定 Fancybox（确保 Fancybox 脚本已引入）
