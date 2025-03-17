@@ -11,10 +11,10 @@ function loadResource(type, attributes) {
 
 document.addEventListener("DOMContentLoaded", function() {
     /**
-     * 将原来代码的正则替换逻辑转成客户端 DOM 操作：
+     * 将原来代码的正则替换逻辑，转成客户端 DOM 操作：
      * 1. 查找 <p><a target="_blank" rel=...><img src="URL" ...></a></p>，检查 a.href 与 img.src 是否一致，
      *    然后用新的结构替换整个 <p>。
-     * 2. 查找不在 <p> 中的 <a target="_blank" rel=...><img src="URL" ...></a>，同理替换。
+     * 2. 查找不在 <p> 中的 <a target="_blank" rel=...><img src="URL" ...></a> 同理替换。
      */
     function replaceImageLinks() {
         // 处理 <p><a> 包裹的情况
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 p.outerHTML = replacementHTML;
             }
         });
-        // 处理不在 <p> 中的情况
+        // 处理单独 <a> 包裹的情况（排除已在 <p> 内的）
         document.querySelectorAll('a[target="_blank"][rel] > img').forEach(function(img) {
             const a = img.parentElement;
             if (a.parentElement && a.parentElement.tagName.toLowerCase() !== 'p' && a.href && a.href === img.src) {
@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    // 调用替换函数
     replaceImageLinks();
 
     ////////////////// 懒加载图片 start ////////////////
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 };
 
-                // 图片进入可视区域时加载真实图片地址
+                // 当图片进入可视区域时，加载真实图片地址
                 img.src = img.getAttribute('img-src');
                 ob.unobserve(img);
 
@@ -76,64 +77,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }, {
         rootMargin: '0px 0px 500px 0px',
     });
+
+    // 观察所有带有 img-src 属性的图片
     document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
     ////////////////// 懒加载图片 end ////////////////
 
-    ////////////////// 解决 lazyload 与 fancybox 冲突（仅预加载相邻图片） start ////////////////
-    // 点击页面时基于 DOM 顺序预加载当前图片左右相邻的图片
-    function preloadAdjacentImagesByDOM(target) {
-        const gallery = Array.from(document.querySelectorAll('[data-fancybox="gallery"]'));
-        const index = gallery.indexOf(target);
-        if (index > 0) {
-            const prevImg = gallery[index - 1];
-            if (!prevImg.getAttribute('src') || prevImg.getAttribute('src') === '') {
-                prevImg.src = prevImg.getAttribute('img-src');
-            }
-        }
-        if (index < gallery.length - 1) {
-            const nextImg = gallery[index + 1];
-            if (!nextImg.getAttribute('src') || nextImg.getAttribute('src') === '') {
-                nextImg.src = nextImg.getAttribute('img-src');
-            }
-        }
-    }
+    ////////////////// 解决 lazyload 与 fancybox 冲突 start ////////////////
+    // 在点击任一 fancybox 图片前，将所有未加载的图片提前加载（设置 src 属性）
     document.addEventListener('click', function(event) {
         const target = event.target.closest('[data-fancybox="gallery"]');
         if (target) {
-            preloadAdjacentImagesByDOM(target);
-        }
-    }, true);
-
-    // 利用 Fancybox 的 afterShow 事件，在幻灯片切换后预加载当前幻灯片左右相邻的图片
-    Fancybox.bind('[data-fancybox="gallery"]', {
-        on: {
-            "afterShow": (fancybox, slide) => {
-                const carousel = fancybox.Carousel;
-                const slides = carousel.slides;
-                const currentIndex = slide.index; // 当前幻灯片索引
-                // 预加载上一张
-                if (currentIndex > 0) {
-                    const prevSlide = slides[currentIndex - 1];
-                    if (prevSlide && prevSlide.$content) {
-                        const prevImg = prevSlide.$content.querySelector('img');
-                        if (prevImg && (!prevImg.getAttribute('src') || prevImg.getAttribute('src') === '')) {
-                            prevImg.src = prevImg.getAttribute('img-src');
-                        }
-                    }
+            document.querySelectorAll('[data-fancybox="gallery"]').forEach(function(img) {
+                if (!img.getAttribute('src') || img.getAttribute('src') === '') {
+                    img.src = img.getAttribute('img-src');
                 }
-                // 预加载下一张
-                if (currentIndex < slides.length - 1) {
-                    const nextSlide = slides[currentIndex + 1];
-                    if (nextSlide && nextSlide.$content) {
-                        const nextImg = nextSlide.$content.querySelector('img');
-                        if (nextImg && (!nextImg.getAttribute('src') || nextImg.getAttribute('src') === '')) {
-                            nextImg.src = nextImg.getAttribute('img-src');
-                        }
-                    }
-                }
-            }
+            });
         }
-    });
+    }, true); // 使用捕获阶段，确保在 fancybox 处理前触发
     ////////////////// 解决 lazyload 与 fancybox 冲突 end ////////////////
 
     ////////////////// 引入 Fancybox 的 CSS 及绑定 start ////////////////
@@ -142,9 +102,11 @@ document.addEventListener("DOMContentLoaded", function() {
         href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
     });
     document.head.appendChild(fancyboxLink);
+    // 绑定 Fancybox（确保 Fancybox 脚本已引入）
+    Fancybox.bind('[data-fancybox="gallery"]', {});
     ////////////////// 引入 Fancybox 的 CSS 及绑定 end ////////////////
 
-    // 初始化目录（TOC）相关代码
+    // 初始化目录
     function createTOC() {
         const contentContainer = document.querySelector('.markdown-body');
         if (!contentContainer) return;
@@ -183,8 +145,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
+    // 初始化 TOC
     createTOC();
     
+    // 合并 TOC 和返回按钮的样式
     const combinedCss = `
         :root {
             --toc-bg: rgba(255, 255, 255, 0.8);
@@ -388,6 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
     });
     
+    // 根据滚动位置显示/隐藏返回按钮
     function updateButtons() {
         const scrollTop = window.pageYOffset;
         const windowHeight = window.innerHeight;
