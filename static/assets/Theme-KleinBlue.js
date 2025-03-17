@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
+            --index-bgColor: #9C9BA7;
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
@@ -20,9 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --index-bgColor: #9C9BA7;
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
+        }
+
+        /* 主页背景颜色 */
+        html {    
+            background-color: url('https://godpan.com/bg.webp') no-repeat center center fixed;
         }
         
         /* header布局 */
