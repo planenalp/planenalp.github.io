@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 };
 
+                // 当图片进入可视区域时，加载真实图片地址
                 img.src = img.getAttribute('img-src');
                 ob.unobserve(img);
 
@@ -80,6 +81,20 @@ document.addEventListener("DOMContentLoaded", function() {
     // 观察所有带有 img-src 属性的图片
     document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
     ////////////////// 懒加载图片 end ////////////////
+
+    ////////////////// 解决 lazyload 与 fancybox 冲突 start ////////////////
+    // 在点击任一 fancybox 图片前，将所有未加载的图片提前加载（设置 src 属性）
+    document.addEventListener('click', function(event) {
+        const target = event.target.closest('[data-fancybox="gallery"]');
+        if (target) {
+            document.querySelectorAll('[data-fancybox="gallery"]').forEach(function(img) {
+                if (!img.getAttribute('src') || img.getAttribute('src') === '') {
+                    img.src = img.getAttribute('img-src');
+                }
+            });
+        }
+    }, true); // 使用捕获阶段，确保在 fancybox 处理前触发
+    ////////////////// 解决 lazyload 与 fancybox 冲突 end ////////////////
 
     ////////////////// 引入 Fancybox 的 CSS 及绑定 start ////////////////
     const fancyboxLink = Object.assign(document.createElement('link'), {
