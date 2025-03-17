@@ -127,6 +127,22 @@ document.addEventListener('DOMContentLoaded', function() {
         let style = document.createElement("style");
         style.innerHTML = `
 
+        /* 默认亮主题配色 */
+        :root {
+            --header-bgColor: #002FA7;
+            --blogTitle-color: #FFFFFF;
+            --subTitle-color: #FFFFFF;
+        }
+        /* 暗主题配色 */
+        [data-color-mode=light][data-light-theme=dark],
+        [data-color-mode=light][data-light-theme=dark]::selection,
+        [data-color-mode=dark][data-dark-theme=dark],
+        [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --header-bgColor: #002FA7;
+            --blogTitle-color: #FFFFFF;
+            --subTitle-color: #FFFFFF;
+        }
+        
         /* 顶栏改色 */
         #header {
             background-color: var(--header-bgColor);
@@ -165,6 +181,22 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('应用搜索页主题');
         let style = document.createElement("style");
         style.innerHTML = `
+        
+        /* 默认亮主题配色 */
+        :root {
+            --header-bgColor: #002FA7;
+            --blogTitle-color: #FFFFFF;
+            --subTitle-color: #FFFFFF;
+        }
+        /* 暗主题配色 */
+        [data-color-mode=light][data-light-theme=dark],
+        [data-color-mode=light][data-light-theme=dark]::selection,
+        [data-color-mode=dark][data-dark-theme=dark],
+        [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --header-bgColor: #002FA7;
+            --blogTitle-color: #FFFFFF;
+            --subTitle-color: #FFFFFF;
+        }
         
         /* 顶栏改色 */
         #header {
