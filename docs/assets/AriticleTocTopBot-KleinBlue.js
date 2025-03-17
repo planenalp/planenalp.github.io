@@ -1,5 +1,4 @@
-//记得修改 const fancyboxLink 字段的 fancybox.css 对应的链接位置
-
+// 引入额外的资源（如样式）辅助函数
 function loadResource(type, attributes) {
     if (type === 'style') {
         const style = document.createElement('style');
@@ -8,46 +7,38 @@ function loadResource(type, attributes) {
     }
 }
 
-function createTOC() {
-    const contentContainer = document.querySelector('.markdown-body');
-    if (!contentContainer) return;
-    
-    const tocElement = document.createElement('div');
-    tocElement.className = 'toc';
-    contentContainer.appendChild(tocElement);
-
-    const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    headings.forEach(heading => {
-        if (!heading.id) {
-            heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
-        }
-        const link = document.createElement('a');
-        link.href = '#' + heading.id;
-        link.textContent = heading.textContent;
-        // 根据标题级别增加内边距
-        link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
-        });
-        tocElement.appendChild(link);
-    });
-}
-
-function toggleTOC() {
-    const tocElement = document.querySelector('.toc');
-    const tocIcon = document.querySelector('.toc-icon');
-    if (tocElement && tocIcon) {
-        tocElement.classList.toggle('show');
-        tocIcon.classList.toggle('active');
-        tocIcon.innerHTML = tocElement.classList.contains('show')
-            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
-    ////////////////// 懒加载图片（代码A） start ////////////////
+    /**
+     * 将原来代码 A 的正则替换逻辑，转成客户端 DOM 操作：
+     * 1. 查找 <p><a target="_blank" rel=...><img src="URL" ...></a></p>，检查 a.href 与 img.src 是否一致，
+     *    然后用新的结构替换整个 <p>。
+     * 2. 查找不在 <p> 中的 <a target="_blank" rel=...><img src="URL" ...></a> 同理替换。
+     */
+    function replaceImageLinks() {
+        // 处理 <p><a> 包裹的情况
+        document.querySelectorAll('p > a[target="_blank"][rel] > img').forEach(function(img) {
+            const a = img.parentElement;
+            const p = a.parentElement;
+            if (a.href && a.href === img.src) {
+                const replacementHTML = `<div class="ImgLazyLoad-circle"></div>
+<img data-fancybox="gallery" img-src="${a.href}">`;
+                p.outerHTML = replacementHTML;
+            }
+        });
+        // 处理单独 <a> 包裹的情况（排除已在 <p> 内的）
+        document.querySelectorAll('a[target="_blank"][rel] > img').forEach(function(img) {
+            const a = img.parentElement;
+            if (a.parentElement && a.parentElement.tagName.toLowerCase() !== 'p' && a.href && a.href === img.src) {
+                const replacementHTML = `<div class="ImgLazyLoad-circle"></div>
+<img data-fancybox="gallery" img-src="${a.href}">`;
+                a.outerHTML = replacementHTML;
+            }
+        });
+    }
+    // 调用替换函数
+    replaceImageLinks();
+
+    ////////////////// 懒加载图片（代码 A 部分） start ////////////////
     const ob = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -84,23 +75,63 @@ document.addEventListener("DOMContentLoaded", function() {
         rootMargin: '0px 0px 500px 0px',
     });
 
+    // 观察所有带有 img-src 属性的图片
     document.querySelectorAll('[img-src]').forEach(img => ob.observe(img));
-    ////////////////// 懒加载图片（代码A） end ////////////////
+    ////////////////// 懒加载图片（代码 A 部分） end ////////////////
 
-    ////////////////// 引入fancybox的CSS及绑定（代码A） start ////////////////
+    ////////////////// 引入 Fancybox 的 CSS 及绑定（代码 A 部分） start ////////////////
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
-        href: 'https://planenalp.github.io/assets/fancybox.css'
+        href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
     });
     document.head.appendChild(fancyboxLink);
     // 绑定 Fancybox（确保 Fancybox 脚本已引入）
     Fancybox.bind('[data-fancybox="gallery"]', {});
-    ////////////////// 引入fancybox的CSS及绑定（代码A） end ////////////////
+    ////////////////// 引入 Fancybox 的 CSS 及绑定（代码 A 部分） end ////////////////
 
-    // 初始化目录（代码B）
+    // 初始化目录（代码 B）
+    function createTOC() {
+        const contentContainer = document.querySelector('.markdown-body');
+        if (!contentContainer) return;
+        
+        const tocElement = document.createElement('div');
+        tocElement.className = 'toc';
+        contentContainer.appendChild(tocElement);
+    
+        const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+            }
+            const link = document.createElement('a');
+            link.href = '#' + heading.id;
+            link.textContent = heading.textContent;
+            // 根据标题级别增加内边距
+            link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+            });
+            tocElement.appendChild(link);
+        });
+    }
+    
+    function toggleTOC() {
+        const tocElement = document.querySelector('.toc');
+        const tocIcon = document.querySelector('.toc-icon');
+        if (tocElement && tocIcon) {
+            tocElement.classList.toggle('show');
+            tocIcon.classList.toggle('active');
+            tocIcon.innerHTML = tocElement.classList.contains('show')
+                ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+                : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+        }
+    }
+    
+    // 初始化 TOC
     createTOC();
-
-    // 合并TOC和返回按钮的样式（代码B）
+    
+    // 合并 TOC 和返回按钮的样式（代码 B）
     const combinedCss = `
         :root {
             --toc-bg: rgba(255, 255, 255, 0.8);
@@ -267,8 +298,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
     loadResource('style', { css: combinedCss });
-
-    // 创建TOC切换图标（代码B）
+    
+    // 创建 TOC 切换图标（代码 B）
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
     tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
@@ -277,34 +308,34 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleTOC();
     });
     document.body.appendChild(tocIcon);
-
-    // 点击页面其他位置时隐藏目录（代码B）
+    
+    // 点击页面其他位置时隐藏目录（代码 B）
     document.addEventListener('click', e => {
         const tocElement = document.querySelector('.toc');
         if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.closest('.toc-icon')) {
             toggleTOC();
         }
     });
-
-    // 创建返回顶部和返回底部按钮（代码B）
+    
+    // 创建返回顶部和返回底部按钮（代码 B）
     const btnTop = document.createElement('button');
     btnTop.className = 'back-to-top';
     btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
     document.body.appendChild(btnTop);
-
+    
     const btnBot = document.createElement('button');
     btnBot.className = 'back-to-bot';
     btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>';
     document.body.appendChild(btnBot);
-
+    
     btnTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     btnBot.addEventListener('click', () => {
         window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
     });
-
-    // 根据滚动位置显示/隐藏按钮（代码B）
+    
+    // 根据滚动位置显示/隐藏返回按钮（代码 B）
     function updateButtons() {
         const scrollTop = window.pageYOffset;
         const windowHeight = window.innerHeight;
