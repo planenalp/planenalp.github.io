@@ -1,4 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {    
+document.addEventListener('DOMContentLoaded', () => {
+
+    ////////////////// 引入 fancybox 所需的 CSS 文件及绑定函数 start ////////////////
+    document.head.appendChild(Object.assign(document.createElement('link'), {
+        rel: 'stylesheet',
+        href: 'https://testingcf.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css'
+    }));
+    Fancybox.bind('[data-fancybox="gallery"]', {});
+    ////////////////// 引入 fancybox 所需的 CSS 文件及绑定函数 end ////////////////
+
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
@@ -62,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: #002FA7B3;
             height: 75px;
         }
-        /* 重新定义 max-width: 768px 参数下的值，原为 600px */
+        /* 重新定义 max-width: 768px 参数下的值 */
         @media (max-width: 768px) {
             body {
                 padding: 8px !important;
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 图片插入处理：转换符合特定格式的图片标签为延迟加载格式
+        // 图片插入处理（转换为延迟加载的图片）
         let postBodyElement = document.getElementById('postBody');
         if (postBodyElement) {
             let post_body = postBodyElement.innerHTML;
@@ -124,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (post_body.indexOf('<p><a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
                     /<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>\s*<\/p>/gs,
-                    function(match, p1) {
+                    (match, p1) => {
                         return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
                     }
                 );
@@ -134,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (post_body.indexOf('<a target="_blank" rel=') !== -1) {
                 post_body = post_body.replace(
                     /<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?><\/a>/gs,
-                    function(match, p1) {
+                    (match, p1) => {
                         return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
                     }
                 );
