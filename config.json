@@ -1,6 +1,22 @@
 {
-    "title":"Blog Title",
-    "subTitle":"Blog description",
-    "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "title":"Dummy",
+    "subTitle":"a dummy blog for testing",
+    "avatarUrl":"https://planenalp.github.io/avatar.svg",
+    "GMEEK_VERSION":"last",
+    "displayTitle":"Dummy",
+    "homeUrl":"https://planenalp.github.io",
+    "faviconUrl":"https://planenalp.github.io/favicon.svg",
+    "filingNum":"<a href='https://icp.gov.moe/?keyword=20259061' target='_blank'>萌ICP备20259061号</a>",
+    "singlePage":["link","about"],
+    "commentLabelColor":"#002FA7",
+    "yearColorList":["#002FA7CC","#007FFFCC"],
+    "i18n":"EN",
+    "themeMode":"fix",
+    "dayTheme":"dark",
+    "nightTheme":"dark-blue",
+    "urlMode":"issue",
+    "script":"<script src='https://planenalp.github.io/assets/AriticleTocTopBot-KleinBlue.js'></script><script src='https://planenalp.github.io/assets/view-image-KleinBlue.js'></script>",
+    "allHead":"<script src='https://planenalp.github.io/assets/Theme-KleinBlue.js'></script>",
+    "indexScript":"<script src='https://klein.blue/planenalp.github.io/NumPagination-KleinBlue.js'></script>",
+    "showPostSource":0
 }
