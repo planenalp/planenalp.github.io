@@ -130,8 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 默认亮主题配色 */
         :root {
             --header-bgColor: #002FA7;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --postTitle-color: #FFFFFF;
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -139,8 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --header-bgColor: #002FA7;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --postTitle-color: #FFFFFF;
         }
         
         /* 顶栏改色 */
@@ -153,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏字体缩进5px */
         .postTitle {
             margin-left: 5px;
+            color: var(--postTitle-color);
         }
 
         /* 文章字体缩进5px */
@@ -185,8 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 默认亮主题配色 */
         :root {
             --header-bgColor: #002FA7;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --tagTitle-color: #FFFFFF;
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -194,8 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --header-bgColor: #002FA7;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --tagTitle-color: #FFFFFF;
         }
         
         /* 顶栏改色 */
@@ -208,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶栏字体缩进5px */
         .tagTitle {
             margin-left: 5px;
+            color: var(--tagTitle-color);
         }
         
         /* 搜索布局 */
