@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		.toc a:hover {
 			/* border-radius: 6px; */
 			background-color: var(--toc-a-hover);
-			color: #FFFFFF;
+			color: var(--toc-icon-hover-bgColor);
 			transform:translate(1px,1px);
 		}
   		/* 弹出菜单图标 */
@@ -197,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
   		.toc-link.toc-active {
 			background-color: var(--toc-a-hover);
+			color: var(--toc-icon-hover-bgColor);
 		}
 		.back-to-top, .back-to-bot {
 		    position: fixed;
