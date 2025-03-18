@@ -325,8 +325,8 @@ document.addEventListener("DOMContentLoaded", function() {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
         tocIcon.innerHTML = tocElement.classList.contains('show')
-            ? '<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+            ? '<svg viewBox="0 0 24 24"><path d="M20 4L4 20M4 4l16 16"/></svg>' //X图标
+            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //汉堡图标
     });
     document.body.appendChild(tocIcon);
 
