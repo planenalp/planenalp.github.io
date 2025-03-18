@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
       			border-radius: 6px;
       			background-color: var(--toc-bg);
       			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-			transform: translateX(50%); //translateY(20px) scale(0.9);
+			transform: translateY(20px) scale(0.9);
 			opacity: 0;
 			visibility: hidden;
 			transition: all 0.1s ease;
@@ -210,6 +210,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			background-color: var(--toc-h1-after-bgColor);
 			transform: translateY(-50%);
 		}
+  		.toc-link.toc-active {
+			background-color: var(--toc-a-hover);
+		}
 		.back-to-top, .back-to-bot {
 		    position: fixed;
 		    right: 20px;
@@ -284,11 +287,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		 .toc-icon {
 			bottom: 7%;
 		 }
-		}
-		.toc-link.toc-active {
-			background-color: #3db9d399;
-			font-weight: bold;
-			box-shadow: inset -2px -2px 6px #ffffff42, inset 2px 2px 6px #00000080;
 		}
 	`;
 	loadResource('style', { css: combinedCss });
