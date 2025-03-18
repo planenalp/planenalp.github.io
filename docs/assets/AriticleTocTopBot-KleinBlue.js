@@ -1,4 +1,4 @@
-// 记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
+//不同博客记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
 
 //允许移动端实现图标按压特效
 document.addEventListener('touchstart', function() {}, false);
