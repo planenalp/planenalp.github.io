@@ -39,6 +39,50 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     createTOC();
 
+    // 添加高亮功能
+function highlightTOC() {
+    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+    const links = document.querySelectorAll('.toc a');
+    let closest = null;
+    let closestDistance = Infinity;
+
+    // 遍历所有标题寻找最近的一个
+    headings.forEach(heading => {
+        const rect = heading.getBoundingClientRect();
+        const distance = Math.abs(rect.top - 100); // 计算距离视口顶部100px的位置
+        
+        if (rect.top <= 200 && distance < closestDistance) {
+            closest = heading;
+            closestDistance = distance;
+        }
+    });
+
+    // 处理页面底部特殊情况
+    if (!closest && headings.length > 0) {
+        const last = headings[headings.length - 1];
+        if (last.getBoundingClientRect().bottom <= window.innerHeight) {
+            closest = last;
+        }
+    }
+
+    // 更新高亮状态
+    links.forEach(link => {
+        link.classList.remove('active');
+        if (closest && link.dataset.targetId === closest.id) {
+            link.classList.add('active');
+            // 自动滚动到可见区域（仅在目录展开时）
+            document.querySelector('.toc.show') && 
+            link.scrollIntoView({ block: "nearest", behavior: "auto" });
+        }
+    });
+}
+
+// 监听滚动事件
+window.addEventListener('scroll', () => {
+    updateButtons();
+    highlightTOC();
+});
+
     // TOC、返回顶部和返回底部按钮的样式及交互（代码略，可参考原有逻辑）
     const combinedCss = `
     /* 默认亮主题配色 */
@@ -109,10 +153,10 @@ document.addEventListener("DOMContentLoaded", function() {
         border-radius: 6px;
         background-color: var(--toc-a-hover);
     }
-    /* 滚动高亮 */
-    .toc-active{
-        background-color: var(--toc-a-hover);
-    }
+    .toc a.active {
+    background-color: var(--toc-a-hover);
+    padding-left: 5px;
+}
     .toc-icon {
         position: fixed;
         bottom: 130px;
@@ -281,32 +325,4 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('scroll', updateButtons);
     window.addEventListener('resize', updateButtons);
     updateButtons();
-
-    //滚动高亮
-    function highlightTOC() {
-        const tocLinks = document.querySelectorAll('.toc-link');
-        const fromTop = window.scrollY + 10;
-        let currentHeading = null;
-        tocLinks.forEach(link => {
-            const section = document.getElementById(link.getAttribute('data-id'));
-            if (section && section.offsetTop <= fromTop) {
-				currentHeading = link;
-            }
-        });
-	
-        tocLinks.forEach(link => {
-			link.classList.remove('toc-active');
-        });
-        if (currentHeading) {
-			currentHeading.classList.add('toc-active');
-			// 确保当前高亮的目录项在可视区域的中间
-			currentHeading.scrollIntoView({
-				block: 'center',   // 确保当前高亮项滚动到视图中间位置
-				inline: 'nearest'  // 可选，保持水平滚动条不动
-			});
-		}
-    }
-    document.addEventListener('scroll', highlightTOC);
-    
-}
 });
