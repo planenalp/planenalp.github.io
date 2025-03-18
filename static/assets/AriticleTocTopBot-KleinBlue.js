@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
         position: fixed;
         bottom: 150px;
         right: 60px;
-        z-index: 1000;
+        z-index: 1;
         width: 250px;
         max-height: 70vh;
         padding: 10px;
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
         position: fixed;
         bottom: 130px;
         right: 20px;
-        z-index: 1001;
+        z-index: 1;
         width: 40px;
         height: 40px;
         display: flex;
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .back-to-top, .back-to-bot {
         position: fixed;
         right: 20px;
-        z-index: 10000;
+        z-index: 1;
         width: 40px;
         height: 40px;
         display: flex;
