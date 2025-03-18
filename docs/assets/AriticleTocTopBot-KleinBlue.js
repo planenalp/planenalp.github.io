@@ -301,8 +301,8 @@ document.addEventListener("DOMContentLoaded", function() {
     .back-to-top svg, .back-to-bot svg {
         width: 24px;
         height: 24px;
-        fill: none;
-        stroke: currentColor;
+        fill: currentColor;
+        stroke: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
