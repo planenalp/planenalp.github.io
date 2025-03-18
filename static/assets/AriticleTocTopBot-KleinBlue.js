@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid var(--toc-icon-color);
+        border: 1px solid var(--toc-icon-color);
         border-radius: 50%;
         background-color: var(--toc-icon-bg);
         color: var(--toc-icon-color);
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
         justify-content: center;
         padding: 0;
         margin: 0;
-        border: 2px solid var(--toc-icon-color);
+        border: 1px solid var(--toc-icon-color);
         border-radius: 50%;
         background-color: var(--toc-icon-bg);
         color: var(--toc-icon-color);
