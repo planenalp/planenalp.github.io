@@ -81,17 +81,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		.toc {
 			position: fixed;
-			bottom: 13%;
-			right: 0;
+			bottom: 150px;
+			right: 60px;
+   			z-index: 1000;
+   			width: 250px;
 			transform: translateX(50%);
-			width: 250px;
+			
 			max-height: 50vh;
 			background-color: var(--toc-link-bgColor);
 			border-radius: 10px;
 			padding: 10px;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 			overflow-y: auto;
-			z-index: 99;
+			
 			opacity: 0;
 			visibility: hidden;
 			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
