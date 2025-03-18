@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
         height: 24px;
         fill: none;
         stroke: currentColor;
-        stroke-width: 2;
+        stroke-width: 3;
         stroke-linecap: round;
         stroke-linejoin: round;
     }
