@@ -85,19 +85,18 @@ document.addEventListener("DOMContentLoaded", function() {
 			right: 60px;
    			z-index: 1000;
    			width: 250px;
-			transform: translateX(50%);
-			
-			max-height: 50vh;
-			background-color: var(--toc-link-bgColor);
-			border-radius: 10px;
-			padding: 10px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-			overflow-y: auto;
-			
+   			max-height: 70vh;
+      			padding: 10px;
+      			overflow-y: auto;
+      			border: 1px solid var(--toc-border);
+      			border-radius: 6px;
+      			background-color: var(--toc-link-bgColor);
+      			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			transform: translateX(50%); //translateY(20px) scale(0.9);
 			opacity: 0;
 			visibility: hidden;
-			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-			backdrop-filter: blur(15px);
+			transition: all 0.1s ease;
+			//backdrop-filter: blur(15px); //模糊弹出菜单背景
 		}
 		/* 滚动条样式 */
 		.toc::-webkit-scrollbar {
@@ -120,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			visibility: visible;
 			transform: translateY(0);
 		}
+  		/* menu */
 		.toc a {
 			display: block;
 			color: var(--fgColor-default);
