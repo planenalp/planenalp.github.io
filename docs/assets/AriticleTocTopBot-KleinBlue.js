@@ -144,27 +144,27 @@ document.addEventListener("DOMContentLoaded", function() {
     /* 默认亮主题配色 */
     :root {
         --toc-bg: rgba(255, 255, 255, 0.8);
-        --toc-border: #e1e4e8;
-        --toc-text: #1F2328;
-        --toc-hover: #81D8D0CC;
-        --toc-icon-bg: #FFFFFFB3;
-        --toc-icon-color: #656d76b3;
-        --toc-icon-active-bg: #81D8D0B3;
-        --toc-icon-active-color: #FFFFFFB3;
+        --toc-border: #E1E4E8;
+        --toc-a-text: #1F2328;
+        --toc-a-hover: #002FA7CC;
+        --toc-icon-bgColor: #FFFFFFB3;
+        --toc-icon-color: #656D76B3;
+        --toc-icon-hover-bgColor: #002FA7B3;
+        --toc-icon-hover-color: #FFFFFFB3;
     }
     /* 暗主题配色 */
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
-        --toc-bg: #21262dcc;
+        --toc-bg: #21262DCC;
         --toc-border: rgba(240, 246, 252, 0.1);
-        --toc-text: #c9d1d9;
-        --toc-hover: #002fa7cc;
-        --toc-icon-bg: #21262db3;
+        --toc-a-text: #C9D1D9;
+        --toc-a-hover: #002FA7CC;
+        --toc-icon-bgColor: #21262DB3;
         --toc-icon-color: rgba(240, 246, 252, 0.1);
-        --toc-icon-active-bg: #002fa7b3;
-        --toc-icon-active-color: #8b949eb3;
+        --toc-icon-hover-bgColor: #002FA7B3;
+        --toc-icon-hover-color: #8B949EB3;
     }
     
     .toc {
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
         padding: 5px 0;
         border-radius: 6px;
         border-bottom: 1px solid var(--toc-border);
-        color: var(--toc-text);
+        color: var(--toc-a-text);
         transition: all 0.1s ease;
         font-size: 14px;
         line-height: 1.5;
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .toc a:hover {
         padding-left: 5px;
         border-radius: 6px;
-        background-color: var(--toc-hover);
+        background-color: var(--toc-a-hover);
     }
     .toc-icon {
         position: fixed;
@@ -219,9 +219,9 @@ document.addEventListener("DOMContentLoaded", function() {
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid var(--toc-icon-color);
+        border: 1px solid var(--toc-icon-color);
         border-radius: 50%;
-        background-color: var(--toc-icon-bg);
+        background-color: var(--toc-icon-bgColor);
         color: var(--toc-icon-color);
         box-shadow: 0 1px 3px rgba(0,0,0,0.12);
         transition: all 0.1s ease;
@@ -231,18 +231,18 @@ document.addEventListener("DOMContentLoaded", function() {
         outline: none;
     }
     .toc-icon:hover {
-        border-color: var(--toc-icon-active-color);
-        background-color: var(--toc-icon-active-bg);
-        color: var(--toc-icon-active-color);
+        border-color: var(--toc-icon-hover-color);
+        background-color: var(--toc-icon-hover-bgColor);
+        color: var(--toc-icon-hover-color);
         transform: scale(1.1);
     }
     .toc-icon:active {
         transform: scale(0.9);
     }
     .toc-icon.active {
-        border-color: var(--toc-icon-active-color);
-        background-color: var(--toc-icon-active-bg);
-        color: var(--toc-icon-active-color);
+        border-color: var(--toc-icon-hover-color);
+        background-color: var(--toc-icon-hover-bgColor);
+        color: var(--toc-icon-hover-color);
         transform: rotate(90deg);
     }
     .toc-icon svg {
@@ -265,9 +265,9 @@ document.addEventListener("DOMContentLoaded", function() {
         justify-content: center;
         padding: 0;
         margin: 0;
-        border: 2px solid var(--toc-icon-color);
+        border: 1px solid var(--toc-icon-color);
         border-radius: 50%;
-        background-color: var(--toc-icon-bg);
+        background-color: var(--toc-icon-bgColor);
         color: var(--toc-icon-color);
         box-shadow: 0 1px 3px rgba(0,0,0,0.12);
         opacity: 0;
@@ -290,9 +290,9 @@ document.addEventListener("DOMContentLoaded", function() {
         visibility: visible;
     }
     .back-to-top:hover, .back-to-bot:hover {
-        border-color: var(--toc-icon-active-color);
-        background-color: var(--toc-icon-active-bg);
-        color: var(--toc-icon-active-color);
+        border-color: var(--toc-icon-hover-color);
+        background-color: var(--toc-icon-hover-bgColor);
+        color: var(--toc-icon-hover-color);
         transform: scale(1.1);
     }
     .back-to-top:active, .back-to-bot:active {
