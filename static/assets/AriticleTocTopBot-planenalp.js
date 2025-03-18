@@ -271,22 +271,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				width: 200px;
 				max-height: 40vh;
 			}
-			.toc-icon {
-				width: 40px;
-				height: 40px;
-				bottom: 15px;
-				right: 15px;
-			}
-			.toc-icon svg {
-				width: 20px;
-				height: 20px;
-			}
-		}
-
-		@media (max-width: 768px) {
-		 .toc-icon {
-			bottom: 7%;
-		 }
 		}
 	`;
 	loadResource('style', { css: combinedCss });
