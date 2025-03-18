@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-icon-color: #656D76B3;
 			--toc-icon-hover-bgColor: #002FA7B3;
 			--toc-icon-hover-color: #FFFFFFB3;
-			--toc-h1-after-bgColor: #1b9dff
+			--toc-h1-after-bgColor: #008080;
 		}
 		[data-color-mode=light][data-light-theme=dark],
 		[data-color-mode=light][data-light-theme=dark]::selection,
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-icon-color: rgba(240, 246, 252, 0.1);
 			--toc-icon-hover-bgColor: #002FA7B3;
 			--toc-icon-hover-color: #8B949EB3;
-			--toc-h1-after-bgColor: #43dbff
+			--toc-h1-after-bgColor: #007FFF;
 		}
 		/* 弹出菜单主体 */
 		.toc {
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			border-radius: 20px;
 		}
 		.toc::-webkit-scrollbar-thumb:hover {
-			background: #6baedf;
+			background: var(--toc-icon-hover-bgColor);
 		}
 		/* 针对 Firefox */
 		.toc {
