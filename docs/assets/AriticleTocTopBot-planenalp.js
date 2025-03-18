@@ -113,7 +113,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			transition: all 0.1s ease;
 			//backdrop-filter: blur(15px); //模糊弹出菜单背景
 		}
-		/* 滚动条样式 */
+		
+		/* 滚动条样式(不要）
 		.toc::-webkit-scrollbar {
 			width: 4px; 
 		}
@@ -129,6 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			scrollbar-width: thin; /* 滚动条宽度：auto 或 thin */
 			scrollbar-color: #9fc6e3 transparent; /* 滚动条颜色+轨道颜色(透明) */
 		}
+		*/
+
 		.toc.show {
   			transform: translateY(0);
 			opacity: 1;
