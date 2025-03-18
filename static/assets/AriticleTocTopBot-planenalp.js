@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		/* 弹出菜单主体 */
 		.toc {
 			position: fixed;
-			bottom: 150px;
+			bottom: 100px;
 			right: 60px;
    			z-index: 1000;
    			width: 250px;
@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			transition: all 0.1s ease;
 			//backdrop-filter: blur(15px); //模糊弹出菜单背景
 		}
-		
 		.toc.show {
   			transform: translateY(0);
 			opacity: 1;
@@ -133,12 +132,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		.toc a:hover {
 			/* border-radius: 6px; */
 			background-color: var(--toc-a-hover);
+			color: #FFFFFF;
 			transform:translate(1px,1px);
 		}
   		/* 弹出菜单图标 */
 		.toc-icon {
 			position: fixed;
-			bottom: 130px;
+			bottom: 80px;
 			right: 20px;
    			z-index: 1000;
       			width: 40px;
@@ -224,10 +224,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		    outline: none;
 		}
 		.back-to-top {
-		    bottom: 190px;
+		    bottom: 140px;
 		}
 		.back-to-bot {
-		    bottom: 70px;
+		    bottom: 20px;
 		}
 		.back-to-top.show, .back-to-bot.show {
 		    opacity: 1;
