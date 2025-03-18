@@ -1,3 +1,4 @@
+document.addEventListener('touchstart', function() {}, false);
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
