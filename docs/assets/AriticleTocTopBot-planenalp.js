@@ -1,318 +1,242 @@
+//////////////// 文章目录代码块 part1 start ////////////////
 
 //允许移动端实现图标按压特效
 document.addEventListener('touchstart', function() {}, false);
 
-// 引入额外的资源（如样式）的辅助函数
+	//////////////// 插入css的函数 start ////////////////
 function loadResource(type, attributes) {
-    if (type === 'style') {
-        const style = document.createElement('style');
-        style.textContent = attributes.css;
-        document.head.appendChild(style);
-    }
+	if (type === 'style') {
+		const style = document.createElement('style');
+		style.textContent = attributes.css;
+		document.head.appendChild(style);
+	}
 }
+	//////////////// 插入css的函数 end ////////////////
 
-document.addEventListener("DOMContentLoaded", function() {
-    // 初始化目录（TOC）
-    function createTOC() {
-        const contentContainer = document.querySelector('.markdown-body');
-        if (!contentContainer) return;
+let tocTitle // 全局声明变量
 
-        const tocElement = document.createElement('div');
-        tocElement.className = 'toc';
-        contentContainer.appendChild(tocElement);
+	//////////////// 创建toc目录html结构 start ////////////////
+function createTOC() {
+	const tocElement = document.createElement('div');
+	tocElement.className = 'toc';
 
-        const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-        headings.forEach(heading => {
-            if (!heading.id) {
-                heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
-            }
-            const link = document.createElement('a');
-            link.href = '#' + heading.id;
-            link.textContent = heading.textContent;
-            link.style.paddingLeft = `${(parseInt(heading.tagName.charAt(1)) - 1) * 10}px`;
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
-            });
-            tocElement.appendChild(link);
-        });
-    }
-    createTOC();
+	// 创建 toc-title 容器并添加到 toc 元素中
+	tocTitle = document.createElement('div');
+	tocTitle.className = 'toc-title';
+	tocElement.appendChild(tocTitle);
 
-    // TOC、返回顶部和返回底部按钮的样式及交互（代码略，可参考原有逻辑）
-    const combinedCss = `
-    /* 默认亮主题配色 */
-    :root {
-        --toc-bg: rgba(255, 255, 255, 0.8);
-        --toc-border: #E1E4E8;
-        --toc-a-text: #1F2328;
-        --toc-a-hover: #002FA7B3;
-        --toc-icon-bgColor: #FFFFFFB3;
-        --toc-icon-color: #656D76B3;
-        --toc-icon-hover-bgColor: #002FA7B3;
-        --toc-icon-hover-color: #FFFFFFB3;
-    }
-    /* 暗主题配色 */
-    [data-color-mode=light][data-light-theme=dark],
-    [data-color-mode=light][data-light-theme=dark]::selection,
-    [data-color-mode=dark][data-dark-theme=dark],
-    [data-color-mode=dark][data-dark-theme=dark]::selection {
-        --toc-bg: #21262DCC;
-        --toc-border: rgba(240, 246, 252, 0.1);
-        --toc-a-text: #C9D1D9;
-        --toc-a-hover: #002FA7B3;
-        --toc-icon-bgColor: #21262DB3;
-        --toc-icon-color: rgba(240, 246, 252, 0.1);
-        --toc-icon-hover-bgColor: #002FA7B3;
-        --toc-icon-hover-color: #8B949EB3;
-    }
-    
-    .toc {
-        position: fixed;
-        bottom: 150px;
-        right: 60px;
-        z-index: 1000;
-        width: 250px;
-        max-height: 70vh;
-        padding: 10px;
-        overflow-y: auto;
-        border: 1px solid var(--toc-border);
-        border-radius: 6px;
-        background-color: var(--toc-bg);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transform: translateY(20px) scale(0.9);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.1s ease;
-    }
-    .toc.show {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-        visibility: visible;
-    }
-    .toc a {
-        display: block;
-        padding: 5px 0;
-        border-radius: 6px;
-        border-bottom: 1px solid var(--toc-border);
-        color: var(--toc-a-text);
-        transition: all 0.1s ease;
-        font-size: 14px;
-        line-height: 1.5;
-        text-decoration: none;
-    }
-    .toc a:last-child {
-        border-bottom: none;
-    }
-    .toc a:hover {
-        padding-left: 5px;
-        border-radius: 6px;
-        background-color: var(--toc-a-hover);
-    }
-    .toc-link.toc-active {
+	// 将目录 <div> 插入到 <body> 中
+	document.body.appendChild(tocElement);
+
+	// 获取文章标题并设置排版
+	const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6');
+	headings.forEach(heading => {
+		if (!heading.id) {
+			heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+		}
+		const link = document.createElement('a');
+		link.href = `#${heading.id}`;
+		link.textContent = heading.textContent;
+		link.className = `toc-link toc-${heading.tagName.toLowerCase()}`;
+		if (heading.tagName !== 'H1') {
+			const level = parseInt(heading.tagName.charAt(1));
+			link.style.marginLeft = `${(level - 1) * 10}px`;
+		}
+		link.addEventListener('click', function(e) {
+			// 添加点击事件, 平滑滚动到对应的标题位置
+			e.preventDefault();
+			document.getElementById(heading.id).scrollIntoView();
+		});
+		// 将链接添加到 toc-title 容器中
+		tocTitle.appendChild(link);
+	});
+}
+	//////////////// 创建toc目录html结构 end ////////////////
+
+function toggleTOC() {
+	const tocElement = document.querySelector('.toc');
+	const tocIcon = document.querySelector('.ArticleTOC');
+	if (tocElement && tocIcon) {
+		tocElement.classList.toggle('show');
+		tocIcon.classList.toggle('active');
+		tocIcon.style.boxShadow = tocIcon.classList.contains('active') ?
+			'6px 6px 14px 0 var(--header-btn-shadowColor) inset, -7px -7px 12px 0 var(--header-btn-shadowColor2) inset' :
+			'';
+	}
+}
+//////////////// 文章目录代码块 part1 end ////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+	//////////////// 文章目录代码块 part2 start ////////////////
+	createTOC();
+	//绑定按钮点击切换显示目录
+	const tocIcon = document.querySelector('.ArticleTOC');
+	if (tocIcon) {
+		tocIcon.onclick = (e) => {
+			e.stopPropagation();
+			toggleTOC();
+		};
+	}
+		//////////////// 添加 CSS 样式 start ////////////////
+	const css = `
+		:root {
+			--toc-link-bgColor: #ffffffb8;
+			--toc-h1-after-bgColor: #1b9dff
+		}
+		[data-color-mode=light][data-light-theme=dark],
+		[data-color-mode=light][data-light-theme=dark]::selection,
+		[data-color-mode=dark][data-dark-theme=dark],
+		[data-color-mode=dark][data-dark-theme=dark]::selection {
+			--toc-link-bgColor: #121d23ab;
+			--toc-h1-after-bgColor: #43dbff
+		}
+		.toc {
+			position: fixed;
+			bottom: 13%;
+			right: 0;
+			transform: translateX(50%);
+			display: flex;
+			flex-direction: column;
+			width: 250px;
+			max-height: 50vh;
+			background-color: var(--toc-link-bgColor);
+			border-radius: 10px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+			overflow: hidden;
+			z-index: 99;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+			backdrop-filter: blur(15px);
+			scrollbar-width: thin; /* Firefox 滚动条宽度：auto 或 thin */
+			scrollbar-color: #9fc6e3 transparent; /* Firefox 滚动条颜色+轨道颜色(透明) */
+		}
+		/* 滚动条样式 */
+		.toc::-webkit-scrollbar {
+			width: 4px; 
+		}
+		.toc::-webkit-scrollbar-thumb {
+			background: #9fc6e3;
+			border-radius: 20px;
+		}
+		.toc::-webkit-scrollbar-thumb:hover {
+			background: #6baedf;
+		}
+		.toc.show {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+		.toc .toc-title a {
+			display: block;
+			color: var(--fgColor-default);
+			text-decoration: none;
+			padding: 6px;
+			font-size: 14px;
+			line-height: 1.5;
+			border-radius: 8px;
+			transition: background-color 0.2s ease;
+		}
+		.toc .toc-title a:hover {
+			background-color: #6be5ff99;
+			transform:translate(1px,1px);
+		}
+		.toc-h1{
+			position: relative;
+			padding-left: 10px;
+		}
+		.toc-h1::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 3px;
+			height: 60%;
+			background-color: var(--toc-h1-after-bgColor);
+			transform: translateY(-50%);
+		}
+		/* 目录按钮 */
+		.toc-btn{
+			display: inherit;
+			position: sticky;
+			top: 0;
+			z-index: 999999;
+		}
+		.toc-btn div{
+			display: flex;
+			justify-content: center;
+			width:100%;
+			box-shadow: 2px 4px 16px #7982a01f;
+			cursor: pointer;
+		}
+		.toc-btn div:active{box-shadow: inset -2px -2px 6px var(--header-btn-shadowColor),inset 2px 2px 6px var(--header-btn-shadowColor2);
+		}
+		.toc-btn a{
+			color: var(--title-right-svgColor);
+			padding: 9px 11px;
+		}
+		.toc-btn div:hover a{color:var(--title-right-svgHovercolor);
+		}
+		/* 标题 */
+		.toc-title{
+			padding: 10px 10px 0;
+			max-height: calc(50vh - 59px);
+			overflow-y: auto;
+			overflow-y: scroll;
+		}
+		.toc-title::-webkit-scrollbar {
+			display: none;
+		}
+		.toc-title {
+			scrollbar-width: none;
+		}
+		@media (max-width: 768px) {
+		}
+		@media (max-width: 768px) {
+			.toc {
+				width: 200px;
+				max-height: 40vh;
+			}
+			.toc-title{
+				padding: 5px 8px 0;
+			}
+			.back-to-top {
+				bottom: 2%;
+				width: 40px;
+				height: 40px;
+				font-size: 20px;
+			}
+		}
+		.toc-link.toc-active {
 			background-color: #3db9d399;
 			font-weight: bold;
-			box-shadow: inset -2px -2px 6px #ffffff42, inset 2px 2px 6px #00000080;
+			box-shadow: inset -2px -2px 6px #ffffff42, inset 2px 2px 6px #59595980;
 		}
-    .toc-icon {
-        position: fixed;
-        bottom: 130px;
-        right: 20px;
-        z-index: 1000;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--toc-icon-color);
-        border-radius: 50%;
-        background-color: var(--toc-icon-bgColor);
-        color: var(--toc-icon-color);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        transition: all 0.1s ease;
-        cursor: pointer;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-    }
-    .toc-icon:hover {
-        border-color: var(--toc-icon-hover-color);
-        background-color: var(--toc-icon-hover-bgColor);
-        color: var(--toc-icon-hover-color);
-        transform: scale(1.1);
-    }
-    .toc-icon:active {
-        transform: scale(0.9);
-    }
-    .toc-icon.active {
-        border-color: var(--toc-icon-hover-color);
-        background-color: var(--toc-icon-hover-bgColor);
-        color: var(--toc-icon-hover-color);
-        transform: rotate(90deg);
-    }
-    .toc-icon svg {
-        width: 24px;
-        height: 24px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-    .back-to-top, .back-to-bot {
-        position: fixed;
-        right: 20px;
-        z-index: 1000;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        margin: 0;
-        border: 1px solid var(--toc-icon-color);
-        border-radius: 50%;
-        background-color: var(--toc-icon-bgColor);
-        color: var(--toc-icon-color);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.1s ease;
-        font-size: 24px;
-        cursor: pointer;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-    }
-    .back-to-top {
-        bottom: 190px;
-    }
-    .back-to-bot {
-        bottom: 70px;
-    }
-    .back-to-top.show, .back-to-bot.show {
-        opacity: 1;
-        visibility: visible;
-    }
-    .back-to-top:hover, .back-to-bot:hover {
-        border-color: var(--toc-icon-hover-color);
-        background-color: var(--toc-icon-hover-bgColor);
-        color: var(--toc-icon-hover-color);
-        transform: scale(1.1);
-    }
-    .back-to-top:active, .back-to-bot:active {
-        transform: scale(0.9);
-    }
-    .back-to-top svg, .back-to-bot svg {
-        width: 24px;
-        height: 24px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-    @media (max-width: 768px) {
-        .toc {
-            width: 200px;
-        }
-    }
-    `;
-    loadResource('style', { css: combinedCss });
+	`;
 
-    // 创建 TOC 切换图标
-    const tocIcon = document.createElement('div');
-    tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始化加载汉堡图标
-    tocIcon.addEventListener('click', e => {
-        e.stopPropagation();
-        const tocElement = document.querySelector('.toc');
-        tocElement.classList.toggle('show');
-        tocIcon.classList.toggle('active');
-        tocIcon.innerHTML = tocElement.classList.contains('show')
-            ? '<svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4"/></svg>' //X图标
-            : '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //汉堡图标
-    });
-    document.body.appendChild(tocIcon);
-
-    // 点击页面其他区域时隐藏目录
-    document.addEventListener('click', e => {
-        const tocElement = document.querySelector('.toc');
-        if (
-            tocElement &&
-            tocElement.classList.contains('show') &&
-            !tocElement.contains(e.target) &&
-            !e.target.closest('.toc-icon')
-        ) {
-            tocElement.classList.remove('show');
-            tocIcon.classList.remove('active');
-            tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-        }
-    });
-
-    // 创建返回顶部和返回底部按钮
-    const btnTop = document.createElement('button');
-    btnTop.className = 'back-to-top';
-    btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 14l8-8 8 8"/></svg>';
-    document.body.appendChild(btnTop);
-
-    const btnBot = document.createElement('button');
-    btnBot.className = 'back-to-bot';
-    btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 10l8 8 8-8"/></svg>';
-    document.body.appendChild(btnBot);
-
-    btnTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    btnBot.addEventListener('click', () => {
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    });
-
-    function updateButtons() {
-        const scrollTop = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        scrollTop > 100
-            ? btnTop.classList.add('show')
-            : btnTop.classList.remove('show');
-        scrollTop + windowHeight < documentHeight - 100
-            ? btnBot.classList.add('show')
-            : btnBot.classList.remove('show');
-    }
-    window.addEventListener('scroll', updateButtons);
-    window.addEventListener('resize', updateButtons);
-    updateButtons();
-
-
-
-	//高亮
-    function highlightTOC() {
+	loadResource('style', { css });
+		//////////////// 添加 CSS 样式 end ////////////////
+	
+	// 滚动切换高亮标题
+	const highlightTOC = () => {
 		const tocLinks = document.querySelectorAll('.toc-link');
 		const fromTop = window.scrollY + 10;
 		let currentHeading = null;
+		// 遍历目录链接，查找当前显示的标题
 		tocLinks.forEach(link => {
-			const href = link.getAttribute('href'); // 获取 href 属性
-			const sectionId = href.substring(1); // 去掉 # 得到 ID
-			const section = document.getElementById(sectionId); // 根据 ID 获取元素
+			const section = document.getElementById(link.getAttribute('href').substring(1));
 			if (section && section.offsetTop <= fromTop) {
 				currentHeading = link;
 			}
 		});
-	
-		tocLinks.forEach(link => {
-			link.classList.remove('toc-active');
-		});
+		// 清除所有高亮
+		tocLinks.forEach(link => link.classList.remove('toc-active'));
 		if (currentHeading) {
 			currentHeading.classList.add('toc-active');
-			// 确保当前高亮的目录项在可视区域的中间
-			currentHeading.scrollIntoView({
-				block: 'center',   // 确保当前高亮项滚动到视图中间位置
-				inline: 'nearest'  // 可选，保持水平滚动条不动
-			});
+			currentHeading.scrollIntoView({ block: 'center', inline: 'nearest' });
 		}
-	}
+	};
+	// 添加全局滚动监听
 	document.addEventListener('scroll', highlightTOC);
-
-
-    
+	//////////////// 文章目录代码块 part2 end ////////////////
 });
