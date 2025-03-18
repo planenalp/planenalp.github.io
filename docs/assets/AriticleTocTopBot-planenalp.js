@@ -114,24 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			//backdrop-filter: blur(15px); //模糊弹出菜单背景
 		}
 		
-		/* 滚动条样式(不要）
-		.toc::-webkit-scrollbar {
-			width: 4px; 
-		}
-		.toc::-webkit-scrollbar-thumb {
-			background: #9fc6e3;
-			border-radius: 20px;
-		}
-		.toc::-webkit-scrollbar-thumb:hover {
-			background: var(--toc-icon-hover-bgColor);
-		}
-		/* 针对 Firefox */
-		.toc {
-			scrollbar-width: thin; /* 滚动条宽度：auto 或 thin */
-			scrollbar-color: #9fc6e3 transparent; /* 滚动条颜色+轨道颜色(透明) */
-		}
-		*/
-
 		.toc.show {
   			transform: translateY(0);
 			opacity: 1;
