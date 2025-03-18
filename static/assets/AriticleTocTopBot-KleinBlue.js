@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 创建 TOC 切换图标
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    //tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //汉堡图标
     tocIcon.addEventListener('click', e => {
         e.stopPropagation();
         const tocElement = document.querySelector('.toc');
