@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-link-bgColor: #121d23ab;
 			--toc-h1-after-bgColor: #43dbff
 		}
+		/* 弹出菜单主体 */
 		.toc {
 			position: fixed;
 			bottom: 150px;
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			visibility: visible;
 			transform: translateY(0);
 		}
-  		/* menu */
+  		/* 弹出菜单内部 */
 		.toc a {
 			display: block;
 			color: var(--fgColor-default);
