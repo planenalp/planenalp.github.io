@@ -1,5 +1,8 @@
 // 记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
 
+//允许移动端实现图标按压特效
+document.addEventListener('touchstart', function() {}, false);
+
 // 引入额外的资源（如样式）的辅助函数
 function loadResource(type, attributes) {
     if (type === 'style') {
