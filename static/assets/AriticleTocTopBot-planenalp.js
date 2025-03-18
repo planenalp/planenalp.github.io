@@ -69,14 +69,28 @@ document.addEventListener("DOMContentLoaded", function() {
 	createTOC();
 	const combinedCss = `
 		:root {
-			--toc-link-bgColor: #ffffffb8;
+			--toc-bg: rgba(255, 255, 255, 0.8);
+			--toc-border: #E1E4E8;
+			--toc-a-text: #1F2328;
+			--toc-a-hover: #002FA7B3;
+			--toc-icon-bgColor: #FFFFFFB3;
+			--toc-icon-color: #656D76B3;
+			--toc-icon-hover-bgColor: #002FA7B3;
+			--toc-icon-hover-color: #FFFFFFB3;
 			--toc-h1-after-bgColor: #1b9dff
 		}
 		[data-color-mode=light][data-light-theme=dark],
 		[data-color-mode=light][data-light-theme=dark]::selection,
 		[data-color-mode=dark][data-dark-theme=dark],
 		[data-color-mode=dark][data-dark-theme=dark]::selection {
-			--toc-link-bgColor: #121d23ab;
+			--toc-bg: #21262DCC;
+			--toc-border: rgba(240, 246, 252, 0.1);
+			--toc-a-text: #C9D1D9;
+			--toc-a-hover: #002FA7B3;
+			--toc-icon-bgColor: #21262DB3;
+			--toc-icon-color: rgba(240, 246, 252, 0.1);
+			--toc-icon-hover-bgColor: #002FA7B3;
+			--toc-icon-hover-color: #8B949EB3;
 			--toc-h1-after-bgColor: #43dbff
 		}
 		/* 弹出菜单主体 */
@@ -91,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
       			overflow-y: auto;
       			border: 1px solid var(--toc-border);
       			border-radius: 6px;
-      			background-color: var(--toc-link-bgColor);
+      			background-color: var(--toc-bg);
       			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 			transform: translateX(50%); //translateY(20px) scale(0.9);
 			opacity: 0;
@@ -116,55 +130,62 @@ document.addEventListener("DOMContentLoaded", function() {
 			scrollbar-color: #9fc6e3 transparent; /* 滚动条颜色+轨道颜色(透明) */
 		}
 		.toc.show {
+  			transform: translateY(0);
 			opacity: 1;
 			visibility: visible;
-			transform: translateY(0);
 		}
   		/* 弹出菜单内部 */
 		.toc a {
 			display: block;
-			color: var(--fgColor-default);
-			text-decoration: none;
-			padding: 6px;
+   			padding: 5px;
+      			border-radius: 6px;
+			color: var(--toc-a-text);
+   			transition: all 0.1s ease;
 			font-size: 14px;
 			line-height: 1.5;
-			border-radius: 8px;
-			transition: background-color 0.2s ease;
+			text-decoration: none;
 		}
 		.toc a:hover {
-			background-color: #6be5ff99;
+			/* border-radius: 6px; */
+			background-color: var(--toc-a-hover);
 			transform:translate(1px,1px);
 		}
+  		/* 弹出菜单图标 */
 		.toc-icon {
 			position: fixed;
-			bottom: 7%;
-			right: 15px;
-			cursor: pointer;
-			background-color: rgba(255, 255, 255, 0.8);
-			color: #333;
-			border-radius: 50%;
-			width: 51px;
-			height: 51px;
+			bottom: 130px;
+			right: 20px;
+   			z-index: 1000;
+      			width: 40px;
+			height: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			border: 1px solid var(--toc-icon-color);
+   			border-radius: 50%;
+			background-color: var(--toc-icon-bgColor);
+			color: var(--toc-icon-color);
 			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-			z-index: 1001;
 			transition: all 0.3s ease;
+			cursor: pointer;
 			user-select: none;
 			-webkit-tap-highlight-color: transparent;
 			outline: none;
 		}
 		.toc-icon:hover {
+			border-color: var(--toc-icon-hover-color);
+			background-color: var(--toc-icon-hover-bgColor);
+			color: var(--toc-icon-hover-color);
 			transform: scale(1.1);
-			background-color: #fff;
 		}
 		.toc-icon:active {
 			transform: scale(0.9);
 		}
 		.toc-icon.active {
-			background-color: #fff;
-			color: #333;
+			border-color: var(--toc-icon-hover-color);
+			background-color: var(--toc-icon-hover-bgColor);
+			color: var(--toc-icon-hover-color);
+			transform: rotate(90deg);
 		}
 		.toc-icon svg {
 			width: 24px;
