@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			line-height: 1.5;
 			text-decoration: none;
 		}
+  		/* 鼠标悬停高亮 */
 		.toc a:hover {
 			/* border-radius: 6px; */
 			background-color: var(--toc-a-hover);
@@ -181,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			stroke-linecap: round;
 			stroke-linejoin: round;
 		}
+    		/* h1 标题左侧高亮竖条 */
 		.toc-h1{
 			position: relative;
 			padding-left: 10px;
@@ -195,10 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			background-color: var(--toc-h1-after-bgColor);
 			transform: translateY(-50%);
 		}
-  		.toc-link.toc-active {
-			background-color: var(--toc-a-hover);
-			color: var(--toc-icon-hover-bgColor);
-		}
+
 		.back-to-top, .back-to-bot {
 		    position: fixed;
 		    right: 20px;
