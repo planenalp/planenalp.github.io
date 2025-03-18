@@ -348,12 +348,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // 创建返回顶部和返回底部按钮
     const btnTop = document.createElement('button');
     btnTop.className = 'back-to-top';
-    btnTop.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M104.704 685.248a64 64 0 0 0 90.496 0l316.8-316.8 316.8 316.8a64 64 0 0 0 90.496-90.496L557.248 232.704a64 64 0 0 0-90.496 0L104.704 594.752a64 64 0 0 0 0 90.496z"></path></svg>';
+    btnTop.innerHTML = '<svg viewBox="0 0 48 48"><path d="M12 31L24 19L36 31"/></svg>';
     document.body.appendChild(btnTop);
 
     const btnBot = document.createElement('button');
     btnBot.className = 'back-to-bot';
-    btnBot.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8 316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496z"></path></svg>';
+    btnBot.innerHTML = '<svg viewBox="0 0 48 48"><path d="M12 17L24 29L36 17"/></svg>';
     document.body.appendChild(btnBot);
 
     btnTop.addEventListener('click', () => {
