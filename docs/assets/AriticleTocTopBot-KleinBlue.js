@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
         height: 24px;
         fill: none;
         stroke: currentColor;
-        stroke-width: 3;
+        stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
     }
@@ -301,8 +301,8 @@ document.addEventListener("DOMContentLoaded", function() {
     .back-to-top svg, .back-to-bot svg {
         width: 24px;
         height: 24px;
-        fill: currentColor;
-        stroke: none;
+        fill: none;
+        stroke: currentColor;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -348,12 +348,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // 创建返回顶部和返回底部按钮
     const btnTop = document.createElement('button');
     btnTop.className = 'back-to-top';
-    btnTop.innerHTML = '<svg viewBox="0 0 48 48"><path d="M12 31L24 19L36 31"/></svg>';
+    btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16l7-7 7 7"/></svg>';
     document.body.appendChild(btnTop);
 
     const btnBot = document.createElement('button');
     btnBot.className = 'back-to-bot';
-    btnBot.innerHTML = '<svg viewBox="0 0 48 48"><path d="M12 17L24 29L36 17"/></svg>';
+    btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 8l7 7 7-7"/></svg>';
     document.body.appendChild(btnBot);
 
     btnTop.addEventListener('click', () => {
