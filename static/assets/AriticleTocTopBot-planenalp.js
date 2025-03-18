@@ -109,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function() {
         border-radius: 6px;
         background-color: var(--toc-a-hover);
     }
+    /* 滚动高亮 */
+    .toc-active{
+        background-color: var(--toc-a-hover);
+    }
     .toc-icon {
         position: fixed;
         bottom: 130px;
@@ -277,4 +281,34 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('scroll', updateButtons);
     window.addEventListener('resize', updateButtons);
     updateButtons();
+
+    //滚动高亮
+    function highlightTOC() {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const fromTop = window.scrollY + 10;
+        let currentHeading = null;
+        tocLinks.forEach(link => {
+            const href = link.getAttribute('href'); // 获取 href 属性
+            const sectionId = href.substring(1); // 去掉 # 得到 ID
+            const section = document.getElementById(sectionId); // 根据 ID 获取元素
+            if (section && section.offsetTop <= fromTop) {
+				currentHeading = link;
+            }
+        });
+	
+        tocLinks.forEach(link => {
+			link.classList.remove('toc-active');
+        });
+        if (currentHeading) {
+			currentHeading.classList.add('toc-active');
+			// 确保当前高亮的目录项在可视区域的中间
+			currentHeading.scrollIntoView({
+				block: 'center',   // 确保当前高亮项滚动到视图中间位置
+				inline: 'nearest'  // 可选，保持水平滚动条不动
+			});
+		}
+    }
+    document.addEventListener('scroll', highlightTOC);
+    
+}
 });
