@@ -288,9 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const fromTop = window.scrollY + 10;
         let currentHeading = null;
         tocLinks.forEach(link => {
-            const href = link.getAttribute('href'); // 获取 href 属性
-            const sectionId = href.substring(1); // 去掉 # 得到 ID
-            const section = document.getElementById(sectionId); // 根据 ID 获取元素
+            const section = document.getElementById(link.getAttribute('data-id'));
             if (section && section.offsetTop <= fromTop) {
 				currentHeading = link;
             }
