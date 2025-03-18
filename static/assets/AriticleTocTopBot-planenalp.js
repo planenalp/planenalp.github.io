@@ -186,6 +186,59 @@ document.addEventListener("DOMContentLoaded", function() {
 			background-color: var(--toc-h1-after-bgColor);
 			transform: translateY(-50%);
 		}
+		.back-to-top, .back-to-bot {
+		    position: fixed;
+		    right: 20px;
+		    z-index: 1000;
+		    width: 40px;
+		    height: 40px;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 0;
+		    margin: 0;
+		    border: 1px solid var(--toc-icon-color);
+		    border-radius: 50%;
+		    background-color: var(--toc-icon-bgColor);
+		    color: var(--toc-icon-color);
+		    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+		    opacity: 0;
+		    visibility: hidden;
+		    transition: all 0.1s ease;
+		    font-size: 24px;
+		    cursor: pointer;
+		    user-select: none;
+		    -webkit-tap-highlight-color: transparent;
+		    outline: none;
+		}
+		.back-to-top {
+		    bottom: 190px;
+		}
+		.back-to-bot {
+		    bottom: 70px;
+		}
+		.back-to-top.show, .back-to-bot.show {
+		    opacity: 1;
+		    visibility: visible;
+		}
+		.back-to-top:hover, .back-to-bot:hover {
+		    border-color: var(--toc-icon-hover-color);
+		    background-color: var(--toc-icon-hover-bgColor);
+		    color: var(--toc-icon-hover-color);
+		    transform: scale(1.1);
+		}
+		.back-to-top:active, .back-to-bot:active {
+		    transform: scale(0.9);
+		}
+		.back-to-top svg, .back-to-bot svg {
+		    width: 24px;
+		    height: 24px;
+		    fill: none;
+		    stroke: currentColor;
+		    stroke-width: 2;
+		    stroke-linecap: round;
+		    stroke-linejoin: round;
+		}
 		@media (max-width: 768px) {
 			.toc {
 				width: 200px;
