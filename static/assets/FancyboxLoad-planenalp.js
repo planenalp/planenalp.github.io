@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     replaceImageLinks();
-	////////////////// 增加图片转换, 并适配图片懒加载 end ////////////////
+    ////////////////// 增加图片转换, 并适配图片懒加载 end ////////////////
 
     ////////////////// 懒加载图片 start ////////////////
     const observer = new IntersectionObserver(
