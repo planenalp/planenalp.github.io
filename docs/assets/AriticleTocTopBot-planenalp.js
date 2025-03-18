@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-icon-hover-bgColor: #002FA7B3;
 			--toc-icon-hover-color: #FFFFFFB3;
 			--toc-h1-after-bgColor: #007FFF;
+			--toc-highlightText-Color: #FFFFFF;
 		}
 		[data-color-mode=light][data-light-theme=dark],
 		[data-color-mode=light][data-light-theme=dark]::selection,
@@ -92,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-icon-hover-bgColor: #002FA7B3;
 			--toc-icon-hover-color: #8B949EB3;
 			--toc-h1-after-bgColor: #007FFF;
+   			--toc-highlightText-Color: #FFFFFF;
 		}
 		/* 弹出菜单主体 */
 		.toc {
@@ -129,11 +131,16 @@ document.addEventListener("DOMContentLoaded", function() {
 			line-height: 1.5;
 			text-decoration: none;
 		}
+    		/* 弹出菜单鼠标悬停高亮 */
 		.toc a:hover {
-			/* border-radius: 6px; */
 			background-color: var(--toc-a-hover);
-			color: #FFFFFF;
+			color: var(--toc-highlightText-Color);
 			transform:translate(1px,1px);
+		}
+      		/* 弹出菜单滚动高亮 */
+    		.toc-link.toc-active {
+			background-color: var(--toc-a-hover);
+   			color: var(--toc-highlightText-Color);
 		}
   		/* 弹出菜单图标 */
 		.toc-icon {
@@ -181,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			stroke-linecap: round;
 			stroke-linejoin: round;
 		}
+    		/* 弹出菜单左侧 h1 高亮竖条 */
 		.toc-h1{
 			position: relative;
 			padding-left: 10px;
@@ -195,9 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			background-color: var(--toc-h1-after-bgColor);
 			transform: translateY(-50%);
 		}
-  		.toc-link.toc-active {
-			background-color: var(--toc-a-hover);
-		}
+      		/* 向上向下按钮 */
 		.back-to-top, .back-to-bot {
 		    position: fixed;
 		    right: 20px;
