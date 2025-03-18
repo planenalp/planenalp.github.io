@@ -1,3 +1,8 @@
+
+//允许移动端实现图标按压特效
+document.addEventListener('touchstart', function() {}, false);
+
+////////// 动态加载 CSS 样式 start //////////
 function loadResource(type, attributes) {
 	if (type === 'style') {
 		const style = document.createElement('style');
@@ -5,7 +10,9 @@ function loadResource(type, attributes) {
 		document.head.appendChild(style);
 	}
 }
+////////// 动态加载 CSS 样式 end //////////
 
+////////// 创建目录 start //////////
 function createTOC() {
 	const tocElement = document.createElement('div');
 	tocElement.className = 'toc';
@@ -42,8 +49,9 @@ function createTOC() {
 		tocElement.appendChild(link);
 	});
 }
+////////// 创建目录 end //////////
 
-// 创建目录按钮
+////////// 目录按钮切换功能 start //////////
 function toggleTOC() {
 	const tocElement = document.querySelector('.toc');
 	const tocIcon = document.querySelector('.toc-icon');
@@ -51,14 +59,15 @@ function toggleTOC() {
 		tocElement.classList.toggle('show');
 		tocIcon.classList.toggle('active');
 		tocIcon.innerHTML = tocElement.classList.contains('show') ?
-			'<svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>' :
-			'<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+			'<svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4"/></svg>' : //X图标
+			'<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //汉堡图标
 	}
 }
+////////// 目录按钮切换功能 end //////////
 
 document.addEventListener("DOMContentLoaded", function() {
 	createTOC();
-	const css = `
+	const combinedCss = `
 		:root {
 			--toc-link-bgColor: #ffffffb8;
 			--toc-h1-after-bgColor: #1b9dff
@@ -205,19 +214,20 @@ document.addEventListener("DOMContentLoaded", function() {
 			box-shadow: inset -2px -2px 6px #ffffff42, inset 2px 2px 6px #00000080;
 		}
 	`;
-	loadResource('style', {
-		css: css
-	});
+	loadResource('style', { css: combinedCss });
 
+	////////// 创建目录按钮 TOC 切换图标 start //////////
 	const tocIcon = document.createElement('div');
 	tocIcon.className = 'toc-icon';
-	tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+	tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始化加载汉堡图标
 	tocIcon.onclick = (e) => {
 		e.stopPropagation();
 		toggleTOC();
 	};
 	document.body.appendChild(tocIcon);
+	////////// 创建目录按钮 TOC 切换图标 end //////////
 
+	////////// 点击页面其他区域时隐藏目录 start //////////
 	document.addEventListener('click', (e) => {
 		const tocElement = document.querySelector('.toc');
 		if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e
@@ -225,9 +235,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			toggleTOC();
 		}
 	});
+	////////// 点击页面其他区域时隐藏目录 end //////////
 
-
-	
+	////////// 创建滚动页面高亮菜单 start //////////
 	function highlightTOC() {
 		const tocLinks = document.querySelectorAll('.toc-link');
 		const fromTop = window.scrollY + 10;
@@ -254,4 +264,39 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	}
 	document.addEventListener('scroll', highlightTOC);
+	////////// 创建滚动页面高亮菜单 end //////////
+
+	////////// 创建返回顶部和返回底部按钮 start //////////
+	const btnTop = document.createElement('button');
+	btnTop.className = 'back-to-top';
+	btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 14l8-8 8 8"/></svg>';
+	document.body.appendChild(btnTop);
+
+	const btnBot = document.createElement('button');
+	btnBot.className = 'back-to-bot';
+	btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 10l8 8 8-8"/></svg>';
+	document.body.appendChild(btnBot);
+
+	btnTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+	btnBot.addEventListener('click', () => {
+            window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+	});
+
+	function updateButtons() {
+            const scrollTop = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            scrollTop > 100
+                ? btnTop.classList.add('show')
+                : btnTop.classList.remove('show');
+            scrollTop + windowHeight < documentHeight - 100
+                ? btnBot.classList.add('show')
+                : btnBot.classList.remove('show');
+	}
+	window.addEventListener('scroll', updateButtons);
+	window.addEventListener('resize', updateButtons);
+	updateButtons();
+	////////// 创建返回顶部和返回底部按钮 end //////////
 });
