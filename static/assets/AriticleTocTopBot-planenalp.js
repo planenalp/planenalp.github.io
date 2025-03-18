@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-icon-color: #656D76B3;
 			--toc-icon-hover-bgColor: #002FA7B3;
 			--toc-icon-hover-color: #FFFFFFB3;
-			--toc-h1-after-bgColor: #008080;
+			--toc-h1-after-bgColor: #007FFF;
 		}
 		[data-color-mode=light][data-light-theme=dark],
 		[data-color-mode=light][data-light-theme=dark]::selection,
