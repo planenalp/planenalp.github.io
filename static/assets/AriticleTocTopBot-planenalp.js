@@ -130,17 +130,12 @@ document.addEventListener("DOMContentLoaded", function() {
             line-height: 1.5;
             text-decoration: none;
         }
-        /* 弹出菜单鼠标悬停高亮 */
-        .toc a:hover {
+        /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
+        .toc a:hover, .toc-link.toc-active {
             border: 1px solid var(--toc-border);
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
-        }
-        /* 弹出菜单滚动高亮 */
-        .toc-link.toc-active {
             border: 1px solid var(--toc-border);
-            background-color: var(--toc-a-hover);
-            color: var(--toc-highlightText-Color);
         }
         /* 弹出菜单图标 */
         .toc-icon {
@@ -198,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
             width: 3px;
             height: 60%;
             background-color: var(--toc-h1-after-bgColor);
-            transform: translateY(-50%);
+            /* transform: translateY(-50%); */
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
