@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
             width: 3px;
             height: 60%;
             background-color: var(--toc-h1-after-bgColor);
-            /* transform: translateY(-50%); */
+            transform: translateY(-50%);
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
