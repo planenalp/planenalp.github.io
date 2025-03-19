@@ -72,11 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-bg: rgba(255, 255, 255, 0.8);
 			--toc-border: #E1E4E8;
 			--toc-a-text: #1F2328;
-			--toc-a-hover: #002FA7B3;
+			--toc-a-hover: #002FA7CC;
 			--toc-icon-bgColor: #FFFFFFB3;
 			--toc-icon-color: #656D76B3;
-			--toc-icon-hover-bgColor: #002FA7B3;
-			--toc-icon-hover-color: #FFFFFFB3;
+			--toc-icon-hover-bgColor: #002FA7CC;
+			--toc-icon-hover-color: #FFFFFFCC;
 			--toc-h1-after-bgColor: #007FFF;
 			--toc-highlightText-Color: #FFFFFF;
 		}
@@ -87,11 +87,11 @@ document.addEventListener("DOMContentLoaded", function() {
 			--toc-bg: #21262DCC;
 			--toc-border: rgba(240, 246, 252, 0.1);
 			--toc-a-text: #C9D1D9;
-			--toc-a-hover: #002FA7B3;
+			--toc-a-hover: #002FA7CC;
 			--toc-icon-bgColor: #21262DB3;
 			--toc-icon-color: rgba(240, 246, 252, 0.1);
-			--toc-icon-hover-bgColor: #002FA7B3;
-			--toc-icon-hover-color: #8B949EB3;
+			--toc-icon-hover-bgColor: #002FA7CC;
+			--toc-icon-hover-color: #8B949ECC;
 			--toc-h1-after-bgColor: #007FFF;
    			--toc-highlightText-Color: #FFFFFF;
 		}
