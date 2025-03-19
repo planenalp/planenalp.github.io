@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
             border: 1px solid var(--toc-border);
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
-            transform:translate(1px,1px);
         }
         /* 弹出菜单滚动高亮 */
         .toc-link.toc-active {
