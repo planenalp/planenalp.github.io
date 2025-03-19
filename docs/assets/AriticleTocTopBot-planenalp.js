@@ -132,12 +132,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单鼠标悬停高亮 */
         .toc a:hover {
+            border: 1px solid var(--toc-border);
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
             transform:translate(1px,1px);
         }
         /* 弹出菜单滚动高亮 */
         .toc-link.toc-active {
+            border: 1px solid var(--toc-border);
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
         }
@@ -164,16 +166,13 @@ document.addEventListener("DOMContentLoaded", function() {
             outline: none;
         }
         .toc-icon:hover {
-            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
-            /* transform: scale(1.1); */
         }
         .toc-icon:active {
             transform: scale(0.9);
         }
         .toc-icon.active {
-            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
             transform: rotate(90deg);
