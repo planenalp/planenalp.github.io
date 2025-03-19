@@ -238,10 +238,8 @@ document.addEventListener("DOMContentLoaded", function() {
             visibility: visible;
         }
         .back-to-top:hover, .back-to-bot:hover {
-            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
-            /* transform: scale(1.1); */
         }
         .back-to-top:active, .back-to-bot:active {
             transform: scale(0.9);
@@ -258,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
         @media (max-width: 768px) {
             .toc {
                 width: 200px;
-                max-height: 40vh;
+                max-height: 50vh;
             }
         }
     `;
