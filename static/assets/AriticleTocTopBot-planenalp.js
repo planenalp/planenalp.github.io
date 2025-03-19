@@ -67,8 +67,8 @@ function toggleTOC() {
 document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
+        /* light 主题颜色 */
         :root {
-            /* 其他：自定义变量 */
             --toc-bg: #FFFFFFCC;
             --toc-border: rgba(31, 35, 40, 0.15);
             --toc-a-text: #24292f;
@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function() {
             --toc-h1-after-bgColor: #656d76CC;
             --toc-highlightText-Color: #24292f;
         }
+        /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            /* 其他：自定义变量 */
             --toc-bg: #21262DCC;
             --toc-border: rgba(240, 246, 252, 0.1);
             --toc-a-text: #C9D1D9;
