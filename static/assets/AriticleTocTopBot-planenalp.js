@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			border-color: var(--toc-icon-hover-color);
 			background-color: var(--toc-icon-hover-bgColor);
 			color: var(--toc-icon-hover-color);
-			transform: scale(1.1);
+			/* transform: scale(1.1); */
 		}
 		.toc-icon:active {
 			transform: scale(0.9);
@@ -243,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		    border-color: var(--toc-icon-hover-color);
 		    background-color: var(--toc-icon-hover-bgColor);
 		    color: var(--toc-icon-hover-color);
+		    /* transform: scale(1.1); */
 		}
 		.back-to-top:active, .back-to-bot:active {
 		    transform: scale(0.9);
@@ -333,30 +334,14 @@ document.addEventListener("DOMContentLoaded", function() {
             window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
 	});
 
-	/*
-	function updateButtons() {
-            const scrollTop = window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            scrollTop > 100
-                ? btnTop.classList.add('show')
-                : btnTop.classList.remove('show');
-            scrollTop + windowHeight < documentHeight - 100
-                ? btnBot.classList.add('show')
-                : btnBot.classList.remove('show');
-	}
- 	*/
-
 	function updateButtons() {
             const scrollTop = window.pageYOffset;
             const windowHeight = window.innerHeight;
             const dynamicThreshold = Math.min(500, windowHeight * 0.5); // 最大 500px，最小视口高度的 50%
-  
             // 控制 btnTop
             scrollTop > dynamicThreshold
                 ? btnTop.classList.add('show')
                 : btnTop.classList.remove('show');
-
             // 控制 btnBot
             const remainingSpace = document.documentElement.scrollHeight - (scrollTop + windowHeight);
             remainingSpace > dynamicThreshold
