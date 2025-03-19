@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .avatar:hover {
-            /* transform: scale(1.1) !important; */
+            transform: unset !important;
         }
 
         .avatar:active {
