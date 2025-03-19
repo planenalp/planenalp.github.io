@@ -69,142 +69,115 @@ document.addEventListener("DOMContentLoaded", function() {
     const combinedCss = `
         /* light 主题颜色 */
         :root {
-            --toc-bg: #FFFFFFCC;
-            --toc-border: rgba(31, 35, 40, 0.15);
-            --toc-a-text: #24292f;
-            --toc-a-hover: #eceff1;
-            --toc-icon-bgColor: #FFFFFFB3;
-            --toc-icon-color: #656d76B3;
-            --toc-icon-hover-bgColor: #eceff1;
-            --toc-icon-hover-color: #656d76CC;
-            --toc-h1-after-bgColor: #656d76CC;
-            --toc-highlightText-Color: #24292f;
+            --color-toc-a-text: #24292f;
+            --color-toc-bg: #ffffffcc;
+            --color-toc-border: rgba(31, 35, 40, 0.15);
+            --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            --color-toc-hover-bg: #f3f4f6;
+            --color-toc-a+icon-hover-border: rgba(31, 35, 40, 0.15);
+            --color-toc-icon-bgColor: #f6f8fab3;
+            --color-toc-icon-color: #656d76b3;
+            --color-toc-icon-hover-color: #656d76;
+            --color-toc-highlightText-Color: #24292f; //彩色主题 hover 暗色时调整字体颜色时用得上
         }
         /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --toc-bg: #21262DCC;
-            --toc-border: rgba(240, 246, 252, 0.1);
-            --toc-a-text: #C9D1D9;
-            --toc-a-hover: #30363d;
-            --toc-icon-bgColor: #21262DB3;
-            --toc-icon-color: rgba(240, 246, 252, 0.1);
-            --toc-icon-hover-bgColor: #30363d;
-            --toc-icon-hover-color: #8B949ECC;
-            --toc-h1-after-bgColor: #8b949e;
-            --toc-highlightText-Color: #FFFFFF;
+            --color-toc-a-text: #c9d1d9;
+            --color-toc-bg: #21262dcc;
+            --color-toc-border: rgba(240, 246, 252, 0.1);
+            --color-toc-box-shadow: 0 0 transparent;
+            --color-toc-hover-bg: #30363d;
+            --color-toc-a+icon-hover-border: #8b949e;
+            --color-toc-icon-bgColor: #21262db3;
+            --color-toc-icon-color: #8b949eb3;
+            --color-toc-icon-hover-color: #8b949e;
+            --color-toc-highlightText-Color: #c9d1d9; //彩色主题 hover 暗色时调整字体颜色时用得上
         }
         /* 弹出菜单主体 */
         .toc {
-            /* 定位 */
             position: fixed;
             bottom: 100px;
             right: 60px;
             z-index: 1000;
-            /* 布局 */
             width: 250px;
             max-height: 70vh;
             padding: 10px;
             overflow-y: auto;
-            /* 边框 */
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--color-toc-border);
             border-radius: 6px;
-            /* 背景/颜色 */
-            background-color: var(--toc-bg);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: var(--color-toc-bg);
+            box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            /* 过渡 */
             transition: all 0.1s ease;
-            /* 其他 */
             visibility: hidden;
             //backdrop-filter: blur(15px); //模糊弹出菜单背景
         }
         .toc.show {
-            /* 阴影/变换/透明度 */
             transform: translateY(0);
             opacity: 1;
-            /* 其他 */
             visibility: visible;
         }
         /* 弹出菜单内部 */
         .toc a {
-            /* 布局 */
             display: block;
             padding: 5px;
-            /* 边框 */
             border: 1px solid transparent; /* 初始状态设置透明边框占位 */
             border-radius: 6px;
-            /* 背景/颜色 */
-            color: var(--toc-a-text);
-            /* 过渡 */
+            color: var(--color-toc-a-text);
             transition: all 0.1s ease;
-            /* 字体/文本 */
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
         }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
-            /* 边框 */
-            border-color: var(--toc-border); /* 只修改边框颜色 */
-            /* 背景/颜色 */
-            background-color: var(--toc-a-hover);
-            color: var(--toc-highlightText-Color);
+            border-color: var(--color-toc-a+icon-hover-border); /* 只修改边框颜色 */
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-highlightText-Color);
         }
         /* 弹出菜单图标 */
         .toc-icon {
-            /* 定位 */
             position: fixed;
             bottom: 80px;
             right: 20px;
             z-index: 1000;
-            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* 边框 */
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            /* 背景/颜色 */
-            background-color: var(--toc-icon-bgColor);
-            color: var(--toc-icon-color);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            /* 过渡 */
+            background-color: var(--color-toc-icon-bgColor);
+            color: var(--color-toc-icon-color);
+            box-shadow: var(--color-toc-box-shadow);
             transition: all 0.1s ease;
-            /* 其他 */
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
         .toc-icon:hover {
-            /* 背景/颜色 */
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-a+icon-hover-border);
         }
         .toc-icon:active {
-            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
         .toc-icon.active {
-            /* 背景/颜色 */
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
-            /* 阴影/变换/透明度 */
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-a+icon-hover-border);
             transform: rotate(90deg);
         }
         .toc-icon svg {
-            /* 布局 */
             width: 24px;
             height: 24px;
-            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -213,29 +186,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单左侧 h1 高亮竖条 */
         .toc-h1 {
-            /* 定位 */
             position: relative;
-            /* 布局 */
             padding-left: 10px;
         }
         .toc-h1::after {
-            /* 定位 */
             position: absolute;
             top: 50%;
             left: 0;
-            /* 布局 */
             width: 3px;
             height: 60%;
-            /* 背景/颜色 */
-            background-color: var(--toc-h1-after-bgColor);
-            /* 阴影/变换/透明度 */
+            background-color: var(--color-toc-icon-hover-color);
             transform: translateY(-50%);
-            /* 其他 */
             content: '';
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
-            /* 定位 */
             position: fixed;
             right: 20px;
             z-index: 1000;
@@ -248,19 +213,14 @@ document.addEventListener("DOMContentLoaded", function() {
             padding: 0;
             margin: 0;
             /* 边框 */
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            /* 背景/颜色 */
-            background-color: var(--toc-icon-bgColor);
-            color: var(--toc-icon-color);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: var(--color-toc-icon-bgColor);
+            color: var(--color-toc-icon-color);
+            box-shadow: var(--color-toc-box-shadow);
             opacity: 0;
-            /* 过渡 */
             transition: all 0.1s ease;
-            /* 字体/文本 */
             font-size: 24px;
-            /* 其他 */
             visibility: hidden;
             cursor: pointer;
             user-select: none;
@@ -268,33 +228,26 @@ document.addEventListener("DOMContentLoaded", function() {
             outline: none;
         }
         .back-to-top {
-            /* 定位 */
             bottom: 140px;
         }
         .back-to-bot {
-            /* 定位 */
             bottom: 20px;
         }
         .back-to-top.show, .back-to-bot.show {
-            /* 阴影/变换/透明度 */
             opacity: 1;
-            /* 其他 */
             visibility: visible;
         }
         .back-to-top:hover, .back-to-bot:hover {
-            /* 背景/颜色 */
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-a+icon-hover-border);
         }
         .back-to-top:active, .back-to-bot:active {
-            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
         .back-to-top svg, .back-to-bot svg {
-            /* 布局 */
             width: 24px;
             height: 24px;
-            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -303,7 +256,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         @media (max-width: 768px) {
             .toc {
-                /* 布局 */
                 width: 200px;
                 max-height: 50vh;
             }
