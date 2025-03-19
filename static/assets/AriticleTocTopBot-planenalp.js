@@ -70,15 +70,15 @@ document.addEventListener("DOMContentLoaded", function() {
         /* light 主题颜色 */
         :root {
             --color-toc-a-text: #24292f;
-            --color-toc-bg: #ffffffcc;
+            --color-toc-bg: #f6f8facc;
             --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #f3f4f6;
             --color-toc-hover-border: rgba(31, 35, 40, 0.15);
-            --color-toc-icon-bgColor: #f6f8fab3;
+            --color-toc-icon-bg: #f6f8fab3;
             --color-toc-icon-color: #656d76b3;
             --color-toc-icon-hover-color: #656d76;
-            --color-toc-highlightText-Color: #24292f; //彩色主题 hover 暗色时调整字体颜色时用得上
+            --color-toc-highlightText: #24292f;
         }
         /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -91,10 +91,10 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
             --color-toc-hover-border: #8b949e;
-            --color-toc-icon-bgColor: #21262db3;
+            --color-toc-icon-bg: #21262db3;
             --color-toc-icon-color: #8b949eb3;
             --color-toc-icon-hover-color: #8b949e;
-            --color-toc-highlightText-Color: #c9d1d9; //彩色主题 hover 暗色时调整字体颜色时用得上
+            --color-toc-highlightText: #c9d1d9;
         }
         /* 弹出菜单主体 */
         .toc {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a:hover, .toc-link.toc-active {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
             background-color: var(--color-toc-hover-bg);
-            color: var(--color-toc-highlightText-Color);
+            color: var(--color-toc-highlightText);
         }
         /* 弹出菜单图标 */
         .toc-icon {
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            background-color: var(--color-toc-icon-bgColor);
+            background-color: var(--color-toc-icon-bg);
             color: var(--color-toc-icon-color);
             box-shadow: var(--color-toc-box-shadow);
             transition: all 0.1s ease;
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 边框 */
             border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            background-color: var(--color-toc-icon-bgColor);
+            background-color: var(--color-toc-icon-bg);
             color: var(--color-toc-icon-color);
             box-shadow: var(--color-toc-box-shadow);
             opacity: 0;
