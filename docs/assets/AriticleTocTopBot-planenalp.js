@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
             opacity: 0;
             transition: all 0.1s ease;
             visibility: hidden;
-            //backdrop-filter: blur(15px); //模糊弹出菜单背景
+            /* backdrop-filter: blur(15px); 模糊弹出菜单背景 */
         }
         .toc.show {
             transform: translateY(0);
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
-            transform: rotate(90deg);
+            transform: scale(0.9) rotate(90deg);
         }
         .toc-icon svg {
             width: 24px;
@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", function() {
             position: fixed;
             right: 20px;
             z-index: 1000;
-            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
@@ -212,7 +211,6 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             padding: 0;
             margin: 0;
-            /* 边框 */
             border: 1px solid var(--color-toc-border);
             border-radius: 50%;
             background-color: var(--color-toc-icon-bg);
