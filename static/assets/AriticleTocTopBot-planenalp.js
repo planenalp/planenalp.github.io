@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
         :root {
+            /* 其他：自定义变量 */
             --toc-bg: #FFFFFFCC;
             --toc-border: rgba(31, 35, 40, 0.15);
             --toc-a-text: #24292f;
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
+            /* 其他：自定义变量 */
             --toc-bg: #21262DCC;
             --toc-border: rgba(240, 246, 252, 0.1);
             --toc-a-text: #C9D1D9;
@@ -96,83 +98,114 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单主体 */
         .toc {
+            /* 定位 */
             position: fixed;
             bottom: 100px;
             right: 60px;
             z-index: 1000;
+            /* 布局 */
             width: 250px;
             max-height: 70vh;
             padding: 10px;
             overflow-y: auto;
+            /* 边框 */
             border: 1px solid var(--toc-border);
             border-radius: 6px;
+            /* 背景/颜色 */
             background-color: var(--toc-bg);
+            /* 阴影/变换/透明度 */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
+            /* 过渡 */
             transition: all 0.1s ease;
+            /* 其他 */
             visibility: hidden;
             //backdrop-filter: blur(15px); //模糊弹出菜单背景
         }
+        .toc.show {
+            /* 阴影/变换/透明度 */
+            transform: translateY(0);
+            opacity: 1;
+            /* 其他 */
+            visibility: visible;
+        }
         /* 弹出菜单内部 */
         .toc a {
+            /* 布局 */
             display: block;
             padding: 5px;
-            border: 1px solid transparent; /* 初始状态设置透明边框占位防止跳动 */
+            /* 边框 */
+            border: 1px solid transparent; /* 初始状态设置透明边框占位 */
             border-radius: 6px;
+            /* 背景/颜色 */
             color: var(--toc-a-text);
+            /* 过渡 */
             transition: all 0.1s ease;
+            /* 字体/文本 */
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
         }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
-            border: border-color: var(--toc-border); /* 只修改边框颜色 */
+            /* 边框 */
+            border-color: var(--toc-border); /* 只修改边框颜色 */
+            border: 1px solid var(--toc-border);
+            /* 背景/颜色 */
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
         }
         /* 弹出菜单图标 */
         .toc-icon {
+            /* 定位 */
             position: fixed;
             bottom: 80px;
             right: 20px;
             z-index: 1000;
+            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            /* 边框 */
             border: 1px solid var(--toc-border);
             border-radius: 50%;
+            /* 背景/颜色 */
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
+            /* 阴影/变换/透明度 */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            /* 过渡 */
             transition: all 0.1s ease;
+            /* 其他 */
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
-        /* 弹出菜单图标悬停 */
         .toc-icon:hover {
+            /* 背景/颜色 */
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
         }
-        /* 弹出菜单图标按下 */
         .toc-icon:active {
+            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
-        /* 弹出菜单图标切换 */
         .toc-icon.active {
+            /* 背景/颜色 */
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
+            /* 阴影/变换/透明度 */
             transform: rotate(90deg);
         }
-        /* 弹出菜单图标内部 SVG */
         .toc-icon svg {
+            /* 布局 */
             width: 24px;
             height: 24px;
+            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -181,25 +214,33 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单左侧 h1 高亮竖条 */
         .toc-h1 {
+            /* 定位 */
             position: relative;
+            /* 布局 */
             padding-left: 10px;
         }
-        /* 弹出菜单左侧 h1 高亮竖条 */
         .toc-h1::after {
+            /* 定位 */
             position: absolute;
             top: 50%;
             left: 0;
+            /* 布局 */
             width: 3px;
             height: 60%;
+            /* 背景/颜色 */
             background-color: var(--toc-h1-after-bgColor);
+            /* 阴影/变换/透明度 */
             transform: translateY(-50%);
+            /* 其他 */
             content: '';
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
+            /* 定位 */
             position: fixed;
             right: 20px;
             z-index: 1000;
+            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
@@ -207,41 +248,54 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             padding: 0;
             margin: 0;
+            /* 边框 */
             border: 1px solid var(--toc-border);
             border-radius: 50%;
+            /* 背景/颜色 */
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
+            /* 阴影/变换/透明度 */
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             opacity: 0;
+            /* 过渡 */
             transition: all 0.1s ease;
+            /* 字体/文本 */
             font-size: 24px;
+            /* 其他 */
             visibility: hidden;
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
-        /* 向上按钮 */
         .back-to-top {
+            /* 定位 */
             bottom: 140px;
         }
-        /* 向下按钮 */
         .back-to-bot {
+            /* 定位 */
             bottom: 20px;
         }
-        /* 向上向下按钮悬停 */
+        .back-to-top.show, .back-to-bot.show {
+            /* 阴影/变换/透明度 */
+            opacity: 1;
+            /* 其他 */
+            visibility: visible;
+        }
         .back-to-top:hover, .back-to-bot:hover {
+            /* 背景/颜色 */
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
         }
-        /* 向上向下按钮按下 */
         .back-to-top:active, .back-to-bot:active {
+            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
-        /* 向上向下按钮内部 SVG */
         .back-to-top svg, .back-to-bot svg {
+            /* 布局 */
             width: 24px;
             height: 24px;
+            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -250,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         @media (max-width: 768px) {
             .toc {
+                /* 布局 */
                 width: 200px;
                 max-height: 50vh;
             }
