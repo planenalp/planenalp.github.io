@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border: 1px solid var(--toc-border);
             border-radius: 6px;
             background-color: var(--toc-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
             visibility: hidden;
@@ -152,11 +152,11 @@ document.addEventListener("DOMContentLoaded", function() {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--toc-icon-color);
+            border: 1px solid var(--toc-border);
             border-radius: 50%;
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             transition: all 0.1s ease;
             cursor: pointer;
             user-select: none;
@@ -214,11 +214,11 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             padding: 0;
             margin: 0;
-            border: 1px solid var(--toc-icon-color);
+            border: 1px solid var(--toc-border);
             border-radius: 50%;
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             opacity: 0;
             visibility: hidden;
             transition: all 0.1s ease;
