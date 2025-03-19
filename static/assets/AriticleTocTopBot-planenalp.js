@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
         /* light 主题颜色 */
         :root {
             --color-toc-a-text: #24292f;
-            --color-toc-bg: #f6f8facc;
+            --color-toc-bg: #ffffffcc;
             --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #f3f4f6;
