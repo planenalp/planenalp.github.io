@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #f3f4f6;
-            --color-toc-a+icon-hover-border: rgba(31, 35, 40, 0.15);
+            --color-toc-hover-border: rgba(31, 35, 40, 0.15);
             --color-toc-icon-bgColor: #f6f8fab3;
             --color-toc-icon-color: #656d76b3;
             --color-toc-icon-hover-color: #656d76;
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
-            --color-toc-a+icon-hover-border: #8b949e;
+            --color-toc-hover-border: #8b949e;
             --color-toc-icon-bgColor: #21262db3;
             --color-toc-icon-color: #8b949eb3;
             --color-toc-icon-hover-color: #8b949e;
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
-            border-color: var(--color-toc-a+icon-hover-border); /* 只修改边框颜色 */
+            border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText-Color);
         }
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc-icon:hover {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
-            border: 1px solid var(--color-toc-a+icon-hover-border);
+            border: 1px solid var(--color-toc-hover-border);
         }
         .toc-icon:active {
             transform: scale(0.9);
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc-icon.active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
-            border: 1px solid var(--color-toc-a+icon-hover-border);
+            border: 1px solid var(--color-toc-hover-border);
             transform: rotate(90deg);
         }
         .toc-icon svg {
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .back-to-top:hover, .back-to-bot:hover {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
-            border: 1px solid var(--color-toc-a+icon-hover-border);
+            border: 1px solid var(--color-toc-hover-border);
         }
         .back-to-top:active, .back-to-bot:active {
             transform: scale(0.9);
