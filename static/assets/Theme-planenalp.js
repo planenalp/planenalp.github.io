@@ -137,6 +137,16 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.05);
             box-shadow: var(--box-shadow);
         }
+
+        /* 弹起动画时长 */
+        .SideNav-item {
+            transition: 0.1s;
+        }
+
+        /* 右上角按钮触碰颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btnSideNav-hover-bgColor);
+        }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
