@@ -68,150 +68,119 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
         :root {
-            /* 其他：自定义变量 */
-            --toc-bg: #FFFFFFCC;
-            --toc-border: rgba(31, 35, 40, 0.15);
-            --toc-a-text: #24292f;
-            --toc-a-hover: #eceff1;
+            --toc-bg: rgba(255, 255, 255, 0.8);
+            --toc-border: #E1E4E8;
+            --toc-a-text: #1F2328;
+            --toc-a-hover: #002FA7CC;
             --toc-icon-bgColor: #FFFFFFB3;
-            --toc-icon-color: #656d76B3;
-            --toc-icon-hover-bgColor: #eceff1;
-            --toc-icon-hover-color: #656d76CC;
-            --toc-h1-after-bgColor: #656d76CC;
-            --toc-highlightText-Color: #24292f;
+            --toc-icon-color: #656D76B3;
+            --toc-icon-hover-bgColor: #002FA7CC;
+            --toc-icon-hover-color: #FFFFFFCC;
+            --toc-h1-after-bgColor: #007FFF;
+            --toc-highlightText-Color: #FFFFFF;
         }
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            /* 其他：自定义变量 */
             --toc-bg: #21262DCC;
             --toc-border: rgba(240, 246, 252, 0.1);
             --toc-a-text: #C9D1D9;
-            --toc-a-hover: #30363d;
+            --toc-a-hover: #002FA7CC;
             --toc-icon-bgColor: #21262DB3;
             --toc-icon-color: rgba(240, 246, 252, 0.1);
-            --toc-icon-hover-bgColor: #30363d;
+            --toc-icon-hover-bgColor: #002FA7CC;
             --toc-icon-hover-color: #8B949ECC;
-            --toc-h1-after-bgColor: #8b949e;
+            --toc-h1-after-bgColor: #007FFF;
             --toc-highlightText-Color: #FFFFFF;
         }
         /* 弹出菜单主体 */
         .toc {
-            /* 定位 */
             position: fixed;
             bottom: 100px;
             right: 60px;
             z-index: 1000;
-            /* 布局 */
             width: 250px;
             max-height: 70vh;
             padding: 10px;
             overflow-y: auto;
-            /* 边框 */
             border: 1px solid var(--toc-border);
             border-radius: 6px;
-            /* 背景/颜色 */
             background-color: var(--toc-bg);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            /* 过渡 */
-            transition: all 0.1s ease;
-            /* 其他 */
             visibility: hidden;
+            transition: all 0.1s ease;
             //backdrop-filter: blur(15px); //模糊弹出菜单背景
         }
         .toc.show {
-            /* 阴影/变换/透明度 */
             transform: translateY(0);
             opacity: 1;
-            /* 其他 */
             visibility: visible;
         }
         /* 弹出菜单内部 */
         .toc a {
-            /* 布局 */
             display: block;
             padding: 5px;
-            /* 边框 */
             border-radius: 6px;
-            /* 背景/颜色 */
             color: var(--toc-a-text);
-            /* 过渡 */
             transition: all 0.1s ease;
-            /* 字体/文本 */
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
         }
         /* 弹出菜单鼠标悬停高亮 */
         .toc a:hover {
-            /* 边框 */
-            border-color: 1px solid var(--toc-border);
-            /* 背景/颜色 */
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
+            transform:translate(1px,1px);
         }
         /* 弹出菜单滚动高亮 */
         .toc-link.toc-active {
-            /* 边框 */
-            border-color: 1px solid var(--toc-border);
-            /* 背景/颜色 */
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
         }
         /* 弹出菜单图标 */
         .toc-icon {
-            /* 定位 */
             position: fixed;
             bottom: 80px;
             right: 20px;
             z-index: 1000;
-            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* 边框 */
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--toc-icon-color);
             border-radius: 50%;
-            /* 背景/颜色 */
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            /* 过渡 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: all 0.1s ease;
-            /* 其他 */
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
         .toc-icon:hover {
-            /* 背景/颜色 */
+            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
+            /* transform: scale(1.1); */
         }
         .toc-icon:active {
-            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
         .toc-icon.active {
-            /* 背景/颜色 */
+            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
-            /* 阴影/变换/透明度 */
             transform: rotate(90deg);
         }
         .toc-icon svg {
-            /* 布局 */
             width: 24px;
             height: 24px;
-            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -220,33 +189,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         /* 弹出菜单左侧 h1 高亮竖条 */
         .toc-h1 {
-            /* 定位 */
             position: relative;
-            /* 布局 */
             padding-left: 10px;
         }
         .toc-h1::after {
-            /* 定位 */
+            content: '';
             position: absolute;
             top: 50%;
             left: 0;
-            /* 布局 */
             width: 3px;
             height: 60%;
-            /* 背景/颜色 */
             background-color: var(--toc-h1-after-bgColor);
-            /* 阴影/变换/透明度 */
             transform: translateY(-50%);
-            /* 其他 */
-            content: '';
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
-            /* 定位 */
             position: fixed;
             right: 20px;
             z-index: 1000;
-            /* 布局 */
             width: 40px;
             height: 40px;
             display: flex;
@@ -254,54 +214,42 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             padding: 0;
             margin: 0;
-            /* 边框 */
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--toc-icon-color);
             border-radius: 50%;
-            /* 背景/颜色 */
             background-color: var(--toc-icon-bgColor);
             color: var(--toc-icon-color);
-            /* 阴影/变换/透明度 */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
             opacity: 0;
-            /* 过渡 */
-            transition: all 0.1s ease;
-            /* 字体/文本 */
-            font-size: 24px;
-            /* 其他 */
             visibility: hidden;
+            transition: all 0.1s ease;
+            font-size: 24px;
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
         .back-to-top {
-            /* 定位 */
             bottom: 140px;
         }
         .back-to-bot {
-            /* 定位 */
             bottom: 20px;
         }
         .back-to-top.show, .back-to-bot.show {
-            /* 阴影/变换/透明度 */
             opacity: 1;
-            /* 其他 */
             visibility: visible;
         }
         .back-to-top:hover, .back-to-bot:hover {
-            /* 背景/颜色 */
+            border-color: var(--toc-icon-hover-color);
             background-color: var(--toc-icon-hover-bgColor);
             color: var(--toc-icon-hover-color);
+            /* transform: scale(1.1); */
         }
         .back-to-top:active, .back-to-bot:active {
-            /* 阴影/变换/透明度 */
             transform: scale(0.9);
         }
         .back-to-top svg, .back-to-bot svg {
-            /* 布局 */
             width: 24px;
             height: 24px;
-            /* 其他（SVG专用属性） */
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -310,9 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         @media (max-width: 768px) {
             .toc {
-                /* 布局 */
                 width: 200px;
-                max-height: 50vh;
+                max-height: 40vh;
             }
         }
     `;
