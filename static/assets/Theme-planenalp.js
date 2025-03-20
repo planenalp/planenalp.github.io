@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
+            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
-            --avatarURL: url("https://klein.blue/avatar.svg");
+            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
         
         /* header布局 */
