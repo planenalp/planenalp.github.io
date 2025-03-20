@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
+            --body-bgColor: rgba(255, 255, 255, 0.7); /* 白色背景，透明度70% */
             --header-bgColor: unset;
             --blogTitle-color: #002FA7;
             --subTitle-color: #002FA7;
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
@@ -34,6 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
             background-size: cover;
+        }
+
+        /* 主体布局 */
+        body {
+            background: var(--body-bgColor);
+            box-shadow: var(--box-shadow);
         }
         
         /* header布局 */
@@ -56,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* avatar尺寸 */
-        /* 若保留圆形实心旋转 Avatar 效果就仅保留 .avatar 及 width + height 参数，其余参数和 .avatar:hover 和 .avatar:active 删除 */
+        /* 若保留圆形实心旋转 Avatar 效果就仅保留 .avatar 及 width + height 参数，其余参数和 #avatarImg 和 .avatar:hover 和 .avatar:active 删除 */
         .avatar {
             width: 100px;
             height: 100px;
