@@ -5,8 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
-    //主页主题------------------------------------------------------------------------------
+    // 新增：随机背景函数 ------------------------------------------
+    function updateRandomBackground() {
+        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
+        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
+        const totalImages = 3; // 根据实际图片数量修改
+        
+        const randomNum = Math.floor(Math.random() * totalImages) + 1;
+        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
+        
+        document.documentElement.style.setProperty('--bgURL', bgUrl);
+    }
+
+    // 新增：主题变化监听 ------------------------------------------
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'data-color-mode' || 
+                mutation.attributeName === 'data-light-theme') {
+                updateRandomBackground();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true });
     
+    //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
         console.log('应用主页主题');
         let style = document.createElement("style");
@@ -14,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
-            --bgURL: url("https://planenalp.github.io/bgLight.webp");
+            /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
             --blogTitle-color: #002fa7;
@@ -29,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --bgURL: url("https://planenalp.github.io/bgDark.webp");
+            /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
             --blogTitle-color: #ffffff;
@@ -174,6 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         `;
         document.head.appendChild(style);
+        
+        // 新增：初始化随机背景
+        updateRandomBackground();
     }
 
 
