@@ -146,10 +146,18 @@ document.addEventListener("DOMContentLoaded", function() {
             line-height: 1.5;
             text-decoration: none;
         }
-        /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
-        .toc a:hover, .toc-link.toc-active {
+        /* 弹出菜单鼠标悬停高亮 */
+        .toc a:hover {
             /* 边框 */
-            border-color: 1px solid var(--toc-border); /* 只修改边框颜色 */
+            border-color: 1px solid var(--toc-border);
+            /* 背景/颜色 */
+            background-color: var(--toc-a-hover);
+            color: var(--toc-highlightText-Color);
+        }
+        /* 弹出菜单滚动高亮 */
+        .toc-link.toc-active {
+            /* 边框 */
+            border-color: 1px solid var(--toc-border);
             /* 背景/颜色 */
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
