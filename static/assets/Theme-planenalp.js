@@ -1,7 +1,52 @@
 //允许移动端实现图标按压特效
 document.addEventListener('touchstart', function() {}, false);
 
-document.addEventListener('DOMContentLoaded', function() {    
+document.addEventListener('DOMContentLoaded', function() {  
+
+    // ==================== 新增：主题控制逻辑 START ====================
+    // 覆盖主题配置
+    window.themeSettings = {
+        "dark": ["dark","moon","#00f0ff","dark-blue"],
+        "light": ["light","sun","#ff5000","github-light"]
+    };
+
+    // 重写切换函数
+    window.modeSwitch = function() {
+        const currentMode = document.documentElement.getAttribute('data-color-mode');
+        const newMode = currentMode === "light" ? "dark" : "light";
+        localStorage.setItem("meek_theme", newMode);
+        window.changeTheme(...themeSettings[newMode]);
+    }
+
+    // 劫持localStorage
+    const originalGetItem = localStorage.getItem;
+    localStorage.getItem = function(key) {
+        if(key === "meek_theme") {
+            const value = originalGetItem.call(localStorage, key);
+            return value === "auto" ? "light" : value;
+        }
+        return originalGetItem.apply(localStorage, arguments);
+    };
+
+    // 实时监控DOM变化
+    new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if(mutation.attributeName === "data-color-mode" && 
+               document.documentElement.getAttribute("data-color-mode") === "auto") {
+                document.documentElement.setAttribute("data-color-mode", "light");
+            }
+        });
+    }).observe(document.documentElement, { attributes: true });
+
+    // 初始化清理
+    if(document.documentElement.getAttribute("data-color-mode") === "auto") {
+        document.documentElement.setAttribute("data-color-mode", "light");
+    }
+    if(localStorage.getItem("meek_theme") === "auto") {
+        localStorage.setItem("meek_theme", "light");
+    }
+    // ==================== 新增：主题控制逻辑 END ====================
+    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
