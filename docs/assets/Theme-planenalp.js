@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
-            --avatarImg: url(https://klein.blue/avatar.svg) !important;
+            --avatarImg: url(https://godpan.com/avatar.svg) !important;
         }
         
         /* header布局 */
