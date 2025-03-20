@@ -14,33 +14,37 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
+            --bgURL: url("https://planenalp.github.io/bgLight.webp");
+            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: rgba(255, 255, 255, 0.7); /* 白色背景，透明度70% */
             --header-bgColor: unset;
             --blogTitle-color: #002FA7;
             --subTitle-color: #002FA7;
             --SideNav-bgColor: rgba(255, 255, 255, 0.8); /* 白色背景，透明度80% */
-            --btnSideNav-hover-bgColor: #002fa7b3; /* 高亮颜色 70% */
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --bgURL: url("https://planenalp.github.io/bgDark.webp");
+            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
             --header-bgColor: unset;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
-            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色默认 */
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
-            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
 
         /* 背景图 */
         html {    
-            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -134,9 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 主页文章列表悬停高亮 */
         .SideNav-item:hover {
             background-color: var(--btnSideNav-hover-bgColor);
-            transform: scale(1.05);
+            color: var(--text-hover-color);
+            transform: scale(1.01);
             box-shadow: var(--box-shadow);
-            transition: 0.1s;
+            transition: 0.1s; /* 弹起动画时长 */
         }
 
         /* 右上角按钮触碰颜色 */
