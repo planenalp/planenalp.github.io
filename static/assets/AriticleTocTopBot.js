@@ -67,32 +67,34 @@ function toggleTOC() {
 document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
+        /* light 主题颜色 */
         :root {
-            --toc-bg: #FFFFFFCC;
-            --toc-border: rgba(31, 35, 40, 0.15);
-            --toc-a-text: #24292f;
-            --toc-a-hover: #eceff1;
-            --toc-icon-bgColor: #FFFFFFB3;
-            --toc-icon-color: #656d76B3;
-            --toc-icon-hover-bgColor: #eceff1;
-            --toc-icon-hover-color: #656d76CC;
-            --toc-h1-after-bgColor: #656d76CC;
-            --toc-highlightText-Color: #24292f;
+            --color-toc-a-text: #24292f;
+            --color-toc-bg: #ffffffcc;
+            --color-toc-border: rgba(31, 35, 40, 0.15);
+            --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            --color-toc-hover-bg: #f3f4f6;
+            --color-toc-hover-border: rgba(31, 35, 40, 0.15);
+            --color-toc-icon-bg: #f6f8fab3;
+            --color-toc-icon-color: #656d76b3;
+            --color-toc-icon-hover-color: #656d76;
+            --color-toc-highlightText: #24292f;
         }
+        /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --toc-bg: #21262DCC;
-            --toc-border: rgba(240, 246, 252, 0.1);
-            --toc-a-text: #C9D1D9;
-            --toc-a-hover: #30363d;
-            --toc-icon-bgColor: #21262DB3;
-            --toc-icon-color: rgba(240, 246, 252, 0.1);
-            --toc-icon-hover-bgColor: #30363d;
-            --toc-icon-hover-color: #8B949ECC;
-            --toc-h1-after-bgColor: #8b949e;
-            --toc-highlightText-Color: #FFFFFF;
+            --color-toc-a-text: #c9d1d9;
+            --color-toc-bg: #21262dcc;
+            --color-toc-border: rgba(240, 246, 252, 0.1);
+            --color-toc-box-shadow: 0 0 transparent;
+            --color-toc-hover-bg: #30363d;
+            --color-toc-hover-border: #8b949e;
+            --color-toc-icon-bg: #21262db3;
+            --color-toc-icon-color: #8b949eb3;
+            --color-toc-icon-hover-color: #8b949e;
+            --color-toc-highlightText: #c9d1d9;
         }
         /* 弹出菜单主体 */
         .toc {
@@ -104,15 +106,15 @@ document.addEventListener("DOMContentLoaded", function() {
             max-height: 70vh;
             padding: 10px;
             overflow-y: auto;
-            border: 1px solid var(--toc-border);
+            border: 1px solid var(--color-toc-border);
             border-radius: 6px;
-            background-color: var(--toc-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--color-toc-bg);
+            box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            visibility: hidden;
             transition: all 0.1s ease;
-            //backdrop-filter: blur(15px); //模糊弹出菜单背景
+            visibility: hidden;
+            /* backdrop-filter: blur(15px); 模糊弹出菜单背景 */
         }
         .toc.show {
             transform: translateY(0);
@@ -123,23 +125,19 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a {
             display: block;
             padding: 5px;
+            border: 1px solid transparent; /* 初始状态设置透明边框占位 */
             border-radius: 6px;
-            color: var(--toc-a-text);
+            color: var(--color-toc-a-text);
             transition: all 0.1s ease;
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
         }
-        /* 弹出菜单鼠标悬停高亮 */
-        .toc a:hover {
-            background-color: var(--toc-a-hover);
-            color: var(--toc-highlightText-Color);
-            transform:translate(1px,1px);
-        }
-        /* 弹出菜单滚动高亮 */
-        .toc-link.toc-active {
-            background-color: var(--toc-a-hover);
-            color: var(--toc-highlightText-Color);
+        /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
+        .toc a:hover, .toc-link.toc-active {
+            border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-highlightText);
         }
         /* 弹出菜单图标 */
         .toc-icon {
@@ -152,11 +150,11 @@ document.addEventListener("DOMContentLoaded", function() {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--toc-icon-color);
+            border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            background-color: var(--toc-icon-bgColor);
-            color: var(--toc-icon-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: var(--color-toc-icon-bg);
+            color: var(--color-toc-icon-color);
+            box-shadow: var(--color-toc-box-shadow);
             transition: all 0.1s ease;
             cursor: pointer;
             user-select: none;
@@ -164,19 +162,18 @@ document.addEventListener("DOMContentLoaded", function() {
             outline: none;
         }
         .toc-icon:hover {
-            border-color: var(--toc-icon-hover-color);
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
-            /* transform: scale(1.1); */
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-hover-border);
         }
         .toc-icon:active {
             transform: scale(0.9);
         }
         .toc-icon.active {
-            border-color: var(--toc-icon-hover-color);
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
-            transform: rotate(90deg);
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-hover-border);
+            transform: scale(0.9) rotate(90deg);
         }
         .toc-icon svg {
             width: 24px;
@@ -193,14 +190,14 @@ document.addEventListener("DOMContentLoaded", function() {
             padding-left: 10px;
         }
         .toc-h1::after {
-            content: '';
             position: absolute;
             top: 50%;
             left: 0;
             width: 3px;
             height: 60%;
-            background-color: var(--toc-h1-after-bgColor);
+            background-color: var(--color-toc-icon-hover-color);
             transform: translateY(-50%);
+            content: '';
         }
         /* 向上向下按钮 */
         .back-to-top, .back-to-bot {
@@ -214,15 +211,15 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             padding: 0;
             margin: 0;
-            border: 1px solid var(--toc-icon-color);
+            border: 1px solid var(--color-toc-border);
             border-radius: 50%;
-            background-color: var(--toc-icon-bgColor);
-            color: var(--toc-icon-color);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            background-color: var(--color-toc-icon-bg);
+            color: var(--color-toc-icon-color);
+            box-shadow: var(--color-toc-box-shadow);
             opacity: 0;
-            visibility: hidden;
             transition: all 0.1s ease;
             font-size: 24px;
+            visibility: hidden;
             cursor: pointer;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -239,10 +236,9 @@ document.addEventListener("DOMContentLoaded", function() {
             visibility: visible;
         }
         .back-to-top:hover, .back-to-bot:hover {
-            border-color: var(--toc-icon-hover-color);
-            background-color: var(--toc-icon-hover-bgColor);
-            color: var(--toc-icon-hover-color);
-            /* transform: scale(1.1); */
+            background-color: var(--color-toc-hover-bg);
+            color: var(--color-toc-icon-hover-color);
+            border: 1px solid var(--color-toc-hover-border);
         }
         .back-to-top:active, .back-to-bot:active {
             transform: scale(0.9);
@@ -259,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
         @media (max-width: 768px) {
             .toc {
                 width: 200px;
-                max-height: 40vh;
+                max-height: 50vh;
             }
         }
     `;
