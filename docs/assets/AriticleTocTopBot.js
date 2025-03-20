@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
             box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            transition: all 0.1s ease;
+            transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
             visibility: hidden;
             /* backdrop-filter: blur(15px); 模糊弹出菜单背景 */
         }
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border: 1px solid transparent; /* 初始状态设置透明边框占位 */
             border-radius: 6px;
             color: var(--color-toc-a-text);
-            transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
+            transition: background-color 0.1s ease;
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
