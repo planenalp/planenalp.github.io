@@ -69,32 +69,32 @@ document.addEventListener("DOMContentLoaded", function() {
     const combinedCss = `
         /* light 主题颜色 */
         :root {
-            --color-toc-a-text: #24292f;
-            --color-toc-bg: #f6f8facc;
-            --color-toc-border: rgba(31, 35, 40, 0.15);
-            --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            --color-toc-hover-bg: #f3f4f6;
-            --color-toc-hover-border: rgba(31, 35, 40, 0.15);
+            --color-toc-a-text: #1f2328;
+            --color-toc-bg: #ffffffcc;
+            --color-toc-border: #d1d9e0;
+            --color-toc-box-shadow: 0px 1px 0px 0px #1f23280a;
+            --color-toc-hover-bg: #818b981a;
+            --color-toc-hover-border: #d1d9e0;
             --color-toc-icon-bg: #f6f8fab3;
-            --color-toc-icon-color: #656d76b3;
-            --color-toc-icon-hover-color: #656d76;
-            --color-toc-highlightText: #24292f;
+            --color-toc-icon-color: #25292eb3;
+            --color-toc-icon-hover-color: #eff2f5;
+            --color-toc-highlightText: #1f2328;
         }
         /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --color-toc-a-text: #c9d1d9;
-            --color-toc-bg: #21262dcc;
-            --color-toc-border: rgba(240, 246, 252, 0.1);
-            --color-toc-box-shadow: 0 0 transparent;
-            --color-toc-hover-bg: #30363d;
-            --color-toc-hover-border: #8b949e;
-            --color-toc-icon-bg: #21262db3;
-            --color-toc-icon-color: #8b949eb3;
-            --color-toc-icon-hover-color: #8b949e;
-            --color-toc-highlightText: #c9d1d9;
+            --color-toc-a-text: #f0f6fc;
+            --color-toc-bg: #0d1117cc;
+            --color-toc-border: #3d444d;
+            --color-toc-box-shadow: 0px 0px 0px 0px #000000;
+            --color-toc-hover-bg: #656c761a;
+            --color-toc-hover-border: #3d444d;
+            --color-toc-icon-bg: #212830b3;
+            --color-toc-icon-color: #f0f6fcb3;
+            --color-toc-icon-hover-color: #262c36;
+            --color-toc-highlightText: #f0f6fc;
         }
         /* 弹出菜单主体 */
         .toc {
