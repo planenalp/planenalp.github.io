@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
+            --avatarImg: url(https://klein.blue/avatar.svg) !important;
         }
         
         /* header布局 */
@@ -57,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: transparent !important; /* 强制清除背景颜色 */
             border-radius: unset !important; /* 强制清除圆形框设置 */
             box-shadow: none !important; /* 强制清除边框 */
+        }
+        #avatarImg {
+            content: var(--avatarImg);
         }
 
         .avatar:hover {
