@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function() {
             display: block;
             padding: 5px;
             /* 边框 */
-            border: 1px solid transparent; /* 初始状态设置透明边框占位 */
             border-radius: 6px;
             /* 背景/颜色 */
             color: var(--toc-a-text);
