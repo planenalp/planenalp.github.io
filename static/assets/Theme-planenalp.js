@@ -72,6 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* avatar尺寸 */
         /* 若保留圆形实心旋转 Avatar 效果就仅保留 .avatar 及 width + height 参数，其余参数和 #avatarImg 和 .avatar:hover 和 .avatar:active 删除 */
+        #avatarImg {
+            content: var(--avatarURL) !important;
+        }
+        
         .avatar {
             width: 100px;
             height: 100px;
@@ -81,11 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset !important; /* 强制清除圆形框设置 */
             box-shadow: none !important; /* 强制清除边框 */
         }
-        
-        #avatarImg {
-            content: var(--avatarURL) !important;
-        }
-        
+
         .avatar:hover {
             transform: scale(1.1) !important;
         }
@@ -138,6 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.01);
             box-shadow: var(--box-shadow);
             transition: 0.1s; /* 弹起动画时长 */
+        }
+
+        .SideNav-item:active {
+            transform: scale(0.9);
         }
 
         /* 右上角按钮触碰颜色 */
