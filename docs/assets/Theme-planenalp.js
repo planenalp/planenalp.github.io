@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
-            --header-bgColor: #002FA7;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --header-bgColor: #FFFFFF;
+            --blogTitle-color: #002FA7;
+            --subTitle-color: #002FA7;
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
         }
         /* 暗主题配色 */
