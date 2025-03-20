@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
             --subTitle-color: #FFFFFF;
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
+
+        /* 背景图 */
+        html {    
+            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
         
         /* header布局 */
         #header {
@@ -150,6 +156,12 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --postTitle-color: #FFFFFF;
         }
+
+        /* 背景图 */
+        html {    
+            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
         
         /* 顶栏改色 */
         #header {
@@ -203,6 +215,12 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --header-bgColor: #002FA7;
             --tagTitle-color: #FFFFFF;
+        }
+
+        /* 背景图 */
+        html {    
+            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background-size: cover;
         }
         
         /* 顶栏改色 */
