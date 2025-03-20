@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 主页文章列表悬停高亮 */
         .SideNav-item:hover {
             background-color: var(--btnSideNav-hover-bgColor);
+            transform: scale(1.05);
             box-shadow: var(--box-shadow);
             transition: 0.1s;
         }
