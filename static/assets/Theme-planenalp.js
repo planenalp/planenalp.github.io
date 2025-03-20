@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .SideNav-item:active {
-            transform: scale(0.9);
+            transform: scale(1.0);
         }
 
         /* 右上角按钮触碰背景颜色 */
