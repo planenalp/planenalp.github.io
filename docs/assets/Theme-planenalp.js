@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 这里可以选择默认值，例如：
         // 自动检测系统偏好：如果系统偏好 dark 则使用 dark，否则使用 light
         const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        htmlEl.setAttribute('data-color-mode', isDark ? 'dark' : 'light');
+        htmlEl.setAttribute('data-color-mode', isDark ? 'light' : 'dark');
 
         // 或者直接强制设置为固定值，例如：
         // htmlEl.setAttribute('data-color-mode', 'light');
