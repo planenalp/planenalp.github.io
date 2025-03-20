@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
-            --header-bgColor: #002FA7;
+            --header-bgColor: unset;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
-            --btnSideNav-hover-bgColor: unset; /* 高亮颜色默认 */
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色默认 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
