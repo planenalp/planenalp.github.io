@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
+            transition: transform 0.1s ease, opacity 0.1s ease;
         }
         /* 弹出菜单图标 */
         .toc-icon {
