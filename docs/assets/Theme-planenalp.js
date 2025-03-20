@@ -16,11 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
         :root {
             --bgURL: url("https://planenalp.github.io/bgLight.webp");
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
-            --body-bgColor: rgba(255, 255, 255, 0.7); /* 白色背景，透明度70% */
-            --header-bgColor: unset;
-            --blogTitle-color: #002FA7;
-            --subTitle-color: #002FA7;
-            --SideNav-bgColor: rgba(255, 255, 255, 0.8); /* 白色背景，透明度80% */
+            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
+            --blogTitle-color: #002fa7;
+            --subTitle-color: #002fa7;
+            --SideNav-bgColor: #ffffffcc; /* 白色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
@@ -33,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             --bgURL: url("https://planenalp.github.io/bgDark.webp");
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
-            --header-bgColor: unset;
-            --blogTitle-color: #FFFFFF;
-            --subTitle-color: #FFFFFF;
+            --blogTitle-color: #ffffff;
+            --subTitle-color: #ffffff;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         #header {
             height: 175px;
             position: relative; /* 父元素 #header 设置定位 */
-            background-color: var(--header-bgColor);
             border-bottom: unset;
             margin-bottom: unset;
         }
@@ -124,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         #content > div {
             margin-bottom: unset !important;
             text-align: center;  /* 子元素（副标题）水平居中 */
-            background-color: var(--header-bgColor);
             height: 75px;
             color: var(--subTitle-color);
         }
