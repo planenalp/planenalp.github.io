@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --color-toc-a-text: #c9d1d9;
-            --color-toc-bg: #21262dcc;
+            --color-toc-bg: #000000cc;
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
-            transform: scale(0.9) rotate(90deg);
+            transform: rotate(90deg);
         }
         .toc-icon svg {
             width: 24px;
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: var(--color-toc-icon-color);
             box-shadow: var(--color-toc-box-shadow);
             opacity: 0;
-            transition: all 0.1s ease;
+            transition: transform 0.1s ease, opacity 0.1s ease;
             font-size: 24px;
             visibility: hidden;
             cursor: pointer;
