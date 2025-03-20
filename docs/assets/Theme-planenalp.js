@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
+    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
     // 新增：随机背景函数 ------------------------------------------
     function updateRandomBackground() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
@@ -28,6 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     observer.observe(document.documentElement, { attributes: true });
+    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
+
+
+    ////////// 禁用 auto 主题 start //////////
+    const htmlEl = document.documentElement;
+    // 如果当前设置为 auto，则根据系统偏好或默认值来设置为 light 或 dark
+    if (htmlEl.getAttribute('data-color-mode') === 'auto') {
+        // 这里可以选择默认值，例如：
+        // 自动检测系统偏好：如果系统偏好 dark 则使用 dark，否则使用 light
+        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        htmlEl.setAttribute('data-color-mode', isDark ? 'dark' : 'light');
+
+        // 或者直接强制设置为固定值，例如：
+        // htmlEl.setAttribute('data-color-mode', 'light');
+    }
+    ////////// 禁用 auto 主题 end //////////
+
+
+    
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
@@ -198,8 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
         
+        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
         // 新增：初始化随机背景
         updateRandomBackground();
+        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
     }
 
 
