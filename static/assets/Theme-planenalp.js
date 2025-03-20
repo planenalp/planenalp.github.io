@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 默认亮主题配色 */
         :root {
-            --bgURL: url("https://planenalp.github.io/bgLight.webp");
+            /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
             --blogTitle-color: #002fa7;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --bgURL: url("https://planenalp.github.io/bgDark.webp");
+            /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
             --blogTitle-color: #ffffff;
@@ -196,6 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         `;
         document.head.appendChild(style);
+        
+        // 新增：初始化随机背景
+        updateRandomBackground();
     }
 
 
