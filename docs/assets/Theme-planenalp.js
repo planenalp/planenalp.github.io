@@ -148,21 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .btn-invisible:hover {
             background-color: var(--btnSideNav-hover-bgColor);
         }
-
-        /* 右上角按钮触碰图标颜色 */
-        .btn .octicon:hover {
-            color: var(--text-hover-color);
-        }
-
-        //全部图标颜色
-        .octicon {
-            fill: #8b949e;
-        }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
             body {
                 padding: 8px !important;
+            }
+            .avatar {
+                width:100px !important;
+                height:100px !important;
             }
             .blogTitle{
                 display:unset !important;
