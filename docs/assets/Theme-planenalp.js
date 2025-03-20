@@ -153,6 +153,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .btn .octicon:hover {
             color: var(--text-hover-color);
         }
+
+        //全部图标颜色
+        .octicon {
+            fill: #8b949e;
+        }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
