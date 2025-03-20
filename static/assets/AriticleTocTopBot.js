@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
             /* 边框 */
-            border-color: var(--toc-border); /* 只修改边框颜色 */
+            border-color: 1px solid var(--toc-border); /* 只修改边框颜色 */
             /* 背景/颜色 */
             background-color: var(--toc-a-hover);
             color: var(--toc-highlightText-Color);
