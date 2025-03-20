@@ -126,17 +126,17 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a {
             display: block;
             padding: 5px;
-            border: 1px solid transparent; /* 初始状态设置透明边框占位-防止菜单选项跳动 */
+            border: 1px solid transparent; /* 初始状态设置透明边框占位-防止菜单选项乱跳 */
             border-radius: 6px;
             color: var(--color-toc-a-text);
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* 适当延长过渡动画缓冲滚动动效 */
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
         }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
-            border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项跳动 */
+            border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
         }
