@@ -264,13 +264,6 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        /* 移动端微调菜单尺寸 */
-        @media (max-width: 768px) {
-            .toc {
-                width: 200px;
-                max-height: 50vh;
-            }
-        }
     `;
     loadResource('style', { css: combinedCss });
 
