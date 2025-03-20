@@ -116,12 +116,13 @@ document.addEventListener("DOMContentLoaded", function() {
             visibility: hidden;
             /* backdrop-filter: blur(15px); 模糊弹出菜单背景 */
         }
+        /* 弹出菜单动画 */
         .toc.show {
             transform: translateY(0);
             opacity: 1;
             visibility: visible;
         }
-        /* 弹出菜单内部 */
+        /* 弹出菜单主体 */
         .toc a {
             display: block;
             padding: 5px;
@@ -161,20 +162,24 @@ document.addEventListener("DOMContentLoaded", function() {
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
+        /* 弹出菜单图标悬停状态 */
         .toc-icon:hover {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
         }
+        /* 弹出菜单图标按压状态 */
         .toc-icon:active {
             transform: scale(0.9);
         }
+        /* 弹出菜单图标激活状态 */
         .toc-icon.active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
             transform: rotate(90deg);
         }
+        /* 弹出菜单图标样式 */
         .toc-icon svg {
             width: 24px;
             height: 24px;
@@ -184,11 +189,12 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        /* 弹出菜单左侧 h1 高亮竖条 */
+        /* 弹出菜单左侧 h1 高亮竖条位置 */
         .toc-h1 {
             position: relative;
             padding-left: 10px;
         }
+        /* 弹出菜单左侧 h1 高亮竖条样式 */
         .toc-h1::after {
             position: absolute;
             top: 50%;
@@ -225,24 +231,30 @@ document.addEventListener("DOMContentLoaded", function() {
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
+        /* 向上按钮位置 */
         .back-to-top {
             bottom: 140px;
         }
+        /* 向下按钮位置 */
         .back-to-bot {
             bottom: 20px;
         }
+        /* 向上向下按钮动画 */
         .back-to-top.show, .back-to-bot.show {
             opacity: 1;
             visibility: visible;
         }
+        /* 向上向下按钮悬停状态 */
         .back-to-top:hover, .back-to-bot:hover {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
         }
+        /* 弹出菜单图标按压状态 */
         .back-to-top:active, .back-to-bot:active {
             transform: scale(0.9);
         }
+        /* 弹出菜单图标样式 */
         .back-to-top svg, .back-to-bot svg {
             width: 24px;
             height: 24px;
@@ -252,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+        /* 移动端微调菜单尺寸 */
         @media (max-width: 768px) {
             .toc {
                 width: 200px;
