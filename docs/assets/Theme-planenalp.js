@@ -144,9 +144,14 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(0.9);
         }
 
-        /* 右上角按钮触碰颜色 */
+        /* 右上角按钮触碰背景颜色 */
         .btn-invisible:hover {
             background-color: var(--btnSideNav-hover-bgColor);
+        }
+
+        /* 右上角按钮触碰图标颜色 */
+        .btn .octicon:hover {
+            color: var(--text-hover-color);
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
