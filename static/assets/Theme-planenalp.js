@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: unset;
             --blogTitle-color: #002FA7;
             --subTitle-color: #002FA7;
+            --SideNav-bgColor: rgba(255, 255, 255, 0.8); /* 白色背景，透明度80% */
+            --btnSideNav-hover-bgColor: #002fa7b3; /* 高亮颜色 70% */
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
         }
         /* 暗主题配色 */
@@ -29,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
+            --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
+            --btnSideNav-hover-bgColor: #002fa7b3; /* 高亮颜色 70% */
+            --box-shadow: 0 0 transparent; /* 添加阴影 */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
 
@@ -117,6 +123,19 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--header-bgColor);
             height: 75px;
             color: var(--subTitle-color);
+        }
+
+        /* 主页文章列表 */
+        .SideNav {
+            background: var(--SideNav-bgColor);
+            min-width: unset;
+        }
+
+        /* 主页文章列表悬停高亮 */
+        .SideNav-item:hover {
+            background-color: var(--btnSideNav-hover-bgColor);
+            transform: scale(1.05);
+            box-shadow: var(--box-shadow);
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
