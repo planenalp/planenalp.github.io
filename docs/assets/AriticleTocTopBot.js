@@ -68,16 +68,16 @@ document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
         :root {
-            --toc-bg: rgba(255, 255, 255, 0.8);
-            --toc-border: #E1E4E8;
-            --toc-a-text: #1F2328;
-            --toc-a-hover: #002FA7CC;
+            --toc-bg: #FFFFFFCC;
+            --toc-border: rgba(31, 35, 40, 0.15);
+            --toc-a-text: #24292f;
+            --toc-a-hover: #eceff1;
             --toc-icon-bgColor: #FFFFFFB3;
-            --toc-icon-color: #656D76B3;
-            --toc-icon-hover-bgColor: #002FA7CC;
-            --toc-icon-hover-color: #FFFFFFCC;
-            --toc-h1-after-bgColor: #007FFF;
-            --toc-highlightText-Color: #FFFFFF;
+            --toc-icon-color: #656d76B3;
+            --toc-icon-hover-bgColor: #eceff1;
+            --toc-icon-hover-color: #656d76CC;
+            --toc-h1-after-bgColor: #656d76CC;
+            --toc-highlightText-Color: #24292f;
         }
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
@@ -86,12 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
             --toc-bg: #21262DCC;
             --toc-border: rgba(240, 246, 252, 0.1);
             --toc-a-text: #C9D1D9;
-            --toc-a-hover: #002FA7CC;
+            --toc-a-hover: #30363d;
             --toc-icon-bgColor: #21262DB3;
             --toc-icon-color: rgba(240, 246, 252, 0.1);
-            --toc-icon-hover-bgColor: #002FA7CC;
+            --toc-icon-hover-bgColor: #30363d;
             --toc-icon-hover-color: #8B949ECC;
-            --toc-h1-after-bgColor: #007FFF;
+            --toc-h1-after-bgColor: #8b949e;
             --toc-highlightText-Color: #FFFFFF;
         }
         /* 弹出菜单主体 */
