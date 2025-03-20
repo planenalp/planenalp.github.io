@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a {
             display: block;
             padding: 5px;
-            border: 1px solid transparent; /* 初始状态设置透明边框占位 */
+            /* border: 1px solid transparent; /* 初始状态设置透明边框占位 */ */
             border-radius: 6px;
             color: var(--color-toc-a-text);
             transition: background-color 0.1s ease;
@@ -133,14 +133,10 @@ document.addEventListener("DOMContentLoaded", function() {
             line-height: 1.5;
             text-decoration: none;
         }
-        /* 禁用焦点轮廓防止移动端点选边框闪烁 */
-        .toc a:focus {
-            outline: none;
-            box-shadow: none;
-        }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
-            border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
+            border: 1px solid var(--color-toc-hover-border);
+            /* border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */ */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
         }
