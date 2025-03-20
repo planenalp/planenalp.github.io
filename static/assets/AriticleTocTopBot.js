@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border: 1px solid transparent; /* 初始状态设置透明边框占位-防止菜单选项跳动 */
             border-radius: 6px;
             color: var(--color-toc-a-text);
-            transition: background-color 0.1s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
