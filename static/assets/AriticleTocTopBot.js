@@ -64,6 +64,7 @@ function toggleTOC() {
 }
 ////////// 目录按钮切换功能 end //////////
 
+////////// CSS 样式设定 start //////////
 document.addEventListener("DOMContentLoaded", function() {
     createTOC();
     const combinedCss = `
@@ -273,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
     loadResource('style', { css: combinedCss });
+    ////////// CSS 样式设定 end //////////
 
     //////// 创建目录按钮 TOC 切换图标 start //////////
     const tocIcon = document.createElement('div');
