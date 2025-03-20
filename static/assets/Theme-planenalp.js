@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
+    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
     // 新增：随机背景函数 ------------------------------------------
     function updateRandomBackground() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     observer.observe(document.documentElement, { attributes: true });
+    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
@@ -198,8 +200,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
         
+        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
         // 新增：初始化随机背景
         updateRandomBackground();
+        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
     }
 
 
