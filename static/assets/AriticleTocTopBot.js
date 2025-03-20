@@ -133,12 +133,16 @@ document.addEventListener("DOMContentLoaded", function() {
             line-height: 1.5;
             text-decoration: none;
         }
+        /* 禁用焦点轮廓防止移动端点选边框闪烁 */
+        .toc a:focus {
+            outline: none;
+            box-shadow: none;
+        }
         /* 弹出菜单鼠标悬停高亮+弹出菜单滚动高亮 */
         .toc a:hover, .toc-link.toc-active {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
-            transition: transform 0.1s ease, opacity 0.1s ease;
         }
         /* 弹出菜单图标 */
         .toc-icon {
