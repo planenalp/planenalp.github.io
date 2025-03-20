@@ -1,7 +1,52 @@
 //允许移动端实现图标按压特效
 document.addEventListener('touchstart', function() {}, false);
 
-document.addEventListener('DOMContentLoaded', function() {    
+document.addEventListener('DOMContentLoaded', function() {  
+
+    // ==================== 新增：主题控制逻辑 START ====================
+    // 覆盖主题配置
+    window.themeSettings = {
+        "dark": ["dark","moon","#00f0ff","dark-blue"],
+        "light": ["light","sun","#ff5000","github-light"]
+    };
+
+    // 重写切换函数
+    window.modeSwitch = function() {
+        const currentMode = document.documentElement.getAttribute('data-color-mode');
+        const newMode = currentMode === "light" ? "dark" : "light";
+        localStorage.setItem("meek_theme", newMode);
+        window.changeTheme(...themeSettings[newMode]);
+    }
+
+    // 劫持localStorage
+    const originalGetItem = localStorage.getItem;
+    localStorage.getItem = function(key) {
+        if(key === "meek_theme") {
+            const value = originalGetItem.call(localStorage, key);
+            return value === "auto" ? "light" : value;
+        }
+        return originalGetItem.apply(localStorage, arguments);
+    };
+
+    // 实时监控DOM变化
+    new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if(mutation.attributeName === "data-color-mode" && 
+               document.documentElement.getAttribute("data-color-mode") === "auto") {
+                document.documentElement.setAttribute("data-color-mode", "light");
+            }
+        });
+    }).observe(document.documentElement, { attributes: true });
+
+    // 初始化清理
+    if(document.documentElement.getAttribute("data-color-mode") === "auto") {
+        document.documentElement.setAttribute("data-color-mode", "light");
+    }
+    if(localStorage.getItem("meek_theme") === "auto") {
+        localStorage.setItem("meek_theme", "light");
+    }
+    // ==================== 新增：主题控制逻辑 END ====================
+    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
@@ -30,24 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     observer.observe(document.documentElement, { attributes: true });
     ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
-
-
-    ////////// 禁用 auto 主题 start //////////
-    const htmlEl = document.documentElement;
-    // 如果当前设置为 auto，则根据系统偏好或默认值来设置为 light 或 dark
-    if (htmlEl.getAttribute('data-color-mode') === 'auto') {
-        // 这里可以选择默认值，例如：
-        // 自动检测系统偏好：如果系统偏好 dark 则使用 dark，否则使用 light
-        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        htmlEl.setAttribute('data-color-mode', isDark ? 'light' : 'dark');
-
-        // 或者直接强制设置为固定值，例如：
-        // htmlEl.setAttribute('data-color-mode', 'light');
-    }
-    ////////// 禁用 auto 主题 end //////////
-
-
-    
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
