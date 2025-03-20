@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002FA7;
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
-            --avatarImg: url(https://godpan.com/avatar.svg) !important;
+            --avatarURL: url("https://klein.blue/avatar.svg");
         }
         
         /* header布局 */
@@ -59,10 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset !important; /* 强制清除圆形框设置 */
             box-shadow: none !important; /* 强制清除边框 */
         }
+        
         #avatarImg {
-            content: var(--avatarImg);
+            content: var(--avatarURL) !important;
         }
-
+        
         .avatar:hover {
             transform: scale(1.1) !important;
         }
