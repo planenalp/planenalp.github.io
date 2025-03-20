@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --blogTitle-color: #FFFFFF;
             --subTitle-color: #FFFFFF;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
-            --btnSideNav-hover-bgColor: #002fa7b3; /* 高亮颜色 70% */
+            --btnSideNav-hover-bgColor: unset; /* 高亮颜色默认 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         }
