@@ -5,31 +5,140 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
-    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
-    // 新增：随机背景函数 ------------------------------------------
-    function updateRandomBackground() {
-        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
-        const prefix = colorMode === 'dark' ? 'bgLight' : 'bgDark'; // 新逻辑：亮主题使用 bgDark，暗主题使用 bgLight，此行实现反向选择
-        //const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight'; // 原逻辑：亮主题使用 bgLight，暗主题使用 bgDark
-        const totalImages = 3; // 根据实际图片数量修改
-        
-        const randomNum = Math.floor(Math.random() * totalImages) + 1;
-        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
-        
-        document.documentElement.style.setProperty('--bgURL', bgUrl);
+    ////////// 根据主题分别从指定数量的 bgLight 和 bgDark 中随机展示背景图片 start //////////
+    // ================= 全局配置 =================
+    const config = {
+        // 主题配置
+        themes: {
+            light: { prefix: 'bgLight' },
+            dark:  { prefix: 'bgDark' }
+        },
+        // 支持的图片格式（无序随机尝试）
+        formats: ['webp', 'jpg', 'jpeg', 'png', 'avif', 'gif'],
+        // 检测参数
+        detection: {
+            maxNumber: 100,     // 单主题最多检测100张
+            timeout: 800,       // 单张检测超时时间(ms)
+            retryFormats: 3     // 每种编号随机尝试3种格式
+        },
+        // 预加载配置
+        preload: {
+            count: 2,          // 预加载后续2张
+            maxParallel: 4      // 最大并行预加载数
+        },
+        // 基础路径
+        baseUrl: 'https://planenalp.github.io/'
+    };
+
+    // ================= 状态管理 =================
+    let themeCache = new Map();    // 主题信息缓存
+    let preloadQueue = new Set();  // 预加载队列
+    let currentPreview = null;     // 当前显示信息
+
+    // ================= 核心逻辑 =================
+    async function updateRandomBackground() {
+        try {
+            const theme = getCurrentTheme();
+            const themeInfo = await getThemeInfo(theme.prefix);
+            
+            if (!themeInfo.valid) throw new Error('无可用图片');
+            
+            // 生成随机路径
+            const { path, number } = await generateRandomImage(themeInfo);
+            
+            // 更新显示
+            document.documentElement.style.setProperty('--bgURL', `url("${config.baseUrl}${path}")`);
+            
+            // 记录当前信息
+            currentPreview = { 
+                prefix: theme.prefix,
+                number,
+                maxNumber: themeInfo.maxNumber
+            };
+            
+            // 触发预加载
+            schedulePreload();
+
+        } catch (error) {
+            console.error('背景加载失败:', error);
+            document.documentElement.style.setProperty('--bgURL', 'url("fallback.webp")');
+        }
     }
 
-    // 新增：主题变化监听 ------------------------------------------
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.attributeName === 'data-color-mode' || 
-                mutation.attributeName === 'data-light-theme') {
-                updateRandomBackground();
+    // ================= 预加载系统 =================
+    function schedulePreload() {
+        requestIdleCallback(() => {
+            if (!currentPreview) return;
+            
+            // 生成候选列表
+            const candidates = [];
+            for (let i = 1; i <= config.preload.count; i++) {
+                const number = (currentPreview.number + i) % currentPreview.maxNumber || 1;
+                candidates.push(...getRandomFormatCandidates(currentPreview.prefix, number));
             }
+            
+            // 过滤并加载新项
+            candidates.filter(url => !preloadQueue.has(url))
+                     .slice(0, config.preload.maxParallel)
+                     .forEach(url => {
+                         preloadQueue.add(url);
+                         new Image().src = `${config.baseUrl}${url}`;
+                     });
         });
+    }
+
+    // ================= 辅助函数 =================
+    // 获取当前主题
+    function getCurrentTheme() {
+        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
+        return config.themes[colorMode] || config.themes.light;
+    }
+
+    // 生成随机图片路径
+    async function generateRandomImage(themeInfo) {
+        const randomNumber = Math.floor(Math.random() * themeInfo.maxNumber) + 1;
+        const shuffledFormats = shuffleArray([...config.formats]);
+        
+        for (const format of shuffledFormats.slice(0, config.detection.retryFormats)) {
+            if (await checkExists(themeInfo.prefix, randomNumber, format)) {
+                return { 
+                    path: `${themeInfo.prefix}${randomNumber}.${format}`,
+                    number: randomNumber
+                };
+            }
+        }
+        throw new Error('无可用格式');
+    }
+
+    // 随机打乱数组
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // 生成随机格式候选
+    function getRandomFormatCandidates(prefix, number) {
+        return shuffleArray([...config.formats])
+            .slice(0, 2) // 每种编号随机选2种格式预加载
+            .map(format => `${prefix}${number}.${format}`);
+    }
+
+    // ================= 初始化 =================
+    updateRandomBackground();
+    
+    // 监听主题变化
+    const observer = new MutationObserver(() => {
+        themeCache.clear();
+        updateRandomBackground();
     });
-    observer.observe(document.documentElement, { attributes: true });
-    ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
+    observer.observe(document.documentElement, { 
+        attributes: true,
+        attributeFilter: ['data-color-mode']
+    });
+    ////////// 根据主题分别从指定数量的 bgLight 和 bgDark 中随机展示背景图片 end //////////
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
