@@ -6,161 +6,29 @@ document.addEventListener('DOMContentLoaded', function() {
     //let currentHost = window.location.hostname;
 
     ////////// 随机背景核心逻辑 start //////////
-    // ================= 全局配置 =================
-    const config = {
-        themes: {
-            light: { prefix: 'bgLight' },
-            dark:  { prefix: 'bgDark' }
-        },
-        formats: ['webp', 'jpg', 'jpeg', 'png', 'avif', 'gif'],
-        detection: {
-            maxNumber: 100,
-            timeout: 800,
-            retryFormats: 3
-        },
-        preload: {
-            count: 2,
-            maxParallel: 4
-        },
-        baseUrl: 'https://planenalp.github.io/'
-    };
-
-    // ================= 状态管理 =================
-    let themeCache = new Map();
-    let preloadQueue = new Set();
-    let currentPreview = null;
-
-    // ================= 核心函数 =================
-    async function updateRandomBackground() {
-        try {
-            const theme = getCurrentTheme();
-            const themeInfo = await getThemeInfo(theme.prefix);
-            
-            if (!themeInfo.valid) throw new Error('无可用图片');
-            
-            const { path, number } = await generateRandomImage(themeInfo);
-            
-            document.documentElement.style.setProperty('--bgURL', `url("${config.baseUrl}${path}")`);
-            
-            currentPreview = { 
-                prefix: theme.prefix,
-                number,
-                maxNumber: themeInfo.maxNumber
-            };
-            
-            schedulePreload();
-
-        } catch (error) {
-            console.error('背景加载失败:', error);
-            document.documentElement.style.setProperty('--bgURL', 'url("fallback.webp")');
-        }
-    }
-
-    async function getThemeInfo(prefix) {
-        if (themeCache.has(prefix)) {
-            return themeCache.get(prefix);
-        }
-
-        let low = 1, high = config.detection.maxNumber;
-        let maxFound = 0;
-        while (low <= high) {
-            const mid = Math.floor((low + high) / 2);
-            const exists = await checkExists(prefix, mid);
-            if (exists) {
-                maxFound = mid;
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        
-        const info = {
-            valid: maxFound > 0,
-            maxNumber: maxFound,
-            prefix
-        };
-        themeCache.set(prefix, info);
-        return info;
-    }
-
-    async function checkExists(prefix, number, format) {
-        const url = `${config.baseUrl}${prefix}${number}.${format}`;
-        try {
-            return await new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-                setTimeout(() => resolve(false), config.detection.timeout);
-            });
-        } catch {
-            return false;
-        }
-    }
-
-    // ================= 辅助函数 =================
-    function getCurrentTheme() {
+    //包含后面每个页面最后一个括号前添加 updateRandomBackground(); // 新增：初始化随机背景
+    // 新增：随机背景函数 ------------------------------------------
+    function updateRandomBackground() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
-        return config.themes[colorMode] || config.themes.light;
-    }
-
-    async function generateRandomImage(themeInfo) {
-        const randomNumber = Math.floor(Math.random() * themeInfo.maxNumber) + 1;
-        const shuffledFormats = shuffleArray([...config.formats]);
+        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
+        const totalImages = 4; // 根据实际图片数量修改
         
-        for (const format of shuffledFormats.slice(0, config.detection.retryFormats)) {
-            if (await checkExists(themeInfo.prefix, randomNumber, format)) {
-                return { 
-                    path: `${themeInfo.prefix}${randomNumber}.${format}`,
-                    number: randomNumber
-                };
-            }
-        }
-        throw new Error('无可用格式');
+        const randomNum = Math.floor(Math.random() * totalImages) + 1;
+        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
+        
+        document.documentElement.style.setProperty('--bgURL', bgUrl);
     }
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
-    function schedulePreload() {
-        requestIdleCallback(() => {
-            if (!currentPreview) return;
-            
-            const candidates = [];
-            for (let i = 1; i <= config.preload.count; i++) {
-                const number = (currentPreview.number + i) % currentPreview.maxNumber || 1;
-                candidates.push(...getRandomFormatCandidates(currentPreview.prefix, number));
+    // 新增：主题变化监听 ------------------------------------------
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'data-color-mode' || 
+                mutation.attributeName === 'data-light-theme') {
+                updateRandomBackground();
             }
-            
-            candidates.filter(url => !preloadQueue.has(url))
-                     .slice(0, config.preload.maxParallel)
-                     .forEach(url => {
-                         preloadQueue.add(url);
-                         new Image().src = `${config.baseUrl}${url}`;
-                     });
         });
-    }
-
-    function getRandomFormatCandidates(prefix, number) {
-        return shuffleArray([...config.formats])
-            .slice(0, 2)
-            .map(format => `${prefix}${number}.${format}`);
-    }
-
-    // ================= 初始化 =================
-    const observer = new MutationObserver(() => {
-        themeCache.clear();
-        updateRandomBackground();
     });
-    observer.observe(document.documentElement, { 
-        attributes: true,
-        attributeFilter: ['data-color-mode']
-    });
+    observer.observe(document.documentElement, { attributes: true });
     ////////// 随机背景核心逻辑 end //////////
     
     //主页主题------------------------------------------------------------------------------
@@ -338,8 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         `;
         document.head.appendChild(style);
-        
-        updateRandomBackground(); // 随机背景核心逻辑
+
+        updateRandomBackground(); // 新增：初始化随机背景
     }
 
 
