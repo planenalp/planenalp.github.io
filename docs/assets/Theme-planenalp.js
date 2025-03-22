@@ -49,67 +49,84 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
     // ==================== 禁用自动主题功能 END ====================
     
-    ////////// 随机背景图 start //////////
-    const bgSwitcher = (function() {
-        let currentVersion = 0;
-        const maxParallel = 2;
-        const loadQueue = [];
-        const activeLoaders = new Set();
+    // ==================== 随机背景图 START ====================
+    const bgManager = (function() {
+        const maxDetection = 50; // 最大检测数量
+        const cache = {
+            light: { count: 0, timestamp: 0 },
+            dark: { count: 0, timestamp: 0 }
+        };
 
-        function createLoader(targetTheme, version) {
-            return new Promise((resolve) => {
-                const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-                const totalImages = 4;
-                const randomNum = Math.floor(Math.random() * totalImages) + 1;
-                const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
-                const img = new Image();
+        async function detectCount(prefix) {
+            return new Promise(resolve => {
+                let count = 0;
+                let current = 1;
                 
-                img.onload = function() {
-                    if (version !== currentVersion) {
-                        img.src = '';
-                        resolve(false);
-                        return;
-                    }
-                    document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(true);
-                };
+                function check() {
+                    if (current > maxDetection) return resolve(count);
+                    
+                    const img = new Image();
+                    img.onload = () => {
+                        count = current++;
+                        check();
+                    };
+                    img.onerror = () => resolve(count);
+                    img.src = `https://planenalp.github.io/${prefix}${current}.webp`;
+                }
                 
-                img.onerror = function() {
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(false);
-                };
-
-                const loader = { img, version };
-                img.src = bgUrl;
-                activeLoaders.add(loader);
+                check();
             });
         }
 
-        async function processQueue() {
-            while (loadQueue.length > 0 && activeLoaders.size < maxParallel) {
-                const { targetTheme, version } = loadQueue.shift();
-                if (version !== currentVersion) continue;
-                
-                const success = await createLoader(targetTheme, version);
-                if (!success && version === currentVersion) {
-                    loadQueue.unshift({ targetTheme, version });
-                }
+        async function getCount(prefix) {
+            // 缓存有效期5分钟
+            if (cache[prefix].count > 0 && Date.now() - cache[prefix].timestamp < 300000) {
+                return cache[prefix].count;
             }
+            
+            const count = await detectCount(prefix);
+            cache[prefix] = { count, timestamp: Date.now() };
+            return count;
         }
 
         return {
-            switchTheme: function(targetTheme) {
-                currentVersion++;
-                const version = currentVersion;
-                loadQueue.push({ targetTheme, version });
-                processQueue();
-            }
+            getRandomImage: async function(prefix) {
+                const count = await this.getCount(prefix);
+                if (count === 0) return '';
+                const randomNum = Math.floor(Math.random() * count) + 1;
+                return `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
+            },
+            getCount
         };
     })();
-    
+
+    //新增主题控制模块 ================================================
+    const themeSwitcher = {
+        currentVersion: 0,
+        activeRequest: null,
+        
+        async switchTheme(targetTheme) {
+            const version = ++this.currentVersion;
+            this._cancelRequest();
+            
+            const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+            const bgUrl = await bgManager.getRandomImage(prefix);
+            
+            if (version !== this.currentVersion) return;
+            if (!bgUrl) return;
+            
+            document.documentElement.style.setProperty('--bgURL', bgUrl);
+        },
+        
+        _cancelRequest() {
+            if (this.activeRequest) {
+                this.activeRequest.onload = null;
+                this.activeRequest.onerror = null;
+                this.activeRequest.src = '';
+            }
+        }
+    };
+
     //新增主题监听 ==================================================
     let lastTheme = null;
     const observer = new MutationObserver(function(mutations) {
@@ -117,14 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (newTheme === lastTheme) return;
         
         lastTheme = newTheme;
-        bgSwitcher.switchTheme(newTheme);
+        themeSwitcher.switchTheme(newTheme);
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
-        attributeOldValue: false
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
     });
-    ////////// 随机背景图 end //////////
+    // ==================== 随机背景图 END ====================
 
     
     
@@ -305,9 +321,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 初始主题同步
+        // ==================== 随机背景图初始主题同步 START ====================
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        bgSwitcher.switchTheme(initTheme);
+        themeSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     }
 
 
