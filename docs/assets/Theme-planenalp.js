@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.changeTheme(...themeSettings[newMode]);
     }
 
-    // ▼▼▼▼▼ 修改1：增强localStorage劫持 ▼▼▼▼▼
+    // ===== 修改1：增强localStorage劫持 =====
     const originalGetItem = localStorage.getItem;
     localStorage.getItem = function(key) {
         if(key === "meek_theme") {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return originalGetItem.apply(localStorage, arguments);
     };
 
-    // ▼▼▼▼▼ 修改2：强化DOM监控 ▼▼▼▼▼
+    // ===== 修改2：强化DOM监控 =====
     new MutationObserver(mutations => {
         mutations.forEach(mutation => {
             if(mutation.attributeName === "data-color-mode") {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }).observe(document.documentElement, { attributes: true });
 
-    // ▼▼▼▼▼ 修改3：双重初始化保障 ▼▼▼▼▼
+    // ===== 修改3：双重初始化保障 =====
     (function initTheme() {
         let theme = localStorage.getItem("meek_theme") || "light"; // 强制默认值
         if(theme === "auto") theme = "light"; // 二次过滤
@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async function createLoader(targetTheme, version) {
             const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const totalImages = 100;
+            const totalImages = 10;
             const randomNum = Math.floor(Math.random() * totalImages) + 1;
-            const baseUrl = `https://planenalp.github.io/${prefix}${randomNum}`;
+            const baseUrl = `https://planenalp.github.io/bg/${prefix}${randomNum}`;
 
             try {
                 const finalUrl = await probeFormat(baseUrl);
