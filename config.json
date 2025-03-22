@@ -18,5 +18,6 @@
     "script":"<script src='https://planenalp.github.io/assets/fancybox.umd.js'></script><script src='https://planenalp.github.io/assets/fancyboxLoad-planenalp.js'></script><script src='https://planenalp.github.io/assets/AriticleTocTopBot.js'></script>",
     "allHead":"<script src='https://planenalp.github.io/assets/Theme-planenalp.js'></script>",
     "indexScript":"<script src='https://planenalp.github.io/assets/NumPagination-planenalp.js'></script>",
-    "showPostSource":0
+    "showPostSource":0,
+    "primerCSS":"<link href='https://planenalp.github.io/assets/primer.css' rel='stylesheet' />"
 }
