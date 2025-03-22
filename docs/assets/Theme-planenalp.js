@@ -6,47 +6,47 @@ document.addEventListener('DOMContentLoaded', function() {
     //let currentHost = window.location.hostname;
     
     // ==================== 禁用自动主题功能 START ====================
-    // 覆盖主题配置
     window.themeSettings = {
         "dark": ["dark","moon","#00f0ff","dark-blue"],
         "light": ["light","sun","#ff5000","github-light"]
     };
 
-    // 重写切换函数
     window.modeSwitch = function() {
         const currentMode = document.documentElement.getAttribute('data-color-mode');
-        const newMode = currentMode === "light" ? "dark" : "light";
+        const newMode = currentMode === "light" ? "dark" : "light";  // ← 确保只有light/dark
         localStorage.setItem("meek_theme", newMode);
         window.changeTheme(...themeSettings[newMode]);
     }
 
-    // 劫持localStorage
+    // ▼▼▼▼▼ 修改1：增强localStorage劫持 ▼▼▼▼▼
     const originalGetItem = localStorage.getItem;
     localStorage.getItem = function(key) {
         if(key === "meek_theme") {
             const value = originalGetItem.call(localStorage, key);
-            return value === "auto" ? "light" : value;
+            return (value === "auto" || value === null) ? "light" : value; // 处理null和auto
         }
         return originalGetItem.apply(localStorage, arguments);
     };
 
-    // 实时监控DOM变化
+    // ▼▼▼▼▼ 修改2：强化DOM监控 ▼▼▼▼▼
     new MutationObserver(mutations => {
         mutations.forEach(mutation => {
-            if(mutation.attributeName === "data-color-mode" && 
-               document.documentElement.getAttribute("data-color-mode") === "auto") {
-                document.documentElement.setAttribute("data-color-mode", "light");
+            if(mutation.attributeName === "data-color-mode") {
+                const mode = document.documentElement.getAttribute("data-color-mode");
+                if(mode !== "light" && mode !== "dark") { // 禁止任何非标准值
+                    document.documentElement.setAttribute("data-color-mode", "light");
+                }
             }
         });
     }).observe(document.documentElement, { attributes: true });
 
-    // 初始化清理
-    if(document.documentElement.getAttribute("data-color-mode") === "auto") {
-        document.documentElement.setAttribute("data-color-mode", "light");
-    }
-    if(localStorage.getItem("meek_theme") === "auto") {
-        localStorage.setItem("meek_theme", "light");
-    }
+    // ▼▼▼▼▼ 修改3：双重初始化保障 ▼▼▼▼▼
+    (function initTheme() {
+        let theme = localStorage.getItem("meek_theme") || "light"; // 强制默认值
+        if(theme === "auto") theme = "light"; // 二次过滤
+        document.documentElement.setAttribute("data-color-mode", theme);
+        localStorage.setItem("meek_theme", theme);
+    })();
     // ==================== 禁用自动主题功能 END ====================
     
     ////////// 随机背景核心逻辑 start //////////
