@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         async function createLoader(targetTheme, version) {
             const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const totalImages = 10;
+            const totalImages = 100;
             const randomNum = Math.floor(Math.random() * totalImages) + 1;
             const baseUrl = `https://planenalp.github.io/${prefix}${randomNum}`;
 
