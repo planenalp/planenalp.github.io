@@ -6,19 +6,29 @@ document.addEventListener('DOMContentLoaded', function() {
     //let currentHost = window.location.hostname;
 
     ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
-    // 覆盖原有的 modeSwitch 函数，仅在 light 和 dark 之间切换
-    if (typeof window.modeSwitch === 'function') {
-        window.modeSwitch = function() {
-            let currentMode = document.documentElement.getAttribute('data-color-mode');
-            // 只在 light 与 dark 之间切换
-            let newMode = currentMode === "light" ? "dark" : "light";
-            localStorage.setItem("meek_theme", newMode);
-            if (window.themeSettings && window.themeSettings[newMode]) {
-                window.changeTheme(...window.themeSettings[newMode]);
-            }
-        }
-        console.log("modeSwitch 已被覆盖：自动模式已禁用，只剩 light 和 dark");
+    // 新增：随机背景函数 ------------------------------------------
+    function updateRandomBackground() {
+        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
+        const prefix = colorMode === 'dark' ? 'bgLight' : 'bgDark'; // 新逻辑：亮主题使用 bgDark，暗主题使用 bgLight，此行实现反向选择
+        //const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight'; // 原逻辑：亮主题使用 bgLight，暗主题使用 bgDark
+        const totalImages = 3; // 根据实际图片数量修改
+        
+        const randomNum = Math.floor(Math.random() * totalImages) + 1;
+        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
+        
+        document.documentElement.style.setProperty('--bgURL', bgUrl);
     }
+
+    // 新增：主题变化监听 ------------------------------------------
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'data-color-mode' || 
+                mutation.attributeName === 'data-light-theme') {
+                updateRandomBackground();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true });
     ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
     
     //主页主题------------------------------------------------------------------------------
