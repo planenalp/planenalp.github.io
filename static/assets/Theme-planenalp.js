@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
-            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
-            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
         }
 
         /* 背景图 */
