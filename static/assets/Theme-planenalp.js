@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
             --blogTitle-color: #002fa7;
             --subTitle-color: #002fa7;
+            --border-color: #d0d7de;
             --SideNav-bgColor: #ffffffcc; /* 白色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
             --blogTitle-color: #ffffff;
             --subTitle-color: #ffffff;
+            --border-color: #30363d;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
@@ -154,6 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
+        }
+
+        /* 主页文章列表内边框 */
+        .SideNav-item {
+            border-color: var(--border-color);
         }
 
         /* 主页文章列表悬停高亮 */
