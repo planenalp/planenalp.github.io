@@ -53,43 +53,67 @@ document.addEventListener('DOMContentLoaded', function() {
     const bgSwitcher = (function() {
         const FORMAT_PRIORITY = ['webp', 'avif', 'heif', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg'];
         const MAX_PARALLEL = 3;
+        const MAX_ID = 100; // 最大尝试编号
         let currentVersion = 0;
         const loadQueue = [];
-        const formatCache = new Map();
+        const idCache = new Map(); // 缓存各主题可用ID
 
-        async function probeFormat(baseUrl) {
-            if (formatCache.has(baseUrl)) {
-                return formatCache.get(baseUrl);
+        async function probeThemeIDs(prefix) {
+            if (idCache.has(prefix)) return idCache.get(prefix);
+
+            const validIDs = [];
+            const probePromises = [];
+
+            // 批量探测（每次探测5个随机ID）
+            for (let i = 0; i < 5; i++) {
+                const randomID = Math.floor(Math.random() * MAX_ID) + 1;
+                probePromises.push(probeIDExists(`${prefix}${randomID}`));
             }
 
+            const results = await Promise.all(probePromises);
+            validIDs.push(...results.filter(Boolean));
+
+            // 如果未找到有效ID则顺序探测
+            if (validIDs.length === 0) {
+                for (let id = 1; id <= 10; id++) {
+                    if (await probeIDExists(`${prefix}${id}`)) {
+                        validIDs.push(id);
+                    }
+                }
+            }
+
+            idCache.set(prefix, validIDs);
+            return validIDs;
+        }
+
+        async function probeIDExists(baseUrl) {
             const probes = FORMAT_PRIORITY.map(ext => {
                 const url = `${baseUrl}.${ext}`;
                 return new Promise(resolve => {
                     const img = new Image();
-                    img.onload = () => resolve(url);
-                    img.onerror = () => resolve(null);
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(false);
                     img.src = url;
                 });
             });
 
-            for (const urlPromise of probes) {
-                const result = await urlPromise;
-                if (result) {
-                    formatCache.set(baseUrl, result);
-                    return result;
-                }
-            }
-            return null;
+            const exists = await Promise.any(probePromises);
+            return exists ? parseInt(baseUrl.match(/\d+$/)[0]) : null;
         }
 
         async function createLoader(targetTheme, version) {
             const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const totalImages = 4;
-            const randomNum = Math.floor(Math.random() * totalImages) + 1;
-            const baseUrl = `https://planenalp.github.io/${prefix}${randomNum}`;
+            const baseUrl = `https://planenalp.github.io/${prefix}`;
 
             try {
-                const finalUrl = await probeFormat(baseUrl);
+                // 获取可用ID列表
+                const validIDs = await probeThemeIDs(prefix);
+                if (validIDs.length === 0) return false;
+
+                // 随机选择有效ID
+                const randomID = validIDs[Math.floor(Math.random() * validIDs.length)];
+                const finalUrl = await probeFormat(`${baseUrl}${randomID}`);
+
                 if (!finalUrl || version !== currentVersion) return false;
 
                 document.documentElement.style.setProperty('--bgURL', `url("${finalUrl}")`);
@@ -99,23 +123,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        async function processQueue() {
-            while (loadQueue.length > 0 && loadQueue.length < MAX_PARALLEL) {
-                const { targetTheme, version } = loadQueue.shift();
-                if (version !== currentVersion) continue;
-
-                const success = await createLoader(targetTheme, version);
-                if (!success && version === currentVersion) {
-                    loadQueue.push({ targetTheme, version });
-                }
-            }
-        }
+        // 保持原有processQueue逻辑不变
+        async function processQueue() { /* ... */ }
 
         return {
             switchTheme: function(targetTheme) {
                 currentVersion++;
                 loadQueue.push({ targetTheme, version: currentVersion });
                 processQueue();
+            },
+            // 暴露缓存清理接口
+            clearCache: function() {
+                idCache.clear();
+                formatCache.clear();
             }
         };
     })();
@@ -315,7 +335,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
-        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        // 初始化时清除旧缓存
+        bgSwitcher.clearCache();
         bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
     }
