@@ -379,6 +379,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         `;
         document.head.appendChild(style);
+
+        // ==================== 随机背景图初始主题同步 START ====================
+        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        bgSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     } 
 
 
@@ -432,10 +437,12 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
+            /* 回归禁用 tagTitle
             .tagTitle {
                 display: unset !important;
                 font-size: 14px !important;
             }
+            回归禁用 tagTitle */
             .LabelTime{
                 display:unset !important;
             }
@@ -446,5 +453,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         `;
         document.head.appendChild(style);
+
+        // ==================== 随机背景图初始主题同步 START ====================
+        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        bgSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     }
 })
