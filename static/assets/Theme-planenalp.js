@@ -162,10 +162,10 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
+            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
-            --blogTitle-color: #ffffff;
-            --subTitle-color: #ffffff;
+            --blogTitle-color: #002fa7;
+            --subTitle-color: #002fa7;
             --border-color: #30363d;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
