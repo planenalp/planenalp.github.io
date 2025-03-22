@@ -30,6 +30,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     observer.observe(document.documentElement, { attributes: true });
     ////////// 随机背景核心逻辑 end //////////
+
+    ////////// 禁用自动主题功能 start //////////
+    if (typeof window.modeSwitch === 'function') {
+        window.modeSwitch = function() {
+            let currentMode = document.documentElement.getAttribute('data-color-mode');
+            // 只在 light 和 dark 之间切换
+            let newMode = currentMode === "light" ? "dark" : "light";
+            localStorage.setItem("meek_theme", newMode);
+            if (window.themeSettings && window.themeSettings[newMode]) {
+                window.changeTheme(...window.themeSettings[newMode]);
+            }
+        }
+        console.log("已禁用 auto 模式：现在只在 light 和 dark 之间切换");
+    }
+    ////////// 禁用自动主题功能 end //////////
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
