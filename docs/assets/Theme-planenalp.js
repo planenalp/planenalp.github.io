@@ -50,129 +50,161 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     // ==================== 随机背景图 START ====================
-    const imageCounter = {
-        cache: new Map(),
-        maxCheck: 20,
-        checkTimeout: 300,
+    const imageManager = (function() {
+        const config = {
+            maxCheck: 100,    // 最大检测序号
+            maxGap: 5,        // 最大允许缺失数
+            cache: { light: [], dark: [] },
+            baseURL: 'https://planenalp.github.io/'
+        };
 
-        async detectCount(prefix) {
-            if (this.cache.has(prefix)) return this.cache.get(prefix);
-            
-            let count = 0;
-            const checkPromises = [];
-            
-            for (let i = 1; i <= this.maxCheck; i++) {
-                checkPromises.push(
-                    this._checkImageExists(`${prefix}${i}.webp`)
-                        .then(exists => exists ? i : 0)
-                );
-            }
-            
-            const results = await Promise.all(checkPromises);
-            count = Math.max(...results.filter(n => n <= this.maxCheck));
-            
-            this.cache.set(prefix, count);
-            return count;
-        },
+        // 检测主题可用图片
+        async function detectThemeImages(theme) {
+            const prefix = theme === 'dark' ? 'bgDark' : 'bgLight';
+            let foundCount = 0;
+            let missingCount = 0;
+            let index = 1;
 
-        _checkImageExists(filename) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                const timer = setTimeout(() => {
-                    img.onload = img.onerror = null;
-                    resolve(false);
-                }, this.checkTimeout);
-
-                img.onload = () => {
-                    clearTimeout(timer);
-                    resolve(true);
-                };
-                img.onerror = () => {
-                    clearTimeout(timer);
-                    resolve(false);
-                };
-                img.src = `https://planenalp.github.io/${filename}`;
-            });
-        }
-    };
-
-    //============== 原子级切换控制模块 ==============//
-    const bgSwitcher = (function() {
-        let currentVersion = 0;
-        const maxParallel = 2;
-        const loadQueue = [];
-        const activeLoaders = new Set();
-
-        async function createLoader(targetTheme, version) {
-            return new Promise(async (resolve) => {
-                const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-                const totalImages = await imageCounter.detectCount(prefix);
-                if (totalImages === 0) return resolve(false);
-
-                const randomNum = Math.floor(Math.random() * totalImages) + 1;
-                const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
-                const img = new Image();
-                
-                img.onload = function() {
-                    if (version !== currentVersion) {
-                        img.src = '';
-                        resolve(false);
-                        return;
+            while (index <= config.maxCheck && missingCount < config.maxGap) {
+                const url = `${config.baseURL}${prefix}${index}.webp`;
+                try {
+                    const exists = await checkImageExists(url);
+                    if (exists) {
+                        config.cache[theme].push(url);
+                        foundCount++;
+                        missingCount = 0;
+                    } else {
+                        missingCount++;
                     }
-                    document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(true);
-                };
-                
-                img.onerror = function() {
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(false);
-                };
+                } catch (e) {
+                    missingCount++;
+                }
+                index++;
+            }
+            return config.cache[theme];
+        }
 
-                const loader = { img, version };
-                img.src = bgUrl;
-                activeLoaders.add(loader);
+        // 单张图片检测
+        function checkImageExists(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = `${url}?t=${Date.now()}`;
+                setTimeout(() => resolve(false), 2000);
             });
         }
 
-        async function processQueue() {
-            while (loadQueue.length > 0 && activeLoaders.size < maxParallel) {
-                const { targetTheme, version } = loadQueue.shift();
-                if (version !== currentVersion) continue;
-                
-                const success = await createLoader(targetTheme, version);
-                if (!success && version === currentVersion) {
-                    loadQueue.unshift({ targetTheme, version });
-                }
-            }
+        // 获取随机图片
+        function getRandomImage(theme) {
+            const list = config.cache[theme];
+            return list.length > 0 
+                ? list[Math.floor(Math.random() * list.length)]
+                : null;
         }
 
         return {
-            switchTheme: function(targetTheme) {
-                currentVersion++;
-                const version = currentVersion;
-                loadQueue.push({ targetTheme, version });
-                processQueue();
+            detectThemes: async () => {
+                await Promise.all([
+                    detectThemeImages('light'),
+                    detectThemeImages('dark')
+                ]);
+            },
+            getImage: getRandomImage
+        };
+    })();
+
+    // ===================== 主题切换控制系统 =====================
+    const themeSwitcher = (function() {
+        let currentVersion = 0;
+        const maxParallel = 3;
+        const activeRequests = new Set();
+
+        async function createLoader(theme, version) {
+            const imageUrl = imageManager.getImage(theme);
+            if (!imageUrl) return false;
+
+            return new Promise((resolve) => {
+                const loader = {
+                    img: new Image(),
+                    version: version,
+                    theme: theme
+                };
+
+                loader.img.onload = () => {
+                    if (version !== currentVersion) {
+                        resolve(false);
+                        return;
+                    }
+                    document.documentElement.style.setProperty('--bgURL', `url("${imageUrl}")`);
+                    activeRequests.delete(loader);
+                    resolve(true);
+                };
+
+                loader.img.onerror = () => {
+                    activeRequests.delete(loader);
+                    resolve(false);
+                };
+
+                activeRequests.add(loader);
+                loader.img.src = `${imageUrl}?t=${Date.now()}_v${version}`;
+            });
+        }
+
+        async function switchTheme(targetTheme) {
+            currentVersion++;
+            const version = currentVersion;
+
+            // 清理旧请求
+            activeRequests.forEach(loader => {
+                if (loader.version !== version) {
+                    loader.img.src = '';
+                    activeRequests.delete(loader);
+                }
+            });
+
+            // 启动新加载
+            const success = await createLoader(targetTheme, version);
+            if (!success && version === currentVersion) {
+                await createLoader(targetTheme, version);
+            }
+        }
+
+        return { switchTheme };
+    })();
+
+    // ===================== 主题变化监听 =====================
+    const themeObserver = (function() {
+        let currentTheme = null;
+
+        function getSystemTheme() {
+            return document.documentElement.getAttribute('data-color-mode') || 
+                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        }
+
+        const observer = new MutationObserver(() => {
+            const newTheme = getSystemTheme();
+            if (newTheme !== currentTheme) {
+                currentTheme = newTheme;
+                themeSwitcher.switchTheme(newTheme);
+            }
+        });
+
+        return {
+            init: () => {
+                currentTheme = getSystemTheme();
+                observer.observe(document.documentElement, { 
+                    attributes: true,
+                    attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
+                });
+                themeSwitcher.switchTheme(currentTheme);
             }
         };
     })();
 
-    //============== 主题变化监听模块 ==============//
-    let lastTheme = null;
-    const observer = new MutationObserver(function(mutations) {
-        const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        if (newTheme === lastTheme) return;
-        
-        lastTheme = newTheme;
-        bgSwitcher.switchTheme(newTheme);
-    });
-    observer.observe(document.documentElement, { 
-        attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
-        attributeOldValue: false
-    });
+    // ===================== 页面主题应用 =====================
+    (async function init() {
+        await imageManager.detectThemes();
     // ==================== 随机背景图 END ====================
 
     
@@ -355,8 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
-        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        bgSwitcher.switchTheme(initTheme);
+        themeObserver.init();
         // ==================== 随机背景图初始主题同步 END ====================
     }
 
