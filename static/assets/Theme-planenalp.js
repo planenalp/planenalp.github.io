@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 新增：随机背景函数 ------------------------------------------
     function updateRandomBackground() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
-        const prefix = colorMode === 'dark' ? 'bgLight' : 'bgDark'; // 新逻辑：亮主题使用 bgDark，暗主题使用 bgLight，此行实现反向选择
-        //const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight'; // 原逻辑：亮主题使用 bgLight，暗主题使用 bgDark
+        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight'; // 逻辑1：亮主题使用 bgLight，暗主题使用 bgDark
+        //const prefix = colorMode === 'dark' ? 'bgLight' : 'bgDark'; // 逻辑2：亮主题使用 bgDark，暗主题使用 bgLight，此行实现反向选择
         const totalImages = 3; // 根据实际图片数量修改
         
         const randomNum = Math.floor(Math.random() * totalImages) + 1;
