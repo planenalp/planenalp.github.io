@@ -51,51 +51,62 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ==================== 随机背景图 START ====================
     const bgSwitcher = (function() {
+        const FORMAT_PRIORITY = ['webp', 'avif', 'heif', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg'];
+        const MAX_PARALLEL = 3;
         let currentVersion = 0;
-        const maxParallel = 2;
         const loadQueue = [];
-        const activeLoaders = new Set();
+        const formatCache = new Map();
 
-        function createLoader(targetTheme, version) {
-            return new Promise((resolve) => {
-                const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-                const totalImages = 4;
-                const randomNum = Math.floor(Math.random() * totalImages) + 1;
-                const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
-                const img = new Image();
-                
-                img.onload = function() {
-                    if (version !== currentVersion) {
-                        img.src = '';
-                        resolve(false);
-                        return;
-                    }
-                    document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(true);
-                };
-                
-                img.onerror = function() {
-                    activeLoaders.delete(loader);
-                    processQueue();
-                    resolve(false);
-                };
+        async function probeFormat(baseUrl) {
+            if (formatCache.has(baseUrl)) {
+                return formatCache.get(baseUrl);
+            }
 
-                const loader = { img, version };
-                img.src = bgUrl;
-                activeLoaders.add(loader);
+            const probes = FORMAT_PRIORITY.map(ext => {
+                const url = `${baseUrl}.${ext}`;
+                return new Promise(resolve => {
+                    const img = new Image();
+                    img.onload = () => resolve(url);
+                    img.onerror = () => resolve(null);
+                    img.src = url;
+                });
             });
+
+            for (const urlPromise of probes) {
+                const result = await urlPromise;
+                if (result) {
+                    formatCache.set(baseUrl, result);
+                    return result;
+                }
+            }
+            return null;
+        }
+
+        async function createLoader(targetTheme, version) {
+            const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+            const totalImages = 4;
+            const randomNum = Math.floor(Math.random() * totalImages) + 1;
+            const baseUrl = `https://planenalp.github.io/${prefix}${randomNum}`;
+
+            try {
+                const finalUrl = await probeFormat(baseUrl);
+                if (!finalUrl || version !== currentVersion) return false;
+
+                document.documentElement.style.setProperty('--bgURL', `url("${finalUrl}")`);
+                return true;
+            } catch {
+                return false;
+            }
         }
 
         async function processQueue() {
-            while (loadQueue.length > 0 && activeLoaders.size < maxParallel) {
+            while (loadQueue.length > 0 && loadQueue.length < MAX_PARALLEL) {
                 const { targetTheme, version } = loadQueue.shift();
                 if (version !== currentVersion) continue;
-                
+
                 const success = await createLoader(targetTheme, version);
                 if (!success && version === currentVersion) {
-                    loadQueue.unshift({ targetTheme, version });
+                    loadQueue.push({ targetTheme, version });
                 }
             }
         }
@@ -103,14 +114,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
             switchTheme: function(targetTheme) {
                 currentVersion++;
-                const version = currentVersion;
-                loadQueue.push({ targetTheme, version });
+                loadQueue.push({ targetTheme, version: currentVersion });
                 processQueue();
             }
         };
     })();
-    
-    //新增主题监听 ==================================================
+
+    // 主题监听模块 ==================================================
     let lastTheme = null;
     const observer = new MutationObserver(function(mutations) {
         const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
@@ -121,8 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
-        attributeOldValue: false
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
     });
     // ==================== 随机背景图 END ====================
 
