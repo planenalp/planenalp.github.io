@@ -5,37 +5,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
 
-    ////////// 根据主题分别从指定数量的 bgLight 和 bgDark 中随机展示背景图片 start //////////
+    ////////// 随机背景核心逻辑 start //////////
     // ================= 全局配置 =================
     const config = {
-        // 主题配置
         themes: {
             light: { prefix: 'bgLight' },
             dark:  { prefix: 'bgDark' }
         },
-        // 支持的图片格式（无序随机尝试）
         formats: ['webp', 'jpg', 'jpeg', 'png', 'avif', 'gif'],
-        // 检测参数
         detection: {
-            maxNumber: 100,     // 单主题最多检测100张
-            timeout: 800,       // 单张检测超时时间(ms)
-            retryFormats: 3     // 每种编号随机尝试3种格式
+            maxNumber: 100,
+            timeout: 800,
+            retryFormats: 3
         },
-        // 预加载配置
         preload: {
-            count: 2,          // 预加载后续2张
-            maxParallel: 4      // 最大并行预加载数
+            count: 2,
+            maxParallel: 4
         },
-        // 基础路径
         baseUrl: 'https://planenalp.github.io/'
     };
 
     // ================= 状态管理 =================
-    let themeCache = new Map();    // 主题信息缓存
-    let preloadQueue = new Set();  // 预加载队列
-    let currentPreview = null;     // 当前显示信息
+    let themeCache = new Map();
+    let preloadQueue = new Set();
+    let currentPreview = null;
 
-    // ================= 核心逻辑 =================
+    // ================= 核心函数 =================
     async function updateRandomBackground() {
         try {
             const theme = getCurrentTheme();
@@ -43,20 +38,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (!themeInfo.valid) throw new Error('无可用图片');
             
-            // 生成随机路径
             const { path, number } = await generateRandomImage(themeInfo);
             
-            // 更新显示
             document.documentElement.style.setProperty('--bgURL', `url("${config.baseUrl}${path}")`);
             
-            // 记录当前信息
             currentPreview = { 
                 prefix: theme.prefix,
                 number,
                 maxNumber: themeInfo.maxNumber
             };
             
-            // 触发预加载
             schedulePreload();
 
         } catch (error) {
@@ -65,36 +56,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ================= 预加载系统 =================
-    function schedulePreload() {
-        requestIdleCallback(() => {
-            if (!currentPreview) return;
-            
-            // 生成候选列表
-            const candidates = [];
-            for (let i = 1; i <= config.preload.count; i++) {
-                const number = (currentPreview.number + i) % currentPreview.maxNumber || 1;
-                candidates.push(...getRandomFormatCandidates(currentPreview.prefix, number));
+    async function getThemeInfo(prefix) {
+        if (themeCache.has(prefix)) {
+            return themeCache.get(prefix);
+        }
+
+        let low = 1, high = config.detection.maxNumber;
+        let maxFound = 0;
+        while (low <= high) {
+            const mid = Math.floor((low + high) / 2);
+            const exists = await checkExists(prefix, mid);
+            if (exists) {
+                maxFound = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
-            
-            // 过滤并加载新项
-            candidates.filter(url => !preloadQueue.has(url))
-                     .slice(0, config.preload.maxParallel)
-                     .forEach(url => {
-                         preloadQueue.add(url);
-                         new Image().src = `${config.baseUrl}${url}`;
-                     });
-        });
+        }
+        
+        const info = {
+            valid: maxFound > 0,
+            maxNumber: maxFound,
+            prefix
+        };
+        themeCache.set(prefix, info);
+        return info;
+    }
+
+    async function checkExists(prefix, number, format) {
+        const url = `${config.baseUrl}${prefix}${number}.${format}`;
+        try {
+            return await new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+                setTimeout(() => resolve(false), config.detection.timeout);
+            });
+        } catch {
+            return false;
+        }
     }
 
     // ================= 辅助函数 =================
-    // 获取当前主题
     function getCurrentTheme() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
         return config.themes[colorMode] || config.themes.light;
     }
 
-    // 生成随机图片路径
     async function generateRandomImage(themeInfo) {
         const randomNumber = Math.floor(Math.random() * themeInfo.maxNumber) + 1;
         const shuffledFormats = shuffleArray([...config.formats]);
@@ -110,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error('无可用格式');
     }
 
-    // 随机打乱数组
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -119,17 +127,32 @@ document.addEventListener('DOMContentLoaded', function() {
         return array;
     }
 
-    // 生成随机格式候选
+    function schedulePreload() {
+        requestIdleCallback(() => {
+            if (!currentPreview) return;
+            
+            const candidates = [];
+            for (let i = 1; i <= config.preload.count; i++) {
+                const number = (currentPreview.number + i) % currentPreview.maxNumber || 1;
+                candidates.push(...getRandomFormatCandidates(currentPreview.prefix, number));
+            }
+            
+            candidates.filter(url => !preloadQueue.has(url))
+                     .slice(0, config.preload.maxParallel)
+                     .forEach(url => {
+                         preloadQueue.add(url);
+                         new Image().src = `${config.baseUrl}${url}`;
+                     });
+        });
+    }
+
     function getRandomFormatCandidates(prefix, number) {
         return shuffleArray([...config.formats])
-            .slice(0, 2) // 每种编号随机选2种格式预加载
+            .slice(0, 2)
             .map(format => `${prefix}${number}.${format}`);
     }
 
     // ================= 初始化 =================
-    updateRandomBackground();
-    
-    // 监听主题变化
     const observer = new MutationObserver(() => {
         themeCache.clear();
         updateRandomBackground();
@@ -138,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attributes: true,
         attributeFilter: ['data-color-mode']
     });
-    ////////// 根据主题分别从指定数量的 bgLight 和 bgDark 中随机展示背景图片 end //////////
+    ////////// 随机背景核心逻辑 end //////////
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
@@ -316,6 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
         
+        updateRandomBackground(); // 随机背景核心逻辑
     }
 
 
