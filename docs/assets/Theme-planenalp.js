@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --blogTitle-color: #002fa7;
             --subTitle-color: #002fa7;
             --border-color: #d0d7de;
-            --SideNav-bgColor: #ffffffcc; /* 白色背景，透明度80% */
+            --SideNav-bgColor: #f6f8facc; /* 白色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
@@ -163,11 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
-            --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
+            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
             --blogTitle-color: #ffffff;
             --subTitle-color: #ffffff;
             --border-color: #30363d;
-            --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
+            --SideNav-bgColor: #161b22cc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
@@ -265,11 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
             min-width: unset;
         }
 
-        /* 主页文章列表内边框 */
-        .SideNav-item {
-            border-color: var(--border-color);
-        }
-
         /* 主页文章列表悬停高亮 */
         .SideNav-item:hover {
             background-color: var(--btnSideNav-hover-bgColor);
@@ -331,16 +326,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 默认亮主题配色 */
         :root {
-            --header-bgColor: #002FA7;
-            --postTitle-color: #FFFFFF;
+            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
+            --header-bgColor: #002fa7;
+            --postTitle-color: #ffffff;
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --header-bgColor: #002FA7;
-            --postTitle-color: #FFFFFF;
+            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
+            --header-bgColor: #002fa7;
+            --postTitle-color: #ffffff;
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
         }
 
         /* 背景图 */
@@ -366,6 +365,11 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 文章字体缩进5px */
         #postBody {
             margin: 5px;
+        }
+
+        /* 右上角按钮触碰背景颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btnSideNav-hover-bgColor);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
