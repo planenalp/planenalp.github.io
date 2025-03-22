@@ -162,10 +162,10 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
+            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
-            --blogTitle-color: #ffffff;
-            --subTitle-color: #ffffff;
+            --blogTitle-color: #002fa7;
+            --subTitle-color: #002fa7;
             --border-color: #30363d;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
@@ -379,6 +379,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         `;
         document.head.appendChild(style);
+
+        // ==================== 随机背景图初始主题同步 START ====================
+        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        bgSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     } 
 
 
@@ -432,10 +437,12 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
+            /* 回归禁用 tagTitle
             .tagTitle {
                 display: unset !important;
                 font-size: 14px !important;
             }
+            回归禁用 tagTitle */
             .LabelTime{
                 display:unset !important;
             }
@@ -446,5 +453,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         `;
         document.head.appendChild(style);
+
+        // ==================== 随机背景图初始主题同步 START ====================
+        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        bgSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     }
 })
