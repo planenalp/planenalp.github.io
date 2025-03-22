@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
     // ==================== 禁用自动主题功能 END ====================
     
-    ////////// 随机背景图 start //////////
+    // ==================== 随机背景图 START ====================
     const bgSwitcher = (function() {
         let currentVersion = 0;
         const maxParallel = 2;
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
         attributeOldValue: false
     });
-    ////////// 随机背景图 end //////////
+    // ==================== 随机背景图 END ====================
 
     
     
@@ -305,9 +305,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 初始主题同步
+        // ==================== 随机背景图初始主题同步 START ====================
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         bgSwitcher.switchTheme(initTheme);
+        // ==================== 随机背景图初始主题同步 END ====================
     }
 
 
