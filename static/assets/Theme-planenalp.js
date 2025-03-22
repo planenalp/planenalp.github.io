@@ -50,16 +50,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     // ==================== 随机背景图 START ====================
+    const imageCounter = {
+        cache: new Map(),
+        maxCheck: 20,
+        checkTimeout: 300,
+
+        async detectCount(prefix) {
+            if (this.cache.has(prefix)) return this.cache.get(prefix);
+            
+            let count = 0;
+            const checkPromises = [];
+            
+            for (let i = 1; i <= this.maxCheck; i++) {
+                checkPromises.push(
+                    this._checkImageExists(`${prefix}${i}.webp`)
+                        .then(exists => exists ? i : 0)
+                );
+            }
+            
+            const results = await Promise.all(checkPromises);
+            count = Math.max(...results.filter(n => n <= this.maxCheck));
+            
+            this.cache.set(prefix, count);
+            return count;
+        },
+
+        _checkImageExists(filename) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                const timer = setTimeout(() => {
+                    img.onload = img.onerror = null;
+                    resolve(false);
+                }, this.checkTimeout);
+
+                img.onload = () => {
+                    clearTimeout(timer);
+                    resolve(true);
+                };
+                img.onerror = () => {
+                    clearTimeout(timer);
+                    resolve(false);
+                };
+                img.src = `https://planenalp.github.io/${filename}`;
+            });
+        }
+    };
+
+    //============== 原子级切换控制模块 ==============//
     const bgSwitcher = (function() {
         let currentVersion = 0;
         const maxParallel = 2;
         const loadQueue = [];
         const activeLoaders = new Set();
 
-        function createLoader(targetTheme, version) {
-            return new Promise((resolve) => {
+        async function createLoader(targetTheme, version) {
+            return new Promise(async (resolve) => {
                 const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-                const totalImages = 4;
+                const totalImages = await imageCounter.detectCount(prefix);
+                if (totalImages === 0) return resolve(false);
+
                 const randomNum = Math.floor(Math.random() * totalImages) + 1;
                 const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
                 const img = new Image();
@@ -109,8 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
     })();
-    
-    //新增主题监听 ==================================================
+
+    //============== 主题变化监听模块 ==============//
     let lastTheme = null;
     const observer = new MutationObserver(function(mutations) {
         const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
