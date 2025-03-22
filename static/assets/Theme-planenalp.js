@@ -49,31 +49,35 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
     // ==================== 禁用自动主题功能 END ====================
     
-    ////////// 随机背景核心逻辑 start //////////
+    ////////// 随机背景图 start //////////
     //包含后面每个页面最后一个括号前添加 updateRandomBackground(); // 新增：初始化随机背景
-    // 新增：随机背景函数 ------------------------------------------
     function updateRandomBackground() {
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
         const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
-        const totalImages = 4; // 根据实际图片数量修改
-        
+        const totalImages = 4;
         const randomNum = Math.floor(Math.random() * totalImages) + 1;
-        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
+        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
         
-        document.documentElement.style.setProperty('--bgURL', bgUrl);
+        const img = new Image();
+        img.src = bgUrl.replace('url("', '').replace('")', '');
+        img.onload = function() {
+            document.documentElement.style.setProperty('--bgURL', bgUrl);
+            document.documentElement.style.background = 'none';
+            document.documentElement.offsetHeight;
+            document.documentElement.style.background = '';
+        };
     }
-
-    // 新增：主题变化监听 ------------------------------------------
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.attributeName === 'data-color-mode' || 
-                mutation.attributeName === 'data-light-theme') {
+    
+    //新增主题监听 ==================================================
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (['data-color-mode','data-light-theme','data-dark-theme'].includes(mutation.attributeName)) {
                 updateRandomBackground();
             }
         });
     });
     observer.observe(document.documentElement, { attributes: true });
-    ////////// 随机背景核心逻辑 end //////////
+    ////////// 随机背景图 end //////////
 
     
     
