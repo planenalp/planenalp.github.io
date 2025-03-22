@@ -50,95 +50,128 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     // ==================== 随机背景图 START ====================
-    const bgManager = (function() {
-        const maxDetection = 50; // 最大检测数量
-        const cache = {
-            light: { count: 0, timestamp: 0 },
-            dark: { count: 0, timestamp: 0 }
-        };
+    const imageCounter = {
+        cache: new Map(),
+        maxCheck: 20,
+        checkTimeout: 300,
 
-        async function detectCount(prefix) {
-            return new Promise(resolve => {
-                let count = 0;
-                let current = 1;
-                
-                function check() {
-                    if (current > maxDetection) return resolve(count);
-                    
-                    const img = new Image();
-                    img.onload = () => {
-                        count = current++;
-                        check();
-                    };
-                    img.onerror = () => resolve(count);
-                    img.src = `https://planenalp.github.io/${prefix}${current}.webp`;
-                }
-                
-                check();
-            });
-        }
-
-        async function getCount(prefix) {
-            // 缓存有效期5分钟
-            if (cache[prefix].count > 0 && Date.now() - cache[prefix].timestamp < 300000) {
-                return cache[prefix].count;
+        async detectCount(prefix) {
+            if (this.cache.has(prefix)) return this.cache.get(prefix);
+            
+            let count = 0;
+            const checkPromises = [];
+            
+            for (let i = 1; i <= this.maxCheck; i++) {
+                checkPromises.push(
+                    this._checkImageExists(`${prefix}${i}.webp`)
+                        .then(exists => exists ? i : 0)
+                );
             }
             
-            const count = await detectCount(prefix);
-            cache[prefix] = { count, timestamp: Date.now() };
+            const results = await Promise.all(checkPromises);
+            count = Math.max(...results.filter(n => n <= this.maxCheck));
+            
+            this.cache.set(prefix, count);
             return count;
-        }
-
-        return {
-            getRandomImage: async function(prefix) {
-                const count = await this.getCount(prefix);
-                if (count === 0) return '';
-                const randomNum = Math.floor(Math.random() * count) + 1;
-                return `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
-            },
-            getCount
-        };
-    })();
-
-    //新增主题控制模块 ================================================
-    const themeSwitcher = {
-        currentVersion: 0,
-        activeRequest: null,
-        
-        async switchTheme(targetTheme) {
-            const version = ++this.currentVersion;
-            this._cancelRequest();
-            
-            const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const bgUrl = await bgManager.getRandomImage(prefix);
-            
-            if (version !== this.currentVersion) return;
-            if (!bgUrl) return;
-            
-            document.documentElement.style.setProperty('--bgURL', bgUrl);
         },
-        
-        _cancelRequest() {
-            if (this.activeRequest) {
-                this.activeRequest.onload = null;
-                this.activeRequest.onerror = null;
-                this.activeRequest.src = '';
-            }
+
+        _checkImageExists(filename) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                const timer = setTimeout(() => {
+                    img.onload = img.onerror = null;
+                    resolve(false);
+                }, this.checkTimeout);
+
+                img.onload = () => {
+                    clearTimeout(timer);
+                    resolve(true);
+                };
+                img.onerror = () => {
+                    clearTimeout(timer);
+                    resolve(false);
+                };
+                img.src = `https://planenalp.github.io/${filename}`;
+            });
         }
     };
 
-    //新增主题监听 ==================================================
+    //============== 原子级切换控制模块 ==============//
+    const bgSwitcher = (function() {
+        let currentVersion = 0;
+        const maxParallel = 2;
+        const loadQueue = [];
+        const activeLoaders = new Set();
+
+        async function createLoader(targetTheme, version) {
+            return new Promise(async (resolve) => {
+                const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+                const totalImages = await imageCounter.detectCount(prefix);
+                if (totalImages === 0) return resolve(false);
+
+                const randomNum = Math.floor(Math.random() * totalImages) + 1;
+                const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
+                const img = new Image();
+                
+                img.onload = function() {
+                    if (version !== currentVersion) {
+                        img.src = '';
+                        resolve(false);
+                        return;
+                    }
+                    document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
+                    activeLoaders.delete(loader);
+                    processQueue();
+                    resolve(true);
+                };
+                
+                img.onerror = function() {
+                    activeLoaders.delete(loader);
+                    processQueue();
+                    resolve(false);
+                };
+
+                const loader = { img, version };
+                img.src = bgUrl;
+                activeLoaders.add(loader);
+            });
+        }
+
+        async function processQueue() {
+            while (loadQueue.length > 0 && activeLoaders.size < maxParallel) {
+                const { targetTheme, version } = loadQueue.shift();
+                if (version !== currentVersion) continue;
+                
+                const success = await createLoader(targetTheme, version);
+                if (!success && version === currentVersion) {
+                    loadQueue.unshift({ targetTheme, version });
+                }
+            }
+        }
+
+        return {
+            switchTheme: function(targetTheme) {
+                currentVersion++;
+                const version = currentVersion;
+                loadQueue.push({ targetTheme, version });
+                processQueue();
+            }
+        };
+    })();
+
+    //============== 主题变化监听模块 ==============//
     let lastTheme = null;
     const observer = new MutationObserver(function(mutations) {
         const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         if (newTheme === lastTheme) return;
         
         lastTheme = newTheme;
-        themeSwitcher.switchTheme(newTheme);
+        bgSwitcher.switchTheme(newTheme);
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
+        attributeOldValue: false
     });
     // ==================== 随机背景图 END ====================
 
@@ -323,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // ==================== 随机背景图初始主题同步 START ====================
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        themeSwitcher.switchTheme(initTheme);
+        bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
     }
 
