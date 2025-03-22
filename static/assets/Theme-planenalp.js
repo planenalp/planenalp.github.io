@@ -316,10 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
         
-        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 start //////////
-        // 新增：初始化随机背景
-        updateRandomBackground();
-        ////////// 根据主题分别从 bgLight123 和 bgDark123 各三张中随机展示背景图片 end //////////
     }
 
 
