@@ -4,33 +4,7 @@ document.addEventListener('touchstart', function() {}, false);
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
-
-    ////////// 随机背景核心逻辑 start //////////
-    //包含后面每个页面最后一个括号前添加 updateRandomBackground(); // 新增：初始化随机背景
-    // 新增：随机背景函数 ------------------------------------------
-    function updateRandomBackground() {
-        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
-        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
-        const totalImages = 4; // 根据实际图片数量修改
-        
-        const randomNum = Math.floor(Math.random() * totalImages) + 1;
-        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
-        
-        document.documentElement.style.setProperty('--bgURL', bgUrl);
-    }
-
-    // 新增：主题变化监听 ------------------------------------------
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.attributeName === 'data-color-mode' || 
-                mutation.attributeName === 'data-light-theme') {
-                updateRandomBackground();
-            }
-        });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    ////////// 随机背景核心逻辑 end //////////
-
+    
     // ==================== 禁用自动主题功能 START ====================
     // 覆盖主题配置
     window.themeSettings = {
@@ -74,6 +48,34 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem("meek_theme", "light");
     }
     // ==================== 禁用自动主题功能 END ====================
+    
+    ////////// 随机背景核心逻辑 start //////////
+    //包含后面每个页面最后一个括号前添加 updateRandomBackground(); // 新增：初始化随机背景
+    // 新增：随机背景函数 ------------------------------------------
+    function updateRandomBackground() {
+        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
+        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
+        const totalImages = 4; // 根据实际图片数量修改
+        
+        const randomNum = Math.floor(Math.random() * totalImages) + 1;
+        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp")`;
+        
+        document.documentElement.style.setProperty('--bgURL', bgUrl);
+    }
+
+    // 新增：主题变化监听 ------------------------------------------
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'data-color-mode' || 
+                mutation.attributeName === 'data-light-theme') {
+                updateRandomBackground();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+    ////////// 随机背景核心逻辑 end //////////
+
+    
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
