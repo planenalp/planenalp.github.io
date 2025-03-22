@@ -50,12 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     ////////// 随机背景图 start //////////
-    let currentRequest = null;
+    let pendingRequests = [];
     function updateRandomBackground() {
-        // 取消未完成的图片请求
-        if (currentRequest) {
-            currentRequest.onload = null;
-            currentRequest.src = '';
+        // 取消所有未完成的图片请求
+        while (pendingRequests.length > 0) {
+            const req = pendingRequests.pop();
+            req.onload = null;
+            req.src = '';
         }
 
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
@@ -63,36 +64,48 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalImages = 4;
         const randomNum = Math.floor(Math.random() * totalImages) + 1;
         const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
-        
-        // 立即更新CSS变量
-        document.documentElement.style.setProperty('--bgURL', bgUrl);
-        
-        // 强制同步渲染
+        const cleanUrl = bgUrl.replace('url("', '').replace('")', '');
+
+        // 同步设置临时背景
+        document.documentElement.style.setProperty('--bgURL', 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=")');
         document.documentElement.style.background = 'none';
         document.documentElement.offsetHeight;
-        document.documentElement.style.background = '';
-        
-        // 后台预加载
-        currentRequest = new Image();
-        currentRequest.src = bgUrl.replace('url("', '').replace('")', '');
+
+        // 预加载实际图片
+        const img = new Image();
+        img.onload = function() {
+            document.documentElement.style.setProperty('--bgURL', bgUrl);
+            // 强制三阶段渲染
+            document.documentElement.style.background = 'none';
+            document.documentElement.offsetHeight;
+            document.documentElement.style.background = '';
+            document.documentElement.offsetHeight;
+            document.documentElement.style.background = '';
+        };
+        img.src = cleanUrl;
+        pendingRequests.push(img);
     }
     
     //新增主题监听 ==================================================
-    let observerTimer;
+    let observerLock = false;
     const observer = new MutationObserver(function(mutations) {
+        if (observerLock) return;
+        observerLock = true;
+        
         mutations.forEach(function(mutation) {
             if (['data-color-mode','data-light-theme','data-dark-theme'].includes(mutation.attributeName)) {
-                // 防抖处理
-                clearTimeout(observerTimer);
-                observerTimer = setTimeout(() => {
+                // 同步立即执行
+                requestAnimationFrame(() => {
                     updateRandomBackground();
-                }, 50);
+                    observerLock = false;
+                });
             }
         });
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
+        attributeOldValue: false
     });
     ////////// 随机背景图 end //////////
 
@@ -138,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
-            transition: background-image 0.3s ease-in-out !important;
+            transition: background-image 0.15s linear !important;
         }
 
         /* 主体布局 */
