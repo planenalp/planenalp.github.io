@@ -50,33 +50,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     ////////// 随机背景图 start //////////
-    //包含后面每个页面最后一个括号前添加 updateRandomBackground(); // 新增：初始化随机背景
+    let currentRequest = null;
     function updateRandomBackground() {
+        // 取消未完成的图片请求
+        if (currentRequest) {
+            currentRequest.onload = null;
+            currentRequest.src = '';
+        }
+
         const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
         const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
         const totalImages = 4;
         const randomNum = Math.floor(Math.random() * totalImages) + 1;
         const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
         
-        const img = new Image();
-        img.src = bgUrl.replace('url("', '').replace('")', '');
-        img.onload = function() {
-            document.documentElement.style.setProperty('--bgURL', bgUrl);
-            document.documentElement.style.background = 'none';
-            document.documentElement.offsetHeight;
-            document.documentElement.style.background = '';
-        };
+        // 立即更新CSS变量
+        document.documentElement.style.setProperty('--bgURL', bgUrl);
+        
+        // 强制同步渲染
+        document.documentElement.style.background = 'none';
+        document.documentElement.offsetHeight;
+        document.documentElement.style.background = '';
+        
+        // 后台预加载
+        currentRequest = new Image();
+        currentRequest.src = bgUrl.replace('url("', '').replace('")', '');
     }
     
     //新增主题监听 ==================================================
+    let observerTimer;
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (['data-color-mode','data-light-theme','data-dark-theme'].includes(mutation.attributeName)) {
-                updateRandomBackground();
+                // 防抖处理
+                clearTimeout(observerTimer);
+                observerTimer = setTimeout(() => {
+                    updateRandomBackground();
+                }, 50);
             }
         });
     });
-    observer.observe(document.documentElement, { attributes: true });
+    observer.observe(document.documentElement, { 
+        attributes: true,
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
+    });
     ////////// 随机背景图 end //////////
 
     
