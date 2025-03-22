@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
+            transition: background-image 0.3s ease-in-out !important;
         }
 
         /* 主体布局 */
