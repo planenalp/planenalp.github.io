@@ -162,10 +162,10 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
+            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #21262db3; /* 黑色背景，透明度70% */
-            --blogTitle-color: #002fa7;
-            --subTitle-color: #002fa7;
+            --blogTitle-color: #ffffff;
+            --subTitle-color: #ffffff;
             --border-color: #30363d;
             --SideNav-bgColor: #21262dcc; /* 黑色背景，透明度80% */
             --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
@@ -345,8 +345,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 背景图 */
         html {    
-            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
+            transition: background-image 0.15s linear !important;
         }
         
         /* 顶栏改色 */
@@ -410,8 +411,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 背景图 */
         html {    
-            background: url('https://planenalp.github.io/bg.webp') no-repeat center center fixed;
+            background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
+            transition: background-image 0.15s linear !important;
         }
         
         /* 顶栏改色 */
