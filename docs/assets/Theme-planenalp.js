@@ -50,91 +50,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     ////////// 随机背景图 start //////////
-    const bgController = {
-        currentTheme: null,
-        targetTheme: null,
-        retryCount: 0,
-        maxRetry: 2,
-        loading: false,
-        requests: new Set(),
+    const bgSwitcher = (function() {
+        let currentVersion = 0;
+        const maxParallel = 2;
+        const loadQueue = [];
+        const activeLoaders = new Set();
 
-        // 主题变更入口
-        handleThemeChange: function() {
-            const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-            if (newTheme === this.currentTheme) return;
-            
-            this.targetTheme = newTheme;
-            this.currentTheme = null;
-            this._startLoading();
-        },
-
-        // 实际加载流程
-        _startLoading: function() {
-            if (this.loading) return;
-            
-            this.loading = true;
-            this.retryCount = 0;
-            this._loadImage();
-        },
-
-        // 图片加载逻辑
-        _loadImage: function() {
-            // 清理旧请求
-            this.requests.forEach(req => {
-                req.onload = null;
-                req.onerror = null;
-                req.src = '';
-            });
-            this.requests.clear();
-
-            // 生成目标URL
-            const prefix = this.targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const totalImages = 4;
-            const randomNum = Math.floor(Math.random() * totalImages) + 1;
-            const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}`;
-            
-            // 创建预加载
-            const img = new Image();
-            img._targetTheme = this.targetTheme;
-            
-            // 成功处理
-            img.onload = () => {
-                if (this.targetTheme !== img._targetTheme) return;
+        function createLoader(targetTheme, version) {
+            return new Promise((resolve) => {
+                const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+                const totalImages = 4;
+                const randomNum = Math.floor(Math.random() * totalImages) + 1;
+                const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}_v${version}`;
+                const img = new Image();
                 
-                document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
-                this.currentTheme = this.targetTheme;
-                this.loading = false;
-                this.requests.delete(img);
-            };
+                img.onload = function() {
+                    if (version !== currentVersion) {
+                        img.src = '';
+                        resolve(false);
+                        return;
+                    }
+                    document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
+                    activeLoaders.delete(loader);
+                    processQueue();
+                    resolve(true);
+                };
+                
+                img.onerror = function() {
+                    activeLoaders.delete(loader);
+                    processQueue();
+                    resolve(false);
+                };
 
-            // 失败处理
-            img.onerror = () => {
-                this.requests.delete(img);
-                if (this.retryCount < this.maxRetry) {
-                    this.retryCount++;
-                    setTimeout(() => this._loadImage(), 100);
-                } else {
-                    console.error('背景加载失败');
-                    this.loading = false;
-                }
-            };
-
-            this.requests.add(img);
-            img.src = bgUrl;
+                const loader = { img, version };
+                img.src = bgUrl;
+                activeLoaders.add(loader);
+            });
         }
-    };
+
+        async function processQueue() {
+            while (loadQueue.length > 0 && activeLoaders.size < maxParallel) {
+                const { targetTheme, version } = loadQueue.shift();
+                if (version !== currentVersion) continue;
+                
+                const success = await createLoader(targetTheme, version);
+                if (!success && version === currentVersion) {
+                    loadQueue.unshift({ targetTheme, version });
+                }
+            }
+        }
+
+        return {
+            switchTheme: function(targetTheme) {
+                currentVersion++;
+                const version = currentVersion;
+                loadQueue.push({ targetTheme, version });
+                processQueue();
+            }
+        };
+    })();
     
     //新增主题监听 ==================================================
+    let lastTheme = null;
     const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (['data-color-mode','data-light-theme','data-dark-theme'].includes(mutation.attributeName)) {
-                bgController.handleThemeChange();
-            }
-        });
+        const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        if (newTheme === lastTheme) return;
+        
+        lastTheme = newTheme;
+        bgSwitcher.switchTheme(newTheme);
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
+        attributeOldValue: false
     });
     ////////// 随机背景图 end //////////
 
@@ -317,8 +305,9 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        // 初始化主题
-        bgController.handleThemeChange();
+        // 初始主题同步
+        const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        bgSwitcher.switchTheme(initTheme);
     }
 
 
