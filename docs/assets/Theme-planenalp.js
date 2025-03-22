@@ -32,18 +32,40 @@ document.addEventListener('DOMContentLoaded', function() {
     ////////// 随机背景核心逻辑 end //////////
 
     ////////// 禁用自动主题功能 start //////////
-    if (typeof window.modeSwitch === 'function') {
-        window.modeSwitch = function() {
-            let currentMode = document.documentElement.getAttribute('data-color-mode');
-            // 只在 light 和 dark 之间切换
-            let newMode = currentMode === "light" ? "dark" : "light";
-            localStorage.setItem("meek_theme", newMode);
-            if (window.themeSettings && window.themeSettings[newMode]) {
-                window.changeTheme(...window.themeSettings[newMode]);
-            }
+    // 获取主题切换按钮（假设存在 id 为 themeSwitch 的节点）
+    const themeSwitchIcon = document.getElementById("themeSwitch");
+    if (!themeSwitchIcon) return; // 如果找不到，就退出
+
+    // 保存父节点引用（原代码绑定的是这个节点）
+    const themeBtn = themeSwitchIcon.parentNode;
+
+    // 清除原有点击事件（如果是内联 onclick，可覆盖，否则需要更多处理）
+    themeBtn.onclick = null;
+
+    // 定义只在 light 与 dark 间切换的新逻辑
+    themeBtn.addEventListener('click', function() {
+        // 读取当前主题
+        let currentMode = document.documentElement.getAttribute('data-color-mode');
+        // 只在 light 与 dark 之间切换
+        let newMode = currentMode === "light" ? "dark" : "light";
+        // 保存设置到 localStorage
+        localStorage.setItem("meek_theme", newMode);
+
+        // 根据新主题更新图标与颜色（这里用原来 themeSettings 中 light 和 dark 的配置）
+        const myThemeSettings = {
+            "dark": ["dark", "moon", "#00f0ff", "dark-blue"],
+            "light": ["light", "sun", "#ff5000", "github-light"]
+        };
+
+        // 如果 changeTheme 函数可用，则调用它；否则直接修改 data-color-mode 属性
+        if (typeof window.changeTheme === 'function') {
+            window.changeTheme(...myThemeSettings[newMode]);
+        } else {
+            document.documentElement.setAttribute("data-color-mode", newMode);
         }
-        console.log("已禁用 auto 模式：现在只在 light 和 dark 之间切换");
-    }
+    });
+
+    console.log("已重写主题切换事件，只在 light 与 dark 之间切换（禁用了 auto 选项）。");
     ////////// 禁用自动主题功能 end //////////
     
     //主页主题------------------------------------------------------------------------------
