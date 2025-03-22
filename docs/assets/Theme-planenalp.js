@@ -50,62 +50,91 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     ////////// 随机背景图 start //////////
-    let pendingRequests = [];
-    function updateRandomBackground() {
-        // 取消所有未完成的图片请求
-        while (pendingRequests.length > 0) {
-            const req = pendingRequests.pop();
-            req.onload = null;
-            req.src = '';
+    const bgController = {
+        currentTheme: null,
+        targetTheme: null,
+        retryCount: 0,
+        maxRetry: 2,
+        loading: false,
+        requests: new Set(),
+
+        // 主题变更入口
+        handleThemeChange: function() {
+            const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+            if (newTheme === this.currentTheme) return;
+            
+            this.targetTheme = newTheme;
+            this.currentTheme = null;
+            this._startLoading();
+        },
+
+        // 实际加载流程
+        _startLoading: function() {
+            if (this.loading) return;
+            
+            this.loading = true;
+            this.retryCount = 0;
+            this._loadImage();
+        },
+
+        // 图片加载逻辑
+        _loadImage: function() {
+            // 清理旧请求
+            this.requests.forEach(req => {
+                req.onload = null;
+                req.onerror = null;
+                req.src = '';
+            });
+            this.requests.clear();
+
+            // 生成目标URL
+            const prefix = this.targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+            const totalImages = 4;
+            const randomNum = Math.floor(Math.random() * totalImages) + 1;
+            const bgUrl = `https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}`;
+            
+            // 创建预加载
+            const img = new Image();
+            img._targetTheme = this.targetTheme;
+            
+            // 成功处理
+            img.onload = () => {
+                if (this.targetTheme !== img._targetTheme) return;
+                
+                document.documentElement.style.setProperty('--bgURL', `url("${bgUrl}")`);
+                this.currentTheme = this.targetTheme;
+                this.loading = false;
+                this.requests.delete(img);
+            };
+
+            // 失败处理
+            img.onerror = () => {
+                this.requests.delete(img);
+                if (this.retryCount < this.maxRetry) {
+                    this.retryCount++;
+                    setTimeout(() => this._loadImage(), 100);
+                } else {
+                    console.error('背景加载失败');
+                    this.loading = false;
+                }
+            };
+
+            this.requests.add(img);
+            img.src = bgUrl;
         }
-
-        const colorMode = document.documentElement.getAttribute('data-color-mode') || 'light';
-        const prefix = colorMode === 'dark' ? 'bgDark' : 'bgLight';
-        const totalImages = 4;
-        const randomNum = Math.floor(Math.random() * totalImages) + 1;
-        const bgUrl = `url("https://planenalp.github.io/${prefix}${randomNum}.webp?t=${Date.now()}")`;
-        const cleanUrl = bgUrl.replace('url("', '').replace('")', '');
-
-        // 同步设置临时背景
-        document.documentElement.style.setProperty('--bgURL', 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=")');
-        document.documentElement.style.background = 'none';
-        document.documentElement.offsetHeight;
-
-        // 预加载实际图片
-        const img = new Image();
-        img.onload = function() {
-            document.documentElement.style.setProperty('--bgURL', bgUrl);
-            // 强制三阶段渲染
-            document.documentElement.style.background = 'none';
-            document.documentElement.offsetHeight;
-            document.documentElement.style.background = '';
-            document.documentElement.offsetHeight;
-            document.documentElement.style.background = '';
-        };
-        img.src = cleanUrl;
-        pendingRequests.push(img);
-    }
+    };
     
     //新增主题监听 ==================================================
-    let observerLock = false;
     const observer = new MutationObserver(function(mutations) {
-        if (observerLock) return;
-        observerLock = true;
-        
         mutations.forEach(function(mutation) {
             if (['data-color-mode','data-light-theme','data-dark-theme'].includes(mutation.attributeName)) {
-                // 同步立即执行
-                requestAnimationFrame(() => {
-                    updateRandomBackground();
-                    observerLock = false;
-                });
+                bgController.handleThemeChange();
             }
         });
     });
     observer.observe(document.documentElement, { 
         attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme'],
-        attributeOldValue: false
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
     });
     ////////// 随机背景图 end //////////
 
@@ -288,7 +317,8 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(style);
 
-        updateRandomBackground(); // 新增：初始化随机背景
+        // 初始化主题
+        bgController.handleThemeChange();
     }
 
 
