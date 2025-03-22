@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 背景图 */
         html {    
-            background: var(--bgURL) no-repeat center center fixed;
+            background: url('https://godpan.com/bg.webp') no-repeat center center fixed;
             background-size: cover;
         }
 
