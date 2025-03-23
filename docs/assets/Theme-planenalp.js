@@ -258,7 +258,15 @@ document.addEventListener('DOMContentLoaded', function() {
             display: unset; /* 重置属性取消默认屏幕过窄自动隐藏标题 */
         }
 
-        /* 自定义按钮 */
+        /* 副标题居中+移位 */
+        #content > div {
+            margin-bottom: unset !important;
+            text-align: center;  /* 子元素（副标题）水平居中 */
+            height: 75px;
+            color: var(--subTitle-color);
+        }
+
+        /* 按钮位置 */
         .title-right {
             margin: unset; /* 重置原参数 */
             margin-top: 200px; /* 用百分比会崩 */
@@ -267,12 +275,14 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
-        /* 副标题居中+移位 */
-        #content > div {
-            margin-bottom: unset !important;
-            text-align: center;  /* 子元素（副标题）水平居中 */
-            height: 75px;
-            color: var(--subTitle-color);
+        /* 按钮触碰背景颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btn-hover-bgColor);
+        }
+
+        /* 按钮图标色 */
+        .octicon {
+            fill: var(--blogTitle-color);
         }
 
         /* 主页文章列表 */
@@ -298,11 +308,6 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
-        }
-
-        /* 右上角按钮触碰背景颜色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -411,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 5px;
         }
         
-        /* 右上角按钮触碰背景颜色 */
+        /* 按钮触碰背景颜色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
         }
@@ -514,6 +519,11 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 230px; 
         }
 
+        /* 按钮触碰背景颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btn-hover-bgColor);
+        }
+
         /* 主页文章列表 */
         .SideNav {
             background: var(--SideNav-bgColor);
@@ -532,19 +542,6 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
-        }
-
-        #content > nav > a:nth-child(1) > div.listLabels > span.Label.LabelName {
-            background-color: transparent;
-        }
-
-        #content > nav > a:nth-child(1) > div.listLabels > span.Label.LabelTime {
-            background-color: transparent;
-        }
-
-        /* 右上角按钮触碰背景颜色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
