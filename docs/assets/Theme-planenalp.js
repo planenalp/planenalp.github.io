@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
             --blogTitle-color: #002fa7;
             --subTitle-color: #002fa7;
             --border-color: #d0d7de;
@@ -156,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
             --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
-            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
             --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
+            --box-shadow: 0 0 transparent; /* 添加阴影 */
             --blogTitle-color: #ffffff;
             --subTitle-color: #ffffff;
             --border-color: #30363d;
@@ -174,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
             --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
-            --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
         /* 背景图 */
@@ -356,10 +356,11 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 默认亮主题配色 */
         :root {
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
             --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
-            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+            --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -367,10 +368,11 @@ document.addEventListener('DOMContentLoaded', function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
+            --box-shadow: 0 0 transparent; /* 添加阴影 */
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
             --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
-            --box-shadow: 0 0 transparent; /* 添加阴影 */
+            --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
         }
 
         /* 背景图 */
@@ -418,9 +420,14 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 5px;
         }
         
-        /* 按钮触碰背景颜色 */
+        /* 按钮悬停色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
+        }
+
+        /* 按钮图标色 */
+        #themeSwitch {
+            color: var(--themeSwitch-color);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -460,6 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+            --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -474,6 +482,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
+            --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
         }
 
         /* 背景图 */
@@ -521,9 +530,14 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 230px; 
         }
 
-        /* 按钮触碰背景颜色 */
+        /* 按钮悬停色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
+        }
+
+        /* 按钮图标色 */
+        #themeSwitch {
+            color: var(--themeSwitch-color);
         }
 
         /* 主页文章列表 */
