@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --header-bgColor: #002fa7;
         --blogTitle-color: #002fa7;
         --subTitle-color: #002fa7;
-        --postTitle-color: #ffffff;
+        --postTitle-color: #002fa7;
         --tagTitle-color: #ffffff;
         --border-color: #d0d7de;
         --SideNav-bgColor: #f6f8facc;
@@ -190,13 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 文章页主题 */
     .post-theme {
-        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
     }
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
-        --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
     }
     
     /* 搜索页主题 */
@@ -406,7 +406,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            max-height: 500px; /* header 居中 */
             display: flex; /* header 居中 */
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
