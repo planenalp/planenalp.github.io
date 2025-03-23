@@ -505,16 +505,16 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 100%; /* header 居中 */
         }
 
-        /* 按钮悬停色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
-        }
-
         /* 按钮取消右间隔 */
         .title-right .circle {
             margin-right: unset; /* header 居中 */
         }
         
+        /* 按钮悬停色 */
+        .btn-invisible:hover {
+            background-color: var(--btn-hover-bgColor);
+        }
+
         /* 按钮图标色 */
         #themeSwitch {
             color: var(--themeSwitch-color);
