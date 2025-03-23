@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* header布局 */
         #header {
-            height: 175px;
+            height: 165px;
             position: relative; /* 父元素 #header 设置定位 */
             border-bottom: unset;
             margin-bottom: unset;
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 20px;
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮位置 */
         .title-right {
             margin: unset; /* 重置原参数 */
-            margin-top: 200px; /* 用百分比会崩 */
+            margin-top: 190px; /* 用百分比会崩 */
             margin-left: 50%;
             transform: translateX(-50%);
             position: absolute;
