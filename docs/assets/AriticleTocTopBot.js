@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --color-toc-a-text: #c9d1d9;
-            --color-toc-bg: #21262dcc;
+            --color-toc-bg: #0d1117cc;
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
