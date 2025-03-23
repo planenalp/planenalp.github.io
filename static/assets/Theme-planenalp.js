@@ -135,67 +135,98 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // ==================== 随机背景图 END ====================
 
-    
+    // ==================== 全局CSS变量定义 START ====================
+    const globalStyle = document.createElement('style');
+    globalStyle.innerHTML = `
+    :root {
+        /* 基础变量 */
+        --body-bgColor: #ffffffb3;
+        --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        --border-color: #d0d7de;
+        --text-hover-color: #ffffff;
+        --btn-hover-bgColor: #002fa7;
+        --themeSwitch-color: #656d76;
+        --header-bgColor: #002fa7;
+        
+        /* 背景图相关 */
+        --bgURL: url("");
+        --avatarURL: url("");
+    }
+
+    /* 暗色主题覆盖 */
+    [data-color-mode=light][data-light-theme=dark],
+    [data-color-mode=light][data-light-theme=dark]::selection,
+    [data-color-mode=dark][data-dark-theme=dark],
+    [data-color-mode=dark][data-dark-theme=dark]::selection {
+        --body-bgColor: #0d1117b3;
+        --box-shadow: 0 0 transparent;
+        --border-color: #30363d;
+        --btn-hover-bgColor: #002fa7;
+        --themeSwitch-color: #7d8590;
+    }
+
+    /* 主页主题 */
+    .home-theme {
+        --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
+        --blogTitle-color: #002fa7;
+        --subTitle-color: #002fa7;
+        --SideNav-bgColor: #f6f8facc;
+        --SideNav-hover-bgColor: #002fa7;
+    }
+    [data-color-mode=dark] .home-theme,
+    [data-light-theme=dark] .home-theme {
+        --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
+        --blogTitle-color: #ffffff;
+        --subTitle-color: #ffffff;
+        --SideNav-bgColor: #161b22cc;
+    }
+
+    /* 文章页主题 */
+    .post-theme {
+        --postTitle-color: #ffffff;
+    }
+
+    /* 搜索页主题 */
+    .search-theme {
+        --tagTitle-color: #ffffff;
+        --SideNav-bgColor: #f6f8facc;
+        --SideNav-hover-bgColor: #002fa7;
+    }
+    [data-color-mode=dark] .search-theme,
+    [data-light-theme=dark] .search-theme {
+        --SideNav-bgColor: #161b22cc;
+    }
+
+    /* 全局背景样式 */
+    /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
+    html::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background: var(--bgURL) no-repeat center center;
+        background-size: cover;
+        transition: background-image 0.15s linear;
+    }
+    `;
+    document.head.appendChild(globalStyle);
+    // ==================== 全局CSS变量定义 END ====================
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
         console.log('应用主页主题');
+        document.documentElement.classList.add('home-theme');
         let style = document.createElement("style");
         style.innerHTML = `
-        
-        /* 默认亮主题配色 */
-        :root {
-            /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
-            --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
-            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
-            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-            --blogTitle-color: #002fa7;
-            --subTitle-color: #002fa7;
-            --border-color: #d0d7de;
-            --SideNav-bgColor: #f6f8facc; /* 白色背景，透明度80% */
-            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
-            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
-            --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
-            --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
-        }
-        /* 暗主题配色 */
-        [data-color-mode=light][data-light-theme=dark],
-        [data-color-mode=light][data-light-theme=dark]::selection,
-        [data-color-mode=dark][data-dark-theme=dark],
-        [data-color-mode=dark][data-dark-theme=dark]::selection {
-            /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-            --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
-            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
-            --box-shadow: 0 0 transparent; /* 添加阴影 */
-            --blogTitle-color: #ffffff;
-            --subTitle-color: #ffffff;
-            --border-color: #30363d;
-            --SideNav-bgColor: #161b22cc; /* 黑色背景，透明度80% */
-            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
-            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
-            --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
-            --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
-        }
 
         /* 背景图 */
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
-        }
-
-        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
-        html::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: var(--bgURL) no-repeat center center;
-            background-size: cover;
-            transition: background-image 0.15s linear;
         }
 
         /* 主体布局 */
@@ -349,51 +380,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     else if (currentUrl.includes('/post/') || currentUrl.includes('/link.html') || currentUrl.includes('/about.html')) {
         console.log('文章页主题');
-
+        document.documentElement.classList.add('post-theme');
         let style = document.createElement("style");
         style.innerHTML = `
-
-        /* 默认亮主题配色 */
-        :root {
-            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
-            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-            --header-bgColor: #002fa7;
-            --postTitle-color: #ffffff;
-            --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
-            --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
-        }
-        /* 暗主题配色 */
-        [data-color-mode=light][data-light-theme=dark],
-        [data-color-mode=light][data-light-theme=dark]::selection,
-        [data-color-mode=dark][data-dark-theme=dark],
-        [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
-            --box-shadow: 0 0 transparent; /* 添加阴影 */
-            --header-bgColor: #002fa7;
-            --postTitle-color: #ffffff;
-            --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
-            --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
-        }
 
         /* 背景图 */
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
-        }
-
-        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
-        html::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: var(--bgURL) no-repeat center center;
-            background-size: cover;
-            transition: background-image 0.15s linear;
         }
 
         /* 主体布局 */
@@ -454,56 +449,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     else if (currentUrl.includes('/tag')) {
         console.log('应用搜索页主题');
+        document.documentElement.classList.add('search-theme');
         let style = document.createElement("style");
         style.innerHTML = `
-
-        /* 默认亮主题配色 */
-        :root {
-            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
-            --header-bgColor: #002fa7;
-            --tagTitle-color: #ffffff;
-            --SideNav-bgColor: #f6f8facc; /* 白色背景，透明度80% */
-            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
-            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
-            --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
-            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-            --themeSwitch-color: #656d76; /* 主题切换按钮颜色 */
-        }
-        /* 暗主题配色 */
-        [data-color-mode=light][data-light-theme=dark],
-        [data-color-mode=light][data-light-theme=dark]::selection,
-        [data-color-mode=dark][data-dark-theme=dark],
-        [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
-            --header-bgColor: #002fa7;
-            --tagTitle-color: #ffffff;
-            --SideNav-bgColor: #161b22cc; /* 黑色背景，透明度80% */
-            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
-            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
-            --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
-            --box-shadow: 0 0 transparent; /* 添加阴影 */
-            --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
-        }
 
         /* 背景图 */
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
-        }
-
-        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
-        html::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: var(--bgURL) no-repeat center center;
-            background-size: cover;
-            transition: background-image 0.15s linear;
         }
 
         /* 主体布局 */
