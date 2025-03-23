@@ -276,18 +276,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮悬停色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
-        }
-         */
-
          .btn:hover {
             background-color: var(--btn-hover-bgColor);
         }
 
         /* 按钮图标色 */
-        .octicon {
-            fill: var(--blogTitle-color);
+        #themeSwitch {
+            color: #ffffff !important;
         }
 
         /* 主页文章列表 */
