@@ -152,8 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --subTitle-color: #002fa7;
             --border-color: #d0d7de;
             --SideNav-bgColor: #f6f8facc; /* 白色背景，透明度80% */
-            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
+            --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
         }
         /* 暗主题配色 */
@@ -168,8 +169,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --subTitle-color: #ffffff;
             --border-color: #30363d;
             --SideNav-bgColor: #161b22cc; /* 黑色背景，透明度80% */
-            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --SideNav-hover-bgColor: #002fa7; /* 文章标题高亮颜色 */
             --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
+            --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
@@ -281,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 主页文章列表悬停高亮 */
         .SideNav-item:hover {
-            background-color: var(--btnSideNav-hover-bgColor);
+            background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
             transform: scale(1.02);
             box-shadow: var(--box-shadow);
@@ -295,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 右上角按钮触碰背景颜色 */
         .btn-invisible:hover {
-            background-color: var(--btnSideNav-hover-bgColor);
+            background-color: var(--btn-hover-bgColor);
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
