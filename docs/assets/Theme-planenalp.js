@@ -409,7 +409,6 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* header 居中 */
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
-            background-color: var(--header-bgColor);
             padding-bottom: unset;
             border-bottom: unset;
         }
