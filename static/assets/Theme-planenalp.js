@@ -173,8 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
         --SideNav-bgColor: #f6f8facc;
         --SideNav-hover-bgColor: #002fa7;
     }
-    [data-color-mode=dark] .home-theme,
-    [data-light-theme=dark] .home-theme {
+    [data-color-mode=light][data-light-theme=dark],
+    [data-color-mode=light][data-light-theme=dark]::selection,
+    [data-color-mode=dark][data-dark-theme=dark],
+    [data-color-mode=dark][data-dark-theme=dark]::selection {
         --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         --blogTitle-color: #ffffff;
         --subTitle-color: #ffffff;
@@ -192,8 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
         --SideNav-bgColor: #f6f8facc;
         --SideNav-hover-bgColor: #002fa7;
     }
-    [data-color-mode=dark] .search-theme,
-    [data-light-theme=dark] .search-theme {
+    [data-color-mode=light][data-light-theme=dark],
+    [data-color-mode=light][data-light-theme=dark]::selection,
+    [data-color-mode=dark][data-dark-theme=dark],
+    [data-color-mode=dark][data-dark-theme=dark]::selection {
         --SideNav-bgColor: #161b22cc;
     }
 
