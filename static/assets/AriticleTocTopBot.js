@@ -90,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
-            --color-toc-hover-border: #8b949e;
+            --color-toc-hover-border: #7d8590;
             --color-toc-icon-bg: #21262db3;
-            --color-toc-icon-color: #8b949eb3;
-            --color-toc-icon-hover-color: #8b949e;
+            --color-toc-icon-color: #7d8590b3;
+            --color-toc-icon-hover-color: #7d8590;
             --color-toc-highlightText: #c9d1d9;
         }
         /* 弹出菜单主体 */
