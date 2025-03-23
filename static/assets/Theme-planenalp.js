@@ -276,11 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮悬停色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
-        }
-         */
-
          .btn:hover {
             background-color: var(--btn-hover-bgColor);
         }
