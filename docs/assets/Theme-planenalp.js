@@ -295,6 +295,11 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.0);
         }
 
+        /* 关闭标签和时间的圆角 */
+        .Label, .label {
+            border-radius: unset;
+        }
+
         /* 右上角按钮触碰背景颜色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
@@ -522,6 +527,19 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.02);
             box-shadow: var(--box-shadow);
             transition: 0.1s; /* 弹起动画时长 */
+        }
+
+        /* 关闭标签和时间的圆角 */
+        .Label, .label {
+            border-radius: unset;
+        }
+
+        #content > nav > a:nth-child(1) > div.listLabels > span.Label.LabelName {
+            background-color: transparent;
+        }
+
+        #content > nav > a:nth-child(1) > div.listLabels > span.Label.LabelTime {
+            background-color: transparent;
         }
 
         /* 右上角按钮触碰背景颜色 */
