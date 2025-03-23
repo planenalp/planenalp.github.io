@@ -275,19 +275,15 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
-        /* 按钮触碰背景颜色 */
+        /* 按钮悬停色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
+            color: var(--text-hover-color);
         }
 
         /* 按钮图标色 */
         .octicon {
             fill: var(--blogTitle-color);
-        }
-
-        /* 按钮图标色悬停 */
-        .octicon:hover {
-            fill: var(--text-hover-color);
         }
 
         /* 主页文章列表 */
