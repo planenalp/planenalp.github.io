@@ -1,6 +1,7 @@
 //允许移动端实现图标按压特效
 document.addEventListener('touchstart', function() {}, false);
 
+//执行指定的回调函数
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
@@ -138,70 +139,84 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 全局CSS变量定义 START ====================
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
+    /* 通用默认亮主题配色 */
     :root {
-        /* 基础变量 */
+        /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
+        --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
         --body-bgColor: #ffffffb3;
         --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        --border-color: #d0d7de;
-        --text-hover-color: #ffffff;
-        --btn-hover-bgColor: #002fa7;
-        --themeSwitch-color: #656d76;
         --header-bgColor: #002fa7;
-        
-        /* 背景图相关 */
-        --bgURL: url("");
-        --avatarURL: url("");
+        --blogTitle-color: #002fa7;
+        --subTitle-color: #002fa7;
+        --postTitle-color: #ffffff;
+        --tagTitle-color: #ffffff;
+        --border-color: #d0d7de;
+        --SideNav-bgColor: #f6f8facc;
+        --SideNav-hover-bgColor: #002fa7;
+        --text-hover-color: #ffffff;
+        --themeSwitch-color: #656d76;
     }
-
-    /* 暗色主题覆盖 */
+    /* 通用暗主题配色 */
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
+        /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
+        --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
         --body-bgColor: #0d1117b3;
         --box-shadow: 0 0 transparent;
+        --header-bgColor: #002fa7;
+        --blogTitle-color: #ffffff;
+        --subTitle-color: #ffffff;
+        --postTitle-color: #ffffff;
+        --tagTitle-color: #ffffff;
         --border-color: #30363d;
-        --btn-hover-bgColor: #002fa7;
+        --SideNav-bgColor: #161b22cc;
+        --SideNav-hover-bgColor: #002fa7;
+        --text-hover-color: #ffffff;
         --themeSwitch-color: #7d8590;
     }
 
     /* 主页主题 */
     .home-theme {
-        --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
-        --blogTitle-color: #002fa7;
-        --subTitle-color: #002fa7;
-        --SideNav-bgColor: #f6f8facc;
-        --SideNav-hover-bgColor: #002fa7;
+        --btn-hover-bgColor: #002fa7;
     }
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
-        --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
-        --blogTitle-color: #ffffff;
-        --subTitle-color: #ffffff;
-        --SideNav-bgColor: #161b22cc;
+        --btn-hover-bgColor: #002fa7;
     }
 
     /* 文章页主题 */
     .post-theme {
-        --postTitle-color: #ffffff;
-    }
-
-    /* 搜索页主题 */
-    .search-theme {
-        --tagTitle-color: #ffffff;
-        --SideNav-bgColor: #f6f8facc;
-        --SideNav-hover-bgColor: #002fa7;
+        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
     }
     [data-color-mode=light][data-light-theme=dark],
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
-        --SideNav-bgColor: #161b22cc;
+        --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
+    }
+    
+    /* 搜索页主题 */
+    .search-theme {
+        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
+    }
+    [data-color-mode=light][data-light-theme=dark],
+    [data-color-mode=light][data-light-theme=dark]::selection,
+    [data-color-mode=dark][data-dark-theme=dark],
+    [data-color-mode=dark][data-dark-theme=dark]::selection {
+        --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
     }
 
-    /* 全局背景样式 */
+    /* 背景图 */
+    html {    
+        background: var(--bgURL) no-repeat center center fixed;
+        background-size: cover;
+        transition: background-image 0.15s linear !important;
+    }
+    
     /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
     html::before {
         content: "";
@@ -218,20 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(globalStyle);
     // ==================== 全局CSS变量定义 END ====================
+
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
         console.log('应用主页主题');
         document.documentElement.classList.add('home-theme');
-        let style = document.createElement("style");
+        const style = document.createElement("style");
         style.innerHTML = `
-
-        /* 背景图 */
-        html {    
-            background: var(--bgURL) no-repeat center center fixed;
-            background-size: cover;
-            transition: background-image 0.15s linear !important;
-        }
 
         /* 主体布局 */
         body {
@@ -381,19 +390,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     //文章页主题------------------------------------------------------------------------------
-    
     else if (currentUrl.includes('/post/') || currentUrl.includes('/link.html') || currentUrl.includes('/about.html')) {
         console.log('文章页主题');
         document.documentElement.classList.add('post-theme');
-        let style = document.createElement("style");
+        const style = document.createElement("style");
         style.innerHTML = `
-
-        /* 背景图 */
-        html {    
-            background: var(--bgURL) no-repeat center center fixed;
-            background-size: cover;
-            transition: background-image 0.15s linear !important;
-        }
 
         /* 主体布局 */
         body {
@@ -448,21 +449,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // ==================== 随机背景图初始主题同步 END ====================
     } 
 
-
-    // 搜索页主题--------------------------------------------------------------------
     
+    // 搜索页主题--------------------------------------------------------------------
     else if (currentUrl.includes('/tag')) {
         console.log('应用搜索页主题');
         document.documentElement.classList.add('search-theme');
-        let style = document.createElement("style");
+        const style = document.createElement("style");
         style.innerHTML = `
-
-        /* 背景图 */
-        html {    
-            background: var(--bgURL) no-repeat center center fixed;
-            background-size: cover;
-            transition: background-image 0.15s linear !important;
-        }
 
         /* 主体布局 */
         body {
