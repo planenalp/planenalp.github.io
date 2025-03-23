@@ -190,10 +190,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .post-theme {
         --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
     }
-    [data-color-mode=light][data-light-theme=dark],
-    [data-color-mode=light][data-light-theme=dark]::selection,
-    [data-color-mode=dark][data-dark-theme=dark],
-    [data-color-mode=dark][data-dark-theme=dark]::selection {
+    html[data-color-mode=dark].post-theme,
+    html[data-light-theme=dark].post-theme {
         --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
     }
     
@@ -201,10 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .search-theme {
         --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
     }
-    [data-color-mode=light][data-light-theme=dark],
-    [data-color-mode=light][data-light-theme=dark]::selection,
-    [data-color-mode=dark][data-dark-theme=dark],
-    [data-color-mode=dark][data-dark-theme=dark]::selection {
+    html[data-color-mode=dark].search-theme,
+    html[data-light-theme=dark].search-theme {
         --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
     }
      */
