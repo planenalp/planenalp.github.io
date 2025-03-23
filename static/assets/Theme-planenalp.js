@@ -405,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             padding-bottom: unset;
-            border-bottom: unset;
         }
 
         /* 顶栏字体颜色 */
