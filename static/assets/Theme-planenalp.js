@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            height: 100px; /* header 居中 */
+            max-height: 500px; /* header 居中 */
             display: flex; /* header 居中 */
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
