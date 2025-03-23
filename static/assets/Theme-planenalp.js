@@ -177,7 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
+            background-attachment: fixed; /* 关键属性 */
             transition: background-image 0.15s linear !important;
+            height: 100%; /* 确保html元素占满屏幕 */
         }
 
         /* 主体布局 */
