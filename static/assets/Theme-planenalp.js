@@ -545,9 +545,12 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
+            #header {
+            height: 130px; /* header 居中 */
+            }
             .tagTitle {
                 display: unset !important;
-                font-size: 20px !important;
+                font-size: 20px !important; /* header 居中 */
             }
             .LabelTime{
                 display:unset !important;
