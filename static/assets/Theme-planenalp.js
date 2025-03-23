@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item:hover {
             background-color: var(--btnSideNav-hover-bgColor);
             color: var(--text-hover-color);
-            transform: scale(1.01);
+            transform: scale(1.02);
             box-shadow: var(--box-shadow);
             transition: 0.1s; /* 弹起动画时长 */
         }
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
-            --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
+            --btnSideNav-hover-bgColor: #30363d; /* 高亮颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
@@ -434,19 +434,25 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('应用搜索页主题');
         let style = document.createElement("style");
         style.innerHTML = `
-        
+
         /* 默认亮主题配色 */
         :root {
-            --header-bgColor: #002FA7;
+            --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
+            --header-bgColor: #002fa7;
             --tagTitle-color: #FFFFFF;
+            --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
         [data-color-mode=light][data-light-theme=dark]::selection,
         [data-color-mode=dark][data-dark-theme=dark],
         [data-color-mode=dark][data-dark-theme=dark]::selection {
-            --header-bgColor: #002FA7;
+            --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
+            --header-bgColor: #002fa7;
             --tagTitle-color: #FFFFFF;
+            --btnSideNav-hover-bgColor: #30363d; /* 高亮颜色 */
+            --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
         /* 背景图 */
@@ -454,6 +460,26 @@ document.addEventListener('DOMContentLoaded', function() {
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
+        }
+
+        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
+        html::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: var(--bgURL) no-repeat center center;
+            background-size: cover;
+            transition: background-image 0.15s linear;
+        }
+
+        /* 主体布局 */
+        body {
+            background: var(--body-bgColor);
+            box-shadow: var(--box-shadow);
         }
         
         /* 顶栏改色 */
@@ -472,6 +498,11 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 搜索布局 */
         .subnav-search {
             width: 230px; 
+        }
+
+        /* 右上角按钮触碰背景颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btnSideNav-hover-bgColor);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
