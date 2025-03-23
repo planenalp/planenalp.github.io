@@ -393,8 +393,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 首次访问或强制刷新时加载新背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        bgSwitcher.switchTheme(initTheme);
+        bgSwitcher.switchTheme(initTheme, isInitialHomeLoad);
         // ==================== 随机背景图初始主题同步 END ====================
     }
 
@@ -460,6 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 直接使用缓存背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
@@ -578,6 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 直接使用缓存背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
