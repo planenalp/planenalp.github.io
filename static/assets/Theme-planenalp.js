@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     [data-color-mode=dark].search-theme,
     [data-light-theme=dark].search-theme {
-        --btn-hover-bgColor: #30363d; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
     }
      */
 
