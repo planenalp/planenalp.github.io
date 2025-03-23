@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮图标色 */
-        .octicon {
-            fill: var(--blogTitle-color);
+        #themeSwitch {
+            color: #ffffff !important;
         }
 
         /* 主页文章列表 */
