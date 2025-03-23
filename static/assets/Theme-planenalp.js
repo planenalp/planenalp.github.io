@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 padding: 8px !important;
             }
             .postTitle{
-                font-size:20px !important; /* header 居中 */
+                font-size: 24px !important; /* header 居中 */
             }
         }
 
@@ -564,10 +564,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 font-size: 20px !important; /* header 居中 */
             }
             .LabelTime{
-                display:unset !important;
+                display: unset !important;
             }
             .LabelName{
-                display:none !important;
+                display: none !important;
             }
         }
         
