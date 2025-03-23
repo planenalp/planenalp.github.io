@@ -177,7 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
+            background-attachment: fixed; /* 关键属性 */
             transition: background-image 0.15s linear !important;
+            height: 100%; /* 确保html元素占满屏幕 */
         }
 
         /* 主体布局 */
@@ -330,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
             --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
         }
         /* 暗主题配色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -340,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
             --header-bgColor: #002fa7;
             --postTitle-color: #ffffff;
             --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
+            --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
         /* 背景图 */
@@ -347,6 +351,12 @@ document.addEventListener('DOMContentLoaded', function() {
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
+        }
+
+        /* 主体布局 */
+        body {
+            background: var(--body-bgColor);
+            box-shadow: var(--box-shadow);
         }
         
         /* 顶栏改色 */
