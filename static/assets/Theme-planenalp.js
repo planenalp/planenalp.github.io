@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 5px;
         }
         
-        /* 右上角按钮触碰背景颜色 */
+        /* 按钮触碰背景颜色 */
         .btn-invisible:hover {
             background-color: var(--btn-hover-bgColor);
         }
@@ -519,6 +519,11 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 230px; 
         }
 
+        /* 按钮触碰背景颜色 */
+        .btn-invisible:hover {
+            background-color: var(--btn-hover-bgColor);
+        }
+
         /* 主页文章列表 */
         .SideNav {
             background: var(--SideNav-bgColor);
@@ -537,11 +542,6 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
-        }
-
-        /* 右上角按钮触碰背景颜色 */
-        .btn-invisible:hover {
-            background-color: var(--btn-hover-bgColor);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
