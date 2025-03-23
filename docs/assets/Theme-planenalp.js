@@ -177,12 +177,10 @@ document.addEventListener('DOMContentLoaded', function() {
         html {    
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
-            background-attachment: fixed; /* 关键属性 */
             transition: background-image 0.15s linear !important;
-            height: 100%; /* 确保html元素占满屏幕 */
         }
 
-        /* 创建固定定位的伪元素作为背景层 */
+        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
         html::before {
             content: "";
             position: fixed;
@@ -365,6 +363,20 @@ document.addEventListener('DOMContentLoaded', function() {
             background: var(--bgURL) no-repeat center center fixed;
             background-size: cover;
             transition: background-image 0.15s linear !important;
+        }
+
+        /* 创建固定定位的伪元素作为背景层确保移动端背景固定 */
+        html::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: var(--bgURL) no-repeat center center;
+            background-size: cover;
+            transition: background-image 0.15s linear;
         }
 
         /* 主体布局 */
