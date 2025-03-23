@@ -285,6 +285,11 @@ document.addEventListener('DOMContentLoaded', function() {
             fill: var(--blogTitle-color);
         }
 
+        /* 按钮图标色悬停 */
+        .octicon:hover {
+            fill: var(--text-hover-color);
+        }
+
         /* 主页文章列表 */
         .SideNav {
             background: var(--SideNav-bgColor);
