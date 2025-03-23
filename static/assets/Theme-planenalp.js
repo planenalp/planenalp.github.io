@@ -406,20 +406,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
+            height: 100px; /* header 居中 */
+            display: flex; /* header 居中 */
+            flex-direction: column; /* header 居中 */
+            align-items: center; /* header 居中 */
             background-color: var(--header-bgColor);
             padding-bottom: unset;
             border-bottom: unset;
         }
 
-        /* 顶栏字体缩进5px */
+        /* 顶栏字体颜色 */
         .postTitle {
-            margin-left: 5px;
             color: var(--postTitle-color);
         }
 
-        /* 文章字体缩进5px */
-        #postBody {
-            margin: 5px;
+        /* 按钮组件 */
+        .title-right {
+            margin: unset; /* header 居中 */
+        }
+
+        /* 按钮右间隔去除 */
+        .title-right .circle {
+            margin-right: unset; /* header 居中 */
         }
         
         /* 按钮悬停色 */
@@ -477,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             border-bottom: unset;
         }
 
-        /* 顶栏字体缩进5px */
+        /* 顶栏字体颜色 */
         .tagTitle {
             color: var(--tagTitle-color);
         }
