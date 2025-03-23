@@ -288,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s; /* 弹起动画时长 */
         }
 
+        /* 主页文章列表点击缩放 */
         .SideNav-item:active {
             transform: scale(1.0);
         }
@@ -402,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
         #postBody {
             margin: 5px;
         }
-
+        
         /* 右上角按钮触碰背景颜色 */
         .btn-invisible:hover {
             background-color: var(--btnSideNav-hover-bgColor);
@@ -440,7 +441,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #ffffffb3; /* 白色背景，透明度70% */
             --header-bgColor: #002fa7;
             --tagTitle-color: #FFFFFF;
-            --btnSideNav-hover-bgColor: #ffffff; /* 高亮颜色 */
+            --SideNav-bgColor: #f6f8facc; /* 白色背景，透明度80% */
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
         }
         /* 暗主题配色 */
@@ -451,7 +454,9 @@ document.addEventListener('DOMContentLoaded', function() {
             --body-bgColor: #0d1117b3; /* 黑色背景，透明度70% */
             --header-bgColor: #002fa7;
             --tagTitle-color: #FFFFFF;
-            --btnSideNav-hover-bgColor: #30363d; /* 高亮颜色 */
+            --SideNav-bgColor: #161b22cc; /* 黑色背景，透明度80% */
+            --btnSideNav-hover-bgColor: #002fa7; /* 高亮颜色 */
+            --text-hover-color: #ffffff; /* 文章列表高亮字体颜色 */
             --box-shadow: 0 0 transparent; /* 添加阴影 */
         }
 
@@ -498,6 +503,21 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 搜索布局 */
         .subnav-search {
             width: 230px; 
+        }
+
+        /* 主页文章列表 */
+        .SideNav {
+            background: var(--SideNav-bgColor);
+            min-width: unset;
+        }
+
+        /* 主页文章列表悬停高亮 */
+        .SideNav-item:hover {
+            background-color: var(--btnSideNav-hover-bgColor);
+            color: var(--text-hover-color);
+            transform: scale(1.02);
+            box-shadow: var(--box-shadow);
+            transition: 0.1s; /* 弹起动画时长 */
         }
 
         /* 右上角按钮触碰背景颜色 */
