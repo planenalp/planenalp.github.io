@@ -181,10 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .home-theme {
         --btn-hover-bgColor: #002fa7;
     }
-    [data-color-mode=light][data-light-theme=dark],
-    [data-color-mode=light][data-light-theme=dark]::selection,
-    [data-color-mode=dark][data-dark-theme=dark],
-    [data-color-mode=dark][data-dark-theme=dark]::selection {
+    [data-color-mode=dark] .home-theme,
+    [data-light-theme=dark] .home-theme {
         --btn-hover-bgColor: #002fa7;
     }
 
