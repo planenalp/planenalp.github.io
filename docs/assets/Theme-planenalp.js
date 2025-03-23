@@ -135,7 +135,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // ==================== 随机背景图 END ====================
 
-    /* 默认亮主题配色 */
+    
+    
+    //主页主题------------------------------------------------------------------------------
+    if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
+        console.log('应用主页主题');
+        let style = document.createElement("style");
+        style.innerHTML = `
+        
+        /* 默认亮主题配色 */
         :root {
             /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
             --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
@@ -168,14 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
             --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
             --themeSwitch-color: #7d8590; /* 主题切换按钮颜色 */
         }
-    
-    //主页主题------------------------------------------------------------------------------
-    if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
-        console.log('应用主页主题');
-        let style = document.createElement("style");
-        style.innerHTML = `
-        
-        
 
         /* 背景图 */
         html {    
