@@ -52,11 +52,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ==================== 随机背景图 START ====================
     const bgSwitcher = (function() {
+        // 新增：背景状态存储键名
+        const BG_STORAGE_KEY = 'meek_bg_state';
         const FORMAT_PRIORITY = ['webp', 'avif', 'heif', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg'];
         const MAX_PARALLEL = 3;
         let currentVersion = 0;
         const loadQueue = [];
         const formatCache = new Map();
+
+        // 新增：获取存储的背景状态
+        function getStoredBg() {
+            try {
+                const stored = JSON.parse(localStorage.getItem(BG_STORAGE_KEY));
+                if (stored && stored.url && stored.theme) {
+                    return stored;
+                }
+            } catch(e) {
+                console.warn('Failed to parse background state:', e);
+            }
+            return null;
+        }
+
+        // 新增：存储背景状态
+        function storeBgState(url, theme) {
+            localStorage.setItem(BG_STORAGE_KEY, JSON.stringify({
+                url: url,
+                theme: theme,
+                timestamp: Date.now()
+            }));
+        }
 
         async function probeFormat(baseUrl) {
             if (formatCache.has(baseUrl)) {
@@ -83,7 +107,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return null;
         }
 
+        // 修改：增加主题匹配检查
         async function createLoader(targetTheme, version) {
+            const stored = getStoredBg();
+            
+            // 如果已有缓存且主题匹配，直接应用
+            if (stored && stored.theme === targetTheme) {
+                document.documentElement.style.setProperty('--bgURL', `url("${stored.url}")`);
+                return true;
+            }
+
             const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
             const totalImages = 10;
             const randomNum = Math.floor(Math.random() * totalImages) + 1;
@@ -94,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!finalUrl || version !== currentVersion) return false;
 
                 document.documentElement.style.setProperty('--bgURL', `url("${finalUrl}")`);
+                storeBgState(finalUrl, targetTheme); // 存储新背景
                 return true;
             } catch {
                 return false;
@@ -113,10 +147,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         return {
-            switchTheme: function(targetTheme) {
-                currentVersion++;
-                loadQueue.push({ targetTheme, version: currentVersion });
-                processQueue();
+            switchTheme: function(targetTheme, forceRefresh = false) {
+                const stored = getStoredBg();
+                
+                // 强制刷新或主题不匹配时才加载新背景
+                if (forceRefresh || !stored || stored.theme !== targetTheme) {
+                    currentVersion++;
+                    loadQueue.push({ targetTheme, version: currentVersion });
+                    processQueue();
+                } else {
+                    // 直接应用缓存背景
+                    document.documentElement.style.setProperty('--bgURL', `url("${stored.url}")`);
+                }
             }
         };
     })();
@@ -128,12 +170,21 @@ document.addEventListener('DOMContentLoaded', function() {
         if (newTheme === lastTheme) return;
         
         lastTheme = newTheme;
-        bgSwitcher.switchTheme(newTheme);
+        // 新增：主题切换时强制刷新背景
+        bgSwitcher.switchTheme(newTheme, true);
     });
     observer.observe(document.documentElement, { 
         attributes: true,
         attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
     });
+
+    // 新增：判断是否首页首次加载
+    let isInitialHomeLoad = (
+        (currentUrl === '/' || 
+        currentUrl.includes('/index.html') || 
+        currentUrl.includes('/page')) && 
+        !sessionStorage.getItem('homeVisited')
+    );
     // ==================== 随机背景图 END ====================
 
     // ==================== 全局CSS变量定义 START ====================
@@ -379,8 +430,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 修改：只有首次加载或强制刷新时才切换背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        bgSwitcher.switchTheme(initTheme);
+        bgSwitcher.switchTheme(initTheme, isInitialHomeLoad);
         // ==================== 随机背景图初始主题同步 END ====================
     }
 
@@ -446,6 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 修改：直接应用存储的背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
@@ -564,6 +617,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
 
         // ==================== 随机背景图初始主题同步 START ====================
+        // 修改：直接应用存储的背景
         const initTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
         bgSwitcher.switchTheme(initTheme);
         // ==================== 随机背景图初始主题同步 END ====================
