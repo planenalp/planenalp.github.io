@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .tagTitle {
                 display: unset !important;
-                font-size: 14px !important;
+                font-size: 20px !important;
             }
             .LabelTime{
                 display:unset !important;
