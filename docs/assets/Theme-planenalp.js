@@ -468,6 +468,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
+            height: 140px; /* header 居中 */
+            display: flex; /* header 居中 */
+            flex-direction: column; /* header 居中 */
+            align-items: center; /* header 居中 */
             background-color: var(--header-bgColor);
             padding-bottom: unset;
             border-bottom: unset;
@@ -475,13 +479,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 顶栏字体缩进5px */
         .tagTitle {
-            margin-left: 5px;
             color: var(--tagTitle-color);
+        }
+
+        /* 搜索+按钮区域 */
+        .title-right {
+            margin: unset; /* header 居中 */
+            display: flex; /* header 居中 */
+            flex-wrap: wrap; /* header 居中 */
+            justify-content: center; /* header 居中 */
         }
         
         /* 搜索布局 */
         .subnav-search {
-            width: 230px; 
+            width: 100%; /* header 居中 */
+            margin-top: unset; /* header 居中 */
+            margin-left: unset; /* header 居中 */
+            margin-right: unset; /* header 居中 */
+            display: flex; /* header 居中 */
+            justify-content: center; /* header 居中 */
+        }
+
+        /* 搜索输入框布局 */
+        .subnav-search-input {
+            width: 100%; /* header 居中 */
         }
 
         /* 按钮悬停色 */
@@ -489,6 +510,11 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
         }
 
+        /* 按钮取消右间隔 */
+        .title-right .circle {
+            margin-right: unset; /* header 居中 */
+        }
+        
         /* 按钮图标色 */
         #themeSwitch {
             color: var(--themeSwitch-color);
@@ -519,12 +545,10 @@ document.addEventListener('DOMContentLoaded', function() {
             body {
                 padding: 8px !important;
             }
-            /* 回归禁用 tagTitle
             .tagTitle {
                 display: unset !important;
                 font-size: 14px !important;
             }
-            回归禁用 tagTitle */
             .LabelTime{
                 display:unset !important;
             }
