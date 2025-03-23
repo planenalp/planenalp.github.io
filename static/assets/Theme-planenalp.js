@@ -51,102 +51,130 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     // ==================== 随机背景图 START ====================
-    const bgManager = (function() {
-        const STORAGE_KEY = "bg_state";
-        const BG_PREFIX = "https://planenalp.github.io/bg/";
-        const FORMATS = ['webp', 'avif', 'heif', 'png', 'jpg'];
-        
-        let currentLoadID = 0;
-        const formatCache = new Map();
+    const bgSwitcher = (function() {
+        const BG_STORAGE_KEY = 'meek_bg_state';  // 本地存储键名
+        const FORMAT_PRIORITY = ['webp', 'avif', 'heif', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg'];
+        const MAX_PARALLEL = 3;  // 最大并行加载数
+        let currentVersion = 0;   // 当前加载版本号
+        const loadQueue = [];     // 加载队列
+        const formatCache = new Map(); // 格式探测缓存
 
-        // 状态存取
-        function getBgState() {
+        // 获取存储的背景状态
+        function getStoredBg() {
             try {
-                const state = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                if (state?.url && state?.theme) return state;
-            } catch(e) { /* 忽略解析错误 */ }
+                const stored = JSON.parse(localStorage.getItem(BG_STORAGE_KEY));
+                if (stored && stored.url && stored.theme) {
+                    return stored;
+                }
+            } catch(e) {
+                console.warn('背景状态解析失败:', e);
+            }
             return null;
         }
 
-        function saveBgState(url, theme) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                url, 
-                theme,
+        // 存储背景状态
+        function storeBgState(url, theme) {
+            localStorage.setItem(BG_STORAGE_KEY, JSON.stringify({
+                url: url,
+                theme: theme,
                 timestamp: Date.now()
             }));
         }
 
-        // 格式探测
-        async function detectFormat(base) {
-            if (formatCache.has(base)) return formatCache.get(base);
+        // 探测图片格式
+        async function probeFormat(baseUrl) {
+            if (formatCache.has(baseUrl)) {
+                return formatCache.get(baseUrl);
+            }
 
-            for (const ext of FORMATS) {
-                const url = `${base}.${ext}`;
-                if (await testImage(url)) {
-                    formatCache.set(base, url);
-                    return url;
+            const probes = FORMAT_PRIORITY.map(ext => {
+                const url = `${baseUrl}.${ext}`;
+                return new Promise(resolve => {
+                    const img = new Image();
+                    img.onload = () => resolve(url);
+                    img.onerror = () => resolve(null);
+                    img.src = url;
+                });
+            });
+
+            for (const urlPromise of probes) {
+                const result = await urlPromise;
+                if (result) {
+                    formatCache.set(baseUrl, result);
+                    return result;
                 }
             }
             return null;
         }
 
-        function testImage(url) {
-            return new Promise(resolve => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-            });
-        }
-
-        // 核心加载逻辑
-        async function loadBackground(theme, forceUpdate) {
-            const loadID = ++currentLoadID;
-            const currentState = getBgState();
-
-            // 使用缓存条件验证
-            if (!forceUpdate && currentState?.theme === theme) {
-                applyBackground(currentState.url);
-                return;
+        // 创建图片加载器
+        async function createLoader(targetTheme, version) {
+            const stored = getStoredBg();
+            
+            // 使用缓存背景的条件：存在缓存且主题匹配
+            if (stored && stored.theme === targetTheme) {
+                document.documentElement.style.setProperty('--bgURL', `url("${stored.url}")`);
+                return true;
             }
 
-            // 生成新背景
-            const typePrefix = theme === "dark" ? "bgDark" : "bgLight";
-            const randomNum = Math.floor(Math.random() * 10) + 1;
-            const baseURL = `${BG_PREFIX}${typePrefix}${randomNum}`;
+            const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
+            const totalImages = 10;
+            const randomNum = Math.floor(Math.random() * totalImages) + 1;
+            const baseUrl = `https://planenalp.github.io/bg/${prefix}${randomNum}`;
 
             try {
-                const finalURL = await detectFormat(baseURL);
-                if (loadID !== currentLoadID) return; // 防止过期加载
+                const finalUrl = await probeFormat(baseUrl);
+                if (!finalUrl || version !== currentVersion) return false;
 
-                if (finalURL) {
-                    applyBackground(finalURL);
-                    saveBgState(finalURL, theme);
-                }
-            } catch (e) {
-                console.error("背景加载失败:", e);
+                document.documentElement.style.setProperty('--bgURL', `url("${finalUrl}")`);
+                storeBgState(finalUrl, targetTheme);
+                return true;
+            } catch {
+                return false;
             }
         }
 
-        function applyBackground(url) {
-            document.documentElement.style.setProperty("--bgURL", `url("${url}")`);
+        // 处理加载队列
+        async function processQueue() {
+            while (loadQueue.length > 0 && loadQueue.length < MAX_PARALLEL) {
+                const { targetTheme, version } = loadQueue.shift();
+                if (version !== currentVersion) continue;
+
+                const success = await createLoader(targetTheme, version);
+                if (!success && version === currentVersion) {
+                    loadQueue.push({ targetTheme, version });
+                }
+            }
         }
 
         return {
-            updateTheme: function(newTheme, force = false) {
-                loadBackground(newTheme, force);
+            // 公开的切换主题方法
+            switchTheme: function(targetTheme, forceRefresh = false) {
+                const stored = getStoredBg();
+                
+                if (forceRefresh || !stored || stored.theme !== targetTheme) {
+                    currentVersion++;
+                    loadQueue.push({ targetTheme, version: currentVersion });
+                    processQueue();
+                } else {
+                    document.documentElement.style.setProperty('--bgURL', `url("${stored.url}")`);
+                }
             }
         };
     })();
 
-    // 主题变更监听
-    const themeObserver = new MutationObserver((_, obs) => {
-        const theme = document.documentElement.dataset.colorMode || "light";
-        bgManager.updateTheme(theme, true); // 主题变化强制刷新
+    // 主题变化监听
+    let lastTheme = null;
+    const observer = new MutationObserver(function(mutations) {
+        const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
+        if (newTheme === lastTheme) return;
+        
+        lastTheme = newTheme;
+        bgSwitcher.switchTheme(newTheme, true); // 强制刷新背景
     });
-    themeObserver.observe(document.documentElement, { 
-        attributes: true, 
-        attributeFilter: ["data-color-mode"] 
+    observer.observe(document.documentElement, { 
+        attributes: true,
+        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
     });
     // ==================== 随机背景图 END ====================
 
