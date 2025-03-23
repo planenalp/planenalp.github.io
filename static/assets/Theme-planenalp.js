@@ -51,89 +51,118 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==================== 禁用自动主题功能 END ====================
     
     // ==================== 随机背景图 START ====================
-    const bgSwitcher = (function() {
-        const FORMAT_PRIORITY = ['webp', 'avif', 'heif', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg'];
-        const MAX_PARALLEL = 3;
-        let currentVersion = 0;
-        const loadQueue = [];
+    const bgManager = (function() {
+        const STORAGE_KEY = "bg_state";
+        const BG_PREFIX = "https://planenalp.github.io/bg/";
+        const FORMATS = ['webp', 'avif', 'heif', 'png', 'jpg'];
+        
+        let currentLoadID = 0;
         const formatCache = new Map();
 
-        async function probeFormat(baseUrl) {
-            if (formatCache.has(baseUrl)) {
-                return formatCache.get(baseUrl);
-            }
+        // 状态存取
+        function getBgState() {
+            try {
+                const state = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (state?.url && state?.theme) return state;
+            } catch(e) { /* 忽略解析错误 */ }
+            return null;
+        }
 
-            const probes = FORMAT_PRIORITY.map(ext => {
-                const url = `${baseUrl}.${ext}`;
-                return new Promise(resolve => {
-                    const img = new Image();
-                    img.onload = () => resolve(url);
-                    img.onerror = () => resolve(null);
-                    img.src = url;
-                });
-            });
+        function saveBgState(url, theme) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                url, 
+                theme,
+                timestamp: Date.now()
+            }));
+        }
 
-            for (const urlPromise of probes) {
-                const result = await urlPromise;
-                if (result) {
-                    formatCache.set(baseUrl, result);
-                    return result;
+        // 格式探测
+        async function detectFormat(base) {
+            if (formatCache.has(base)) return formatCache.get(base);
+
+            for (const ext of FORMATS) {
+                const url = `${base}.${ext}`;
+                if (await testImage(url)) {
+                    formatCache.set(base, url);
+                    return url;
                 }
             }
             return null;
         }
 
-        async function createLoader(targetTheme, version) {
-            const prefix = targetTheme === 'dark' ? 'bgDark' : 'bgLight';
-            const totalImages = 10;
-            const randomNum = Math.floor(Math.random() * totalImages) + 1;
-            const baseUrl = `https://planenalp.github.io/bg/${prefix}${randomNum}`;
+        function testImage(url) {
+            return new Promise(resolve => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        // 核心加载逻辑
+        async function loadBackground(theme, forceUpdate) {
+            const loadID = ++currentLoadID;
+            const currentState = getBgState();
+
+            // 使用缓存条件验证
+            if (!forceUpdate && currentState?.theme === theme) {
+                applyBackground(currentState.url);
+                return;
+            }
+
+            // 生成新背景
+            const typePrefix = theme === "dark" ? "bgDark" : "bgLight";
+            const randomNum = Math.floor(Math.random() * 10) + 1;
+            const baseURL = `${BG_PREFIX}${typePrefix}${randomNum}`;
 
             try {
-                const finalUrl = await probeFormat(baseUrl);
-                if (!finalUrl || version !== currentVersion) return false;
+                const finalURL = await detectFormat(baseURL);
+                if (loadID !== currentLoadID) return; // 防止过期加载
 
-                document.documentElement.style.setProperty('--bgURL', `url("${finalUrl}")`);
-                return true;
-            } catch {
-                return false;
+                if (finalURL) {
+                    applyBackground(finalURL);
+                    saveBgState(finalURL, theme);
+                }
+            } catch (e) {
+                console.error("背景加载失败:", e);
             }
         }
 
-        async function processQueue() {
-            while (loadQueue.length > 0 && loadQueue.length < MAX_PARALLEL) {
-                const { targetTheme, version } = loadQueue.shift();
-                if (version !== currentVersion) continue;
-
-                const success = await createLoader(targetTheme, version);
-                if (!success && version === currentVersion) {
-                    loadQueue.push({ targetTheme, version });
-                }
-            }
+        function applyBackground(url) {
+            document.documentElement.style.setProperty("--bgURL", `url("${url}")`);
         }
 
         return {
-            switchTheme: function(targetTheme) {
-                currentVersion++;
-                loadQueue.push({ targetTheme, version: currentVersion });
-                processQueue();
+            updateTheme: function(newTheme, force = false) {
+                loadBackground(newTheme, force);
             }
         };
     })();
 
-    // 主题监听模块 ==================================================
-    let lastTheme = null;
-    const observer = new MutationObserver(function(mutations) {
-        const newTheme = document.documentElement.getAttribute('data-color-mode') || 'light';
-        if (newTheme === lastTheme) return;
+    // 主题变更监听
+    const themeObserver = new MutationObserver((_, obs) => {
+        const theme = document.documentElement.dataset.colorMode || "light";
+        bgManager.updateTheme(theme, true); // 主题变化强制刷新
+    });
+    themeObserver.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ["data-color-mode"] 
+    });
+    // ==================== 初始化流程 ====================
+    (function mainInit() {
+        injectStyles();
         
-        lastTheme = newTheme;
-        bgSwitcher.switchTheme(newTheme);
-    });
-    observer.observe(document.documentElement, { 
-        attributes: true,
-        attributeFilter: ['data-color-mode', 'data-light-theme', 'data-dark-theme']
-    });
+        // 首次加载逻辑
+        const initialTheme = document.documentElement.dataset.colorMode;
+        if (isHomePage) {
+            document.documentElement.classList.add("home-theme");
+            const isFirstVisit = !sessionStorage.getItem("homeVisit");
+            bgManager.updateTheme(initialTheme, isFirstVisit);
+            sessionStorage.setItem("homeVisit", "true");
+        } else {
+            bgManager.updateTheme(initialTheme);
+        }
+    })();
     // ==================== 随机背景图 END ====================
 
     // ==================== 全局CSS变量定义 START ====================
