@@ -398,6 +398,23 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.0);
         }
 
+        .SideNav-item {
+            height: 75px; /* 文章列表靠左双行 */
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+        }
+
+        .d-flex {
+            display: flex !important; /* 文章列表靠左双行 */
+            width: 100%; /* 文章列表靠左双行 */
+        }
+
+        .listLabels {
+            display: flex; /* 文章列表靠左双行 */
+            justify-content: flex-end; /* 文章列表靠左双行 */
+            width: 100%; /* 文章列表靠左双行 */
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
@@ -422,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 display:unset !important;
             }
             .LabelName{
-                display:none !important;
+                display:unset !important; /* 文章列表靠左双行 */
             }
         }
 
