@@ -408,6 +408,12 @@ document.addEventListener('DOMContentLoaded', function() {
             display: none; /* 文章列表居中 */
         }
 
+        .d-flex {
+            display: flex !important; /* 文章列表居中 */
+            justify-content: center; /* 文章列表居中 */
+            width: 100%; /* 文章列表居中 */
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
