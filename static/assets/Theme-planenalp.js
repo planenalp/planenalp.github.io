@@ -416,6 +416,10 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: row-reverse; /* 文章列表靠左双行 */ 
         }
 
+        .SideNav-icon {
+            margin-right: 10px; /* 文章列表靠左双行 */ 
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
