@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .SideNav-item {
-            height: 70px; /* 文章列表居中 */
+            height: 75px; /* 文章列表居中 */
             display: flex; /* 文章列表居中 */
             flex-direction: column; /* 文章列表居中 */
         }
