@@ -398,6 +398,16 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1.0);
         }
 
+        .SideNav-item {
+            height: 75px; /* 文章列表居中 */
+            display: flex; /* 文章列表居中 */
+            flex-direction: column; /* 文章列表居中 */
+        }
+
+        .SideNav-icon {
+            display: none; /* 文章列表居中 */
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
