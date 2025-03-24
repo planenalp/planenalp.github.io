@@ -630,23 +630,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .SideNav-icon {
             margin-right: 10px !important; /* 文章列表靠左双行 */ 
-            min-width: 16px; /* 新增：锁定图标最小宽度 */
+            /* min-width: 16px; 新增：锁定图标最小宽度 */
             flex-shrink: 0; /* 新增：禁止图标压缩 */
-        }
-
-        /* 针对 iOS 的特殊处理 */
-        @supports (-webkit-touch-callout: none) {
-            .listTitle {
-                padding-right: 0.1px; /* 触发 iOS 的布局重计算 */
-            }
-            .SideNav-icon {
-                margin-right: calc(10px + 0.1px); /* 补偿 iOS 的像素舍入误差 */
-            }
-        }
-
-        /* 防止 flex 容器宽度溢出 */
-        .SideNav-item .d-flex {
-            min-width: 0; /* 允许内容截断 */
         }
 
         /* 关闭标签和时间的圆角 */
