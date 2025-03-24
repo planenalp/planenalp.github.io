@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 display:unset !important;
             }
             .LabelName{
-                display:none !important;
+                display:unset !important;
             }
         }
 
