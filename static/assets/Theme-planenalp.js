@@ -610,6 +610,28 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s; /* 弹起动画时长 */
         }
 
+        .SideNav-item {
+            height: 75px; /* 文章列表靠左双行 */
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+        }
+
+        .d-flex {
+            display: flex !important; /* 文章列表靠左双行 */
+            width: 100%; /* 文章列表靠左双行 */
+        }
+
+        .listLabels {
+            width: 100%; /* 文章列表靠左双行 */
+            display: flex; /* 文章列表靠左双行 */
+            justify-content: flex-end; /* 文章列表靠左双行 */
+            flex-direction: row-reverse; /* 文章列表靠左双行 */ 
+        }
+
+        .SideNav-icon {
+            margin-right: 10px; /* 文章列表靠左双行 */ 
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
