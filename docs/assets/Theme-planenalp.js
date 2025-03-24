@@ -630,6 +630,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .SideNav-icon {
             margin-right: 10px !important; /* 文章列表靠左双行 */ 
+            min-width: 16px; /* 新增：锁定图标最小宽度 */
+            flex-shrink: 0; /* 新增：禁止图标压缩 */
         }
 
         /* 针对 iOS 的特殊处理 */
