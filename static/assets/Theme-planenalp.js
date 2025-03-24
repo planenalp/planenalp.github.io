@@ -410,9 +410,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .listLabels {
+            width: 100%; /* 文章列表靠左双行 */
             display: flex; /* 文章列表靠左双行 */
             justify-content: flex-end; /* 文章列表靠左双行 */
-            width: 100%; /* 文章列表靠左双行 */
+            flex-direction: row-reverse; /* 文章列表靠左双行 */ 
         }
 
         /* 关闭标签和时间的圆角 */
