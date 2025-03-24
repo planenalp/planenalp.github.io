@@ -642,6 +642,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        /* 防止 flex 容器宽度溢出 */
+        .SideNav-item .d-flex {
+            min-width: 0; /* 允许内容截断 */
+        }
+
         /* 关闭标签和时间的圆角 */
         .Label, .label {
             border-radius: unset;
