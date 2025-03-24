@@ -629,7 +629,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .SideNav-icon {
-            margin-right: 10px; /* 文章列表靠左双行 */ 
+            margin-right: 10px !important; /* 文章列表靠左双行 */ 
+        }
+
+        /* 针对 iOS 的特殊处理 */
+        @supports (-webkit-touch-callout: none) {
+            .listTitle {
+                padding-right: 0.1px; /* 触发 iOS 的布局重计算 */
+            }
+            .SideNav-icon {
+                margin-right: calc(10px + 0.1px); /* 补偿 iOS 的像素舍入误差 */
+            }
         }
 
         /* 关闭标签和时间的圆角 */
