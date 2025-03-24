@@ -73,12 +73,12 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-bg: #ffffffcc;
             --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            --color-toc-hover-bg: #f3f4f6;
+            --color-toc-hover-bg: #002fa7;
             --color-toc-hover-border: rgba(31, 35, 40, 0.15);
             --color-toc-icon-bg: #f6f8fab3;
             --color-toc-icon-color: #656d76b3;
             --color-toc-icon-hover-color: #656d76;
-            --color-toc-highlightText: #24292f;
+            --color-toc-highlightText: #ffffff;
         }
         /* dark 主题颜色 */
         [data-color-mode=light][data-light-theme=dark],
@@ -89,12 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-bg: #0d1117cc;
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 transparent;
-            --color-toc-hover-bg: #30363d;
+            --color-toc-hover-bg: #002fa7;
             --color-toc-hover-border: #7d8590;
             --color-toc-icon-bg: #21262db3;
             --color-toc-icon-color: #7d8590b3;
             --color-toc-icon-hover-color: #7d8590;
-            --color-toc-highlightText: #c9d1d9;
+            --color-toc-highlightText: #ffffff;
         }
         /* 弹出菜单主体 */
         .toc {
