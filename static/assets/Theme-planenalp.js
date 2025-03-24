@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .SideNav-icon {
-            margin-right: 10px; /* 文章列表靠左双行 */ 
+            margin-right: 10px !important; /* 文章列表靠左双行 */ 
         }
 
         /* 关闭标签和时间的圆角 */
