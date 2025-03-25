@@ -546,6 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             background-color: var(--header-bgColor);
+            padding: 5px;
             padding-bottom: unset;
             border-bottom: unset;
         }
@@ -553,6 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .tagTitle {
             color: var(--tagTitle-color); /* 顶栏字体颜色 */
             white-space: unset; /* 顶栏字体允许自动换行 */
+            padding-bottom: 5px; /* 和搜索栏间隔5px */
         }
 
         /* 搜索+按钮区域 */
