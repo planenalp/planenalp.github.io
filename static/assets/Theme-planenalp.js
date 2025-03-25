@@ -542,7 +542,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 顶栏改色 */
         #header {
-            height: 140px; /* header 居中 */
             display: flex; /* header 居中 */
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
@@ -550,10 +549,10 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: unset;
             border-bottom: unset;
         }
-
-        /* 顶栏字体颜色 */
+        
         .tagTitle {
-            color: var(--tagTitle-color);
+            color: var(--tagTitle-color); /* 顶栏字体颜色 */
+            white-space: unset; /* 顶栏字体允许自动换行 */
         }
 
         /* 搜索+按钮区域 */
@@ -641,9 +640,6 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width: 768px) {
             body {
                 padding: 8px !important;
-            }
-            #header {
-            height: 130px; /* header 居中 */
             }
             .tagTitle {
                 display: unset !important;
