@@ -656,12 +656,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表悬停高亮 */
-        .SideNav-item:hover {
-            background-color: var(--SideNav-hover-bgColor);
-            color: var(--text-hover-color);
-            transform: scale(1.02);
-            box-shadow: var(--box-shadow);
-            transition: 0.1s; /* 弹起动画时长 */
+        @media (any-hover: hover) {
+            .SideNav-item:hover {
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
+                transform: scale(1.02);
+                box-shadow: var(--box-shadow);
+                transition: 0.1s; /* 弹起动画时长 */
+            }
         }
 
         /* 文章列表点击缩放 */
