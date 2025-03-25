@@ -405,15 +405,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
-        .SideNav-icon {
-            margin-right: 10px !important; /* 减少多余间距 */ 
-            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
-        }
-        
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
             width: 100%; /* 文章列表靠左双行 */
             padding-bottom: 5px; /* 底部留 5px 间隔 */
+        }
+
+        .SideNav-icon {
+            margin-right: 10px !important; /* 减少多余间距 */ 
+            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
         }
 
         .listTitle {
@@ -423,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 文章列表第二行 .LabelTime + .LabelName */
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
+            display: flex !important; /* 文章列表靠左双行 */
             flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
@@ -636,15 +637,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
-        .SideNav-icon {
-            margin-right: 10px !important; /* 减少多余间距 */ 
-            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
-        }
-        
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
             width: 100%; /* 文章列表靠左双行 */
             padding-bottom: 5px; /* 底部留 5px 间隔 */
+        }
+
+        .SideNav-icon {
+            margin-right: 10px !important; /* 减少多余间距 */ 
+            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
         }
 
         .listTitle {
@@ -654,6 +655,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 文章列表第二行 .LabelTime + .LabelName */
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
+            display: flex !important; /* 文章列表靠左双行 */
             flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
