@@ -448,6 +448,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 width:100px !important;
                 height:100px !important;
             }
+            #header {
+                height: 150px; /* 标题缩小 */
+                padding-bottom: unset; /* 标题缩小 */
+            }
+
+            #header h1 a {
+                font-size: 25px; /* 标题缩小 */
+            }
+
+            .title-right {
+                margin-top: 175px; /* 标题缩小 */
+            }
             .blogTitle{
                 display:unset !important;
                 }
