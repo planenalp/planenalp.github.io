@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Klein.Blue</title>
-    <style>
-        body {
-            background: #002fa7;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        a {
-            text-decoration: none;
-            display: inline-block;
-        }
-        img {
-            width: 30vmin;
-            height: 30vmin;
-            transition: transform 0.1s ease;
-        }
-        img:hover {
-            transform: scale(1.1);
-        }
-        img:active {
-            transform: scale(0.9);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klein.Blue</title>
+  <style>
+    /* 设置整个页面的背景颜色，并使用 Flexbox 让内容完全居中 */
+    body {
+      margin: 0;
+      background-color: #002fa7;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* 图片样式：尺寸200x200px，并添加平滑的动画 */
+    img {
+      width: 200px;
+      height: 200px;
+      transition: transform 0.1s ease;
+    }
+    /* hover 状态下放大 1.1 倍 */
+    img:hover {
+      transform: scale(1.1);
+    }
+    /* 按压 (active) 状态下缩小 0.9 倍 */
+    img:active {
+      transform: scale(0.9);
+    }
+    /* 去除 a 标签的默认样式 */
+    a {
+      display: inline-block;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <a href="https://klein.blue/">
-        <img src="https://klein.blue/favicon.svg" alt="Klein Blue Icon">
-    </a>
-    <!-- 新增触摸事件监听 -->
-    <script>
-        // 改善移动端触摸响应
-        document.addEventListener('touchstart', function() {}, false);
-    </script>
+  <!-- 图片包裹在一个链接中，点击时在当前窗口打开指定页面 -->
+  <a href="https://klein.blue/">
+    <img src="https://klein.blue/favicon.svg" alt="Logo">
+  </a>
+  <script>
+    document.addEventListener('touchstart', function() {}, false);
+  </script>
 </body>
 </html>
