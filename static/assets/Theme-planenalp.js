@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* header布局 */
         #header {
-            height: 165px;
+            height: 175px;
             position: relative; /* 父元素 #header 设置定位 */
             border-bottom: unset;
             margin-bottom: unset;
@@ -317,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -332,6 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .avatar {
             width: 100px;
             height: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             transition: 0.1s !important; /* 强制指定动画时长 */
             object-fit: unset !important; /* 强制清除自动缩放 */
             background-color: transparent !important; /* 强制清除背景颜色 */
@@ -375,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮位置 */
         .title-right {
             margin: unset; /* 重置原参数 */
-            margin-top: 190px; /* 用百分比会崩 */
+            margin-top: 200px; /* 用百分比会崩 */
             margin-left: 50%;
             transform: translateX(-50%);
             position: absolute;
@@ -463,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 height:80px !important; /* 标题缩小 */
             }
             #header {
-                height: 125px; /* 标题缩小 */
+                height: 135px; /* 标题缩小 */
                 padding-bottom: unset; /* 标题缩小 */
             }
 
@@ -472,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             .title-right {
-                margin-top: 150px; /* 标题缩小 */
+                margin-top: 160px; /* 标题缩小 */
             }
             .blogTitle{
                 display:unset !important;
