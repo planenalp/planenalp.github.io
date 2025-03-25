@@ -280,6 +280,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(globalStyle);
     // ==================== 全局CSS变量定义 END ====================
 
+    // ==================== Avatar点击跳转 START ====================
+    const avatarElement = document.getElementById('avatarImg') || document.querySelector('.avatar');
+    if (avatarElement) {
+        avatarElement.style.cursor = 'pointer';
+        avatarElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://002fa7.com'; // 替换成你的目标链接
+        });
+    }
+    // ==================== Avatar点击跳转 END ====================
+
     
     //主页主题------------------------------------------------------------------------------
     if (currentUrl == '/' || currentUrl.includes('/index.html') || currentUrl.includes('/page')) {
