@@ -200,11 +200,11 @@ document.addEventListener('DOMContentLoaded', function() {
         --blogTitle-color: #002fa7;
         --subTitle-color: #002fa7;
         --postTitle-color: #002fa7;
-        --tagTitle-color: #ffffff;
+        --tagTitle-color: #f5f5f5;
         --border-color: #d0d7de;
         --SideNav-bgColor: #f6f8facc;
         --SideNav-hover-bgColor: #002fa7;
-        --text-hover-color: #ffffff;
+        --text-hover-color: #f5f5f5;
         --themeSwitch-color: #656d76;
     }
     /* 通用暗主题配色 */
@@ -213,18 +213,18 @@ document.addEventListener('DOMContentLoaded', function() {
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
         /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-        --avatarURL: url("https://planenalp.github.io/avatar-white.svg");
+        --avatarURL: url("https://planenalp.github.io/avatar-whitesmoke.svg");
         --body-bgColor: #0d1117b3;
         --box-shadow: 0 0 transparent;
         --header-bgColor: #002fa7;
-        --blogTitle-color: #ffffff;
-        --subTitle-color: #ffffff;
-        --postTitle-color: #ffffff;
-        --tagTitle-color: #ffffff;
+        --blogTitle-color: #f5f5f5;
+        --subTitle-color: #f5f5f5;
+        --postTitle-color: #f5f5f5;
+        --tagTitle-color: #f5f5f5;
         --border-color: #30363d;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
-        --text-hover-color: #ffffff;
+        --text-hover-color: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
 
@@ -248,11 +248,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     /* 搜索页主题 */
     .search-theme {
-        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #f5f5f5; /* 按钮高亮颜色 */
     }
     [data-color-mode=dark].search-theme,
     [data-light-theme=dark].search-theme {
-        --btn-hover-bgColor: #ffffff; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #f5f5f5; /* 按钮高亮颜色 */
     }
      */
 
