@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function() {
     globalStyle.innerHTML = `
     /* 通用默认亮主题配色 */
     :root {
-        /* --bgURL: url("https://planenalp.github.io/bgLight.webp"); */
-        --avatarURL: url("https://planenalp.github.io/avatar-blue.svg");
+        /* --bgURL: url("https://planenalp.github.io/logo/bgLight.webp"); */
+        --avatarURL: url("https://planenalp.github.io/logo/avatar-blue.svg");
         --body-bgColor: #ffffffb3;
         --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         --header-bgColor: #002fa7;
@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
     [data-color-mode=light][data-light-theme=dark]::selection,
     [data-color-mode=dark][data-dark-theme=dark],
     [data-color-mode=dark][data-dark-theme=dark]::selection {
-        /* --bgURL: url("https://planenalp.github.io/bgDark.webp"); */
-        --avatarURL: url("https://planenalp.github.io/avatar-whitesmoke.svg");
+        /* --bgURL: url("https://planenalp.github.io/logo/bgDark.webp"); */
+        --avatarURL: url("https://planenalp.github.io/logo/avatar-whitesmoke.svg");
         --body-bgColor: #0d1117b3;
         --box-shadow: 0 0 transparent;
         --header-bgColor: #002fa7;
