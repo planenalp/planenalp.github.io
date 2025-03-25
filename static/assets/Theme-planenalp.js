@@ -400,6 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
         }
 
         .d-flex {
