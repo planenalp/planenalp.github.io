@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Klein.Blue</title>
   <style>
-    /* 设置整个页面的背景颜色，并使用 Flexbox 让内容完全居中 */
-    body {
+    /* 使用 CSS 变量 --vh 来动态控制高度 */
+    html, body {
       margin: 0;
+      height: calc(var(--vh, 1vh) * 100);
       background-color: #002fa7;
-      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    /* 图片样式：尺寸200x200px，并添加平滑的动画 */
     img {
       width: 200px;
       height: 200px;
-      transition: transform 0.1s ease;
+      transition: transform 0.3s ease;
     }
-    /* hover 状态下放大 1.1 倍 */
     img:hover {
       transform: scale(1.1);
     }
-    /* 按压 (active) 状态下缩小 0.9 倍 */
     img:active {
       transform: scale(0.9);
     }
-    /* 去除 a 标签的默认样式 */
     a {
       display: inline-block;
       text-decoration: none;
@@ -36,11 +32,19 @@
   </style>
 </head>
 <body>
-  <!-- 图片包裹在一个链接中，点击时在当前窗口打开指定页面 -->
   <a href="https://klein.blue/">
     <img src="https://klein.blue/favicon.svg" alt="Logo">
   </a>
   <script>
+    // 计算实际视口高度并设置 CSS 变量 --vh
+    function setVh() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
+
+    // 添加 touchstart 事件监听
     document.addEventListener('touchstart', function() {}, false);
   </script>
 </body>
