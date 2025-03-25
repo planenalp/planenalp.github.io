@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 按钮悬停色 */
         @media (any-hover: hover) {
-            .btn-invisible:hover {
+            .btn:hover {
                 background-color: var(--btn-hover-bgColor);
             }
         }
