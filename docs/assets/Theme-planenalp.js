@@ -432,7 +432,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .listTitle {
-            white-space: unset; /* 解锁换行 */
+            white-space: normal; /* 默认值，允许自动换行 */
+            overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
+            word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
         }
 
         /* 文章列表第二行 .LabelTime + .LabelName */
@@ -594,7 +596,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .tagTitle {
             color: var(--tagTitle-color); /* 顶栏字体颜色 */
-            white-space: unset; /* 顶栏字体允许自动换行 */
+            white-space: normal; /* 默认值，允许自动换行 */
+            overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
+            word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
             padding-bottom: 5px; /* 和搜索栏间隔5px */
         }
 
@@ -619,6 +623,13 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 搜索输入框布局 */
         .subnav-search-input {
             width: 100%; /* header 居中 */
+        }
+
+        /* 搜索失败字符 */
+        #content > div.notFind {
+            white-space: normal; /* 默认值，允许自动换行 */
+            overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
+            word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
         }
 
         /* 按钮取消右间隔 */
@@ -676,7 +687,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .listTitle {
-            white-space: unset; /* 解锁换行 */
+            white-space: normal; /* 默认值，允许自动换行 */
+            overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
+            word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
         }
 
         /* 文章列表第二行 .LabelTime + .LabelName */
