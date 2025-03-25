@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* 按钮悬停色 */
-        .btn-invisible:hover {
+        .btn:hover {
             background-color: var(--btn-hover-bgColor);
         }
 
@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮悬停色 */
         @media (any-hover: hover) {
             .btn:hover {
-                background-color: var(--btn-hover-bgColor);
+                background-color: var(--btn-hover-bgColor) !important;
             }
         }
 
