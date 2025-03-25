@@ -290,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 主体布局 */
         body {
-            max-width: 1000px;
             background: var(--body-bgColor);
             box-shadow: var(--box-shadow);
         }
@@ -537,7 +536,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 主体布局 */
         body {
-            max-width: 1000px;
             background: var(--body-bgColor);
             box-shadow: var(--box-shadow);
         }
