@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 height:100px !important;
             }
             #header {
-                height: 150px; /* 标题缩小 */
+                height: 145px; /* 标题缩小 */
                 padding-bottom: unset; /* 标题缩小 */
             }
 
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             .title-right {
-                margin-top: 175px; /* 标题缩小 */
+                margin-top: 170px; /* 标题缩小 */
             }
             .blogTitle{
                 display:unset !important;
