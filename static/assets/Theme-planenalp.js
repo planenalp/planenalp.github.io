@@ -377,13 +377,13 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--themeSwitch-color);
         }
 
-        /* 主页文章列表 */
+        /* 文章列表主体 */
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
         }
 
-        /* 主页文章列表悬停高亮 */
+        /* 文章列表悬停高亮 */
         .SideNav-item:hover {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
@@ -392,17 +392,24 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s; /* 弹起动画时长 */
         }
 
-        /* 主页文章列表点击缩放 */
+        /* 文章列表点击缩放 */
         .SideNav-item:active {
             transform: scale(1.0);
         }
 
+        /* 文章列表单项整栏 */
         .SideNav-item {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
         }
 
+        /* 文章列表首行 .SideNav-icon + .listTitle */
+        .SideNav-icon {
+            margin-right: 10px !important; /* 减少多余间距 */ 
+            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
+        }
+        
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
             width: 100%; /* 文章列表靠左双行 */
@@ -412,7 +419,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .listTitle {
             white-space: unset; /* 解锁换行 */
         }
-        
+
+        /* 文章列表第二行 .LabelTime + .LabelName */
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
             flex-wrap: wrap; /* 解锁 Label 自动换行 */
@@ -423,11 +431,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
-        }
-
-        .SideNav-icon {
-            margin-right: 10px !important; /* 文章列表靠左双行 */ 
-            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */ 
         }
 
         /* 关闭标签和时间的圆角 */
@@ -605,13 +608,13 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--themeSwitch-color);
         }
 
-        /* 主页文章列表 */
+        /* 文章列表主体 */
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
         }
 
-        /* 主页文章列表悬停高亮 */
+        /* 文章列表悬停高亮 */
         .SideNav-item:hover {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
@@ -620,27 +623,45 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s; /* 弹起动画时长 */
         }
 
-        .SideNav-item {
-            height: 75px; /* 文章列表靠左双行 */
-            display: flex; /* 文章列表靠左双行 */
-            flex-direction: column; /* 文章列表靠左双行 */
+        /* 文章列表点击缩放 */
+        .SideNav-item:active {
+            transform: scale(1.0);
         }
 
+        /* 文章列表单项整栏 */
+        .SideNav-item {
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
+        }
+
+        /* 文章列表首行 .SideNav-icon + .listTitle */
+        .SideNav-icon {
+            margin-right: 10px !important; /* 减少多余间距 */ 
+            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
+        }
+        
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
             width: 100%; /* 文章列表靠左双行 */
+            padding-bottom: 5px; /* 底部留 5px 间隔 */
         }
 
+        .listTitle {
+            white-space: unset; /* 解锁换行 */
+        }
+
+        /* 文章列表第二行 .LabelTime + .LabelName */
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
-            display: flex; /* 文章列表靠左双行 */
-            justify-content: flex-end; /* 文章列表靠左双行 */
-            flex-direction: row-reverse; /* 文章列表靠左双行 */ 
+            flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
-        .SideNav-icon {
-            margin-right: 10px !important; /* 文章列表靠左双行 */ 
-            flex-shrink: 0; /* 文章列表靠左双行，禁止图标压缩导致间距消失 */
+        .LabelTime {
+            order: 1; /* 调整两种 Label 顺序 */
+        }
+        .LabelName {
+            order: 2; /* 调整两种 Label 顺序 */
         }
 
         /* 关闭标签和时间的圆角 */
