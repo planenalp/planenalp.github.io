@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         avatarElement.style.cursor = 'pointer';
         avatarElement.addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = 'https://002fa7.com'; // 替换成你的目标链接
+            window.location.href = 'https://klein.blue'; // 替换成你的目标链接
         });
     }
     // ==================== Avatar点击跳转 END ====================
