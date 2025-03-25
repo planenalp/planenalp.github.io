@@ -415,6 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
+            flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
         .LabelTime {
