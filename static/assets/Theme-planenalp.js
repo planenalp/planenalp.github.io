@@ -398,7 +398,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .SideNav-item {
-            height: 75px; /* 文章列表靠左双行 */
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
         }
@@ -406,8 +405,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
             width: 100%; /* 文章列表靠左双行 */
+            padding-bottom: 5px; /* 底部留 5px 间隔 */
         }
 
+        .listTitle {
+            white-space: unset; /* 解锁换行 */
+        }
+        
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
             display: flex; /* 文章列表靠左双行 */
