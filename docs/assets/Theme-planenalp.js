@@ -445,11 +445,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 padding: 8px !important;
             }
             .avatar {
-                width:100px !important;
-                height:100px !important;
+                width:80px !important; /* 标题缩小 */
+                height:80px !important; /* 标题缩小 */
             }
             #header {
-                height: 145px; /* 标题缩小 */
+                height: 125px; /* 标题缩小 */
                 padding-bottom: unset; /* 标题缩小 */
             }
 
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             .title-right {
-                margin-top: 170px; /* 标题缩小 */
+                margin-top: 150px; /* 标题缩小 */
             }
             .blogTitle{
                 display:unset !important;
