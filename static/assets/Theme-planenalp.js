@@ -625,6 +625,13 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 100%; /* header 居中 */
         }
 
+        /* 搜索失败字符 */
+        #content > div.notFind {
+            white-space: normal; /* 默认值，允许自动换行 */
+            overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
+            word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
+        }
+
         /* 按钮取消右间隔 */
         .title-right .circle {
             margin-right: unset; /* header 居中 */
