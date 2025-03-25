@@ -17,9 +17,9 @@
             display: inline-block;
         }
         img {
-            width: 200px;
-            height: 200px;
-            transition: transform 0.3s ease;
+            width: 30vmin;
+            height: 30vmin;
+            transition: transform 0.1s ease;
         }
         img:hover {
             transform: scale(1.1);
@@ -33,5 +33,10 @@
     <a href="https://klein.blue/" target="_blank">
         <img src="https://klein.blue/favicon.svg" alt="Klein Blue Icon">
     </a>
+    <!-- 新增触摸事件监听 -->
+    <script>
+        // 改善移动端触摸响应
+        document.addEventListener('touchstart', function() {}, false);
+    </script>
 </body>
 </html>
