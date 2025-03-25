@@ -4,20 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Klein.Blue</title>
+  <link rel="icon" type="image/svg+xml" href="https://planenalp.github.io/favicon.svg">
   <style>
-    /* 使用 CSS 变量 --vh 来动态控制高度 */
     html, body {
       margin: 0;
       height: calc(var(--vh, 1vh) * 100);
-      background-color: #002fa7;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background-color 0.3s ease;
     }
     img {
       width: 30vmin;
       height: 30vmin;
-      transition: transform 0.3s ease;
+      transition: 
+        transform 0.1s ease,
+        opacity 0.3s ease;
+      cursor: pointer;
     }
     img:hover {
       transform: scale(1.1);
@@ -33,19 +36,73 @@
 </head>
 <body>
   <a href="https://planenalp.github.io/">
-    <img src="https://klein.blue/favicon.svg" alt="Logo">
+    <img id="theme-logo" alt="Logo" loading="eager">
   </a>
+
   <script>
-    // 计算实际视口高度并设置 CSS 变量 --vh
+    // 视口高度计算
     function setVh() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
-    setVh();
-    window.addEventListener('resize', setVh);
 
-    // 添加 touchstart 事件监听
-    document.addEventListener('touchstart', function() {}, false);
+    // 主题系统
+    const themes = [
+      { background: "#002fa7", logo: "https://planenalp.github.io/avatar-whitesmoke.svg" },
+      { background: "#f5f5f5", logo: "https://planenalp.github.io/avatar-blue.svg" }
+    ];
+    
+    let currentThemeIndex = 0;
+
+    // 预加载图片
+    function preloadImages() {
+      themes.forEach(theme => {
+        new Image().src = theme.logo;
+      });
+    }
+
+    // 主题应用函数
+    function applyTheme(theme) {
+      document.body.style.backgroundColor = theme.background;
+      const logo = document.getElementById('theme-logo');
+      
+      logo.style.opacity = 0;
+      setTimeout(() => {
+        logo.src = theme.logo;
+        logo.style.opacity = 1;
+      }, 300);
+    }
+
+    // 切换主题
+    function switchTheme() {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      applyTheme(themes[currentThemeIndex]);
+    }
+
+    // 点击事件处理
+    function handleClick(event) {
+      const logoArea = document.querySelector('a, img');
+      // 仅当点击非Logo区域时切换
+      if (!logoArea.contains(event.target)) {
+        switchTheme();
+      }
+    }
+
+    // 初始化
+    function init() {
+      setVh();
+      preloadImages();
+      // 随机初始主题
+      currentThemeIndex = Math.random() < 0.5 ? 0 : 1;
+      applyTheme(themes[currentThemeIndex]);
+      // 添加点击监听
+      document.body.addEventListener('click', handleClick);
+      // 保持iOS点击反馈
+      document.addEventListener('touchstart', () => {});
+    }
+
+    init();
+    window.addEventListener('resize', setVh);
   </script>
 </body>
 </html>
