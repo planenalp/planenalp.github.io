@@ -415,9 +415,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .listLabels {
             width: 100%; /* 文章列表靠左双行 */
-            display: flex; /* 文章列表靠左双行 */
-            justify-content: flex-end; /* 文章列表靠左双行 */
-            flex-direction: row-reverse; /* 文章列表靠左双行 */ 
+        }
+
+        .LabelTime {
+            order: 1; /* 调整两种 Label 顺序 */
+        }
+        .LabelName {
+            order: 2; /* 调整两种 Label 顺序 */
         }
 
         .SideNav-icon {
