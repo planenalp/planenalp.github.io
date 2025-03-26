@@ -77,9 +77,10 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #f3f4f6;
             --color-toc-hover-border: rgba(31, 35, 40, 0.15);
+            --color-toc-h1: #656d76;
             --color-toc-icon-bg: #f6f8fab3;
             --color-toc-icon-color: #656d76b3;
-            --color-toc-icon-hover-color: #656d76;
+            --color-toc-icon-hover: #656d76;
             --color-toc-highlightText: #24292f;
         }
         /* dark 主题颜色 */
@@ -93,9 +94,10 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-box-shadow: 0 0 transparent;
             --color-toc-hover-bg: #30363d;
             --color-toc-hover-border: #7d8590;
+            --color-toc-h1: #7d8590;
             --color-toc-icon-bg: #21262db3;
             --color-toc-icon-color: #7d8590b3;
-            --color-toc-icon-hover-color: #7d8590;
+            --color-toc-icon-hover: #7d8590;
             --color-toc-highlightText: #c9d1d9;
         }
         
@@ -202,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
         @media (any-hover: hover) {
             .toc-icon:hover {
                 background-color: var(--color-toc-hover-bg);
-                color: var(--color-toc-icon-hover-color);
+                color: var(--color-toc-icon-hover);
                 border: 1px solid var(--color-toc-hover-border);
                 transition: 0.1s ease;
             }
@@ -211,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 弹出菜单图标按压高亮 */
         .toc-icon:active {
             background-color: var(--color-toc-hover-bg);
-            color: var(--color-toc-icon-hover-color);
+            color: var(--color-toc-icon-hover);
             border: 1px solid var(--color-toc-hover-border);
             transform: scale(0.9);
             transition: 0.1s ease;
@@ -220,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 弹出菜单图标激活状态 */
         .toc-icon.active {
             background-color: var(--color-toc-hover-bg);
-            color: var(--color-toc-icon-hover-color);
+            color: var(--color-toc-icon-hover);
             border: 1px solid var(--color-toc-hover-border);
             transform: rotate(90deg);
             transition: 0.1s ease;
@@ -250,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function() {
             left: 0;
             width: 3px;
             height: 60%;
-            background-color: var(--color-toc-icon-hover-color);
+            background-color: var(--color-toc-h1);
             transform: translateY(-50%);
             content: '';
             transition: 0.1s ease;
@@ -312,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function() {
         @media (any-hover: hover) {
             .back-to-top:hover, .back-to-bot:hover {
                 background-color: var(--color-toc-hover-bg);
-                color: var(--color-toc-icon-hover-color);
+                color: var(--color-toc-icon-hover);
                 border: 1px solid var(--color-toc-hover-border);
                 transition: 0.1s ease;
             }
@@ -321,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 弹出菜单图标按压状态 */
         .back-to-top:active, .back-to-bot:active {
             background-color: var(--color-toc-hover-bg);
-            color: var(--color-toc-icon-hover-color);
+            color: var(--color-toc-icon-hover);
             border: 1px solid var(--color-toc-hover-border);
             transform: scale(0.9);
             transition: 0.1s ease;
