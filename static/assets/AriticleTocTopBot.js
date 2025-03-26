@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
+            outline: none !important;
         }
         
         /* 弹出菜单鼠标悬停高亮 */
@@ -153,11 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
             transition: 0.1s ease;
-        }
-
-        /* 弹出菜单按压边框闪烁解决 */
-        .toc a:focus {
-            outline: none;
         }
 
         /* 弹出菜单滚动高亮 */
@@ -196,12 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-
-        /* 弹出菜单图标按压边框闪烁解决 */
-        .toc-icon:focus {
-            outline: none;
+            outline: none !important;
         }
         
         /* 弹出菜单图标悬停高亮 */
