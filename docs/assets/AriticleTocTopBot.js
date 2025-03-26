@@ -1,5 +1,7 @@
-//允许移动端实现图标按压特效
-document.addEventListener('touchstart', function() {}, false);
+
+// 添加触摸事件支持允许移动端实现图标按压特效
+document.addEventListener('touchstart', function() {}, { passive: true });
+document.addEventListener('touchend', function() {}, { passive: true });
 
 ////////// 动态加载 CSS 样式 start //////////
 function loadResource(type, attributes) {
