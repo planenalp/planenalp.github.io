@@ -642,14 +642,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* 按钮悬停色 */
-        .btn:hover {
+        .btn-invisible:hover
             background-color: var(--btn-hover-bgColor);
         }
 
-        /* 按钮按压 */
-        .btn:active {
+        /* 按钮按压 
+        .btn-invisible:active {
             background-color: var(--btn-hover-bgColor);
         }
+        */
 
         /* 按钮图标色 */
         #themeSwitch {
