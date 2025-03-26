@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            outline: none;
+            outline: none !important;
         }
         
         /* 向上按钮位置 */
@@ -305,16 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 向下按钮位置 */
         .back-to-bot {
             bottom: 20px;
-        }
-
-        /* 向上按钮按压边框闪烁解决 */
-        .back-to-top:focus {
-            outline: none;
-        }
-
-        /* 向下按钮按压边框闪烁解决 */
-        .back-to-bot:focus {
-            outline: none;
         }
         
         /* 向上向下按钮动画 */
