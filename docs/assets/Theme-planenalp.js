@@ -347,8 +347,10 @@ document.addEventListener('DOMContentLoaded', function() {
             outline: none;
         }
 
-        .avatar:hover {
-            transform: scale(1.1) !important;
+        @media (any-hover: hover) {
+            .avatar:hover {
+                transform: scale(1.1) !important;
+            }
         }
 
         .avatar:active {
@@ -387,7 +389,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮悬停色 */
-         .btn:hover {
+        @media (any-hover: hover) {
+            .btn:hover {
+                background-color: var(--btn-hover-bgColor);
+            }
+        }
+
+        @media (any-hover: none) {
+            .btn:hover {
+                background-color: unset;
+            }
+        }
+
+        /* 按钮按压 */
+        .btn:active {
             background-color: var(--btn-hover-bgColor);
         }
 
@@ -403,19 +418,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表悬停高亮 */
-        .SideNav-item:hover {
+        @media (any-hover: hover) {
+            .SideNav-item:hover {
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
+                box-shadow: var(--box-shadow);
+                transform: scale(1.02);
+                transition: 0.1s ease; /* 弹起动画时长 */
+            }
+        }
+        
+        @media (any-hover: none) {
+            .SideNav-item:hover {
+                background-color: unset;
+            }
+        }
+
+        /* 文章列表按压 */
+        .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
-            transform: scale(1.02);
             box-shadow: var(--box-shadow);
-            transition: 0.1s; /* 弹起动画时长 */
-        }
-
-        /* 文章列表点击缩放 */
-        .SideNav-item:active {
             transform: scale(1.0);
+            transition: 0.1s ease;
         }
-
+        
         /* 文章列表单项整栏 */
         .SideNav-item {
             display: flex; /* 文章列表靠左双行 */
@@ -544,7 +571,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* 按钮悬停色 */
-        .btn:hover {
+        @media (any-hover: hover) {
+            .btn:hover {
+                background-color: var(--btn-hover-bgColor);
+            }
+        }
+
+        @media (any-hover: none) {
+            .btn:hover {
+                background-color: unset;
+            }
+        }
+
+        /* 按钮按压 */
+        .btn:active {
             background-color: var(--btn-hover-bgColor);
         }
 
