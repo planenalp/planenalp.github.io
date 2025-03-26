@@ -646,12 +646,6 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
         }
 
-        /* 按钮按压 
-        .btn-invisible:active {
-            background-color: var(--btn-hover-bgColor);
-        }
-        */
-
         /* 按钮图标色 */
         #themeSwitch {
             color: var(--themeSwitch-color);
