@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: var(--text-hover-color);
                 box-shadow: var(--box-shadow);
                 transform: scale(1.02);
-                transition: 0.1s; /* 弹起动画时长 */
+                transition: background-color 0.1s ease; /* 弹起动画时长 */
             }
         }
 
@@ -678,9 +678,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
-            box-shadow: var(--box-shadow);
-            transform: scale(0.98);
-            transition: 0.1s; /* 弹起动画时长 */
+            transition: background-color 0.1s ease;
         }
 
         /* 文章列表单项整栏 */
