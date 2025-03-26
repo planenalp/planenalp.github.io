@@ -155,6 +155,11 @@ document.addEventListener("DOMContentLoaded", function() {
             transition: 0.1s ease;
         }
 
+        /* 弹出菜单按压边框闪烁解决 */
+        .toc a:focus {
+            outline: none;
+        }
+
         /* 弹出菜单滚动高亮 */
         .toc-link.toc-active {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
@@ -191,6 +196,11 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* 弹出菜单图标按压边框闪烁解决 */
+        .toc-icon:focus {
             outline: none;
         }
         
