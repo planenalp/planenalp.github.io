@@ -582,6 +582,7 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (any-hover: hover) {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
+                transition: 0.1s ease;
             }
         }
 
@@ -594,6 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
+            transition: 0.1s ease;
         }
 
         /* 按钮图标色 */
@@ -693,6 +695,7 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (any-hover: hover) {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
+                transition: 0.1s ease;
             }
         }
 
@@ -705,6 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
+            transition: 0.1s ease;
         }
 
         /* 按钮图标色 */
