@@ -140,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .toc a:hover {
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-highlightText);
+                transform: scale(1.02);
                 transition: 0.1s ease;
             }
         }
@@ -148,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a:active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
+            transform: scale(1.0);
             transition: 0.1s ease;
         }
 

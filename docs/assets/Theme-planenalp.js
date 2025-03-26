@@ -291,12 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
     .btn, .d-flex {
         outline: none !important;
     }
-
-    /* 按钮按压缩放 */
-    .btn:active {
-        transform: scale(0.9);
-        transition: 0.1s ease;
-    }
     
     `;
     document.head.appendChild(globalStyle);
@@ -444,6 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
+            transform: scale(0.9);
             transition: 0.1s ease;
             .octicon {
                 color: var(--icon-hover-color);
@@ -641,6 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
+            transform: scale(0.9);
             transition: 0.1s ease;
             .octicon {
                 color: var(--icon-hover-color);
@@ -667,6 +663,8 @@ document.addEventListener('DOMContentLoaded', function() {
         #cmButton:active {
             background-color: var(--btn-hover-bgColor);
             color: var(--text-hover-color);
+            transform: scale(0.98);
+            transition: 0.1s ease;
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -780,6 +778,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
+            transform: scale(0.9);
             transition: 0.1s ease;
             .octicon {
                 color: var(--icon-hover-color);
