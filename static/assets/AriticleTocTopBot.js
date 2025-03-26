@@ -306,6 +306,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .back-to-bot {
             bottom: 20px;
         }
+
+        /* 向上向下按钮按压边框闪烁解决 */
+        .back-to-top, .back-to-bot {
+            outline: none;
+        }
         
         /* 向上向下按钮动画 */
         .back-to-top.show, .back-to-bot.show {
