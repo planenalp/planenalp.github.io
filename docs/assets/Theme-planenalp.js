@@ -686,6 +686,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: unset;
                 /* color: var(--text-hover-color); */
                 /* box-shadow: var(--box-shadow); */
+                transform: scale(1.02);
                 /* transition: 0.1s ease; /* 弹起动画时长 */ */
             }
         }
