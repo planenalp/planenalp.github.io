@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 触屏设备优化点击反馈 */
         @media (any-hover: none) and (any-pointer: coarse) {
             .btn:active {
-                background-color: transparent;
+                background-color: rgba(0, 0, 0, 0);
                 transition: background-color 0.1s;
             }
         }
