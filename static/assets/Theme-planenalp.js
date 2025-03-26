@@ -494,6 +494,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
+            margin-left: unset !important; /* 去除左侧间隔 */
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
@@ -791,6 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
+            margin-left: unset !important; /* 去除左侧间隔 */
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
