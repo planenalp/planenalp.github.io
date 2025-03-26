@@ -681,13 +681,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        @media (any-hover: none) {
-            .SideNav-item:hover {
-                background-color: transparent;
-                color: transparent;
-            }
-        }
-
         /* 文章列表按压 */
         .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
