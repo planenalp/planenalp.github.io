@@ -307,8 +307,13 @@ document.addEventListener("DOMContentLoaded", function() {
             bottom: 20px;
         }
 
-        /* 向上向下按钮按压边框闪烁解决 */
-        .back-to-top:focus, .back-to-bot:focus {
+        /* 向上按钮按压边框闪烁解决 */
+        .back-to-top:focus {
+            outline: none;
+        }
+
+        /* 向下按钮按压边框闪烁解决 */
+        .back-to-bot:focus {
             outline: none;
         }
         
