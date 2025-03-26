@@ -647,20 +647,21 @@ document.addEventListener('DOMContentLoaded', function() {
         #themeSwitch {
             color: var(--themeSwitch-color);
         }
-
-        /* 评论按钮悬停字色 */
+        
+         /* 评论按钮悬停 */
         @media (any-hover: hover) {
             #cmButton:hover {
                 background-color: var(--btn-hover-bgColor);
                 color: var(--text-hover-color);
             }
         }
-
+        
+        /* 评论按钮按压 */
         #cmButton:active {
             background-color: var(--btn-hover-bgColor);
             color: var(--text-hover-color);
         }
-
+        
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
             body {
