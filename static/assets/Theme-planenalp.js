@@ -637,14 +637,17 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-right: unset; /* header 居中 */
         }
         
-        /* 按钮悬停色 */
+        /* 按钮悬停色
         @media (any-hover: hover) {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor) !important;
             }
         }
+         */
 
-
+        .btn:hover {
+            background-color: var(--btn-hover-bgColor) !important;
+        }
 
         
 
