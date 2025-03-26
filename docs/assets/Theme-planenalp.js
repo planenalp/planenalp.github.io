@@ -1,7 +1,9 @@
-//允许移动端实现图标按压特效
-document.addEventListener('touchstart', function() {}, false);
 
-//执行指定的回调函数
+// 添加触摸事件支持允许移动端实现图标按压特效
+document.addEventListener('touchstart', function() {}, { passive: true });
+document.addEventListener('touchend', function() {}, { passive: true });
+
+// 执行指定的回调函数
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
@@ -647,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮按压 */
-        .btn:active {
+        .btn:active, .btn.pressed {
             background-color: var(--btn-hover-bgColor);
         }
 
@@ -669,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: var(--text-hover-color);
                 box-shadow: var(--box-shadow);
                 transform: scale(1.02);
-                transition: background-color 0.1s ease; /* 弹起动画时长 */
+                transition: 0.1s ease; /* 弹起动画时长 */
             }
         }
 
@@ -677,7 +679,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
-            transition: background-color 0.1s ease;
+            transform: scale(1.0);
+            transition: 0.1s ease;
         }
 
         /* 文章列表单项整栏 */
