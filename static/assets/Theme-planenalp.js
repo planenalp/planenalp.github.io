@@ -235,28 +235,34 @@ document.addEventListener('DOMContentLoaded', function() {
     /* 主页主题 */
     .home-theme {
         --btn-hover-bgColor: #002fa7;
+        --icon-hover-color: #f5f5f5;
     }
     [data-color-mode=dark].home-theme,
     [data-light-theme=dark].home-theme {
         --btn-hover-bgColor: #002fa7;
+        --icon-hover-color: #f5f5f5;
     }
 
     /* 文章页主题 */
     .post-theme {
-        --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #002fa7;
+        --icon-hover-color: #f5f5f5;
     }
     [data-color-mode=dark].post-theme,
     [data-light-theme=dark].post-theme {
-        --btn-hover-bgColor: #002fa7; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #002fa7;
+        --icon-hover-color: #f5f5f5;
     }
     
     /* 搜索页主题 */
     .search-theme {
-        --btn-hover-bgColor: #f5f5f5; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #f5f5f5;
+        --icon-hover-color: #002fa7;
     }
     [data-color-mode=dark].search-theme,
     [data-light-theme=dark].search-theme {
-        --btn-hover-bgColor: #f5f5f5; /* 按钮高亮颜色 */
+        --btn-hover-bgColor: #f5f5f5;
+        --icon-hover-color: #002fa7;
     }
      */
 
@@ -409,10 +415,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 .octicon {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
                 #themeSwitch {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
             }
         }
@@ -428,10 +434,10 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
             .octicon {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
             #themeSwitch {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
         }
 
@@ -606,10 +612,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 .octicon {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
                 #themeSwitch {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
             }
         }
@@ -625,10 +631,10 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
             .octicon {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
             #themeSwitch {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
         }
 
@@ -731,10 +737,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 .octicon {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
                 #themeSwitch {
-                    color: var(--text-hover-color);
+                    color: var(--icon-hover-color);
                 }
             }
         }
@@ -750,10 +756,10 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
             .octicon {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
             #themeSwitch {
-                color: var(--text-hover-color);
+                color: var(--icon-hover-color);
             }
         }
 
