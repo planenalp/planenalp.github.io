@@ -409,10 +409,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 .octicon {
-                    color: #F5F5F5;
+                    color: var(--text-hover-color);
                 }
                 #themeSwitch {
-                    color: #F5F5F5;
+                    color: var(--text-hover-color);
                 }
             }
         }
@@ -427,6 +427,12 @@ document.addEventListener('DOMContentLoaded', function() {
         .btn:active {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
+            .octicon {
+                color: var(--text-hover-color);
+            }
+            #themeSwitch {
+                color: var(--text-hover-color);
+            }
         }
 
         /* 按钮图标色 */
@@ -599,6 +605,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
+                .octicon {
+                    color: var(--text-hover-color);
+                }
+                #themeSwitch {
+                    color: var(--text-hover-color);
+                }
             }
         }
 
@@ -612,6 +624,12 @@ document.addEventListener('DOMContentLoaded', function() {
         .btn:active {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
+            .octicon {
+                color: var(--text-hover-color);
+            }
+            #themeSwitch {
+                color: var(--text-hover-color);
+            }
         }
 
         /* 按钮图标色 */
@@ -712,6 +730,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
+                .octicon {
+                    color: var(--text-hover-color);
+                }
+                #themeSwitch {
+                    color: var(--text-hover-color);
+                }
             }
         }
 
@@ -725,6 +749,12 @@ document.addEventListener('DOMContentLoaded', function() {
         .btn:active {
             background-color: var(--btn-hover-bgColor);
             transition: 0.1s ease;
+            .octicon {
+                color: var(--text-hover-color);
+            }
+            #themeSwitch {
+                color: var(--text-hover-color);
+            }
         }
 
         /* 按钮图标色 */
