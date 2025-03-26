@@ -408,6 +408,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
+                .octicon {
+                    color: #F5F5F5;
+                }
             }
         }
 
