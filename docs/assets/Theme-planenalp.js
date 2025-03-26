@@ -286,6 +286,11 @@ document.addEventListener('DOMContentLoaded', function() {
         background-size: cover;
         transition: background-image 0.15s linear;
     }
+
+    .btn, .d-flex {
+        outline: none !important; /* 解决按压边框闪烁 */
+    }
+    
     `;
     document.head.appendChild(globalStyle);
     // ==================== 全局CSS变量定义 END ====================
