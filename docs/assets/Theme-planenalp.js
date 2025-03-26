@@ -683,10 +683,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         @media (any-hover: none) {
             .SideNav-item:hover {
-                background-color: var(--SideNav-hover-bgColor);
-                color: var(--text-hover-color);
-                box-shadow: var(--box-shadow);
-                transition: 0.1s ease; /* 弹起动画时长 */
+                background-color: unset;
+                /* color: var(--text-hover-color); */
+                /* box-shadow: var(--box-shadow); */
+                /* transition: 0.1s ease; /* 弹起动画时长 */ */
             }
         }
 
