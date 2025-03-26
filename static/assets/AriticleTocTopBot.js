@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         /* 向上向下按钮按压边框闪烁解决 */
-        .back-to-top, .back-to-bot {
+        .back-to-top:focus, .back-to-bot:focus {
             outline: none;
         }
         
