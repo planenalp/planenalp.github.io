@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 按钮按压 */
-        .btn:active, .btn.pressed {
+        .btn.active, .btn.pressed {
             background-color: var(--btn-hover-bgColor);
         }
 
