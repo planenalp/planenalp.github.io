@@ -642,14 +642,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* 按钮悬停色 */
-        @media (any-hover: hover) {
-            .btn:hover {
-                background-color: var(--btn-hover-bgColor);
-            }
+        .btn:hover {
+            background-color: var(--btn-hover-bgColor);
         }
 
         /* 按钮按压 */
-        .btn.active {
+        .btn:active {
             background-color: var(--btn-hover-bgColor);
         }
 
@@ -665,15 +663,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表悬停高亮 */
-        @media (any-hover: hover) {
-            .SideNav-item:hover {
-                background-color: var(--SideNav-hover-bgColor);
-                color: var(--text-hover-color);
-                box-shadow: var(--box-shadow);
-                transform: scale(1.02);
-                transition: 0.1s ease; /* 弹起动画时长 */
-            }
+
+        .SideNav-item:hover {
+            background-color: var(--SideNav-hover-bgColor);
+            color: var(--text-hover-color);
+            box-shadow: var(--box-shadow);
+            transform: scale(1.02);
+            transition: 0.1s ease; /* 弹起动画时长 */
         }
+
 
         /* 文章列表按压 */
         .SideNav-item:active {
