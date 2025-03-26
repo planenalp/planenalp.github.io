@@ -643,19 +643,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor) !important;
             }
         }
-        
-        /* 触屏设备优化点击反馈 */
-        @media (any-hover: none) and (any-pointer: coarse) {
-            .btn:active {
-                background-color: rgba(0, 0, 0, 0);
-                transition: background-color 0.1s;
-            }
-        }
-        
-        
-        
-        
-        
+
+
+
         
 
         /* 按钮图标色 */
