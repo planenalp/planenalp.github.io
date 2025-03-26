@@ -353,6 +353,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        @media (any-hover: none) {
+            .avatar:hover {
+                transform: scale(1.0) !important;
+            }
+        }
+
         .avatar:active {
             transform: scale(0.9) !important;
         }
