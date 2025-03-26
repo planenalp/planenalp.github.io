@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-bg: #0d1117cc;
             --color-toc-border: rgba(240, 246, 252, 0.1);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            --color-toc-hover-bg: #30363d;
+            --color-toc-hover-bg: #1e242a;
             --color-toc-hover-border: #7d8590;
             --color-toc-h1: #7d8590;
             --color-toc-icon-bg: #21262db3;
