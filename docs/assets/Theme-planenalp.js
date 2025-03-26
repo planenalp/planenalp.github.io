@@ -287,8 +287,15 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: background-image 0.15s linear;
     }
 
+    /* 解决按压边框闪烁 */
     .btn, .d-flex {
-        outline: none !important; /* 解决按压边框闪烁 */
+        outline: none !important;
+    }
+
+    /* 按钮按压缩放 */
+    .btn:active {
+        transform: scale(0.9);
+        transition: 0.1s ease;
     }
     
     `;
