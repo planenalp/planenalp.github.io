@@ -73,10 +73,12 @@ document.addEventListener("DOMContentLoaded", function() {
         :root {
             --color-toc-a-text: #24292f;
             --color-toc-bg: #ffffffcc;
+            --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #f3f4f6;
             --color-toc-hover-border: rgba(31, 35, 40, 0.15);
             --color-toc-h1: #656d76;
+            --color-toc-icon-bg: #f6f8fab3;
             --color-toc-icon-color: #656d76b3;
             --color-toc-icon-hover: #656d76;
             --color-toc-highlightText: #24292f;
@@ -88,10 +90,12 @@ document.addEventListener("DOMContentLoaded", function() {
         [data-color-mode=dark][data-dark-theme=dark]::selection {
             --color-toc-a-text: #c9d1d9;
             --color-toc-bg: #0d1117cc;
-            --color-toc-box-shadow: 0 0 transparent;
+            --color-toc-border: rgba(240, 246, 252, 0.1);
+            --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             --color-toc-hover-bg: #30363d;
             --color-toc-hover-border: #7d8590;
             --color-toc-h1: #7d8590;
+            --color-toc-icon-bg: #21262db3;
             --color-toc-icon-color: #7d8590b3;
             --color-toc-icon-hover: #7d8590;
             --color-toc-highlightText: #c9d1d9;
@@ -135,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
             font-size: 14px;
             line-height: 1.5;
             text-decoration: none;
-            outline: none !important;
+            outline: none !important; /* 解决按压边框闪烁 */
         }
         
         /* 弹出菜单鼠标悬停高亮 */
@@ -192,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            outline: none !important;
+             !important; /* 解决按压边框闪烁 */
         }
         
         /* 弹出菜单图标悬停高亮 */
@@ -285,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            outline: none !important;
+             !important; /* 解决按压边框闪烁 */
         }
         
         /* 向上按钮位置 */
