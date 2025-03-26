@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
             --color-toc-bg: #ffffffcc;
             --color-toc-border: rgba(31, 35, 40, 0.15);
             --color-toc-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            --color-toc-hover-bg: #f3f4f6;
+            --color-toc-hover-bg: #e9e9e9;
             --color-toc-hover-border: rgba(31, 35, 40, 0.15);
             --color-toc-h1: #656d76;
             --color-toc-icon-bg: #f6f8fab3;
@@ -132,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a {
             display: block;
             padding: 5px;
-            border: 1px solid transparent; /* 初始状态设置透明边框占位-防止菜单选项乱跳 */
             border-radius: 6px;
             color: var(--color-toc-a-text);
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* 适当延长过渡动画缓冲滚动动效 */
@@ -145,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function() {
         /* 弹出菜单鼠标悬停高亮 */
         @media (any-hover: hover) {
             .toc a:hover {
-                border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-highlightText);
                 transition: 0.1s ease;
@@ -154,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
         /* 弹出菜单按压高亮 */
         .toc a:active {
-            border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
             transition: 0.1s ease;
@@ -162,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         /* 弹出菜单滚动高亮 */
         .toc-link.toc-active {
-            border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
             transition: 0.1s ease;
