@@ -411,6 +411,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .octicon {
                     color: #F5F5F5;
                 }
+                #themeSwitch {
+                    color: #F5F5F5;
+                }
             }
         }
 
