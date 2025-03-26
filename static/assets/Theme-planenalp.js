@@ -692,6 +692,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
+            box-shadow: var(--box-shadow);
             transform: scale(1.0);
             transition: 0.1s ease;
         }
