@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-             !important; /* 解决按压边框闪烁 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
         
         /* 弹出菜单图标悬停高亮 */
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-             !important; /* 解决按压边框闪烁 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
         
         /* 向上按钮位置 */
