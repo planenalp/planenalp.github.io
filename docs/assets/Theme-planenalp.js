@@ -642,9 +642,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* 按钮悬停色 */
-        .btn:hover {
-            background-color: var(--btn-hover-bgColor);
+        @media (any-hover: hover) {
+            .btn:hover {
+                background-color: var(--btn-hover-bgColor);
+            }
         }
+
+        @media (any-hover: none) {
+            .btn:hover {
+                background-color: transparent;
+            }
+        }
+
 
         /* 按钮图标色 */
         #themeSwitch {
