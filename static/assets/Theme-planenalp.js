@@ -642,14 +642,13 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮悬停色 */
         @media (any-hover: hover) {
             .btn:hover {
-                background-color: var(--btn-hover-bgColor) !important;
+                background-color: var(--btn-hover-bgColor);
             }
         }
 
         /* 按钮按压 */
         .btn:active {
-            background-color: var(--btn-hover-bgColor) !important;
-            transform: scale(0.9);
+            background-color: var(--btn-hover-bgColor);
         }
 
         /* 按钮图标色 */
