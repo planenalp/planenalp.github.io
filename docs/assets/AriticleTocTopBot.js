@@ -184,6 +184,15 @@ document.addEventListener("DOMContentLoaded", function() {
             box-shadow: var(--color-toc-box-shadow);
             transition: transform 0.1s ease, opacity 0.1s ease;
             cursor: pointer;
+            /* 禁用 iOS 长按弹出菜单 */
+            -webkit-touch-callout: none;
+            /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -webkit-user-select: none;
+            /* 适用于 Firefox */
+            -moz-user-select: none;
+            /* 适用于 IE10+ 和 Edge */
+            -ms-user-select: none;
+            /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
@@ -269,6 +278,15 @@ document.addEventListener("DOMContentLoaded", function() {
             font-size: 24px;
             visibility: hidden;
             cursor: pointer;
+            /* 禁用 iOS 长按弹出菜单 */
+            -webkit-touch-callout: none;
+            /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -webkit-user-select: none;
+            /* 适用于 Firefox */
+            -moz-user-select: none;
+            /* 适用于 IE10+ 和 Edge */
+            -ms-user-select: none;
+            /* 标准语法 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             outline: none;
