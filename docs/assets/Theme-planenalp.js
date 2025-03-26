@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         @media (any-hover: none) {
             .btn:hover {
-                background-color: transparent;
+                background-color: unset;
             }
         }
 
