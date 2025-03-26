@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-highlightText);
+                transition: 0.1s ease;
             }
         }
         
@@ -152,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
+            transition: 0.1s ease;
         }
 
         /* 弹出菜单滚动高亮 */
@@ -159,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
             border-color: var(--color-toc-hover-border); /* 只修改边框颜色-防止菜单选项乱跳 */
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
+            transition: 0.1s ease;
         }
 
         /* 弹出菜单图标 */
@@ -190,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-icon-hover-color);
                 border: 1px solid var(--color-toc-hover-border);
+                transition: 0.1s ease;
             }
         }
         
@@ -199,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
             transform: scale(0.9);
+            transition: 0.1s ease;
         }
         
         /* 弹出菜单图标激活状态 */
@@ -207,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
             transform: rotate(90deg);
+            transition: 0.1s ease;
         }
         
         /* 弹出菜单图标样式 */
@@ -236,6 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: var(--color-toc-icon-hover-color);
             transform: translateY(-50%);
             content: '';
+            transition: 0.1s ease;
         }
         
         /* 向上向下按钮 */
@@ -287,6 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-icon-hover-color);
                 border: 1px solid var(--color-toc-hover-border);
+                transition: 0.1s ease;
             }
         }
         
@@ -296,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
             color: var(--color-toc-icon-hover-color);
             border: 1px solid var(--color-toc-hover-border);
             transform: scale(0.9);
+            transition: 0.1s ease;
         }
         
         /* 弹出菜单图标样式 */
