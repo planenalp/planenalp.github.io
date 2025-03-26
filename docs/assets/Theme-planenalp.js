@@ -642,14 +642,13 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮悬停色 */
         @media (any-hover: hover) {
             .btn:hover {
-                background-color: var(--btn-hover-bgColor) !important;
+                background-color: var(--btn-hover-bgColor);
             }
         }
 
         /* 按钮按压 */
         .btn:active {
-            background-color: var(--btn-hover-bgColor) !important;
-            transform: scale(0.9);
+            background-color: var(--btn-hover-bgColor);
         }
 
         /* 按钮图标色 */
@@ -670,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: var(--text-hover-color);
                 box-shadow: var(--box-shadow);
                 transform: scale(1.02);
-                transition: 0.1s; /* 弹起动画时长 */
+                transition: background-color 0.1s ease; /* 弹起动画时长 */
             }
         }
 
@@ -678,9 +677,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav-item:active {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
-            box-shadow: var(--box-shadow);
-            transform: scale(0.98);
-            transition: 0.1s; /* 弹起动画时长 */
+            transition: background-color 0.1s ease;
         }
 
         /* 文章列表单项整栏 */
