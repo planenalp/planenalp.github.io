@@ -680,6 +680,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition: 0.1s ease; /* 弹起动画时长 */
             }
         }
+        
+        @media (any-hover: none) {
+            .SideNav-item:hover {
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
+                box-shadow: var(--box-shadow);
+                transition: 0.1s ease; /* 弹起动画时长 */
+            }
+        }
 
         /* 文章列表按压 */
         .SideNav-item:active {
