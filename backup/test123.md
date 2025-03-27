@@ -24,11 +24,11 @@ old
 
 # Gmeek + Fancybox（推荐 base64 时使用）
 优点：不用改代码直接支持 base64 编码图片
-缺点：格式不好记，可能不支持懒加载插件（不能添加懒加载代码 `class="ImgLazyLoad-circle` 否则会失效）
+缺点：格式不好记，可能不支持懒加载插件（不能添加懒加载代码 `ImgLazyLoad-circle` 否则会失效）
 ```
-`Gmeek-html<class="img data-fancybox="gallery" img src="URL">`
+`Gmeek-html<img data-fancybox="gallery" img src="URL">`
 ```
-`Gmeek-html<class="img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
+`Gmeek-html<ImgLazyLoad-circle img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
 
 # Gmeek 自带格式（不推荐使用）
 优点：？
