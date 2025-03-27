@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
     
+    /*
     // ==================== 手动插入外链图片 START ====================
     // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
     // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // ==================== 手动插入外链图片 END ====================
+    */
     
     // ==================== 禁用自动主题功能 START ====================
     window.themeSettings = {
