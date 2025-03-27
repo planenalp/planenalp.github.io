@@ -19,11 +19,13 @@ function createTOC() {
     tocElement.className = 'toc';
     document.body.appendChild(tocElement); // 将目录 <div> 插入到 <body> 中
 
+    // 获取内容容器
     const markdownBody = document.querySelector('.markdown-body');
-    if (!markdownBody) return false; // 确保内容容器存在
+    if (!markdownBody) return; // 没有内容容器时中止
     
+    // 获取所有标题元素
     const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    if (headings.length === 0) return false; // 返回无标题状态
+    if (headings.length === 0) return; // 没有标题时中止填充内容
     
     headings.forEach(heading => {
         if (!heading.id) {
@@ -53,7 +55,6 @@ function createTOC() {
         });
         tocElement.appendChild(link);
     });
-    return true; // 返回有标题状态
 }
 ////////// 创建目录 end //////////
 
@@ -62,12 +63,10 @@ function toggleTOC() {
     const tocElement = document.querySelector('.toc');
     const tocIcon = document.querySelector('.toc-icon');
 
-    // 当目录为空时阻止显示
-    if (!tocElement || tocElement.children.length === 0) {
-        tocElement?.classList.remove('show'); // 强制隐藏
-        return;
-    }
-    
+    // 当目录为空时阻止切换
+    if (!tocElement || tocElement.children.length === 0) return;
+
+    // 当有目录时正常切换图标并显示目录
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
@@ -79,8 +78,7 @@ function toggleTOC() {
 ////////// 目录按钮切换功能 end //////////
 
 document.addEventListener("DOMContentLoaded", function() {
-    const hasContent = createTOC(); // 获取内容存在状态
-    
+    createTOC();
     const combinedCss = `
         /* light 主题颜色 */
         :root {
@@ -348,8 +346,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //////// 创建目录按钮 TOC 切换图标 start //////////
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = hasContent ? 
-        '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>' ; 
+    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始化加载汉堡图标
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
