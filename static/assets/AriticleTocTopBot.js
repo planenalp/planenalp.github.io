@@ -342,7 +342,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
     loadResource('style', { css: combinedCss });
-
+    
+    //////// 创建目录按钮 TOC 切换图标 start //////////
     if (hasTOC) {
         const tocIcon = document.createElement('div');
         tocIcon.className = 'toc-icon';
@@ -351,16 +352,6 @@ document.addEventListener("DOMContentLoaded", function() {
             e.stopPropagation();
             toggleTOC();
         };
-    document.body.appendChild(tocIcon);
-
-    //////// 创建目录按钮 TOC 切换图标 start //////////
-    const tocIcon = document.createElement('div');
-    tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始化加载汉堡图标
-    tocIcon.onclick = (e) => {
-        e.stopPropagation();
-        toggleTOC();
-    };
     document.body.appendChild(tocIcon);
     //////// 创建目录按钮 TOC 切换图标 end //////////
 
