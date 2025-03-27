@@ -14,7 +14,7 @@
 ![Image](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)
 
 
-# new way GJken
+# GJken
 ```
 `Image="URL"`
 ```
