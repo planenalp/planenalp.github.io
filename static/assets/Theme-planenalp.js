@@ -7,7 +7,7 @@ document.addEventListener('touchend', function() {}, { passive: true });
 document.addEventListener('DOMContentLoaded', function() {    
     
     
-/*
+
     // ==================== 手动插入外链图片 START ====================
 if (document.querySelector(".markdown-body")) {
     const post_body = document.querySelector(".markdown-body").innerHTML;
@@ -15,17 +15,17 @@ if (document.querySelector(".markdown-body")) {
     if (post_body.includes('<code class="notranslate">Gmeek-imgbox')) {
         document.querySelector(".markdown-body").innerHTML = post_body.replace(
             /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g,
-            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="$1">'
+            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
         );
     }
 }
 // ==================== 手动插入外链图片 END ====================
-*/
 
 
 
 
 
+/*
 // ==================== 手动插入外链图片 START ====================
 if (document.querySelector(".markdown-body")) {
     const post_body = document.querySelector(".markdown-body").innerHTML;
@@ -56,8 +56,7 @@ if (document.querySelector(".markdown-body")) {
     }
 }
 // ==================== 手动插入外链图片 END ====================
-
-
+*/
 
 
     
