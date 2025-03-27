@@ -579,6 +579,28 @@ document.addEventListener('DOMContentLoaded', function() {
     //文章页主题------------------------------------------------------------------------------
     else if (currentUrl.includes('/post/') || currentUrl.includes('/link.html') || currentUrl.includes('/about.html')) {
         console.log('文章页主题');
+        
+        
+    // 选择文章内容容器（根据你的主题结构调整选择器）
+    const postContainers = document.querySelectorAll('.post-body, .article-content');
+    
+    postContainers.forEach(container => {
+        let htmlContent = container.innerHTML;
+        
+        // 正则表达式替换
+        const regex = /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/gs;
+        const newHtml = htmlContent.replace(regex, (match, imgSrc) => {
+            return `
+<div class="ImgLazyLoad-circle"></div>
+<img data-fancybox="gallery" img-src="${imgSrc}">`;
+        });
+        
+        container.innerHTML = newHtml;
+    });
+
+
+
+        
         document.documentElement.classList.add('post-theme');
         const style = document.createElement("style");
         style.innerHTML = `
