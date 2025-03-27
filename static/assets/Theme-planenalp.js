@@ -773,16 +773,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         /* 按钮悬停色 */
         @media (any-hover: hover) {
+            /* 所有按钮 */
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
+                /* 所有按钮 SVG 图标 */
                 .octicon {
                     color: var(--icon-hover-color);
                 }
+                /* 主题切换 SVG 图标 */
                 #themeSwitch {
                     color: var(--icon-hover-color);
                 }
             }
+            /* 搜索按钮 */
             .subnav-search button:hover {
                 background-color: var(--btn-hover-bgColor);
                 color: var(--text-hover-color);
@@ -809,6 +813,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        /* 搜索按钮按压 */
         .subnav-search button:active {
             background-color: var(--btn-hover-bgColor);
             color: var(--text-hover-color);
