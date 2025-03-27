@@ -15,7 +15,7 @@ if (document.querySelector(".markdown-body")) {
     if (post_body.includes('<code class="notranslate">Gmeek-imgbox')) {
         document.querySelector(".markdown-body").innerHTML = post_body.replace(
             /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g,
-            '<img data-fancybox="gallery" img-src="$1">'
+            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="$1">'
         );
     }
 }
