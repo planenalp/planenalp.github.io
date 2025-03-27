@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         if (post_body.includes('<code class="notranslate">Image')) {
             document.querySelector(".markdown-body").innerHTML = post_body.replace(
-                /<p>\s*<code class="notranslate">Image="([^"]+)"<\/code>\s*<\/p>/g,
+                /<p>\s*<code class="notranslate">Image=(([^"]+))<\/code>\s*<\/p>/g,
                 '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
             );
         }
