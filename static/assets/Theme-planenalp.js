@@ -472,11 +472,14 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: var(--box-shadow); /* 增加阴影 */
         }
 
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
+        /* 文章列表单项整栏 */
+        .SideNav-item {
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
+            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
         }
-
+        
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
@@ -509,11 +512,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        /* 文章列表单项整栏 */
-        .SideNav-item {
-            display: flex; /* 文章列表靠左双行 */
-            flex-direction: column; /* 文章列表靠左双行 */
-            padding: 10px 10px !important; /* 减少多余间隔 */
+        /* 移除顶部线 */
+        .SideNav-item:first-child {
+            border-top: unset !important;
+        }
+        
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
@@ -861,6 +867,14 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: unset;
         }
 
+        /* 文章列表单项整栏 */
+        .SideNav-item {
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
+            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
+        }
+
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
@@ -893,12 +907,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        /* 文章列表单项整栏 */
-        .SideNav-item {
-            display: flex; /* 文章列表靠左双行 */
-            flex-direction: column; /* 文章列表靠左双行 */
-            padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
+        /* 移除顶部线 */
+        .SideNav-item:first-child {
+            border-top: unset !important;
+        }
+        
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
