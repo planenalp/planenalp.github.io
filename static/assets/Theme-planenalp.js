@@ -725,7 +725,6 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
-            border-bottom: unset;
         }
         
         .tagTitle {
