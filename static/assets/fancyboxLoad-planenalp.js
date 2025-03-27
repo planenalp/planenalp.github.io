@@ -116,18 +116,36 @@ if (document.querySelector(".markdown-body")) {
 
 
 
+// ==================== 手动插入外链图片 START ====================
+if (document.querySelector(".markdown-body")) {
+    const post_body = document.querySelector(".markdown-body").innerHTML;
+    
+    if (post_body.includes('Gmeek-imgbox')) {
+        // (1) 修正属性名为 data-src
+        document.querySelector(".markdown-body").innerHTML = post_body.replace(
+            /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g,
+            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
+        );
 
-/*
-// 假设 post_body 为包含文章内容的 HTML 字符串
-if (post_body.indexOf('<code class="notranslate">Gmeek-imgbox') !== -1) {
-    post_body = post_body.replace(/<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g, function(match, p1) {
-        return '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="' + p1 + '">';
-    });
+        // (2) 初始化懒加载
+        const observer = lozad('.ImgLazyLoad-circle', {
+            loaded: function(el) {
+                el.classList.add('loaded');
+            }
+        });
+        observer.observe();
+
+        // (3) 初始化 fancybox
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            Image: {
+                zoom: true,
+                click: true,
+                wheel: false
+            }
+        });
+    }
 }
-*/
-
-
-
+// ==================== 手动插入外链图片 END ====================
 
 
 
