@@ -14,7 +14,7 @@
 ![Image](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)
 
 
-# GJken
+# GJken with base64
 ```
 `Image="URL"`
 ```
@@ -22,14 +22,14 @@
 
 # Gmeek + Fancybox
 ```
-`Gmeek-html<class="div class="ImgLazyLoad-circle" img data-fancybox="gallery" img src="URL">`
+`Gmeek-html<class="class="ImgLazyLoad-circle" img data-fancybox="gallery" img src="URL">`
 ```
-`Gmeek-html<class="div class="ImgLazyLoad-circle" img data-fancybox="gallery" img src="[URL](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)">`
+`Gmeek-html<class="class="ImgLazyLoad-circle" img data-fancybox="gallery" img src="[URL](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)">`
 
 
 # ImgLazyLoad + Fancybox 引用代码
 ```
-div class="ImgLazyLoad-circle" img data-fancybox="gallery"
+class="ImgLazyLoad-circle" img data-fancybox="gallery"
 ```
 不要懒加载可直接
 ```
