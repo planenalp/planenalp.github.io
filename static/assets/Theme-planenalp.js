@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #002fa7;
         --postTitle-color: #002fa7;
         --tagTitle-color: #002fa7;
-        --border-color: #d0d7de;
+        --SideNav-border-color: hsla(210, 18%, 87%, 1);
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #f6f8facc;
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #f5f5f5;
         --postTitle-color: #f5f5f5;
         --tagTitle-color: #f5f5f5;
-        --border-color: #30363d;
+        --SideNav-border-color: #21262d;
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
@@ -898,7 +898,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: 1px solid var(--color-border-muted); /* 补充和首页一样的浅色 hsla(210, 18%, 87%, 1) 深色 #21262d 边框*/
+            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
