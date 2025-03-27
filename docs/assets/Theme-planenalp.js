@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 主页主题 */
     .home-theme {
-        /* backup */
+        
     }
     [data-color-mode=dark].home-theme,
     [data-light-theme=dark].home-theme {
@@ -261,20 +261,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 文章页主题 */
     .post-theme {
-        /* backup */;
+        
     }
     [data-color-mode=dark].post-theme,
     [data-light-theme=dark].post-theme {
-        /* backup */
+        
     }
     
     /* 搜索页主题 */
     .search-theme {
-        /* backup */
+        
     }
     [data-color-mode=dark].search-theme,
     [data-light-theme=dark].search-theme {
-        /* backup */
+        
     }
 
     /* 背景图 */
