@@ -29,6 +29,8 @@
 `Gmeek-html<img data-fancybox="gallery" img src="URL">`
 ```
 `Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
+## base64 MD 引用 chicken
+`Gmeek-html<img data-fancybox="gallery" img src="[chicken]">`
 
 # Gmeek 自带格式（不推荐使用）
 优点：？
