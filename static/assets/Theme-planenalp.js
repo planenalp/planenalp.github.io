@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮组件 */
         .title-right {
             margin: unset; /* header 居中 */
-            margin-bottom: 2px; /* header 居中 */
+            margin-bottom: 2px !important; /* header 居中 */
         }
 
         /* 按钮右间隔去除 */
@@ -738,9 +738,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 搜索+按钮区域 */
         .title-right {
-            margin-top: 2px; /* header 居中 */
-            margin-bottom: 2px; /* header 居中 */
             margin: unset; /* header 居中 */
+            margin-top: 2px !important; /* header 居中 */
+            margin-bottom: 2px !important; /* header 居中 */
             display: flex; /* header 居中 */
             flex-wrap: wrap; /* header 居中 */
             justify-content: center; /* header 居中 */
