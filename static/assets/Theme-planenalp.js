@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
 
-    // ==================== 手动插入外链图片 START ====================
+// ==================== 手动插入外链图片 START ====================
 if (document.querySelector(".markdown-body")) {
     const post_body = document.querySelector(".markdown-body").innerHTML;
     
-    if (post_body.includes('<code class="notranslate">Gmeek-imgbox')) {
+    if (post_body.includes('<code class="notranslate">fancybox')) {
         document.querySelector(".markdown-body").innerHTML = post_body.replace(
-            /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g,
+            /<p>\s*<code class="notranslate">fancybox="([^"]+)"<\/code>\s*<\/p>/g,
             '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
         );
     }
