@@ -11,11 +11,11 @@
 
 # GJken with base64（推荐 base64 时使用）
 优点：兼容性最好
-缺点：不支持 Issues 预览，需要额外添加代码，格式需要额外记一下
+缺点：不支持 Issues 预览，需要额外添加代码，格式需要额外记一下，没法使用常规 MarkDown 引用语法
 ```
 `Image="URL"`
 ```
-`Image="[chicken]"`
+`Image=[chicken]`
 
 # Gmeek + Fancybox（推荐 base64 时使用）
 优点：不用改代码直接支持 base64 编码图片
