@@ -1,7 +1,8 @@
 # 省流
 只需用 GitHub Pages upload 模板的 MarkDown 的标准语法 `![Image](URL)`
 
-GitHub Issues 有最大字符限制，两种 base64 实现方式都没法使用 MarkDown 的引用语法，所以研究 base64 没意义
+因为 GitHub Issues 有最大字符限制，而且两种 base64 实现方式都没法使用 MarkDown 的引用语法，所以研究 base64 没意义
+
 下面仅作记录示例
 
 
