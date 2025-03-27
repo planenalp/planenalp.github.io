@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const style = document.createElement("style");
         style.innerHTML = `
 
-        .LabelName, .LabelTime {
+        .LabelName {
             color: #002fa7;
         }
         
