@@ -19,8 +19,14 @@ function createTOC() {
     tocElement.className = 'toc';
     document.body.appendChild(tocElement); // 将目录 <div> 插入到 <body> 中
 
+    // 获取内容容器
     const markdownBody = document.querySelector('.markdown-body');
+    if (!markdownBody) return; // 没有内容容器时中止
+    
+    // 获取所有标题元素
     const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    if (headings.length === 0) return; // 没有标题时中止填充内容
+    
     headings.forEach(heading => {
         if (!heading.id) {
             heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
@@ -56,6 +62,11 @@ function createTOC() {
 function toggleTOC() {
     const tocElement = document.querySelector('.toc');
     const tocIcon = document.querySelector('.toc-icon');
+
+    // 当目录为空时阻止切换
+    if (!tocElement || tocElement.children.length === 0) return;
+
+    // 当有目录时正常切换图标并显示目录
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
