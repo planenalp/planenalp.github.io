@@ -2,14 +2,14 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     // ==================== 手动插入外链图片 START ====================
-    // 通过代码 `fancybox="URL"` 代替默认格式 ![Image](URL) 来用 Fancybox 加载被 GitHub Issues 禁用的 base64 格式图片
-    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样支持 Fancybox
+    // 通过代码 `Image="URL"` 代替默认格式 ![Image](URL) 来被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
+    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
     (document.querySelector(".markdown-body")) {
         const post_body = document.querySelector(".markdown-body").innerHTML;
     
-        if (post_body.includes('<code class="notranslate">fancybox')) {
+        if (post_body.includes('<code class="notranslate">Image')) {
             document.querySelector(".markdown-body").innerHTML = post_body.replace(
-                /<p>\s*<code class="notranslate">fancybox="([^"]+)"<\/code>\s*<\/p>/g,
+                /<p>\s*<code class="notranslate">Image="([^"]+)"<\/code>\s*<\/p>/g,
                 '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
             );
         }
