@@ -17,16 +17,16 @@
 
 # Gmeek + Fancybox（推荐偶然用 base64 时使用）
 优点：不用改代码直接支持含 base64 编码内的所有图片
-缺点：可能不支持懒加载插件（不能添加懒加载代码 `ImgLazyLoad-circle` 否则会失效），格式要额外记，没法使用常规 MarkDown 引用语法
+缺点：可能不支持懒加载插件（不能添加懒加载代码 `ImgLazyLoad-circle` 否则会失效），没法使用常规 MarkDown 引用语法，不过本来就最多只能添加一两张，所以没所谓懒加载，格式要额外记
 ```
 `Gmeek-html<img data-fancybox="gallery" img src="URL">`
 ```
 `Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
 
 
-# GJken with base64（可在需要 base64 时使用，但没意义）
+# GJken with base64（可在需要 base64 时使用，但没太大意义）
 优点：语法简单，兼容性好，支持含 base64 编码内的所有图片
-缺点：不支持 Issues 预览，要额外添加代码进主题插件，格式要额外记，没法使用常规 MarkDown 引用语法
+缺点：不支持 Issues 预览，要额外添加代码进主题插件，没法使用常规 MarkDown 引用语法，不过本来就最多只能添加一两张，所以没所谓懒加载，格式要额外记
 ```
 `Image="URL"`
 ```
@@ -34,7 +34,7 @@
 
 
 # Gmeek 自带格式（没必要使用）
-优点：增长知识
+优点：备选方案
 缺点：不支持 Issues 预览，不支持 Fancybox，格式不好记
 ```
 `Gmeek-html<img src="URL">`
@@ -45,7 +45,7 @@
 # # MarkDown 直接使用 base64（没法使用）
 优点：可使用引用语法，将来用其它类型博客可参考使用
 缺点：GitHub Issues 不支持
-PS: Image 可以改为任意名称
+PS: Image 可以改为任意名称，顺便使用了引用方式作为示例
 ```
 ![Image](URL)
 ```
