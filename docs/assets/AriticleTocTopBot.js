@@ -65,7 +65,6 @@ function toggleTOC() {
     // 当目录为空时阻止显示
     if (!tocElement || tocElement.children.length === 0) {
         tocElement?.classList.remove('show'); // 强制隐藏
-        tocIcon?.classList.remove('active');  // 保持图标非激活状态
         return;
     }
     
@@ -350,8 +349,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
     tocIcon.innerHTML = hasContent ? 
-        '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>' : 
-        '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>'; // 无内容时显示禁用图标
+        '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>' ; 
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
