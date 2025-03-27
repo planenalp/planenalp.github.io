@@ -728,12 +728,14 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: unset;
         }
         
+        /* 顶部搜索标签 */
         .tagTitle {
             color: var(--tagTitle-color); /* 顶栏字体颜色 */
             white-space: normal; /* 默认值，允许自动换行 */
             overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
             word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
-            padding-bottom: 10px; /* 和搜索栏间隔5px */
+            margin-top: 5px;
+            margin-bottom: 15px;
         }
 
         /* 搜索+按钮区域 */
