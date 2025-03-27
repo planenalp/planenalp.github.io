@@ -25,7 +25,7 @@ if (document.querySelector(".markdown-body")) {
 
 
 
-
+/*
 // ==================== 手动插入外链图片 START ====================
 if (document.querySelector(".markdown-body")) {
     const post_body = document.querySelector(".markdown-body").innerHTML;
@@ -56,7 +56,7 @@ if (document.querySelector(".markdown-body")) {
     }
 }
 // ==================== 手动插入外链图片 END ====================
-
+*/
 
 
 
