@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .avatar:active {
-            transform: scale(0.8) !important;
+            transform: scale(0.9) !important;
         }
 
         #header h1 a {
@@ -725,7 +725,6 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
-            border-bottom: unset;
         }
         
         .tagTitle {
