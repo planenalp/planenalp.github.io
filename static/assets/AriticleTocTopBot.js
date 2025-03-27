@@ -20,7 +20,11 @@ function createTOC() {
     document.body.appendChild(tocElement); // 将目录 <div> 插入到 <body> 中
 
     const markdownBody = document.querySelector('.markdown-body');
+    if (!markdownBody) return false; // 确保内容容器存在
+    
     const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    if (headings.length === 0) return false; // 返回无标题状态
+    
     headings.forEach(heading => {
         if (!heading.id) {
             heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
@@ -49,6 +53,7 @@ function createTOC() {
         });
         tocElement.appendChild(link);
     });
+    return true; // 返回有标题状态
 }
 ////////// 创建目录 end //////////
 
@@ -56,6 +61,14 @@ function createTOC() {
 function toggleTOC() {
     const tocElement = document.querySelector('.toc');
     const tocIcon = document.querySelector('.toc-icon');
+
+    // 当目录为空时阻止显示
+    if (!tocElement || tocElement.children.length === 0) {
+        tocElement?.classList.remove('show'); // 强制隐藏
+        tocIcon?.classList.remove('active');  // 保持图标非激活状态
+        return;
+    }
+    
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
@@ -67,7 +80,8 @@ function toggleTOC() {
 ////////// 目录按钮切换功能 end //////////
 
 document.addEventListener("DOMContentLoaded", function() {
-    createTOC();
+    const hasContent = createTOC(); // 获取内容存在状态
+    
     const combinedCss = `
         /* light 主题颜色 */
         :root {
@@ -335,7 +349,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //////// 创建目录按钮 TOC 切换图标 start //////////
     const tocIcon = document.createElement('div');
     tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>'; //初始化加载汉堡图标
+    tocIcon.innerHTML = hasContent ? 
+        '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>' : 
+        '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>'; // 无内容时显示禁用图标
     tocIcon.onclick = (e) => {
         e.stopPropagation();
         toggleTOC();
