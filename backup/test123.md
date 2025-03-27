@@ -1,3 +1,17 @@
+图片测试
+
+# Gmeek
+`Gmeek-html<img src="https://picsum.photos/200">`
+
+# GJken
+`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`
+
+
+///////////////
+
+
+
+
 
 # old way
 ![Image](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)
