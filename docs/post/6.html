@@ -102,21 +102,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"><img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838" alt="Image" style="max-width: 100%;"></a></p>
 <h1>GJken with base64（推荐 base64 时使用）</h1>
 <p>优点：兼容性最好<br>
-缺点：不支持 Issues 预览，需要额外添加代码，格式需要额外记一下，没法使用常规 MarkDown 引用语法</p>
+缺点：不支持 Issues 预览，要额外添加代码，格式要额外记一下，没法使用常规 MarkDown 引用语法（似乎改代码也不行）</p>
 <pre class="notranslate"><code class="notranslate">`Image="URL"`
 </code></pre>
-<p>引用 [<strong>]<br>
-<code class="notranslate">Image=[chicken]</code><br>
-链接 (</strong>)<br>
-<code class="notranslate">Image=(https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)</code><br>
-old<br>
-<code class="notranslate">Image="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"</code></p>
+<p><code class="notranslate">Image="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"</code><br>
+引用 chicken<br>
+<code class="notranslate">Image="[chicken]"</code><br>
+引用 urlTest<br>
+<code class="notranslate">Image="[urlTest]"</code></p>
 <h1>Gmeek + Fancybox（推荐 base64 时使用）</h1>
 <p>优点：不用改代码直接支持 base64 编码图片<br>
 缺点：格式不好记，可能不支持懒加载插件（不能添加懒加载代码 <code class="notranslate">ImgLazyLoad-circle</code> 否则会失效）</p>
 <pre class="notranslate"><code class="notranslate">`Gmeek-html&lt;img data-fancybox="gallery" img src="URL"&gt;`
 </code></pre>
-<p><ImgLazyLoad-circle img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"></p>
+<p><img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"></p>
 <h1>Gmeek 自带格式（不推荐使用）</h1>
 <p>优点：？<br>
 缺点：不支持 Issues 预览，不支持 Fancybox，格式不好记</p>
