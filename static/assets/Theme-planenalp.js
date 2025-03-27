@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --blogTitle-color: #002fa7;
         --subTitle-color: #002fa7;
         --postTitle-color: #002fa7;
-        --tagTitle-color: #f5f5f5;
+        --tagTitle-color: #002fa7;
         --border-color: #d0d7de;
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
-        --text-hover-color: #f5f5f5;
+        r: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
 
@@ -392,20 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .avatar:active {
-            transform: unset !important;
-            animation: elasticScale 0.3s ease !important;
-        }
-
-        @keyframes elasticScale {
-            0% {
-                transform: scale(0.9);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
+            transform: scale(0.8) !important;
         }
 
         #header h1 a {
@@ -796,6 +783,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     color: var(--icon-hover-color);
                 }
             }
+            .subnav-search button:hover {
+                background-color: var(--btn-hover-bgColor);
+                color: var(--text-hover-color);
+                transition: 0.1s ease;
+            }
         }
 
         @media (any-hover: none) {
@@ -815,6 +807,13 @@ document.addEventListener('DOMContentLoaded', function() {
             #themeSwitch {
                 color: var(--icon-hover-color);
             }
+        }
+
+        .subnav-search button:active {
+            background-color: var(--btn-hover-bgColor);
+            color: var(--text-hover-color);
+            transform: scale(0.9);
+            transition: 0.1s ease;
         }
 
         /* 按钮图标色 */
