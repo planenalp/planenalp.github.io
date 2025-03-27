@@ -204,43 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     // ==================== 随机背景图 END ====================
 
-    // ==================== RSS摘要注入 START ====================
-// 获取并解析RSS
-fetch('https://planenalp.github.io/rss.xml')
-    .then(response => response.text())
-    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-    .then(data => {
-        const items = data.querySelectorAll("item");
-        const posts = Array.from(items).map(item => ({
-            link: item.querySelector("link").textContent,
-            description: item.querySelector("description").textContent
-        }));
-
-        // 遍历文章列表项
-        document.querySelectorAll('.SideNav-item').forEach(item => {
-            const postLink = item.querySelector('a').href;
-            const matchedPost = posts.find(p => p.link === postLink);
-            
-            if (matchedPost) {
-                // 创建摘要容器
-                const preview = document.createElement('div');
-                preview.className = 'post-preview';
-                preview.textContent = matchedPost.description
-                    .replace(/<[^>]+>/g, '') // 移除HTML标签
-                    .substring(0, 100)       // 截取前100字符
-                    + '...';                 // 添加省略号
-
-                // 插入到标签和时间之后
-                const labelsContainer = item.querySelector('.listLabels');
-                if (labelsContainer) {
-                    labelsContainer.insertAdjacentElement('afterend', preview);
-                }
-            }
-        });
-    })
-    .catch(error => console.error('RSS加载失败:', error));
-// ==================== RSS摘要注入 END ====================
-
     // ==================== 全局CSS变量定义 START ====================
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
@@ -339,28 +302,6 @@ fetch('https://planenalp.github.io/rss.xml')
     .btn, .d-flex {
         outline: none !important;
     }
-
-    /* 文章预览样式 */
-.post-preview {
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--text-hover-color);
-    opacity: 0.8;
-    margin-top: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-[data-color-mode=light] .post-preview {
-    color: #666;
-}
-
-[data-color-mode=dark] .post-preview {
-    color: #8b949e;
-}
     
     `;
     document.head.appendChild(globalStyle);
