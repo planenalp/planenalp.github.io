@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
-        --text-hover-color: #f5f5f5;
+        r: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
 
@@ -625,10 +625,9 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: unset; /* header 居中 */
         }
 
-        /* 按钮右间隔去除+底部间隔 */
+        /* 按钮右间隔去除 */
         .title-right .circle {
             margin-right: unset; /* header 居中 */
-            margin-bottom: 2px !important; /* header 居中 */
         }
         
         /* 按钮悬停色 */
@@ -728,14 +727,12 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: unset;
         }
         
-        /* 顶部搜索标签 */
         .tagTitle {
             color: var(--tagTitle-color); /* 顶栏字体颜色 */
             white-space: normal; /* 默认值，允许自动换行 */
             overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
             word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
-            margin-top: 5px;
-            margin-bottom: 15px;
+            padding-bottom: 10px; /* 和搜索栏间隔5px */
         }
 
         /* 搜索+按钮区域 */
@@ -744,12 +741,6 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* header 居中 */
             flex-wrap: wrap; /* header 居中 */
             justify-content: center; /* header 居中 */
-        }
-
-        /* 按钮底部间隔 */
-        .title-right .circle {
-            margin-top: 2px !important; /* header 居中 */
-            margin-bottom: 2px !important; /* header 居中 */
         }
         
         /* 搜索布局 */
