@@ -218,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #002fa7;
         --postTitle-color: #002fa7;
         --tagTitle-color: #002fa7;
-        --border-color: #d0d7de;
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #f6f8facc;
@@ -240,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #f5f5f5;
         --postTitle-color: #f5f5f5;
         --tagTitle-color: #f5f5f5;
-        --border-color: #30363d;
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
@@ -470,6 +468,13 @@ document.addEventListener('DOMContentLoaded', function() {
             min-width: unset;
         }
 
+        /* 文章列表单项整栏 */
+        .SideNav-item {
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
+        }
+
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
@@ -502,13 +507,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        /* 文章列表单项整栏 */
-        .SideNav-item {
-            display: flex; /* 文章列表靠左双行 */
-            flex-direction: column; /* 文章列表靠左双行 */
-            padding: 10px 10px !important; /* 减少多余间隔 */
-        }
-
         /* 文章列表首行 .SideNav-icon + .listTitle */
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
@@ -840,6 +838,13 @@ document.addEventListener('DOMContentLoaded', function() {
             min-width: unset;
         }
 
+        /* 文章列表单项整栏 */
+        .SideNav-item {
+            display: flex; /* 文章列表靠左双行 */
+            flex-direction: column; /* 文章列表靠左双行 */
+            padding: 10px 10px !important; /* 减少多余间隔 */
+        }
+
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
@@ -870,13 +875,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
-        }
-
-        /* 文章列表单项整栏 */
-        .SideNav-item {
-            display: flex; /* 文章列表靠左双行 */
-            flex-direction: column; /* 文章列表靠左双行 */
-            padding: 10px 10px !important; /* 减少多余间隔 */
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
