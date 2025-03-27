@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
     if (document.querySelector(".markdown-body")) {
         const post_body = document.querySelector(".markdown-body").innerHTML;
-    
+
         if (post_body.includes('<code class="notranslate">Image')) {
             document.querySelector(".markdown-body").innerHTML = post_body.replace(
-                /<p>\s*<code class="notranslate">Image=(([^"]+))<\/code>\s*<\/p>/g,
+                /<p>\s*<code class="notranslate">Image=\(([^)]+)\)<\/code>\s*<\/p>/g,
                 '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
             );
         }
