@@ -463,14 +463,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表主体 */
-        .border {
-            border: unset; /* 移除边框 */
-        }
-
-        /* 文章列表主体 */
         .SideNav {
-            bbackground: transparent; /* 背景透明 */
+            background: transparent; /* 背景透明 */
             min-width: unset;
+            border: unset !important; /* 移除边框 */
         }
 
         /* 文章列表单项整栏 */
@@ -856,14 +852,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表主体 */
-        .border {
-            border: unset; /* 移除边框 */
-        }
-
-        /* 文章列表主体 */
         .SideNav {
             background: transparent; /* 背景透明 */
             min-width: unset;
+            border: unset !important; /* 移除边框 */
         }
 
         /* 文章列表单项整栏 */
