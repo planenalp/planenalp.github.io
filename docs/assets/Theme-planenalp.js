@@ -218,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #002fa7;
         --postTitle-color: #002fa7;
         --tagTitle-color: #002fa7;
-        --SideNav-border-color: hsla(210, 18%, 87%, 1);
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #f6f8facc;
@@ -240,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
         --subTitle-color: #f5f5f5;
         --postTitle-color: #f5f5f5;
         --tagTitle-color: #f5f5f5;
-        --SideNav-border-color: #21262d;
         --btn-hover-bgColor: #002fa7;
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
@@ -468,8 +466,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
-            border: unset !important; /* 移除外边框 */
-            box-shadow: var(--box-shadow); /* 增加阴影 */
         }
 
         /* 文章列表单项整栏 */
@@ -477,9 +473,8 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
         }
-        
+
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
@@ -512,16 +507,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        /* 移除顶部线 */
-        .SideNav-item:first-child {
-            border-top: unset !important;
-        }
-        
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
-        }
-
         /* 文章列表首行 .SideNav-icon + .listTitle */
         .d-flex {
             display: flex !important; /* 文章列表靠左双行 */
@@ -626,7 +611,6 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             padding-bottom: unset;
-            border-bottom: unset; /* 去除分割线 */
         }
 
         /* 顶栏字体颜色 */
@@ -681,11 +665,6 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮图标色 */
         #themeSwitch {
             color: var(--themeSwitch-color);
-        }
-
-        /* 文章主体 */
-        #postBody {
-            border-bottom: unset; /* 去除分割线 */
         }
         
          /* 评论按钮悬停 */
@@ -745,7 +724,6 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
-            border-bottom: unset; /* 去除分割线 */
         }
         
         /* 顶部搜索标签 */
@@ -858,13 +836,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
-            border: unset !important; /* 移除外边框 */
-            box-shadow: var(--box-shadow); /* 增加阴影 */
-        }
-
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
         }
 
         /* 文章列表单项整栏 */
@@ -872,7 +843,6 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: 1px solid var(--SideNav-border-color) !important; /* 补充和首页一样的边框 */
         }
 
         /* 文章列表悬停高亮 */
@@ -905,16 +875,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
-        }
-
-        /* 移除顶部线 */
-        .SideNav-item:first-child {
-            border-top: unset !important;
-        }
-        
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
