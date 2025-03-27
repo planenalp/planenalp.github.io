@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
-        r: #f5f5f5;
+        --text-hover-color: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
 
