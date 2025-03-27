@@ -5,11 +5,13 @@ document.addEventListener('touchend', function() {}, { passive: true });
 
 // 执行指定的回调函数
 document.addEventListener('DOMContentLoaded', function() {    
+    let currentUrl = window.location.pathname;
+    //let currentHost = window.location.hostname;
     
     // ==================== 手动插入外链图片 START ====================
     // 通过代码 `Image="URL"` 代替默认格式 ![Image](URL) 来被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
     // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
-    (document.querySelector(".markdown-body")) {
+    if (document.querySelector(".markdown-body")) {
         const post_body = document.querySelector(".markdown-body").innerHTML;
     
         if (post_body.includes('<code class="notranslate">Image')) {
@@ -20,9 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // ==================== 手动插入外链图片 END ====================
-
-    let currentUrl = window.location.pathname;
-    //let currentHost = window.location.hostname;
     
     // ==================== 禁用自动主题功能 START ====================
     window.themeSettings = {
