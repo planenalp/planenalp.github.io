@@ -33,8 +33,8 @@
 `Image="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"`
 
 
-# Gmeek 自带格式（不推荐使用）
-优点：？
+# Gmeek 自带格式（没必要使用）
+优点：增长知识
 缺点：不支持 Issues 预览，不支持 Fancybox，格式不好记
 ```
 `Gmeek-html<img src="URL">`
