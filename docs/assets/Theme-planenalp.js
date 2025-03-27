@@ -468,6 +468,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
+            border: unset !important; /* 移除外边框 */
+            box-shadow: var(--box-shadow); /* 增加阴影 */
+        }
+
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
 
         /* 文章列表悬停高亮 */
@@ -613,6 +620,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             padding-bottom: unset;
+            border-bottom: unset; /* 去除分割线 */
         }
 
         /* 顶栏字体颜色 */
@@ -667,6 +675,11 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 按钮图标色 */
         #themeSwitch {
             color: var(--themeSwitch-color);
+        }
+
+        /* 文章主体 */
+        #postBody {
+            border-bottom: unset; /* 去除分割线 */
         }
         
          /* 评论按钮悬停 */
@@ -726,6 +739,7 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
+            border-bottom: unset; /* 去除分割线 */
         }
         
         /* 顶部搜索标签 */
@@ -838,6 +852,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .SideNav {
             background: var(--SideNav-bgColor);
             min-width: unset;
+            border: unset !important; /* 移除外边框 */
+            box-shadow: var(--box-shadow); /* 增加阴影 */
+        }
+
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
 
         /* 文章列表悬停高亮 */
