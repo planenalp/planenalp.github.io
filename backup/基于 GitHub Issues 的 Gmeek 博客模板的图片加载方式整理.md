@@ -1,5 +1,6 @@
 # 省流
 用 GitHub Pages upload 模板的 MarkDown 的标准语法 `![Image](URL)`
+
 GitHub Issues 有最大字符限制，两种 base64 实现方式都没法使用 MarkDown 的引用语法，所以研究 base64 没意义
 下面仅作记录示例
 
@@ -22,7 +23,7 @@ GitHub Issues 有最大字符限制，两种 base64 实现方式都没法使用 
 `Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
 
 
-# GJken with base64（推荐 base64 时使用，但没意义）
+# GJken with base64（可在需要 base64 时使用，但没意义）
 优点：语法简单，兼容性好，支持含 base64 编码内的所有图片
 缺点：不支持 Issues 预览，要额外添加代码进主题插件，格式要额外记，没法使用常规 MarkDown 引用语法
 ```
