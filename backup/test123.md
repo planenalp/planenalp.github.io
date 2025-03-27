@@ -20,7 +20,7 @@
 链接 (**)
 `Image=(https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)`
 old
-`Image="[URL](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)"`
+`Image="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"`
 
 # Gmeek + Fancybox（推荐 base64 时使用）
 优点：不用改代码直接支持 base64 编码图片
