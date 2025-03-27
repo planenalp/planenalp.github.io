@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
     
-    /*
     // ==================== 手动插入外链图片 START ====================
     // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
     // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // ==================== 手动插入外链图片 END ====================
-    */
     
     // ==================== 禁用自动主题功能 START ====================
     window.themeSettings = {
@@ -253,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 主页主题 */
     .home-theme {
-        
+        /* backup */
     }
     [data-color-mode=dark].home-theme,
     [data-light-theme=dark].home-theme {
@@ -263,20 +261,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* 文章页主题 */
     .post-theme {
-        
+        /* backup */;
     }
     [data-color-mode=dark].post-theme,
     [data-light-theme=dark].post-theme {
-        
+        /* backup */
     }
     
     /* 搜索页主题 */
     .search-theme {
-        
+        /* backup */
     }
     [data-color-mode=dark].search-theme,
     [data-light-theme=dark].search-theme {
-        
+        /* backup */
     }
 
     /* 背景图 */
