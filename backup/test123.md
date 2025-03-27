@@ -4,7 +4,7 @@
 `Gmeek-html<img src="https://picsum.photos/200">`
 
 # GJken
-`Gmeek-imgbox="https://i0.img2ipfs.com/ipfs/QmNiH2pdrA9Hb61EXgYbKtEssBAGemEjTQRBZbgutUCNx2"`
+`Gmeek-imgbox="https://picsum.photos/200"`
 
 
 ///////////////
