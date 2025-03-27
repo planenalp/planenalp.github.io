@@ -728,6 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: unset;
         }
         
+        /* 顶部搜索标签 */
         .tagTitle {
             color: var(--tagTitle-color); /* 顶栏字体颜色 */
             white-space: normal; /* 默认值，允许自动换行 */
