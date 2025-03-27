@@ -23,11 +23,7 @@ function createTOC() {
     if (!markdownBody) return false; // 确保内容容器存在
     
     const headings = markdownBody.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    if (headings.length === 0) return false; // 没有标题时中止创建
-
-    const tocElement = document.createElement('div');
-    tocElement.className = 'toc';
-    document.body.appendChild(tocElement);
+    if (headings.length === 0) return false; // 返回无标题状态
     
     headings.forEach(heading => {
         if (!heading.id) {
@@ -57,8 +53,7 @@ function createTOC() {
         });
         tocElement.appendChild(link);
     });
-    
-    return true; // 返回创建成功状态
+    return true; // 返回有标题状态
 }
 ////////// 创建目录 end //////////
 
@@ -66,6 +61,14 @@ function createTOC() {
 function toggleTOC() {
     const tocElement = document.querySelector('.toc');
     const tocIcon = document.querySelector('.toc-icon');
+
+    // 当目录为空时阻止显示
+    if (!tocElement || tocElement.children.length === 0) {
+        tocElement?.classList.remove('show'); // 强制隐藏
+        tocIcon?.classList.remove('active');  // 保持图标非激活状态
+        return;
+    }
+    
     if (tocElement) {
         tocElement.classList.toggle('show');
         tocIcon.classList.toggle('active');
@@ -77,7 +80,7 @@ function toggleTOC() {
 ////////// 目录按钮切换功能 end //////////
 
 document.addEventListener("DOMContentLoaded", function() {
-    const hasTOC = createTOC(); // 获取目录创建状态
+    const hasContent = createTOC(); // 获取内容存在状态
     
     const combinedCss = `
         /* light 主题颜色 */
@@ -342,16 +345,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
     loadResource('style', { css: combinedCss });
-    
+
     //////// 创建目录按钮 TOC 切换图标 start //////////
-    if (hasTOC) {
-        const tocIcon = document.createElement('div');
-        tocIcon.className = 'toc-icon';
-        tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-        tocIcon.onclick = (e) => {
-            e.stopPropagation();
-            toggleTOC();
-        };
+    const tocIcon = document.createElement('div');
+    tocIcon.className = 'toc-icon';
+    tocIcon.innerHTML = hasContent ? 
+        '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>' : 
+        '<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>'; // 无内容时显示禁用图标
+    tocIcon.onclick = (e) => {
+        e.stopPropagation();
+        toggleTOC();
+    };
     document.body.appendChild(tocIcon);
     //////// 创建目录按钮 TOC 切换图标 end //////////
 
