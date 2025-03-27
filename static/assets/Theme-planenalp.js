@@ -898,6 +898,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
+            border-top: 1px solid var(--color-border-muted); /* 补充和首页一样的浅色 hsla(210, 18%, 87%, 1) 深色 #21262d 边框*/
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
