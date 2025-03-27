@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         #header {
             height: 175px;
             position: relative; /* 父元素 #header 设置定位 */
-            border-bottom: unset;
+            border-bottom: unset; /* 去除分割线 */
             margin-bottom: unset;
         }
 
@@ -463,8 +463,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表主体 */
+        .border {
+            border: unset; /* 移除边框 */
+        }
+
+        /* 文章列表主体 */
         .SideNav {
-            background: var(--SideNav-bgColor);
+            bbackground: transparent; /* 背景透明 */
             min-width: unset;
         }
 
@@ -473,6 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
+            border-top: unset; /* 移除边框 */
         }
 
         /* 文章列表悬停高亮 */
@@ -505,6 +511,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
+        }
+
+        /* 移除顶部线 */
+        .SideNav-item:first-child {
+            border-top: unset;
+        }
+        
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
         
         /* 文章列表首行 .SideNav-icon + .listTitle */
@@ -611,6 +627,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             padding-bottom: unset;
+            border-bottom: unset; /* 去除分割线 */
         }
 
         /* 顶栏字体颜色 */
@@ -682,6 +699,11 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(0.98);
             transition: 0.1s ease;
         }
+
+        /* 文章主体 */
+        #postBody {
+            border-bottom: unset; /* 去除分割线 */
+        }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
@@ -724,6 +746,7 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
+            border-bottom: unset; /* 去除分割线 */
         }
         
         /* 顶部搜索标签 */
@@ -833,8 +856,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 文章列表主体 */
+        .border {
+            border: unset; /* 移除边框 */
+        }
+
+        /* 文章列表主体 */
         .SideNav {
-            background: var(--SideNav-bgColor);
+            background: transparent; /* 背景透明 */
             min-width: unset;
         }
 
@@ -843,6 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
+            border-top: unset; /* 移除边框 */
         }
 
         /* 文章列表悬停高亮 */
@@ -875,6 +904,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
+        }
+
+        /* 移除顶部线 */
+        .SideNav-item:first-child {
+            border-top: unset;
+        }
+        
+        /* 移除底部线 */
+        .SideNav-item:last-child {
+            box-shadow: unset;
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
