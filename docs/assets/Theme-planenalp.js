@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
         style.innerHTML = `
 
         .LabelName {
-            color: #002fa7;
+            color: #002fa7 !important;
         }
         
         /* 主体布局 */
