@@ -1,22 +1,7 @@
 //不同博客记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
 
 document.addEventListener("DOMContentLoaded", function() {
-    // ==================== 手动插入外链图片 START ====================
-    // 通过代码 `fancybox="URL"` 代替默认格式 ![Image](URL) 来用 Fancybox 加载被 GitHub Issues 禁用的 base64 格式图片
-    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样支持 Fancybox
-    (document.querySelector(".markdown-body")) {
-        const post_body = document.querySelector(".markdown-body").innerHTML;
-    
-        if (post_body.includes('<code class="notranslate">fancybox')) {
-            document.querySelector(".markdown-body").innerHTML = post_body.replace(
-                /<p>\s*<code class="notranslate">fancybox="([^"]+)"<\/code>\s*<\/p>/g,
-                '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
-            );
-        }
-    }
-    // ==================== 手动插入外链图片 END ====================
-    
-    // ==================== 增加图片转换, 并适配图片懒加载 START ====================
+    ////////////////// 增加图片转换, 并适配图片懒加载 start ////////////////
     /**
      * 将原来的正则替换逻辑转为 DOM 操作：
      * 1. 查找 <p><a target="_blank" rel=...><img src="URL" ...></a></p>，
@@ -51,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     replaceImageLinks();
-    // ==================== 增加图片转换, 并适配图片懒加载 END ====================
+    ////////////////// 增加图片转换, 并适配图片懒加载 end ////////////////
 
-    // ==================== 懒加载图片 START ====================
+    ////////////////// 懒加载图片 start ////////////////
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -97,9 +82,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 观察所有带有 data-src 属性的图片
     document.querySelectorAll('[data-src]').forEach(img => observer.observe(img));
-    // ==================== 懒加载图片 END ====================
+    ////////////////// 懒加载图片 end ////////////////
 
-    // ==================== Fancybox 绑定及配置 START ====================
+    ////////////////// Fancybox 绑定及配置 start ////////////////
     // 添加 Fancybox CSS
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
@@ -112,6 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
     Fancybox.bind('[data-fancybox="gallery"]', {
         srcAttr: 'data-src'
     });
-    // ==================== Fancybox 绑定及配置 END ====================
+    ////////////////// Fancybox 绑定及配置 end ////////////////
 
 });
