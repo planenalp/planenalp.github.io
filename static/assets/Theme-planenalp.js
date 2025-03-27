@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .avatar:active {
-            transform: scale(0.8) !important;
+            transform: scale(0.9) !important;
         }
 
         #header h1 a {
