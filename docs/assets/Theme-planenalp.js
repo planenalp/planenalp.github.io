@@ -5,62 +5,6 @@ document.addEventListener('touchend', function() {}, { passive: true });
 
 // 执行指定的回调函数
 document.addEventListener('DOMContentLoaded', function() {    
-    
-    
-/*
-// ==================== 手动插入外链图片 START ====================
-if (document.querySelector(".markdown-body")) {
-    const post_body = document.querySelector(".markdown-body").innerHTML;
-    
-    if (post_body.includes('<code class="notranslate">fancybox')) {
-        document.querySelector(".markdown-body").innerHTML = post_body.replace(
-            /<p>\s*<code class="notranslate">fancybox="([^"]+)"<\/code>\s*<\/p>/g,
-            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
-        );
-    }
-}
-// ==================== 手动插入外链图片 END ====================
-*/
-
-
-
-
-/*
-// ==================== 手动插入外链图片 START ====================
-if (document.querySelector(".markdown-body")) {
-    const post_body = document.querySelector(".markdown-body").innerHTML;
-    
-    if (post_body.includes('Gmeek-imgbox')) {
-        // (1) 修正属性名为 data-src
-        document.querySelector(".markdown-body").innerHTML = post_body.replace(
-            /<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"<\/code>\s*<\/p>/g,
-            '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
-        );
-
-        // (2) 初始化懒加载
-        const observer = lozad('.ImgLazyLoad-circle', {
-            loaded: function(el) {
-                el.classList.add('loaded');
-            }
-        });
-        observer.observe();
-
-        // (3) 初始化 fancybox
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            Image: {
-                zoom: true,
-                click: true,
-                wheel: false
-            }
-        });
-    }
-}
-// ==================== 手动插入外链图片 END ====================
-*/
-
-
-    
-    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
     
@@ -635,11 +579,6 @@ if (document.querySelector(".markdown-body")) {
     //文章页主题------------------------------------------------------------------------------
     else if (currentUrl.includes('/post/') || currentUrl.includes('/link.html') || currentUrl.includes('/about.html')) {
         console.log('文章页主题');
-        
-
-
-
-        
         document.documentElement.classList.add('post-theme');
         const style = document.createElement("style");
         style.innerHTML = `
