@@ -965,7 +965,7 @@ document.addEventListener('DOMContentLoaded', function() {
             #taglabel .Label:hover {
                 background-color: var(--SideNav-hover-bgColor) !important;
                 color: var(--text-hover-color) !important;
-                transform: scale(0.98);
+                transition: 0.1s ease;
             }
         }
 
@@ -973,7 +973,8 @@ document.addEventListener('DOMContentLoaded', function() {
         #taglabel .Label:active {
             background-color: var(--SideNav-hover-bgColor) !important;
             color: var(--text-hover-color) !important;
-            transform: scale(0.98);
+            transform: scale(0.9);
+            transition: 0.1s ease;
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
