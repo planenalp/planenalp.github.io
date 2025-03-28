@@ -363,17 +363,12 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: transparent !important; /* 强制清除背景颜色 */
             border-radius: unset !important; /* 强制清除圆形框设置 */
             box-shadow: none !important; /* 强制清除边框 */
-            /* 禁用 iOS 长按弹出菜单 */
-            -webkit-touch-callout: none;
-            /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
-            -webkit-user-select: none;
-            /* 适用于 Firefox */
-            -moz-user-select: none;
-            /* 适用于 IE10+ 和 Edge */
-            -ms-user-select: none;
-            /* 标准语法 */
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
             outline: none;
         }
 
@@ -690,6 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .postTitle{
                 font-size: 24px !important; /* header 居中 */
+                margin-top: 10px; /* header 居中 */
             }
         }
 
@@ -732,8 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
             white-space: normal; /* 默认值，允许自动换行 */
             overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
             word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* header 居中 */
         }
 
         /* 搜索+按钮区域 */
@@ -923,6 +918,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .tagTitle {
                 display: unset !important;
                 font-size: 20px !important; /* header 居中 */
+                margin-top: 10px; /* header 居中 */
             }
             .LabelTime{
                 display: unset !important;
