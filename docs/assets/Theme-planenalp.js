@@ -324,10 +324,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const style = document.createElement("style");
         style.innerHTML = `
 
-        .LabelName {
-            color: #002fa7 !important;
-        }
-        
         /* 主体布局 */
         body {
             background: var(--body-bgColor);
