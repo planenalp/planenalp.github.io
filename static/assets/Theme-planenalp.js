@@ -885,6 +885,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition: 0.1s ease; /* 弹起动画时长 */
                 .SideNav-icon { color: var(--icon-hover-color); }
                 /* .Label { border: 1px solid var(--icon-hover-color); } */
+                /* 顶部 #taglabel */
+                #taglabel .Label {
+                    background-color: var(--SideNav-hover-bgColor);
+                    color: var(--text-hover-color);
+                    transform: scale(0.98);
+                }
             }
         }
         
@@ -903,6 +909,12 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s ease;
             .SideNav-icon { color: var(--icon-hover-color); }
             /* .Label { border: 1px solid var(--icon-hover-color); } */
+            /* 顶部 #taglabel */
+            #taglabel .Label {
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
+                transform: scale(0.98);
+            }
         }
 
         /* 移除顶部线 */
