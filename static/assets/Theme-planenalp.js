@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: var(--box-shadow);
             transform: scale(0.98);
             transition: 0.1s ease;
-            /* .SideNav-icon { color: var(--icon-hover-color); } */
+            .SideNav-icon { color: var(--icon-hover-color); }
             /* .Label { border: 1px solid var(--icon-hover-color); } */
         }
 
