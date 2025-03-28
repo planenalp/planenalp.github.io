@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
-            background-color: ##007fffcc !important;
+            background-color: #007fffcc !important;
         }
 
         /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
