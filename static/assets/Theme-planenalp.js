@@ -885,12 +885,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition: 0.1s ease; /* 弹起动画时长 */
                 .SideNav-icon { color: var(--icon-hover-color); }
                 /* .Label { border: 1px solid var(--icon-hover-color); } */
-                /* 顶部 #taglabel */
-                #taglabel .Label {
-                    background-color: var(--SideNav-hover-bgColor);
-                    color: var(--text-hover-color);
-                    transform: scale(0.98);
-                }
             }
         }
         
@@ -909,12 +903,6 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s ease;
             .SideNav-icon { color: var(--icon-hover-color); }
             /* .Label { border: 1px solid var(--icon-hover-color); } */
-            /* 顶部 #taglabel */
-            #taglabel .Label {
-                background-color: var(--SideNav-hover-bgColor);
-                color: var(--text-hover-color);
-                transform: scale(0.98);
-            }
         }
 
         /* 移除顶部线 */
@@ -970,6 +958,22 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset; /* 圆角关闭 */
             /* border: 1px solid transparent; 默认隐藏边框 */
             border: unset;
+        }
+
+        /* 顶部 #taglabel 悬停 */
+        @media (any-hover: hover) {
+            #taglabel .Label:hover {
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
+                transform: scale(0.98);
+            }
+        }
+
+        /* 顶部 #taglabel 按压 */
+        #taglabel .Label:active {
+            background-color: var(--SideNav-hover-bgColor);
+            color: var(--text-hover-color);
+            transform: scale(0.98);
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
