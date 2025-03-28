@@ -690,6 +690,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             .postTitle{
                 font-size: 24px !important; /* header 居中 */
+                margin-top: 10px; /* header 居中 */
             }
         }
 
@@ -732,8 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
             white-space: normal; /* 默认值，允许自动换行 */
             overflow-wrap: break-word; /* 允许长单词/URL在任意字符间断行 */
             word-break: break-word; /* 优先保持单词完整，空间不足时再断开 */
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* header 居中 */
         }
 
         /* 搜索+按钮区域 */
@@ -923,6 +923,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .tagTitle {
                 display: unset !important;
                 font-size: 20px !important; /* header 居中 */
+                margin-top: 10px; /* header 居中 */
             }
             .LabelTime{
                 display: unset !important;
