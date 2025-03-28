@@ -363,6 +363,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: transparent !important; /* 强制清除背景颜色 */
             border-radius: unset !important; /* 强制清除圆形框设置 */
             box-shadow: none !important; /* 强制清除边框 */
+            /* 修复某些安卓设备的点击外框 */
+            -webkit-tap-highlight-color: transparent;
             /* 禁用 iOS 长按弹出菜单 */
             -webkit-touch-callout: none;
             /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
@@ -373,7 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
             -ms-user-select: none;
             /* 标准语法 */
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
             outline: none;
         }
 
