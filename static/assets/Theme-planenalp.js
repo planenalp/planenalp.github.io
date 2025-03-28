@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .Label, .label {
             border-radius: unset; /* 圆角关闭 */
             border: 1px solid transparent; /* 默认隐藏边框 */
-            /* background-color: transparent !important; /* 关闭标签背景色 */ */
+            /* background-color: transparent !important; 关闭标签背景色 */
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
