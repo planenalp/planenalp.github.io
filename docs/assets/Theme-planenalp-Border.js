@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         #header {
             height: 175px;
             position: relative; /* 父元素 #header 设置定位 */
-            border-bottom: unset; /* 去除分割线 */
+            border-bottom: unset;
             margin-bottom: unset;
         }
 
@@ -464,9 +464,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 文章列表主体 */
         .SideNav {
-            background: transparent; /* 背景透明 */
+            background: var(--SideNav-bgColor);
             min-width: unset;
-            border: unset !important; /* 移除边框 */
         }
 
         /* 文章列表单项整栏 */
@@ -474,7 +473,6 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: unset; /* 移除边框 */
         }
 
         /* 文章列表悬停高亮 */
@@ -507,16 +505,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
-        }
-
-        /* 移除顶部线 */
-        .SideNav-item:first-child {
-            border-top: unset;
-        }
-        
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
         }
         
         /* 文章列表首行 .SideNav-icon + .listTitle */
@@ -552,13 +540,9 @@ document.addEventListener('DOMContentLoaded', function() {
             order: 2; /* 调整两种 Label 顺序 */
         }
 
-        /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
-        /* 方案1：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover 白色），搜索页按方案2 */
-        /* 方案2：首页+搜索页边框透明，hover 边框 #f5f5f5
-        .Label {
-            border-radius: unset; /* 圆角关闭 */
-            border: 1px solid transparent; /* 默认隐藏边框 */
-            /* background-color: transparent !important; /* 关闭标签背景色 */ */
+        /* 关闭标签和时间的圆角 */
+        .Label, .label {
+            border-radius: unset;
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -627,7 +611,6 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column; /* header 居中 */
             align-items: center; /* header 居中 */
             padding-bottom: unset;
-            border-bottom: unset; /* 去除分割线 */
         }
 
         /* 顶栏字体颜色 */
@@ -699,11 +682,6 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(0.98);
             transition: 0.1s ease;
         }
-
-        /* 文章主体 */
-        #postBody {
-            border-bottom: unset; /* 去除分割线 */
-        }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
         @media (max-width: 768px) {
@@ -746,7 +724,6 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center; /* header 居中 */
             padding: 5px;
             padding-bottom: unset;
-            border-bottom: unset; /* 去除分割线 */
         }
         
         /* 顶部搜索标签 */
@@ -857,9 +834,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 文章列表主体 */
         .SideNav {
-            background: transparent; /* 背景透明 */
+            background: var(--SideNav-bgColor);
             min-width: unset;
-            border: unset !important; /* 移除边框 */
         }
 
         /* 文章列表单项整栏 */
@@ -867,7 +843,6 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
-            border-top: unset; /* 移除边框 */
         }
 
         /* 文章列表悬停高亮 */
@@ -900,16 +875,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .SideNav-icon {
                 color: var(--icon-hover-color);
             }
-        }
-
-        /* 移除顶部线 */
-        .SideNav-item:first-child {
-            border-top: unset;
-        }
-        
-        /* 移除底部线 */
-        .SideNav-item:last-child {
-            box-shadow: unset;
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
