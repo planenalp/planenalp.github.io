@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 方案2：首页+搜索页边框透明，hover 边框 #f5f5f5
         .Label, .label {
             border-radius: unset; /* 圆角关闭 */
-            border: 1px solid transparent; /* 默认隐藏边框 */
+            /* border: 1px solid transparent; 默认隐藏边框 */
             /* background-color: transparent !important; 关闭标签背景色 */
         }
         
