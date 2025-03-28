@@ -963,16 +963,16 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 顶部 #taglabel 悬停 */
         @media (any-hover: hover) {
             #taglabel .Label:hover {
-                background-color: var(--SideNav-hover-bgColor);
-                color: var(--text-hover-color);
+                background-color: var(--SideNav-hover-bgColor) !important;
+                color: var(--text-hover-color) !important;
                 transform: scale(0.98);
             }
         }
 
         /* 顶部 #taglabel 按压 */
         #taglabel .Label:active {
-            background-color: var(--SideNav-hover-bgColor);
-            color: var(--text-hover-color);
+            background-color: var(--SideNav-hover-bgColor) !important;
+            color: var(--text-hover-color) !important;
             transform: scale(0.98);
         }
 
