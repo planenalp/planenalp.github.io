@@ -484,12 +484,12 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 文章列表悬停高亮 */
         @media (any-hover: hover) {
             .SideNav-item:hover {
-                /* background-color: var(--SideNav-hover-bgColor); */
-                /* color: var(--text-hover-color); */
+                background-color: var(--SideNav-hover-bgColor);
+                color: var(--text-hover-color);
                 box-shadow: var(--box-shadow);
-                transform: scale(1.02);
+                /* transform: scale(1.02); */
                 transition: 0.1s ease; /* 弹起动画时长 */
-                /* .SideNav-icon { color: var(--icon-hover-color); } */
+                .SideNav-icon { color: var(--icon-hover-color); }
                 /* .Label { border: 1px solid var(--icon-hover-color); } */
             }
         }
@@ -502,10 +502,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 文章列表按压 */
         .SideNav-item:active {
-            /* background-color: var(--SideNav-hover-bgColor); */
-            /* color: var(--text-hover-color); */
+            background-color: var(--SideNav-hover-bgColor);
+            color: var(--text-hover-color);
             box-shadow: var(--box-shadow);
-            transform: scale(1.0);
+            transform: scale(0.98);
             transition: 0.1s ease;
             /* .SideNav-icon { color: var(--icon-hover-color); } */
             /* .Label { border: 1px solid var(--icon-hover-color); } */
