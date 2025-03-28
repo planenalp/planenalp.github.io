@@ -557,8 +557,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
-        /* 方案1：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover + active 白色），搜索页按方案2 */
-        /* 方案2：首页+搜索页边框透明，hover + active 边框 #f5f5f5 （考虑全部颜色统一）*/
+        /* 方案1：首页 + 搜索页 Label 边框移除，分别指定 .LabelName 和 .LabelTime 背景色（用这个） */
+        /* 方案2：首页 + 搜索页 Label 边框透明，hover + active 边框 #f5f5f5，分别指定 .LabelName 和 .LabelTime 背景色*/
+        /* 方案3：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover + active 白色），搜索页按方案2 */
         .Label {
             border-radius: unset; /* 圆角关闭 */
             /* border: 1px solid transparent; 默认隐藏边框 */
@@ -880,11 +881,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--SideNav-hover-bgColor);
                 color: var(--text-hover-color);
                 box-shadow: var(--box-shadow);
-                transform: scale(1.02);
+                /* transform: scale(1.02); */
                 transition: 0.1s ease; /* 弹起动画时长 */
-                .SideNav-icon {
-                    color: var(--icon-hover-color);
-                }
+                .SideNav-icon { color: var(--icon-hover-color); }
+                /* .Label { border: 1px solid var(--icon-hover-color); } */
             }
         }
         
@@ -899,11 +899,10 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--SideNav-hover-bgColor);
             color: var(--text-hover-color);
             box-shadow: var(--box-shadow);
-            transform: scale(1.0);
+            transform: scale(0.98);
             transition: 0.1s ease;
-            .SideNav-icon {
-                color: var(--icon-hover-color);
-            }
+            .SideNav-icon { color: var(--icon-hover-color); }
+            /* .Label { border: 1px solid var(--icon-hover-color); } */
         }
 
         /* 移除顶部线 */
@@ -944,14 +943,21 @@ document.addEventListener('DOMContentLoaded', function() {
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
             margin-left: unset !important; /* 去除左侧间隔 */
+            background-color: var(--LabelTime-bgColor) !important;
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
+            background-color: var(--LabelName-bgColor) !important;
         }
 
-        /* 关闭标签和时间的圆角 */
-        .Label, .label {
-            border-radius: unset;
+        /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
+        /* 方案1：首页 + 搜索页 Label 边框移除，分别指定 .LabelName 和 .LabelTime 背景色（用这个） */
+        /* 方案2：首页 + 搜索页 Label 边框透明，hover + active 边框 #f5f5f5，分别指定 .LabelName 和 .LabelTime 背景色*/
+        /* 方案3：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover + active 白色），搜索页按方案2 */
+        .Label {
+            border-radius: unset; /* 圆角关闭 */
+            /* border: 1px solid transparent; 默认隐藏边框 */
+            border: unset;
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
