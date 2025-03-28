@@ -222,6 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #f6f8facc;
         --SideNav-hover-bgColor: #002fa7;
+        --LabelTime-bgColor: #002fa7;
+        --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #656d76;
     }
@@ -243,6 +245,8 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
+        --LabelTime-bgColor: #002fa7;
+        --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
@@ -553,11 +557,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
             margin-left: unset !important; /* 去除左侧间隔 */
-            background-color: #002fa7cc !important;
+            background-color: var(--LabelTime-bgColor) !important;
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
-            background-color: #007fffcc !important;
+            background-color: var(--LabelName-bgColor) !important;
         }
 
         /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
