@@ -493,7 +493,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     color: var(--icon-hover-color);
                 }
                 .Label {
-                    border: 1px solid var(--icon-hover-color);
+                    /* border: 1px solid var(--icon-hover-color); */
+                }
+                .LabelTime {
+                    background-color: #002fa780 !important;
+                }
+                .LabelName {
+                    background-color: #007fff80 !important;
                 }
             }
         }
@@ -515,7 +521,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: var(--icon-hover-color);
             }
             .Label {
-                border: 1px solid var(--icon-hover-color);
+                /* border: 1px solid var(--icon-hover-color); */
+            }
+            .LabelTime {
+                background-color: #002fa780 !important;
+            }
+            .LabelName {
+                background-color: #007fff80 !important;
             }
         }
 
@@ -569,7 +581,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 方案2：首页+搜索页边框透明，hover + active 边框 #f5f5f5 （考虑全部颜色统一）*/
         .Label {
             border-radius: unset; /* 圆角关闭 */
-            border: 1px solid transparent; /* 默认隐藏边框 */
+            /* border: 1px solid transparent; 默认隐藏边框 */
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
