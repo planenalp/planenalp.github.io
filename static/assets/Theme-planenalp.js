@@ -552,9 +552,13 @@ document.addEventListener('DOMContentLoaded', function() {
             order: 2; /* 调整两种 Label 顺序 */
         }
 
-        /* 关闭标签和时间的圆角 */
-        .Label, .label {
-            border-radius: unset;
+        /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
+        /* 方案1：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover 白色），搜索页按方案2 */
+        /* 方案2：首页+搜索页边框透明，hover 边框 #f5f5f5
+        .Label {
+            border-radius: unset; /* 圆角关闭 */
+            border: 1px solid transparent; /* 默认隐藏边框 */
+            /* background-color: transparent !important; /* 关闭标签背景色 */ */
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
