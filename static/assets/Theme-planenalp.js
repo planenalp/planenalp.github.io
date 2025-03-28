@@ -488,6 +488,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .SideNav-icon {
                     color: var(--icon-hover-color);
                 }
+                .Label {
+                    border: 1px solid var(--icon-hover-color);
+                }
             }
         }
         
@@ -506,6 +509,9 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: 0.1s ease;
             .SideNav-icon {
                 color: var(--icon-hover-color);
+            }
+            .Label {
+                border: 1px solid var(--icon-hover-color);
             }
         }
 
@@ -553,9 +559,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
-        /* 方案1：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover 白色），搜索页按方案2 */
-        /* 方案2：首页+搜索页边框透明，hover 边框 #f5f5f5 */
-        .Label, .label {
+        /* 方案1：首页隐藏 .LabelName + 仅保留 .LabelTime（去掉背景色，字色改黑色/灰色+ hover + active 白色），搜索页按方案2 */
+        /* 方案2：首页+搜索页边框透明，hover + active 边框 #f5f5f5 */
+        .Label {
             border-radius: unset; /* 圆角关闭 */
             border: 1px solid transparent; /* 默认隐藏边框 */
             /* background-color: transparent !important; 关闭标签背景色 */
