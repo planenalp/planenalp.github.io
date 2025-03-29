@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
             max-height: 70vh;
             padding: 10px;
             overflow-y: auto;
-            border-radius: 6px;
+            /* border-radius: 6px; */
             background-color: var(--color-toc-bg);
             box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a {
             display: block;
             padding: 5px;
-            border-radius: 6px;
+            /* border-radius: 6px; */
             color: var(--color-toc-a-text);
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* 适当延长过渡动画缓冲滚动动效 */
             font-size: 14px;
@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .toc a:hover {
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-highlightText);
+                /* transform: scale(1.02); */
                 transition: 0.1s ease;
             }
         }
@@ -166,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a:active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
+            /* transform: scale(1.0); */
             transform: scale(0.98);
             transition: 0.1s ease;
         }
