@@ -257,8 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     [data-color-mode=dark].home-theme,
     [data-light-theme=dark].home-theme {
-        --btn-hover-bgColor: #002fa7;
-        --icon-hover-color: #f5f5f5;
+        /* backup */
     }
 
     /* 文章页主题 */
@@ -434,12 +433,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
+                .octicon { color: var(--icon-hover-color); }
+                #themeSwitch { color: var(--icon-hover-color); }
             }
         }
 
@@ -454,12 +449,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 按钮图标色 */
@@ -658,26 +649,6 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-right: unset; /* header 居中 */
             margin-bottom: 2px !important; /* header 居中 */
         }
-        
-        /* 按钮悬停色 */
-        @media (any-hover: hover) {
-            .btn:hover {
-                background-color: var(--btn-hover-bgColor);
-                transition: 0.1s ease;
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
-            }
-        }
-
-        @media (any-hover: none) {
-            .btn:hover {
-                background-color: unset;
-            }
-        }
 
         /* 按钮 */
         .btn {
@@ -689,18 +660,30 @@ document.addEventListener('DOMContentLoaded', function() {
             user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
         }
+        
+        /* 按钮悬停色 */
+        @media (any-hover: hover) {
+            .btn:hover {
+                background-color: var(--btn-hover-bgColor);
+                transition: 0.1s ease;
+                .octicon { color: var(--icon-hover-color); }
+                #themeSwitch { color: var(--icon-hover-color); }
+            }
+        }
+
+        @media (any-hover: none) {
+            .btn:hover {
+                background-color: unset;
+            }
+        }
 
         /* 按钮按压 */
         .btn:active {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 按钮图标色 */

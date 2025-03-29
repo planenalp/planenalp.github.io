@@ -257,8 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     [data-color-mode=dark].home-theme,
     [data-light-theme=dark].home-theme {
-        --btn-hover-bgColor: #002fa7;
-        --icon-hover-color: #f5f5f5;
+        /* backup */
     }
 
     /* 文章页主题 */
@@ -368,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function() {
             -moz-user-select: none; /* 适用于 Firefox */
             -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
             user-select: none; /* 标准语法 */
-            outline: none;
+            outline: none !important; /* 解决按压边框闪烁 */
         }
 
         @media (any-hover: hover) {
@@ -434,12 +433,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
+                .octicon { color: var(--icon-hover-color); }
+                #themeSwitch { color: var(--icon-hover-color); }
             }
         }
 
@@ -454,12 +449,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 按钮图标色 */
@@ -495,9 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 box-shadow: var(--box-shadow);
                 transform: scale(1.02);
                 transition: 0.1s ease; /* 弹起动画时长 */
-                .SideNav-icon {
-                    color: var(--icon-hover-color);
-                }
+                .SideNav-icon { color: var(--icon-hover-color); }
             }
         }
         
@@ -514,9 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: var(--box-shadow);
             transform: scale(1.0);
             transition: 0.1s ease;
-            .SideNav-icon {
-                color: var(--icon-hover-color);
-            }
+            .SideNav-icon { color: var(--icon-hover-color); }
         }
         
         /* 文章列表首行 .SideNav-icon + .listTitle */
@@ -547,13 +534,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
             margin-left: unset !important; /* 去除左侧间隔 */
+            background-color: var(--LabelTime-bgColor) !important;
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
+            background-color: var(--LabelName-bgColor) !important;
         }
 
         /* 关闭标签和时间的圆角 */
-        .Label, .label {
+        .Label {
             border-radius: unset;
         }
         
@@ -657,12 +646,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .btn:hover {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
+                .octicon { color: var(--icon-hover-color); }
+                #themeSwitch { color: var(--icon-hover-color); }
             }
         }
 
@@ -677,12 +662,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 按钮图标色 */
