@@ -694,6 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 评论按钮 */
         #cmButton {
             border-radius: unset; /* 去除圆角 */
+            border: unset; /* 去除边框 */
         }
         
          /* 评论按钮悬停 */
@@ -804,8 +805,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 搜索按钮 */
         .subnav-search button {
-            border: unset; /* 去除边框 */
             border-radius: unset; /* 去除圆角 */
+            border: unset; /* 去除边框 */
         }
 
         /* 搜索失败字符 */
