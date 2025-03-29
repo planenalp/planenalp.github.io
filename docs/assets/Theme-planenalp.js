@@ -793,12 +793,14 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 搜索输入框布局 */
         .subnav-search-input {
             width: 100%; /* header 居中 */
+            border-radius: unset; /* 去除圆角 */
             border: unset; /* 去除边框 */
         }
 
         /* 搜索按钮 */
         .subnav-search button {
             border: unset; /* 去除边框 */
+            border-radius: unset; /* 去除圆角 */
         }
 
         /* 搜索失败字符 */
