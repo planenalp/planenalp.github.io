@@ -222,6 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #f6f8facc;
         --SideNav-hover-bgColor: #002fa7;
+        --LabelTime-bgColor: #002fa7;
+        --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #656d76;
     }
@@ -243,6 +245,8 @@ document.addEventListener('DOMContentLoaded', function() {
         --icon-hover-color: #f5f5f5;
         --SideNav-bgColor: #161b22cc;
         --SideNav-hover-bgColor: #002fa7;
+        --LabelTime-bgColor: #002fa7;
+        --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #7d8590;
     }
@@ -755,7 +759,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 15px; /* header 居中 */
         }
 
-        /* 搜索+按钮区域 */
+        /* 搜索 + 按钮区域 */
         .title-right {
             margin: unset; /* header 居中 */
             display: flex; /* header 居中 */
@@ -814,13 +818,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 /* 所有按钮 SVG 图标 */
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
+                .octicon { color: var(--icon-hover-color); }
                 /* 主题切换 SVG 图标 */
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
+                #themeSwitch { color: var(--icon-hover-color); }
             }
             /* 搜索按钮 */
             .subnav-search button:hover {
@@ -841,12 +841,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 搜索按钮按压 */
@@ -890,9 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 box-shadow: var(--box-shadow);
                 transform: scale(1.02);
                 transition: 0.1s ease; /* 弹起动画时长 */
-                .SideNav-icon {
-                    color: var(--icon-hover-color);
-                }
+                .SideNav-icon { color: var(--icon-hover-color); }
             }
         }
         
@@ -909,9 +903,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: var(--box-shadow);
             transform: scale(1.0);
             transition: 0.1s ease;
-            .SideNav-icon {
-                color: var(--icon-hover-color);
-            }
+            .SideNav-icon { color: var(--icon-hover-color); }
         }
 
         /* 文章列表首行 .SideNav-icon + .listTitle */
@@ -942,14 +934,40 @@ document.addEventListener('DOMContentLoaded', function() {
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
             margin-left: unset !important; /* 去除左侧间隔 */
+            background-color: var(--LabelTime-bgColor) !important;
         }
         .LabelName {
             order: 2; /* 调整两种 Label 顺序 */
+            background-color: var(--LabelName-bgColor) !important;
         }
 
-        /* 关闭标签和时间的圆角 */
-        .Label, .label {
-            border-radius: unset;
+        /* 标签 */
+        .Label {
+            border-radius: unset; /* 圆角关闭 */
+            webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
+        }
+
+        /* 顶部 #taglabel 悬停 */
+        @media (any-hover: hover) {
+            #taglabel .Label:hover {
+                background-color: var(--SideNav-hover-bgColor) !important;
+                color: var(--text-hover-color) !important;
+                transition: 0.1s ease;
+            }
+        }
+
+        /* 顶部 #taglabel 按压 */
+        #taglabel .Label:active {
+            background-color: var(--SideNav-hover-bgColor) !important;
+            color: var(--text-hover-color) !important;
+            transform: scale(0.9);
+            transition: 0.1s ease;
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
