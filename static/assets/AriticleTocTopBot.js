@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a:active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
-            transform: scale(0.9);
+            transform: scale(0.98);
             transition: 0.1s ease;
         }
 
