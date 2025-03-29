@@ -296,17 +296,6 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: background-image 0.15s linear;
     }
 
-    /* 解决按压边框闪烁 */
-    .btn, .d-flex {
-        -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
-        -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
-        -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
-        -moz-user-select: none; /* 适用于 Firefox */
-        -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
-        user-select: none; /* 标准语法 */
-        outline: none !important; /* 解决按压边框闪烁 */
-    }
-    
     `;
     document.head.appendChild(globalStyle);
     // ==================== 全局CSS变量定义 END ====================
@@ -425,6 +414,17 @@ document.addEventListener('DOMContentLoaded', function() {
             position: absolute;
         }
 
+        /* 按钮 */
+        .btn {
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
+        }
+
         /* 按钮悬停色 */
         @media (any-hover: hover) {
             .btn:hover {
@@ -474,6 +474,13 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
 
         /* 文章列表悬停高亮 */
@@ -629,6 +636,17 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-right: unset; /* header 居中 */
             margin-bottom: 2px !important; /* header 居中 */
         }
+
+        /* 按钮 */
+        .btn {
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
+        }
         
         /* 按钮悬停色 */
         @media (any-hover: hover) {
@@ -777,6 +795,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .title-right .circle {
             margin-right: unset; /* header 居中 */
         }
+
+        /* 按钮 */
+        .btn {
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
+        }
         
         /* 按钮悬停色 */
         @media (any-hover: hover) {
@@ -844,6 +873,13 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex; /* 文章列表靠左双行 */
             flex-direction: column; /* 文章列表靠左双行 */
             padding: 10px 10px !important; /* 减少多余间隔 */
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
 
         /* 文章列表悬停高亮 */
