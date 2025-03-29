@@ -151,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .toc a:hover {
                 background-color: var(--color-toc-hover-bg);
                 color: var(--color-toc-highlightText);
-                transform: scale(1.02);
                 transition: 0.1s ease;
             }
         }
@@ -160,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .toc a:active {
             background-color: var(--color-toc-hover-bg);
             color: var(--color-toc-highlightText);
-            transform: scale(1.0);
+            transform: scale(0.9);
             transition: 0.1s ease;
         }
 
@@ -188,17 +187,12 @@ document.addEventListener("DOMContentLoaded", function() {
             color: var(--color-toc-icon-color);
             transition: transform 0.1s ease, opacity 0.1s ease;
             cursor: pointer;
-            /* 禁用 iOS 长按弹出菜单 */
-            -webkit-touch-callout: none;
-            /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
-            -webkit-user-select: none;
-            /* 适用于 Firefox */
-            -moz-user-select: none;
-            /* 适用于 IE10+ 和 Edge */
-            -ms-user-select: none;
-            /* 标准语法 */
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
         }
         
@@ -281,17 +275,12 @@ document.addEventListener("DOMContentLoaded", function() {
             font-size: 24px;
             visibility: hidden;
             cursor: pointer;
-            /* 禁用 iOS 长按弹出菜单 */
-            -webkit-touch-callout: none;
-            /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
-            -webkit-user-select: none;
-            /* 适用于 Firefox */
-            -moz-user-select: none;
-            /* 适用于 IE10+ 和 Edge */
-            -ms-user-select: none;
-            /* 标准语法 */
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
         }
         
