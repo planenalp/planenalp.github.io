@@ -12,7 +12,7 @@
 ```
 ![Image](URL)
 ```
-![Image](https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838)
+![Image](https://github.com/user-attachments/assets/cd71cbb4-ba44-486e-8821-d25a9700fe03)
 
 
 # Gmeek + Fancybox（推荐偶然用 base64 时使用）
@@ -21,7 +21,7 @@
 ```
 `Gmeek-html<img data-fancybox="gallery" img src="URL">`
 ```
-`Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
+`Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/cd71cbb4-ba44-486e-8821-d25a9700fe03">`
 
 
 # GJken with base64（可在需要 base64 时使用，但没太大意义）
@@ -30,7 +30,7 @@
 ```
 `Image="URL"`
 ```
-`Image="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838"`
+`Image="https://github.com/user-attachments/assets/cd71cbb4-ba44-486e-8821-d25a9700fe03"`
 
 
 # Gmeek 自带格式（没必要使用）
@@ -39,7 +39,7 @@
 ```
 `Gmeek-html<img src="URL">`
 ```
-`Gmeek-html<img src="https://github.com/user-attachments/assets/4e0d29a4-4be5-4108-8cbb-00f4e4d2d838">`
+`Gmeek-html<img src="https://github.com/user-attachments/assets/cd71cbb4-ba44-486e-8821-d25a9700fe03">`
 
 
 # # MarkDown 直接使用 base64（没法使用）
