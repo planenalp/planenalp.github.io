@@ -670,6 +670,11 @@ document.addEventListener('DOMContentLoaded', function() {
         #themeSwitch {
             color: var(--themeSwitch-color);
         }
+
+        /* 评论按钮 */
+        #cmButton {
+            border-radius: unset; /* 去除圆角 */
+        }
         
          /* 评论按钮悬停 */
         @media (any-hover: hover) {
