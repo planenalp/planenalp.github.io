@@ -783,7 +783,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 15px; /* header 居中 */
         }
 
-        /* 搜索+按钮区域 */
+        /* 搜索 + 按钮区域 */
         .title-right {
             margin: unset; /* header 居中 */
             display: flex; /* header 居中 */
@@ -842,13 +842,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 background-color: var(--btn-hover-bgColor);
                 transition: 0.1s ease;
                 /* 所有按钮 SVG 图标 */
-                .octicon {
-                    color: var(--icon-hover-color);
-                }
+                .octicon { color: var(--icon-hover-color); }
                 /* 主题切换 SVG 图标 */
-                #themeSwitch {
-                    color: var(--icon-hover-color);
-                }
+                #themeSwitch { color: var(--icon-hover-color); }
             }
             /* 搜索按钮 */
             .subnav-search button:hover {
@@ -869,12 +865,8 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--btn-hover-bgColor);
             transform: scale(0.9);
             transition: 0.1s ease;
-            .octicon {
-                color: var(--icon-hover-color);
-            }
-            #themeSwitch {
-                color: var(--icon-hover-color);
-            }
+            .octicon { color: var(--icon-hover-color); }
+            #themeSwitch { color: var(--icon-hover-color); }
         }
 
         /* 搜索按钮按压 */
@@ -994,7 +986,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .Label {
             border-radius: unset; /* 圆角关闭 */
             /* border: 1px solid transparent; 默认隐藏边框 */
-            border: unset;
+            border: unset; /* 取消边框 */
+            webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
 
         /* 顶部 #taglabel 悬停 */
