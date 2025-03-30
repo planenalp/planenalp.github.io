@@ -24,7 +24,7 @@
 `Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/cd71cbb4-ba44-486e-8821-d25a9700fe03">`
 
 
-# GJken with base64（可在需要 base64 时使用，但没太大意义）
+# GJken 代码（可在需要 base64 时使用，但没太大意义）
 优点：语法简单，兼容性好，支持含 base64 编码内的所有图片
 缺点：不支持 Issues 预览，要额外添加代码进主题插件，没法使用常规 MarkDown 引用语法，不过本来就最多只能添加一两张，所以没所谓懒加载，格式要额外记
 ```
