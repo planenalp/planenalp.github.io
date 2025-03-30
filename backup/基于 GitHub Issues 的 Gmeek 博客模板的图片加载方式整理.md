@@ -16,6 +16,8 @@ HTML 标签
 5
 <img src="https://github.com/user-attachments/assets/bc30c0d0-24d4-4df9-b148-729072dcbf6c" width = "300" height = "300" alt="图片名称" align=center />
 
+6.
+![Image](https://github.com/user-attachments/assets/bc30c0d0-24d4-4df9-b148-729072dcbf6c){:height="50%" width="50%"}
 
 
 # 省流
