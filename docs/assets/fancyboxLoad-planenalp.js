@@ -99,4 +99,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     ////////////////// Fancybox 绑定及配置 end ////////////////
 
+    // ==================== 手动插入外链图片 START ====================
+    // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
+    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
+    if (document.querySelector(".markdown-body")) {
+        const post_body = document.querySelector(".markdown-body").innerHTML;
+    
+        if (post_body.includes('<code class="notranslate">Image')) {
+            document.querySelector(".markdown-body").innerHTML = post_body.replace(
+                /<p>\s*<code class="notranslate">Image="([^"]+)"<\/code>\s*<\/p>/g,
+                '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
+            );
+        }
+    }
+    // ==================== 手动插入外链图片 END ====================
+
 });

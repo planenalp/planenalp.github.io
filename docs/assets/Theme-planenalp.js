@@ -7,65 +7,6 @@ document.addEventListener('touchend', function() {}, { passive: true });
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
-
-
-    // 添加 RSS 描述功能
-    async function fetchAndParseRSS() {
-        try {
-            const response = await fetch('https://planenalp.github.io/rss.xml');
-            if (!response.ok) throw new Error('无法获取 RSS 文件');
-            const rssText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(rssText, 'text/xml');
-            if (xmlDoc.querySelector('parsererror')) throw new Error('RSS 文件解析失败');
-            const items = xmlDoc.querySelectorAll('item');
-            return Array.from(items).map(item => ({
-                title: item.querySelector('title').textContent,
-                description: item.querySelector('description').textContent
-            }));
-        } catch (error) {
-            console.error('解析 RSS 文件时出错:', error);
-            return [];
-        }
-    }
-
-    async function addDescriptionsToSideNav() {
-        const rssItems = await fetchAndParseRSS();
-        const sideNavItems = document.querySelectorAll('.SideNav-item');
-
-        sideNavItems.forEach(sideNavItem => {
-            const link = sideNavItem.querySelector('a');
-            if (link) {
-                const title = link.textContent.trim();
-                const matchingRssItem = rssItems.find(item => item.title === title);
-                if (matchingRssItem) {
-                    const descriptionElement = document.createElement('p');
-                    descriptionElement.innerHTML = matchingRssItem.description;
-                    descriptionElement.style.marginTop = '5px';
-                    descriptionElement.style.color = '#666';
-                    sideNavItem.appendChild(descriptionElement);
-                }
-            }
-        });
-    }
-
-    await addDescriptionsToSideNav();
-
-    
-    // ==================== 手动插入外链图片 START ====================
-    // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
-    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
-    if (document.querySelector(".markdown-body")) {
-        const post_body = document.querySelector(".markdown-body").innerHTML;
-    
-        if (post_body.includes('<code class="notranslate">Image')) {
-            document.querySelector(".markdown-body").innerHTML = post_body.replace(
-                /<p>\s*<code class="notranslate">Image="([^"]+)"<\/code>\s*<\/p>/g,
-                '<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="$1">'
-            );
-        }
-    }
-    // ==================== 手动插入外链图片 END ====================
     
     // ==================== 禁用自动主题功能 START ====================
     window.themeSettings = {
@@ -738,7 +679,6 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 评论按钮 */
         #cmButton {
             border-radius: unset; /* 去除圆角 */
-            border: unset; /* 去除边框 */
         }
         
          /* 评论按钮悬停 */
@@ -849,8 +789,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* 搜索按钮 */
         .subnav-search button {
-            border-radius: unset; /* 去除圆角 */
             border: unset; /* 去除边框 */
+            border-radius: unset; /* 去除圆角 */
         }
 
         /* 搜索失败字符 */
