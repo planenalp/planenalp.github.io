@@ -1,3 +1,10 @@
+HTML 标签
+<img src="https://i-blog.csdnimg.cn/blog_migrate/348f8ce8a69c97427cf55dde66f1b4c7.png"  align = "center"  width="600" />
+
+![Image](https://github.com/user-attachments/assets/bc30c0d0-24d4-4df9-b148-729072dcbf6c#pic_center)
+
+
+
 # 省流
 只需用 GitHub Pages upload 模板的 MarkDown 的标准语法 `![Image](URL)`
 
