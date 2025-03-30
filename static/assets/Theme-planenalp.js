@@ -7,6 +7,50 @@ document.addEventListener('touchend', function() {}, { passive: true });
 document.addEventListener('DOMContentLoaded', function() {    
     let currentUrl = window.location.pathname;
     //let currentHost = window.location.hostname;
+
+
+    // 添加 RSS 描述功能
+    async function fetchAndParseRSS() {
+        try {
+            const response = await fetch('https://planenalp.github.io/rss.xml');
+            if (!response.ok) throw new Error('无法获取 RSS 文件');
+            const rssText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(rssText, 'text/xml');
+            if (xmlDoc.querySelector('parsererror')) throw new Error('RSS 文件解析失败');
+            const items = xmlDoc.querySelectorAll('item');
+            return Array.from(items).map(item => ({
+                title: item.querySelector('title').textContent,
+                description: item.querySelector('description').textContent
+            }));
+        } catch (error) {
+            console.error('解析 RSS 文件时出错:', error);
+            return [];
+        }
+    }
+
+    async function addDescriptionsToSideNav() {
+        const rssItems = await fetchAndParseRSS();
+        const sideNavItems = document.querySelectorAll('.SideNav-item');
+
+        sideNavItems.forEach(sideNavItem => {
+            const link = sideNavItem.querySelector('a');
+            if (link) {
+                const title = link.textContent.trim();
+                const matchingRssItem = rssItems.find(item => item.title === title);
+                if (matchingRssItem) {
+                    const descriptionElement = document.createElement('p');
+                    descriptionElement.innerHTML = matchingRssItem.description;
+                    descriptionElement.style.marginTop = '5px';
+                    descriptionElement.style.color = '#666';
+                    sideNavItem.appendChild(descriptionElement);
+                }
+            }
+        });
+    }
+
+    await addDescriptionsToSideNav();
+
     
     // ==================== 手动插入外链图片 START ====================
     // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
