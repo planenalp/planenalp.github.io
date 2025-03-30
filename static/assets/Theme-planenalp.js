@@ -679,6 +679,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* 评论按钮 */
         #cmButton {
             border-radius: unset; /* 去除圆角 */
+            border: unset; /* 去除边框 */
         }
         
          /* 评论按钮悬停 */
