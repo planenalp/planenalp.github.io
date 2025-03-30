@@ -14,11 +14,11 @@
 </div>
 
 # 4. Gmeek-html
-全功能
+唯一全功能，除了不能在 GitHub Issues 显示
 `Gmeek-html<img src="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp" alt="" width="50%" align=right >`
 
 # 4.1 Gmeek-html
-全功能
+唯一全功能，除了不能在 GitHub Issues 显示
 `Gmeek-html<img src="https://s2.loli.net/2024/11/13/DNHrdGTfphzQOok.webp" alt="" width="300" height="300" align=right >`
 
 # 5. GitHub Issues Original
