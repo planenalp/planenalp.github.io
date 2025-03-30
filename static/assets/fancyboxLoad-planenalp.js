@@ -38,6 +38,21 @@ document.addEventListener("DOMContentLoaded", function() {
     replaceImageLinks();
     ////////////////// 增加图片转换, 并适配图片懒加载 end ////////////////
 
+    ////////////////// Fancybox 绑定及配置 start ////////////////
+    // 添加 Fancybox CSS
+    const fancyboxLink = Object.assign(document.createElement('link'), {
+        rel: 'stylesheet',
+        href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
+    });
+    document.head.appendChild(fancyboxLink);
+
+    // 绑定 Fancybox，并指定选项 srcAttr 为 "data-src"
+    // 这样 Fancybox 在切换幻灯片时会优先使用 data-src 中的真实图片地址
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        srcAttr: 'data-src'
+    });
+    ////////////////// Fancybox 绑定及配置 end ////////////////
+
     ////////////////// 懒加载图片 start ////////////////
     const observer = new IntersectionObserver(
         (entries) => {
@@ -83,20 +98,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // 观察所有带有 data-src 属性的图片
     document.querySelectorAll('[data-src]').forEach(img => observer.observe(img));
     ////////////////// 懒加载图片 end ////////////////
-
-    ////////////////// Fancybox 绑定及配置 start ////////////////
-    // 添加 Fancybox CSS
-    const fancyboxLink = Object.assign(document.createElement('link'), {
-        rel: 'stylesheet',
-        href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
-    });
-    document.head.appendChild(fancyboxLink);
-
-    // 绑定 Fancybox，并指定选项 srcAttr 为 "data-src"
-    // 这样 Fancybox 在切换幻灯片时会优先使用 data-src 中的真实图片地址
-    Fancybox.bind('[data-fancybox="gallery"]', {
-        srcAttr: 'data-src'
-    });
-    ////////////////// Fancybox 绑定及配置 end ////////////////
-
+    
 });
