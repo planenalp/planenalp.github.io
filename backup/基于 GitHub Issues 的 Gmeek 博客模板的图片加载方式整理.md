@@ -4,7 +4,7 @@
 
 2. HTML + div + w h
 全功能
-<div  align="center">    
+<div  align="right">    
 <img src="https://github.com/user-attachments/assets/bc30c0d0-24d4-4df9-b148-729072dcbf6c" width = "200" height = "200" alt="图片名称" />
 </div>
 
