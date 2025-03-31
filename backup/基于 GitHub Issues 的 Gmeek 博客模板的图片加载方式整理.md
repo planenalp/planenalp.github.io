@@ -1,29 +1,21 @@
-# 11
-`Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"  width="50%" align=center />`
-
-# 22
-`Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" align=center />`
-
-# 33
-`Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"  width="50%" align=center >`
-
-# 44
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width="300" />
-</div>
 
 
+# 总结
+要改居中，用[2. HTML 标签 - 三行 div](#2.-HTML-标签---三行-div)
+要改尺寸，用[3. Gmeek-html](#3.-Gmeek-html)
 
 # 小细节
+- 没必要太纠结这个，小图才用得上居中，但不居中也没什么，而大图本来就居中
 - 要是图片排版乱七八糟可以在每串图片代码前一行加个 `#` 强行分段
 - 尺寸定义可以是 `width = "300" height = "300"` 或 `width = "300"` 或 `width = "50%"` 任意一个
 - HTML 标签 + base64 无效
 - 可用 p 或类似字符如 abc 代替 div
 
 # 1. HTML 标签 - 单行
+兼容 Fancybox
 约等于 `[description](url)`，格式麻烦，意义不大
 ```
-<img src="URL" width = "300" height = "300" align=center alt="name" />
+<img src="URL" width = "300" height = "300" align=center alt="name" >
 ```
 
 | 自定义 | GitHub Issues | Gmeek |
@@ -32,13 +24,14 @@
 | 位置     | ❌                 | ❌      |
 | 尺寸     | ✅                 | ❌      |
 
-<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" align=center alt="logoTest" />
+<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" align=center alt="logoTest" >
 
 
 # 2. HTML 标签 - 三行 div（想要居中比较合适的方法）
+兼容 Fancybox
 ```
 <div  align="center">    
-<img src="URL" width = "300" height = "300" alt="name" />
+<img src="URL" width = "300" height = "300" alt="name" >
 </div>
 ```
 
@@ -49,13 +42,14 @@
 | 尺寸     | ✅                 | ❌      |
 
 <div  align="center">    
-<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" alt="logoTest" />
+<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" alt="logoTest" >
 </div>
 
 
-# 3. Gmeek-html - 单行
+# 3. Gmeek-html
+兼容 Fancybox 写法
 ```
-`Gmeek-html<img src="URL" alt="" width = "300" height = "300" align=center alt="name" >`
+`Gmeek-html<img data-fancybox="gallery" img src="URL" width = "300" height = "300" align=center alt="name" >`
 ```
 
 | 自定义 | GitHub Issues | Gmeek |
@@ -64,7 +58,10 @@
 | 位置     | ❌                 | ❌      |
 | 尺寸     | ❌                 | ✅      |
 
-`Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" alt="" width="50%" align=center alt="logoTest" />`
+`Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width="50%" align=center alt="logoTest" >`
+
+
+
 
 <details><summary>废案</summary> 
 
