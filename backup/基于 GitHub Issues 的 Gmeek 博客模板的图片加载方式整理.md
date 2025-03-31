@@ -1,4 +1,4 @@
-
+`Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"  width="50%" align=center />`
 
 # 小细节
 - 要是图片排版乱七八糟可以在每串图片代码前一行加个 `#` 强行分段
@@ -21,7 +21,7 @@
 <img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" align=center alt="logoTest" />
 
 
-# 2. HTML 标签 - 三行 div
+# 2. HTML 标签 - 三行 div（想要居中比较合适的方法）
 ```
 <div  align="center">    
 <img src="URL" width = "300" height = "300" alt="name" />
