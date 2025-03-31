@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const randomNum = Math.floor(Math.random() * totalImages) + 1;
             // 定义主地址和备选地址
             const primaryBaseUrl = `https://planenalp.github.io/bg/${prefix}${randomNum}`;
-            const fallbackBaseUrl = `https://planenalp.github.io/IKB-dev/bg/${prefix}${randomNum}`;
+            const fallbackBaseUrl = `https://planenalp.github.io/bg2/${prefix}${randomNum}`;
             const baseUrls = [primaryBaseUrl, fallbackBaseUrl]; // 数组形式支持多个地址
 
             try {
