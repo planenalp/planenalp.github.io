@@ -680,6 +680,7 @@ document.addEventListener('DOMContentLoaded', function() {
         #cmButton {
             border-radius: unset; /* 去除圆角 */
             border: unset; /* 去除边框 */
+            box-shadow: var(--box-shadow); /* 阴影 */
         }
         
          /* 评论按钮悬停 */
