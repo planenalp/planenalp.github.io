@@ -1,3 +1,9 @@
+# p test
+<p align="center">    
+<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" alt="logoTest" />
+</p>
+
+
 # div + gjken
 完全无效
 ```
@@ -8,7 +14,6 @@
 
 # 小细节
 - 要是图片排版乱七八糟可以在每串图片代码前一行加个 `#` 强行分段
-- 尽量用 width = "300" height = "300" 而不是百分比 width = "50%"
 - 可以直接只用 width = "300"，不需 height = "300"，会自动等比缩放，就像只用 width = "50%" 一样
 
 # 1. HTML 标签 - 单行
@@ -100,7 +105,11 @@
 完全无效，都不显示图片
 `![Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309 =300x300)`
 
-## 4. GitHub Issues Original with CSS
+## 4. GitHub Issues Original with #pic_center
+完全无效，都不显示图片
+`![Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309#pic_center)`
+
+## 5. GitHub Issues Original with CSS
 图片能显示但 CSS 后缀无效
 ![Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309){:height="50%" width="50%"}
 
