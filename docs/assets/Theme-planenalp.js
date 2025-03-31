@@ -548,6 +548,7 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset; /* 圆角关闭 */
             /* border: 1px solid transparent; 默认隐藏边框 */
             border: unset;
+            box-shadow: var(--box-shadow); /* 阴影 */
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -680,6 +681,14 @@ document.addEventListener('DOMContentLoaded', function() {
         #cmButton {
             border-radius: unset; /* 去除圆角 */
             border: unset; /* 去除边框 */
+            box-shadow: var(--box-shadow); /* 阴影 */
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
         }
         
          /* 评论按钮悬停 */
@@ -779,6 +788,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-right: unset; /* header 居中 */
             display: flex; /* header 居中 */
             justify-content: center; /* header 居中 */
+            box-shadow: var(--box-shadow); /* 阴影 */
         }
 
         /* 搜索输入框布局 */
@@ -976,6 +986,7 @@ document.addEventListener('DOMContentLoaded', function() {
             -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
             user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
+            box-shadow: var(--box-shadow); /* 阴影 */
         }
 
         /* 顶部 #taglabel 悬停 */
@@ -993,6 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--text-hover-color) !important;
             transform: scale(0.9);
             transition: 0.1s ease;
+            box-shadow: var(--box-shadow); /* 阴影 */
         }
 
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
