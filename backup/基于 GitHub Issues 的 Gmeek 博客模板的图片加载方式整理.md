@@ -75,11 +75,19 @@
 `Gmeek-html<img src="URL" alt="" width="50%" align=center alt="name" >`
 </div>
 ```
+能显示图片，能居中
 
+# 1
 <div  align="center">   
 `Gmeek-html<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" alt="" width="50%" alt="logoTest" />`
 </div>
 
+# 2
+`Gmeek-html
+<div  align="center">
+<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" alt="" width="50%" alt="logoTest" />
+</div>
+`
 
 # 5. GitHub Issues Original with div center
 完全无效
