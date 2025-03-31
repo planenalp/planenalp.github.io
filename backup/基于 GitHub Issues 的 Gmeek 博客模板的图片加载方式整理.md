@@ -1,4 +1,8 @@
+# Gmeek align="center"
+`Gmeek-html<img data-fancybox="gallery" img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width="50%" align="center" alt="logoTest" >`
 
+# HTML align="center"
+<img src="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309" width = "300" height = "300" align="center" alt="logoTest" >
 
 # 总结
 要改居中，用[2. HTML 标签 - 三行 div](#2.-HTML-标签---三行-div)
