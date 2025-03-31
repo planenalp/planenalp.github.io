@@ -1,7 +1,10 @@
 # div + gjken
+完全无效
+```
 <div  align="center">    
-`Image="[URL](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309)"`
+`Image="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"`
 </div>
+```
 
 # 小细节
 - 要是图片排版乱七八糟可以在每串图片代码前一行加个 `#` 强行分段
