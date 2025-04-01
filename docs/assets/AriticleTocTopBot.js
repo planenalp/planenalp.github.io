@@ -16,7 +16,6 @@ function loadResource(type, attributes) {
 function createTOC() {
     const tocElement = document.createElement('div');
     tocElement.className = 'toc';
-    // 立即设置内联样式，确保初始隐藏
     tocElement.style.opacity = '0';
     tocElement.style.visibility = 'hidden';
     document.body.appendChild(tocElement);
