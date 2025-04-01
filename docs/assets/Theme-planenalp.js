@@ -705,13 +705,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 单行代码 */
-        .markdown-body code {
+        .markdown-body code, .markdown-body tt {
             background-color: var(--code-bgColor);
             border-radius: unset;
         }
 
         /* 多行代码 */
-        .markdown-body pre {
+        .markdown-body .highlight pre, .markdown-body pre {
             background-color: var(--code-bgColor);
             border-radius: unset;
         }
