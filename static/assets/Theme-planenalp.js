@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #656d76;
+        --code-bgColor: #0000001a;
     }
     /* 通用暗主题配色 */
     [data-color-mode=light][data-light-theme=dark],
@@ -242,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --LabelName-bgColor: #007fff;
         --text-hover-color: #f5f5f5;
         --themeSwitch-color: #7d8590;
+        --code-bgColor: #ffffff1a;
     }
 
     /* 主页主题 */
@@ -703,16 +705,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 单行代码 */
-        .markdown-body code {
-            /* background-color: #002fa7cc; */
+        .markdown-body code, .markdown-body tt {
+            background-color: var(--code-bgColor);
             /* color: #f5f5f5; */
             box-shadow: var(--box-shadow);
             border-radius: unset;
         }
 
         /* 多行代码 */
-        .markdown-body pre {
-            /* background-color: #002fa7cc; */
+        .markdown-body .highlight pre, .markdown-body pre { {
+            background-color: var(--code-bgColor);
             /* color: #f5f5f5; */
             box-shadow: var(--box-shadow);
             border-radius: unset;
