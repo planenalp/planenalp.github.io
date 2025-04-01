@@ -87,8 +87,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h1>总结</h1>
 <ol>
 <li>99.9% 情况下，只需用 <a href="#1.-github-pages-upload">1. GitHub Pages upload</a> 模板的 MarkDown 的标准语法 <code class="notranslate">![Image](URL)</code></li>
-<li>要改居中，只能用 <a href="#4.-html-%E6%A0%87%E7%AD%BE---%E4%B8%89%E8%A1%8C-div">4. HTML 标签 - 三行 div</a>（没必要）</li>
 <li>要改尺寸或用 base64，用 <a href="#2.-gmeek-+-fancybox-%E5%BC%95%E7%94%A8%E4%BB%A3%E7%A0%81">2. Gmeek + Fancybox 引用代码</a>（没必要）</li>
+<li>要改居中，只能用 <a href="#4.-html-%E6%A0%87%E7%AD%BE---%E4%B8%89%E8%A1%8C-div">4. HTML 标签 - 三行 div</a>（没必要）</li>
 <li>仅用 base64，也可用 <a href="#5.-gjken-%E4%BB%A3%E7%A0%81">5. GJken 代码</a>（没必要）</li>
 </ol>
 <ul>
@@ -262,7 +262,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 <hr>
 <h1>5. GJKen 代码</h1>
-<p>来源：<a href="https://gjken.github.io/post/1.html" rel="nofollow">Gmeek - 记录使用过程</a>，原为改源码方式，现改成方便加载的 <code class="notranslate">插件.js</code> 解锁功能<br>
+<p>来源：<a href="https://gjken.github.io/post/1.html" rel="nofollow">Gmeek - 记录使用过程</a><br>
+原为改源码方式修改 Gmeek 仓库的 Gmeek.py 文件，通过下面这段代码激活</p>
+<pre class="notranslate"><code class="notranslate">`Gmeek-imgbox="URL"`
+</code></pre>
+<p>现改为 js 格式并添加进外部加载的 fancyboxload.js 插件，并调整为通过更易记的和 GitHub Issues 相同的代码格式来激活</p>
+<pre class="notranslate"><code class="notranslate">`[Image](URL)`
+</code></pre>
+<p>PS: 使用时 Image 不能改其它字符，前后的 <code class="notranslate"> </code> 符号需保留，否则无效</p>
+<p>现改成方便加载的 <code class="notranslate">插件.js</code> 解锁功能<br>
 优点：语法简单，兼容性好，支持含 base64 编码内的所有图片，可在需要 base64 时使用，但没太大意义<br>
 缺点：不支持 Issues 预览，要额外添加代码进插件，没法使用常规 MarkDown 引用语法，不过本来就最多只能添加一两张，所以没所谓懒加载，格式要额外记</p>
 <markdown-accessiblity-table><table role="table">
@@ -296,9 +304,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </tr>
 </tbody>
 </table></markdown-accessiblity-table>
-<pre class="notranslate"><code class="notranslate">`Image="URL"`
+<pre class="notranslate"><code class="notranslate">`[Image](URL)`
 </code></pre>
-<p><code class="notranslate">Image="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"</code></p>
+<p><code class="notranslate">[Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309)</code></p>
 <hr>
 <h1>6. Gmeek 自带格式（复杂情况使用）</h1>
 <p>优点：支持部分 HTML 语法，可变身为 <a href="#2.-gmeek-+-fancybox-%E5%BC%95%E7%94%A8%E4%BB%A3%E7%A0%81">2. Gmeek + Fancybox 引用代码</a><br>

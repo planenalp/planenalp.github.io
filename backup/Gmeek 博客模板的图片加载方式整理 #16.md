@@ -2,8 +2,8 @@
 
 # 总结
 1. 99.9% 情况下，只需用 [1. GitHub Pages upload](#1.-github-pages-upload) 模板的 MarkDown 的标准语法 `![Image](URL)`
-2. 要改居中，只能用 [4. HTML 标签 - 三行 div](#4.-html-标签---三行-div)（没必要）
-3. 要改尺寸或用 base64，用 [2. Gmeek + Fancybox 引用代码](#2.-gmeek-+-fancybox-引用代码)（没必要）
+2. 要改尺寸或用 base64，用 [2. Gmeek + Fancybox 引用代码](#2.-gmeek-+-fancybox-引用代码)（没必要）
+3. 要改居中，只能用 [4. HTML 标签 - 三行 div](#4.-html-标签---三行-div)（没必要）
 4. 仅用 base64，也可用 [5. GJken 代码](#5.-gjken-代码)（没必要）
 
 - 因为 GitHub Issues 有最大字符限制，页内添加一张几十K图片已经是极限，而且两种 base64 实现方式都没法使用 MarkDown 的引用语法，所以研究 base64 没意义
@@ -95,7 +95,18 @@
 
 ------------------------------------------------------------------------------------
 # 5. GJKen 代码
-来源：[Gmeek - 记录使用过程](https://gjken.github.io/post/1.html)，原为改源码方式，现改成方便加载的 `插件.js` 解锁功能
+来源：[Gmeek - 记录使用过程](https://gjken.github.io/post/1.html)
+原为改源码方式修改 Gmeek 仓库的 Gmeek.py 文件，通过下面这段代码激活
+```
+`Gmeek-imgbox="URL"`
+```
+现改为 js 格式并添加进外部加载的 fancyboxload.js 插件，并调整为通过更易记的和 GitHub Issues 相同的代码格式来激活
+```
+`[Image](URL)`
+```
+PS: 使用时 Image 不能改其它字符，前后的 ` ` 符号需保留，否则无效
+
+现改成方便加载的 `插件.js` 解锁功能
 优点：语法简单，兼容性好，支持含 base64 编码内的所有图片，可在需要 base64 时使用，但没太大意义
 缺点：不支持 Issues 预览，要额外添加代码进插件，没法使用常规 MarkDown 引用语法，不过本来就最多只能添加一两张，所以没所谓懒加载，格式要额外记
 
@@ -107,10 +118,10 @@
 | 尺寸    | ❌                  | ❌       |
 
 ```
-`Image="URL"`
+`[Image](URL)`
 ```
 
-`Image="https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309"`
+`[Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309)`
 
 ------------------------------------------------------------------------------------
 # 6. Gmeek 自带格式（复杂情况使用）
