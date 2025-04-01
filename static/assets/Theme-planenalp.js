@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 单行代码 */
-        .markdown-body code, .markdown-body tt {
+        .markdown-body code {
             /* background-color: #002fa7cc; */
             /* color: #f5f5f5; */
             box-shadow: var(--box-shadow);
@@ -711,7 +711,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 多行代码 */
-        .markdown-body .highlight pre, .markdown-body pre {
+        .markdown-body pre {
             /* background-color: #002fa7cc; */
             /* color: #f5f5f5; */
             box-shadow: var(--box-shadow);
