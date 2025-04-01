@@ -88,118 +88,6 @@ function toggleTOC() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // 加载 CSS 样式，确保样式在 DOM 元素添加前应用，防止 PC 端页面初始化菜单一闪而过
-    loadResource('style', { css: combinedCss });
-
-    // 创建目录
-    const tocItems = createTOC();
-
-    //////// 检查标题是否可见 start //////////
-    function isHeadingVisible(heading) {
-        let current = heading;
-        while (current) {
-            if (current.tagName === 'DETAILS' && !current.hasAttribute('open')) {
-                return false;
-            }
-            current = current.parentElement;
-        }
-        return true;
-    }
-    //////// 检查标题是否可见 end //////////
-
-    //////// 更新 TOC 可见性 start //////////
-    function updateTOCVisibility() {
-        tocItems.forEach(item => {
-            const isVisible = isHeadingVisible(item.heading);
-            item.link.style.display = isVisible ? 'block' : 'none';
-        });
-    }
-    //////// 更新 TOC 可见性 end //////////
-
-    // 初始更新 TOC 可见性
-    updateTOCVisibility();
-
-    // 为所有 <details> 添加 toggle 事件监听
-    const detailsElements = document.querySelectorAll('details');
-    detailsElements.forEach(details => {
-        details.addEventListener('toggle', updateTOCVisibility);
-    });
-
-    //////// 创建滚动页面高亮菜单 start //////////
-    function highlightTOC() {
-        const tocLinks = document.querySelectorAll('.toc-link');
-        const fromTop = window.scrollY + 10;
-        let currentHeading = null;
-        tocLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            const sectionId = href.substring(1);
-            const section = document.getElementById(sectionId);
-            if (section && section.offsetParent !== null && section.offsetTop <= fromTop) {
-                currentHeading = link;
-            }
-        });
-        tocLinks.forEach(link => {
-            link.classList.remove('toc-active');
-        });
-        if (currentHeading) {
-            currentHeading.classList.add('toc-active');
-            currentHeading.scrollIntoView({ block: 'center', inline: 'nearest' });
-        }
-    }
-    document.addEventListener('scroll', highlightTOC);
-    //////// 创建滚动页面高亮菜单 end //////////
-
-    //////// 创建目录按钮 TOC 切换图标 start //////////
-    const tocIcon = document.createElement('div');
-    tocIcon.className = 'toc-icon';
-    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-    tocIcon.onclick = (e) => {
-        e.stopPropagation();
-        toggleTOC();
-    };
-    document.body.appendChild(tocIcon);
-    //////// 创建目录按钮 TOC 切换图标 end //////////
-
-    //////// 点击页面其他区域时隐藏目录 start //////////
-    document.addEventListener('click', (e) => {
-        const tocElement = document.querySelector('.toc');
-        if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
-            toggleTOC();
-        }
-    });
-    //////// 点击页面其他区域时隐藏目录 end //////////
-
-    //////// 创建返回顶部和返回底部按钮 start //////////
-    const btnTop = document.createElement('button');
-    btnTop.className = 'back-to-top';
-    btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 14l8-8 8 8"/></svg>';
-    document.body.appendChild(btnTop);
-
-    const btnBot = document.createElement('button');
-    btnBot.className = 'back-to-bot';
-    btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 10l8 8 8-8"/></svg>';
-    document.body.appendChild(btnBot);
-
-    btnTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    btnBot.addEventListener('click', () => {
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    });
-
-    function updateButtons() {
-        const scrollTop = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const dynamicThreshold = Math.min(500, windowHeight * 0.5);
-        scrollTop > dynamicThreshold ? btnTop.classList.add('show') : btnTop.classList.remove('show');
-        const remainingSpace = document.documentElement.scrollHeight - (scrollTop + windowHeight);
-        remainingSpace > dynamicThreshold ? btnBot.classList.add('show') : btnBot.classList.remove('show');
-    }
-    window.addEventListener('scroll', updateButtons);
-    window.addEventListener('resize', updateButtons);
-    updateButtons();
-    //////// 创建返回顶部和返回底部按钮 end //////////
-
     // 加载 CSS 样式（保持不变）
     const combinedCss = `
         /* light 主题颜色 */
@@ -416,5 +304,120 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linejoin: round;
         }
     `;
+
+    
+    // 加载 CSS 样式，确保样式在 DOM 元素添加前应用，防止 PC 端页面初始化菜单一闪而过
+    loadResource('style', { css: combinedCss });
+
+    // 创建目录
+    const tocItems = createTOC();
+
+    //////// 检查标题是否可见 start //////////
+    function isHeadingVisible(heading) {
+        let current = heading;
+        while (current) {
+            if (current.tagName === 'DETAILS' && !current.hasAttribute('open')) {
+                return false;
+            }
+            current = current.parentElement;
+        }
+        return true;
+    }
+    //////// 检查标题是否可见 end //////////
+
+    //////// 更新 TOC 可见性 start //////////
+    function updateTOCVisibility() {
+        tocItems.forEach(item => {
+            const isVisible = isHeadingVisible(item.heading);
+            item.link.style.display = isVisible ? 'block' : 'none';
+        });
+    }
+    //////// 更新 TOC 可见性 end //////////
+
+    // 初始更新 TOC 可见性
+    updateTOCVisibility();
+
+    // 为所有 <details> 添加 toggle 事件监听
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(details => {
+        details.addEventListener('toggle', updateTOCVisibility);
+    });
+
+    //////// 创建滚动页面高亮菜单 start //////////
+    function highlightTOC() {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const fromTop = window.scrollY + 10;
+        let currentHeading = null;
+        tocLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            const sectionId = href.substring(1);
+            const section = document.getElementById(sectionId);
+            if (section && section.offsetParent !== null && section.offsetTop <= fromTop) {
+                currentHeading = link;
+            }
+        });
+        tocLinks.forEach(link => {
+            link.classList.remove('toc-active');
+        });
+        if (currentHeading) {
+            currentHeading.classList.add('toc-active');
+            currentHeading.scrollIntoView({ block: 'center', inline: 'nearest' });
+        }
+    }
+    document.addEventListener('scroll', highlightTOC);
+    //////// 创建滚动页面高亮菜单 end //////////
+
+    //////// 创建目录按钮 TOC 切换图标 start //////////
+    const tocIcon = document.createElement('div');
+    tocIcon.className = 'toc-icon';
+    tocIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    tocIcon.onclick = (e) => {
+        e.stopPropagation();
+        toggleTOC();
+    };
+    document.body.appendChild(tocIcon);
+    //////// 创建目录按钮 TOC 切换图标 end //////////
+
+    //////// 点击页面其他区域时隐藏目录 start //////////
+    document.addEventListener('click', (e) => {
+        const tocElement = document.querySelector('.toc');
+        if (tocElement && tocElement.classList.contains('show') && !tocElement.contains(e.target) && !e.target.classList.contains('toc-icon')) {
+            toggleTOC();
+        }
+    });
+    //////// 点击页面其他区域时隐藏目录 end //////////
+
+    //////// 创建返回顶部和返回底部按钮 start //////////
+    const btnTop = document.createElement('button');
+    btnTop.className = 'back-to-top';
+    btnTop.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 14l8-8 8 8"/></svg>';
+    document.body.appendChild(btnTop);
+
+    const btnBot = document.createElement('button');
+    btnBot.className = 'back-to-bot';
+    btnBot.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 10l8 8 8-8"/></svg>';
+    document.body.appendChild(btnBot);
+
+    btnTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    btnBot.addEventListener('click', () => {
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    });
+
+    function updateButtons() {
+        const scrollTop = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const dynamicThreshold = Math.min(500, windowHeight * 0.5);
+        scrollTop > dynamicThreshold ? btnTop.classList.add('show') : btnTop.classList.remove('show');
+        const remainingSpace = document.documentElement.scrollHeight - (scrollTop + windowHeight);
+        remainingSpace > dynamicThreshold ? btnBot.classList.add('show') : btnBot.classList.remove('show');
+    }
+    window.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+    //////// 创建返回顶部和返回底部按钮 end //////////
+
+    
     
 });
