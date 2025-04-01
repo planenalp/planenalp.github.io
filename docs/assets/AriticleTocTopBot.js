@@ -25,7 +25,7 @@ function createTOC() {
     if (headings.length === 0) return [];
 
     const tocItems = [];
-    headings.forEach heading => {
+    headings.forEach(heading => {
         if (!heading.id) {
             heading.id = heading.textContent.trim().replace(/\s+/g, '-').toLowerCase();
         }
