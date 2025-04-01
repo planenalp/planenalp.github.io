@@ -705,24 +705,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 单行代码 */
-        .markdown-body code, .markdown-body tt {
+        .markdown-body code {
             background-color: var(--code-bgColor);
-            /* color: #f5f5f5; */
-            box-shadow: var(--box-shadow);
             border-radius: unset;
         }
 
         /* 多行代码 */
-        .markdown-body .highlight pre, .markdown-body pre {
+        .markdown-body pre {
             background-color: var(--code-bgColor);
-            /* color: #f5f5f5; */
-            box-shadow: var(--box-shadow);
             border-radius: unset;
-        }
-
-        /* 多行代码内的代码 */
-        .markdown-body pre code {
-            box-shadow: unset;
         }
 
         /* 评论按钮 */
