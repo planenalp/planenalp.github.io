@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* 多行代码 */
-        .markdown-body .highlight pre, .markdown-body pre { {
+        .markdown-body .highlight pre, .markdown-body pre {
             background-color: var(--code-bgColor);
             /* color: #f5f5f5; */
             box-shadow: var(--box-shadow);
