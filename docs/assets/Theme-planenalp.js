@@ -555,6 +555,11 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: var(--LabelName-bgColor) !important;
         }
 
+        .Label:not(.LabelName):not(.LabelTime) {
+            order: 3;
+            background-color: #000000;
+        }
+
         /* 标签（背景色不能关闭，因为 .LabelName 字色没法自定义，除非隐藏 .LabelName） */
         /* 方案1：首页 + 搜索页 Label 边框移除，分别指定 .LabelName 和 .LabelTime 背景色（用这个） */
         /* 方案2：首页 + 搜索页 Label 边框透明，hover + active 边框 #f5f5f5，分别指定 .LabelName 和 .LabelTime 背景色*/
