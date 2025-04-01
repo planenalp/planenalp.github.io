@@ -67,7 +67,31 @@ function toggleTOC() {
 }
 ////////// 目录按钮切换功能 end //////////
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
+    // 加载 CSS 样式，确保样式在 DOM 元素添加前应用，防止 PC 端页面初始化菜单一闪而过
+    loadResource('style', { css: combinedCss });
+
+    // 创建目录
     const tocItems = createTOC();
 
     //////// 检查标题是否可见 start //////////
@@ -392,5 +416,5 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linejoin: round;
         }
     `;
-    loadResource('style', { css: combinedCss });
+    
 });
