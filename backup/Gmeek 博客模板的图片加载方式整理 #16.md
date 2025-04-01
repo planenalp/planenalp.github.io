@@ -121,7 +121,7 @@ PS: 使用时 Image 不能改其它字符，前后的 ` ` 符号需保留，否�
 `[Image](URL)`
 ```
 
-`[Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309)`
+`![Image](https://github.com/user-attachments/assets/918d11b9-5864-429e-b7fe-1dffcb08a309)`
 
 ------------------------------------------------------------------------------------
 # 6. Gmeek 自带格式（复杂情况使用）
