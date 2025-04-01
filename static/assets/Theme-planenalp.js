@@ -718,6 +718,11 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset;
         }
 
+        /* 多行代码内的代码 */
+        .markdown-body pre code {
+            box-shadow: unset;
+        }
+
         /* 评论按钮 */
         #cmButton {
             border-radius: unset; /* 去除圆角 */
