@@ -16,8 +16,6 @@ function loadResource(type, attributes) {
 function createTOC() {
     const tocElement = document.createElement('div');
     tocElement.className = 'toc';
-    tocElement.style.opacity = '0';
-    tocElement.style.visibility = 'hidden';
     document.body.appendChild(tocElement);
 
     const markdownBody = document.querySelector('.markdown-body');
@@ -218,8 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
             box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
             visibility: hidden;
+            transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
         }
         .toc.show {
             transform: translateY(0);
