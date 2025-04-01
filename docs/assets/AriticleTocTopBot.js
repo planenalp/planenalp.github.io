@@ -67,28 +67,8 @@ function toggleTOC() {
 }
 ////////// 目录按钮切换功能 end //////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
-    // 加载 CSS 样式（保持不变）
+    // 加载 CSS 样式，定义 combinedCss，确保在任何使用之前初始化，确保样式在 DOM 元素添加前应用，防止PC端初始化加载页面菜单一闪而过
     const combinedCss = `
         /* light 主题颜色 */
         :root {
@@ -128,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
             box-shadow: var(--color-toc-box-shadow);
             transform: translateY(20px) scale(0.9);
             opacity: 0;
-            visibility: hidden;
             transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s;
+            visibility: hidden;
         }
         .toc.show {
             transform: translateY(0);
@@ -304,9 +284,8 @@ document.addEventListener("DOMContentLoaded", function() {
             stroke-linejoin: round;
         }
     `;
-
     
-    // 加载 CSS 样式，确保样式在 DOM 元素添加前应用，防止 PC 端页面初始化菜单一闪而过
+    // 加载 CSS 样式
     loadResource('style', { css: combinedCss });
 
     // 创建目录
@@ -418,6 +397,4 @@ document.addEventListener("DOMContentLoaded", function() {
     updateButtons();
     //////// 创建返回顶部和返回底部按钮 end //////////
 
-    
-    
 });
