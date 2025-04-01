@@ -77,8 +77,71 @@ function updatePagination(totalPages, currentPage) {
     // 添加样式
     var style = document.createElement('style');
     style.textContent = `
+        /* light 主题颜色 */
+        :root {
+            --color-current-page-bg: #002fa7;
+            --color-current-page-text: #f5f5f5;
+            --color-hover-bg: #002fa7;
+            --color-hover-text: #f5f5f5;
+            --color-active-bg: #002fa7;
+            --color-active-text: #f5f5f5;
+            --box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        /* dark 主题颜色 */
+        [data-color-mode=light][data-light-theme=dark],
+        [data-color-mode=light][data-light-theme=dark]::selection,
+        [data-color-mode=dark][data-dark-theme=dark],
+        [data-color-mode=dark][data-dark-theme=dark]::selection {
+            --color-current-page-bg: #002fa7;
+            --color-current-page-text: #f5f5f5;
+            --color-hover-bg: #002fa7;
+            --color-hover-text: #f5f5f5;
+            --color-active-bg: #002fa7;
+            --color-active-text: #f5f5f5;
+            --box-shadow: 0 0 transparent;
+        }
+        
+        /* 分页插件主体 */
+        .pagination a {
+            border: unset;
+            border-radius: unset;
+            transition: 0.1s ease;
+            -webkit-tap-highlight-color: transparent; /* 修复某些安卓设备的点击外框 */
+            -webkit-touch-callout: none; /* 禁用 iOS 长按弹出菜单 */
+            -webkit-user-select: none; /* 禁用 iOS Safari 和其他 WebKit 内核浏览器的文本选择 */
+            -moz-user-select: none; /* 适用于 Firefox */
+            -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
+            user-select: none; /* 标准语法 */
+            outline: none !important; /* 解决按压边框闪烁 */
+        }
+        
+        /* 当前页面 */
         .pagination a.current-page {
-            border: 1px solid rgba(240, 246, 252, 0.1);
+            border: unset;
+            background-color: var(--color-current-page-bg);
+            color: var(--color-current-page-text);
+            box-shadow: var(--box-shadow);
+            transition: 0.1s ease;
+        }
+
+        /* 悬停状态 */
+        @media (any-hover: hover) {
+            .pagination a:hover {
+                border-color: transparent;
+                background-color: var(--color-hover-bg);
+                color: var(--color-hover-text);
+                box-shadow: var(--box-shadow);
+                transition: 0.1s ease;
+            }
+        }
+
+        /* 点击状态 */
+        .pagination a:active {
+            background-color: var(--color-active-bg);
+            color: var(--color-active-text);
+            box-shadow: var(--box-shadow);
+            transform: scale(0.9);
+            transition: 0.1s ease;
         }
         
         /* 强制覆盖原文件 @media (min-width: 544px) 才激活 display: inline-block 的设定 */
@@ -122,4 +185,3 @@ fetch(xmlUrl)
         updatePagination(totalPages, currentPage);
     })
     .catch(error => console.error('Error fetching XML:', error));
-
