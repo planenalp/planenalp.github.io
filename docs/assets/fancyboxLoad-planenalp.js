@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fancyboxLink.addEventListener('error', () => {
         const fallbackLink = Object.assign(document.createElement('link'), {
             rel: 'stylesheet',
-            href: 'https://raw.githubusercontent.com/planenalp/ui/main/dist/fancybox/fancybox.css'
+            href: 'https://dev.klein.blue/assets/fancybox.css'
         });
         document.head.appendChild(fallbackLink);
     });
