@@ -1,7 +1,7 @@
 //不同博客记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
 
 document.addEventListener("DOMContentLoaded", function() {
-    ////////////////// 增加图片转换, 并适配图片懒加载 start ////////////////
+    // ===================== 增加图片转换, 并适配图片懒加载 START =====================
     /**
      * 将原来的正则替换逻辑转为 DOM 操作：
      * 1. 查找 <p><a target="_blank" rel=...><img src="URL" ...></a></p>，
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     replaceImageLinks();
-    ////////////////// 增加图片转换, 并适配图片懒加载 end ////////////////
+    // ===================== 增加图片转换, 并适配图片懒加载 END =====================
 
-    // ==================== 手动插入外链图片 START ====================
+    // ===================== 手动插入外链图片 START =====================
     // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
     // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
     if (document.querySelector(".markdown-body")) {
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
             );
         }
     }
-    // ==================== 手动插入外链图片 END ====================
+    // ===================== 手动插入外链图片 END =====================
 
-    ////////////////// 懒加载图片 start ////////////////
+    // ===================== 懒加载图片 START =====================
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -97,21 +97,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 观察所有带有 data-src 属性的图片
     document.querySelectorAll('[data-src]').forEach(img => observer.observe(img));
-    ////////////////// 懒加载图片 end ////////////////
+    // ===================== 懒加载图片 END =====================
 
-    ////////////////// Fancybox 绑定及配置 start ////////////////
-    // 添加 Fancybox CSS
+    // ===================== Fancybox 绑定及配置 START =====================
+    /**
+     * 动态添加 Fancybox CSS 并绑定 Fancybox 功能
+     */
+    // 动态添加 Fancybox 的 CSS 文件
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet',
-        href: 'https://planenalp.github.io/assets/fancybox.css' // 根据实际需要修改此链接
+        href: 'https://planenalp.github.io/assets/fancybox.css'
     });
+
+    // 主链接加载失败时添加备用链接
+    fancyboxLink.addEventListener('error', () => {
+        const fallbackLink = Object.assign(document.createElement('link'), {
+            rel: 'stylesheet',
+            href: 'https://raw.githubusercontent.com/planenalp/ui/main/dist/fancybox/fancybox.css'
+        });
+        document.head.appendChild(fallbackLink);
+    });
+
     document.head.appendChild(fancyboxLink);
 
-    // 绑定 Fancybox，并指定选项 srcAttr 为 "data-src"
-    // 这样 Fancybox 在切换幻灯片时会优先使用 data-src 中的真实图片地址
+    // 绑定 Fancybox 到带有 data-fancybox="gallery" 的元素
     Fancybox.bind('[data-fancybox="gallery"]', {
         srcAttr: 'data-src'
     });
-    ////////////////// Fancybox 绑定及配置 end ////////////////
+    // ===================== Fancybox 绑定及配置 END =====================
 
 });
