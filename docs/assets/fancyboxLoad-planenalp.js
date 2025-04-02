@@ -96,13 +96,30 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * 动态添加 Fancybox CSS 并绑定 Fancybox 功能
      */
-    // 动态添加 Fancybox 的 CSS 文件
+    // 动态添加 Fancybox 的主 CSS 文件
     const fancyboxLink = Object.assign(document.createElement('link'), {
         rel: 'stylesheet', // 设置 link 标签的 rel 属性
-        href: 'https://planenalp.github.io/assets/fancybox.css' // 设置 Fancybox CSS 的地址（请根据实际需要修改）
+        href: 'https://planenalp.github.io/assets/fancybox.css' // 主链接地址
     });
-    document.head.appendChild(fancyboxLink); // 将 CSS 文件添加到 <head> 中
-
+    document.head.appendChild(fancyboxLink); // 将主 CSS 文件添加到 <head> 中
+    
+    // 定义备用 CSS 链接，但暂不添加
+    const backupFancyboxLink = Object.assign(document.createElement('link'), {
+        rel: 'stylesheet', // 设置 link 标签的 rel 属性
+        href: 'https://raw.githubusercontent.com/planenalp/ui/main/dist/fancybox/fancybox.css' // 备用链接地址
+    });
+    
+    // 当主链接加载失败时，添加备用链接
+    fancyboxLink.onerror = () => {
+        console.log('主链接加载失败，尝试加载备用链接');
+        document.head.appendChild(backupFancyboxLink); // 主链接失败时添加备用 CSS 文件
+    };
+    
+    // 当主链接加载成功时（可选），可以添加日志
+    fancyboxLink.onload = () => {
+        console.log('主链接加载成功');
+    };
+    
     // 绑定 Fancybox 到带有 data-fancybox="gallery" 的元素
     Fancybox.bind('[data-fancybox="gallery"]', {
         srcAttr: 'data-src' // 指定 Fancybox 使用 data-src 属性中的地址作为图片源
