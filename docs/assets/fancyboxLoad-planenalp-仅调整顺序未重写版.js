@@ -1,4 +1,5 @@
 //不同博客记得修改 const fancyboxLink 字段中 fancybox.css 对应的链接位置
+//依然是`Image="URL"`格式未改，也没必要改，这个备份就是为了不用这段的情况而保留的
 
 document.addEventListener("DOMContentLoaded", function() {
     // ===================== 增加图片转换, 并适配图片懒加载 START =====================
