@@ -18,5 +18,5 @@
     "allHead":"<script src='https://planenalp.github.io/assets/Theme-planenalp.js'></script><script src='https://dev.klein.blue/assets/Theme-IKB-dev.js'></script>",
     "indexScript":"<script src='https://planenalp.github.io/assets/NumPagination-planenalp.js'></script><script src='https://dev.klein.blue/assets/NumPagination-IKB-dev.js'></script>",
     "showPostSource":0,
-    "primerCSS": "<link href='https://planenalp.github.io/assets/primer.css, https://dev.klein.blue/assets/primer.css' rel='stylesheet' />"
+    "primerCSS": "<link rel='stylesheet' href='https://planenalp.github.io/assets/primer.css' />;<link rel='stylesheet' href='https://dev.klein.blue/assets/primer.css' />"
 }
