@@ -38,24 +38,37 @@ document.addEventListener("DOMContentLoaded", function() {
     replaceImageLinks();
     // ===================== 增加图片转换, 并适配图片懒加载 END =====================
 
-    // ===================== 手动插入外链图片 START =====================
-    // 通过用 `Image="URL"` 代替默认格式 ![Image](URL) 来支持被 GitHub Issues 禁用的 base64 格式图片，兼容 Fancybox
-    // 普通图片可直接用默认格式 ![Image](URL) 来加载，同样兼容 Fancybox
-    if (document.querySelector(".markdown-body")) {
-        const markdownBody = document.querySelector(".markdown-body");
-        const paragraphs = markdownBody.querySelectorAll("p");
-        paragraphs.forEach(p => {
-            // 检查段落是否只包含一个<a>标签，且href以"data:image/"开头
-            if (p.children.length === 1 && 
-                p.children[0].tagName === "A" && 
-                p.children[0].href.startsWith("data:image/")) {
-                const href = p.children[0].href; // 获取base64 URL
-                // 替换整个<p>为带有Fancybox支持的图片标签
-                p.outerHTML = `<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" data-src="${href}">`;
+    // ==================== 手动插入外链图片 START ====================
+    /**
+     * 支持手动插入外链图片
+     * 将 <p><code>![Image](URL)</code></p> 替换为懒加载图片，支持 Fancybox
+     */
+    if (document.querySelector(".markdown-body")) { // 检查是否存在 markdown-body 元素
+        document.querySelectorAll('.markdown-body p').forEach(p => {
+            const code = p.querySelector('code.notranslate'); // 查找 <p> 中的 <code> 标签
+            if (code && code.textContent.startsWith('![Image](') && code.textContent.endsWith(')')) {
+                const url = code.textContent.slice(9, -1); // 从 <code> 中提取图片 URL
+    
+                // 创建新元素
+                const div = document.createElement('div'); // 创建加载动画容器
+                div.classList.add('ImgLazyLoad-circle'); // 添加加载动画的类名
+                const img = document.createElement('img'); // 创建新的 <img> 标签
+                img.setAttribute('data-fancybox', 'gallery'); // 设置 Fancybox 属性
+                img.setAttribute('data-src', url); // 设置 data-src 属性为提取的 URL
+                img.setAttribute('alt', 'Image'); // 设置 alt 属性为 "Image"
+    
+                // 替换 <p> 为新结构
+                const fragment = document.createDocumentFragment(); // 创建文档片段
+                fragment.appendChild(div); // 将加载动画容器添加到片段
+                fragment.appendChild(img); // 将新图片添加到片段
+                p.replaceWith(fragment); // 用新结构替换原来的 <p> 标签
+    
+                // 立即观察新插入的图片
+                observer.observe(img);
             }
         });
     }
-    // ===================== 手动插入外链图片 END =====================
+    // ==================== 手动插入外链图片 END ====================
 
     // ===================== 懒加载图片 START =====================
     const observer = new IntersectionObserver(
