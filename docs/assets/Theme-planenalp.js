@@ -730,6 +730,11 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: unset;
         }
 
+        /* 多行代码内“已复制”弹窗 */
+        .copy-feedback {
+            border-radius: unset; /* 去除边框 */
+        }
+
         /* 评论按钮 */
         #cmButton {
             border-radius: unset; /* 去除圆角 */
