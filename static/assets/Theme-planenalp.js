@@ -545,6 +545,11 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
+        /* 标签 */
+        .SideNav-item .Label {
+            margin-left: 5px; /* LabelTime 以外的左间距 */
+        }
+
         /* 时间 标签 */
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
@@ -579,6 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
             -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
             user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
+            margin-bottom: 5px; /* 下间距防止窄屏换行紧贴 */
         }
         
         /* 重新定义 max-width: 768px 参数下的值，原为 600px */
@@ -1020,6 +1026,11 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-wrap: wrap; /* 解锁 Label 自动换行 */
         }
 
+        /* 标签 */
+        .SideNav-item .Label {
+            margin-left: 5px; /* LabelTime 以外的左间距 */
+        }
+
         /* 时间 标签 */
         .LabelTime {
             order: 1; /* 调整两种 Label 顺序 */
@@ -1054,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function() {
             -ms-user-select: none; /* 适用于 IE10+ 和 Edge */
             user-select: none; /* 标准语法 */
             outline: none !important; /* 解决按压边框闪烁 */
-
+            margin-bottom: 5px; /* 下间距防止窄屏换行紧贴 */
         }
 
         /* 顶部 #taglabel  */
